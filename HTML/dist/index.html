@@ -24,6 +24,11 @@
         <link rel="stylesheet" href="assets/css/icons.css" />
         <link rel="stylesheet" href="assets/css/tailwind.css" />
 
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+
     </head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EC7HQCD97R"></script>
@@ -106,9 +111,12 @@
             <div class="container">
                 <div class="grid grid-cols-1 justify-center text-center">
                     <div class="">
-                        <h1 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 ">Transformando ideas en <span class="typewrite" data-period="2000" data-type='[ "Experiencias Únicas" ,"Sitios Increíbles"]'> <span class="wrap"></span> </span></h1>
-                        <p class="font-bold text-3xl lg:text-3xl lg:leading-normal leading-normal">No creamos solo diseños, creamos experiencias</p>
-                    
+
+                   
+                        <h1 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 ">Transformando Ideas </h1>
+                        <h1 class="font-bold lg:leading-normal leading-normal text-5xl lg:text-5xl bg-gradient-to-r from-red-100 to-indigo-100 text-transparent bg-clip-text mb-5">en <span class="typewrite" data-period="2000" data-type='[ "Experiencias Únicas" ,"Sitios Increíbles"]'> <span class="wrap"></span> </span></h1>
+                        <p class=" text-slate-400  text-2xl lg:text-2xl lg:leading-normal leading-normal">No creamos solo <span class="text-black dark:text-white font-semibold">diseños</span>, creamos <span class="text-black dark:text-white font-semibold">experiencias</span></p>
+                       
                  </div>
                 </div>
             </div><!--end container-->
@@ -224,92 +232,146 @@
             </section><!--end section-->
             <!-- End -->
 
+            <section id="ultimos" class="relative md:py-24 py-16">
 
+                <div class="grid grid-cols-1 pb-8 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                    <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Nuestros Ultimos Trabajos</h3>
+                </div><!--end grid-->
+                <div class="container">
+                    <div class="grid grid-cols-1 items-center gap-[30px]">
+                        <div class="filters-group-wrap text-center">
+                            <div class="filters-group">
+                                <ul class="mb-0 list-none container-filter filter-options">
+                                    <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500 active" data-group="all">Todos</li>
+                                    <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="diseno">Diseño Web</li>
+                                    <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="commerce">E-Commerce</li>
+                                    <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="medida">Diseño a Medida</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!--grid-->
+    
+                    <div id="grid" class="md:flex justify-center mx-auto mt-4">
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["diseno", "all"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/tanabata.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/tanabata.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="https://tanabata.com.ar" target="_blank" class="hover:text-indigo-600 text-lg transition duration-500 font-medium">Tanabata</a>
+                                    <h6 class="text-slate-400">Diseño Web</h6>
+                                </div>
+                            </div>
+                        </div>
 
-      <section id ="ultimos" class="relative md:py-24 py-16">
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["all","diseno"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/lauamodio.jpg" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/lauamodio.jpg" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="portfolio-detail-two.html" class="hover:text-indigo-600 text-lg transition duration-500 font-medium">Lic Maria Lau Amodio</a>
+                                    <h6 class="text-slate-400">Diseño Web</h6>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="grid grid-cols-1 pb-8 text-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-            <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Nuestros Ultimos Trabajos</h3>
-        </div><!--end grid-->
-        <div class="container">
-            <div class="grid grid-cols-1 items-center gap-[30px]">
-                <div class="filters-group-wrap text-center">
-                    <div class="filters-group">
-                        <ul class="mb-0 list-none container-filter filter-options">
-                            <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500 active" data-group="all">Diseño Web</li>
-                      
-                            <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="commerce">ECommerce</li>
-                            <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="chatbot">ChatBots</li>
-                            <li class="inline-block font-medium text-lg mx-2 mb-3 cursor-pointer relative text-slate-400 transition duration-500" data-group="medida">Desarrollo a Medida</li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!--grid-->
-
-            <div id="grid" class="md:flex justify-center mx-auto mt-4">
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["commerce","web","medida"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://www.almazenom.com.ar" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/azo.png" class="" alt="work-image">
-                        </a>
+                                                   
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["all","diseno","commerce"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/lacriolla.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/lacriolla.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="https://lacriollamercedes.com.ar" target="_blank" "hover:text-indigo-600 text-lg transition duration-500 font-medium">La Criolla</a>
+                                    <h6 class="text-slate-400">E-Commerce</h6>
+                                </div>
+                            </div>
+                        </div>                     
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["all","diseno","medida"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/rucahaian.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/rucahaian.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="www.rucahaian.com" target="_blank"hover:text-indigo-600 text-lg transition duration-500 font-medium">Rucahaian</a>
+                                    <h6 class="text-slate-400">Diseño Web, Sistema de Booking</h6>
+                                </div>
+                            </div>
+                        </div>
                         
-                    </div>
-                </div>
-                
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["web", "chatbot"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://www.kaizenom.com.ar" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/kzo.png" class="" alt="work-image">
-                        </a>
-                       
-                    </div>
-                </div>
-                
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["web"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://www.tanabata.com.ar" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/tanabata.png" class="" alt="work-image">
-                        </a>
-                      
-                    </div>
-                </div>
-                
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["web", "commerce","medida"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://www.rucahaian.com" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/rucahaian.png" class="" alt="work-image">
-                        </a>
-                       
-                    </div>
-                </div>
-                
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["web", "commerce"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://lacriollamercedes.com.ar/" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/lacriolla.png" class="" alt="work-image">
-                        </a>
-                       
-                    </div>
-                </div>
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["designing"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/kzo.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/kzo.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="https://kaizenom.com.ar" target="_blank" class="hover:text-indigo-600 text-lg transition duration-500 font-medium">Kaizenom</a>
+                                    <h6 class="text-slate-400">Diseño Web</h6>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["web"]'>
-                    <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
-                        <a href="https://marialauamodio.com.ar/" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
-                            <img src="assets/images/lauamodio.jpg" class="" alt="work-image">
-                        </a>
-                       
-                    </div>
-                </div>
- 
-                
-
-                
-                
-            </div>
+                        
 
 
-        </div><!--end container-->
-      </section>
+                        
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["all", "commerce", "medida"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/azo.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/azo.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="https://almazenom.com.ar" target="_blank"="hover:text-indigo-600 text-lg transition duration-500 font-medium">Almazenom</a>
+                                    <h6 class="text-slate-400">Diseño Web, Ecommerce, Diseño a medida</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["all", "diseno"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/museoyerbamate.png" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/museoyerbamate.png" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="https://museodelayerbamate.com.ar" target="_blank"="hover:text-indigo-600 text-lg transition duration-500 font-medium">Museo de la Yerba Mate</a>
+                                    <h6 class="text-slate-400">Diseño Web</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["development"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/portfolio/12.jpg" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/portfolio/12.jpg" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="portfolio-detail-two.html" class="hover:text-indigo-600 text-lg transition duration-500 font-medium">Iphone mockup</a>
+                                    <h6 class="text-slate-400">Branding</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/3 md:w-1/3 p-1 picture-item" data-groups='["development"]'>
+                            <div class="group relative block overflow-hidden rounded-md transition-all duration-500">
+                                <a href="assets/images/portfolio/8.jpg" class="lightbox transition-all duration-500 group-hover:scale-105" title="">
+                                    <img src="assets/images/portfolio/8.jpg" class="" alt="work-image">
+                                </a>
+                                <div class="absolute -bottom-52 group-hover:bottom-2 start-2 end-2 transition-all duration-500 bg-white dark:bg-slate-900 p-4 rounded shadow dark:shadow-gray-800">
+                                    <a href="portfolio-detail-two.html" class="hover:text-indigo-600 text-lg transition duration-500 font-medium">Iphone mockup</a>
+                                    <h6 class="text-slate-400">Branding</h6>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+    
+                </div><!--end container-->
+    
+
+            </section><!--end section-->
+
+
 
         <div class="container md:mt-24 mt-16">
             <div class="grid grid-cols-1 text-center">
@@ -374,7 +436,13 @@
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-indigo-600 text-white leading-9"><i class="uil uil-arrow-up"></i></a>
         <!-- Back to top -->
-
+        <a
+        href="https://wa.me/5491156571982?text=Mensaje"
+        class="whatsapp"
+        target="_blank"
+      >
+        <i class="fa fa-whatsapp whatsapp-icon"></i
+      ></a>
         <!-- Switcher -->
 
         <!-- Switcher -->
@@ -383,14 +451,13 @@
         <!-- LTR & RTL Mode Code -->
 
         <!-- JAVASCRIPTS -->
+
+
+
         <script src="assets/libs/wow.js/wow.min.js"></script>
         <script src="assets/libs/shufflejs/shuffle.min.js"></script>
-        <script src="assets/libs/tobii/js/tobii.min.js"></script>
-        <script src="assets/libs/tiny-slider/min/tiny-slider.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-
-        
-       
+        <script src="assets/libs/tobii/js/tobii.min.js"></script>     
+        <script src="assets/libs/feather-icons/feather.min.js"></script>      
         <script src="assets/js/plugins.init.js"></script>
         <script src="assets/js/app.js"></script>
 
