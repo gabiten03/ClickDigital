@@ -9,6 +9,12 @@
 */
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&display=swap");
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 /* ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
 /*
@@ -3088,6 +3094,11 @@ video {
 .font-nunito {
   font-family: "Nunito", sans-serif !important;
 }
+
+.font-raleway {
+  font-family: "Raleway", sans-serif !important;
+}
+
 .text-2xl {
   font-size: 1.5rem !important;
   line-height: 2rem !important;
