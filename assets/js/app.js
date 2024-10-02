@@ -349,9 +349,9 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const circleRadius = Math.min(canvas.width, canvas.height) / 3;
-const numBalls = 300;  // Increase number of balls
+const numBalls = 250;  // Increase number of balls
 const maxBallRadius = 5;  // Smaller balls
-const ballSpeed = 4;  // Faster speed
+const ballSpeed = 3;  // Faster speed
 const mouse = { x: canvas.width / 2, y: canvas.height / 2, isHovering: false, isInsideCircle: false };
 
 const balls = [];
