@@ -342,3 +342,105 @@ try{
     switcherRtl?.addEventListener("click" ,changeLayout )
 }
 catch(err){}
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const circleRadius = Math.min(canvas.width, canvas.height) / 3;
+const numBalls = 300;  // Increase number of balls
+const maxBallRadius = 5;  // Smaller balls
+const ballSpeed = 4;  // Faster speed
+const mouse = { x: canvas.width / 2, y: canvas.height / 2, isHovering: false, isInsideCircle: false };
+
+const balls = [];
+
+class Ball {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.radius = Math.random() * maxBallRadius + 1;
+    this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+    this.vx = Math.random() * ballSpeed - ballSpeed / 2;
+    this.vy = Math.random() * ballSpeed - ballSpeed / 2;
+  }
+
+  update() {
+    // Ball bounce logic within the circular boundary
+    const dx = this.x - canvas.width / 2;
+    const dy = this.y - canvas.height / 2;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > circleRadius - this.radius) {
+      const angle = Math.atan2(dy, dx);
+      this.vx = -Math.cos(angle) * ballSpeed;
+      this.vy = -Math.sin(angle) * ballSpeed;
+    }
+
+    // Flocking effect only if mouse is inside the circle
+    if (mouse.isInsideCircle) {
+      const mouseDx = mouse.x - this.x;
+      const mouseDy = mouse.y - this.y;
+      const mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+      const attractionForce = Math.min(3 / mouseDistance, 0.1); // Flocking force
+      
+      // Move balls towards mouse, creating a flocking effect
+      this.vx += mouseDx * attractionForce;
+      this.vy += mouseDy * attractionForce;
+
+      // Slightly slow down the ball near the mouse
+      this.vx *= 0.96;
+      this.vy *= 0.96;
+    }
+
+    this.x += this.vx;
+    this.y += this.vy;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
+function initBalls() {
+  for (let i = 0; i < numBalls; i++) {
+    balls.push(new Ball());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw the circle boundary
+  ctx.beginPath();
+  ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  ctx.strokeStyle = isDarkMode ? 'rgb(15 23 42)' : 'white'; // Change colors as needed
+  ctx.stroke();
+  ctx.closePath();
+
+  // Update and draw each ball
+  balls.forEach(ball => {
+    ball.update();
+    ball.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+// Track mouse position and hover state
+
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initBalls();  // Reinitialize balls after resizing
+});
+
+initBalls();
+animate();
