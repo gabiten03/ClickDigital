@@ -134,7 +134,21 @@
                 
                 
                         <li><a href="#quienes" class="sub-menu-item">Quienes Somos</a></li>
-                        <li><a href="#servicios" class="sub-menu-item">Servicios</a></li>
+
+                        <li class="has-submenu parent-parent-menu-item">
+                            <a href="javascript:void(0)">Servicios</a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                        <li><a href="#apps" class="sub-menu-item">Desarrollo de Apps</a></li>
+                                        <li><a href="#web" class="sub-menu-item">Desarrollo Web, Ecommerce, Blogs</a></li>
+
+                                        <li><a href="#automatizacion" class="sub-menu-item">Automatización de procesos</a></li>
+                                        <li><a href="#integracion" class="sub-menu-item">Integración con plataformas</a></li>
+                                        <li><a href="#ia" class="sub-menu-item">Implementación de inteligencia artificial</a></li>
+                                      
+
+                                    </ul> 
+              
+                        </li>
                         <li><a href="#ultimos" class="sub-menu-item">Ultimos Trabajos</a></li>
                         <li><a href="#contacto" class="sub-menu-item">Contacto</a></li>
                     </ul><!--end navigation menu-->
@@ -200,7 +214,7 @@
                     <p class="text-slate-400 max-w-xl mx-auto text-xl">Nuestro enfoque se centra en crear sitios web atractivos, funcionales y de alto rendimiento, así como en desarrollar chatbots inteligentes y soluciones a medida que impulsarán tu presencia en línea</p>
                 </div><!--end grid-->
                 
-                <div class="container md:mt-24 mt-16">
+                <div id = "apps"  class="container md:mt-24 mt-16">
                    
                     <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
                         <div class="relative order-1 md:order-2 wow animate__animated animate__fadeInRight" data-wow-delay=".5s">
@@ -225,7 +239,8 @@
                         </div>
                     </div>
                 </div><!--end container-->
-                <div class="container md:mt-24 mt-16">
+                <div id = "web"  ></div>
+                <div    class="container md:mt-24 mt-16">
                     
     
                     <div class="grid md:grid-cols-2 grid-cols-1 items-center mt-16 gap-[30px]">
@@ -249,19 +264,28 @@
                         </div>
                     </div>
                 </div><!--end container-->
-    
+    <div id="automatizacion"></div>
                 <div class="container md:mt-24 mt-16">
                     <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
                         <div class="relative order-1 md:order-2 wow animate__animated animate__fadeInRight" data-wow-delay=".5s">
-                            <img src="assets/images/chatbot1.jpg" class="rounded-lg shadow-md dark:shadow-gray-800" alt="">
+                            <img src="assets/images/procesos.avif" class="rounded-lg shadow-md dark:shadow-gray-800" alt="">
                             <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 end-0 rotate-45 -z-1 rounded-3xl"></div>
                         </div>
     
                         <div class="lg:me-8 order-2 md:order-1 wow animate__animated animate__fadeInLeft" data-wow-delay=".5s">
-                            <h4 class="mb-4 text-2xl leading-normal font-medium">Lleva la comunicación con tus clientes a un nuevo nivel</h4>
-                            <p class="text-slate-400">Los chatbots son herramientas poderosas para mejorar la comunicación con tus clientes y automatizar tareas repetitivas. Creamos chatbots inteligentes que pueden interactuar con los visitantes de tu sitio web, responder preguntas frecuentes, recopilar información y brindar asistencia personalizada las 24 horas del día, los 7 días de la semana. Un chatbot bien implementado no solo mejorará la experiencia del usuario, sino que también optimizará la eficiencia de tu empresa.</p>
-                          
-    
+                            <h4 class="mb-4 text-2xl leading-normal font-medium">Optimiza tus procesos para maximizar la eficiencia </h4>
+                            <p class="text-slate-400">Transformar sus operaciones a través de la automatización de procesos clave. Simplificamos y optimizamos flujos de trabajo en áreas críticas como:
+
+                                </p>
+
+                                <ul class="list-none text-slate-400 mt-4">
+                                    <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i> Ventas: Automatiza el seguimiento de clientes potenciales, la gestión de clientes existentes, y los recordatorios de seguimiento para maximizar oportunidades de conversión</li>                                    </li>
+                                    <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i> Marketing: Implementa campañas automatizadas y segmentadas, integrando herramientas que optimizan el envío de correos electrónicos, la gestión de redes sociales, y la creación de informes detallados sobre rendimiento.</li>
+                                    <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i>    Gestión de inventario: Asegura un control preciso y automatizado del inventario, con alertas de reposición, seguimiento de productos en tiempo real, y optimización de pedidos.</li>
+                                </ul>
+ 
+                                <p class="text-slate-400">     Nuestra misión es ayudarte a liberar tiempo, reducir errores humanos, y mejorar la productividad mediante soluciones personalizadas para cada etapa de tu negocio.
+    </p>
                             <div class="mt-4">
                                 <a href="https://wa.me/5491156571982?text=Mensaje" class="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Contactanos <i class="uil uil-angle-right-b align-middle"></i></a>
                             </div>
@@ -269,6 +293,7 @@
                     </div>
                 </div><!--end container-->
     
+                <div id="integracion"></div>
                 <div class="grid md:grid-cols-2 grid-cols-1 items-center mt-16 gap-[30px]">
                     <div class="relative wow animate__animated animate__fadeInLeft" data-wow-delay=".3s">
                         <img src="assets/images/diseno-a-medida1.jpg" class="rounded-lg shadow-md dark:shadow-gray-800" alt="">
@@ -276,16 +301,60 @@
                     </div>
     
                     <div class="lg:ms-8 wow animate__animated animate__fadeInRight" data-wow-delay=".3s">
-                        <h4 class="mb-4 text-2xl leading-normal font-medium">Transforma tu negocio con soluciones digitales</h4>
-                        <p class="text-slate-400">Entendemos que cada negocio tiene necesidades únicas y, a veces, una solución estándar no es suficiente. Creamos soluciones a medida que se adapten a tus requisitos específicos. Nos enfocamos en desarrollar soluciones escalables y flexibles que te brinden una ventaja competitiva en el mercado.</p>
-                      
-    
-                        <div class="mt-4">
+                        <h4 class="mb-4 text-2xl leading-normal font-medium">Conecta y automatiza todas tus plataformas para una gestión eficiente</h4>
+                        <p class="text-slate-400"> Integra las aplicaciones que ya usas para crear flujos de trabajo completamente automatizados y eficientes:
+
+
+                            <ul class="list-none text-slate-400 mt-4">
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i> Sincronización de datos en tiempo real: Mantén tu información actualizada en todas tus plataformas, asegurando que tus equipos de ventas, marketing, y soporte siempre tengan acceso a los datos más recientes.
+                                </li>                                    </li>
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i> Automatización de flujos de trabajo: Integramos plataformas para que procesos repetitivos, como la gestión de leads, la actualización de estados de proyectos, y la facturación, se realicen de forma automática y sin errores.
+                                </li>
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i>     Conexiones personalizadas: Creamos soluciones personalizadas mediante APIs que permiten que todos tus sistemas trabajen en conjunto, maximizando la eficiencia y mejorando la toma de decisiones.
+                                </li>
+                            </ul>
+
+                            <p class="text-slate-400">                                Ya sea que utilices un CRM, un sistema de facturación o una plataforma de e-commerce, podemos ayudarte a integrarlos para que trabajen en perfecta armonía, haciendo tu negocio más ágil y conectado.
+                        
+</p>
+                            <div class="mt-4">
                             <a href="https://wa.me/5491156571982?text=Mensaje" class="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Contactanos <i class="uil uil-angle-right-b align-middle"></i></a>
                         </div>
                     </div>
                 
             </div><!--end container-->
+<div id="ia"></div>
+            <div class="container md:mt-24 mt-16">
+                <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
+                    <div class="relative order-1 md:order-2 wow animate__animated animate__fadeInRight" data-wow-delay=".5s">
+                        <img src="assets/images/chatbot1.jpg" class="rounded-lg shadow-md dark:shadow-gray-800" alt="">
+                        <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 end-0 rotate-45 -z-1 rounded-3xl"></div>
+                    </div>
+
+                    <div class="lg:me-8 order-2 md:order-1 wow animate__animated animate__fadeInLeft" data-wow-delay=".5s">
+                        <h4 class="mb-4 text-2xl leading-normal font-medium">Impulsa tu empresa con inteligencia artificial aplicada. </h4>
+                        <p class="text-slate-400">Ofrecemos soluciones basadas en IA que mejoran significativamente la toma de decisiones y la experiencia del cliente:
+
+                                 
+                            <ul class="list-none text-slate-400 mt-4">
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i>   Toma de decisiones basada en datos: Aprovecha algoritmos de IA para analizar grandes volúmenes de datos empresariales y obtener recomendaciones claras que te ayudarán a predecir tendencias y comportamientos del mercado.
+                                </li>                                    </li>
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i>  Atención al cliente con chatbots: Automatiza la interacción con tus clientes utilizando chatbots inteligentes que responden a consultas frecuentes en tiempo real, mejorando la atención al cliente sin necesidad de intervención manual.
+                                </li>
+                                <li class="mb-1 flex"><i class="uil uil-check-circle text-indigo-600 text-xl me-2"></i>    Predicción de demanda: Implementa soluciones de IA que anticipen la demanda de productos o servicios en base a patrones históricos, permitiéndote tomar decisiones proactivas en gestión de inventario y producción.
+                                </li>
+                            </ul>
+
+                            <p class="text-slate-400">   Nuestro equipo se encarga de que la IA se convierta en una herramienta clave para hacer crecer tu negocio, optimizar operaciones y mejorar la satisfacción del cliente. </p>
+                            
+</p>
+                        <div class="mt-4">
+                            <a href="https://wa.me/5491156571982?text=Mensaje" class="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out">Contactanos <i class="uil uil-angle-right-b align-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end container-->
+
             </section><!--end section-->
             <!-- End -->
 
