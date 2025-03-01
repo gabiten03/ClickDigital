@@ -444,3 +444,123 @@ window.addEventListener('resize', () => {
 
 initBalls();
 animate();
+
+document.getElementById("langToggle").addEventListener("change", function () {
+    if (this.checked) {
+        changeLanguage("en"); // Cambiar a inglés
+    } else {
+        changeLanguage("es"); // Cambiar a español
+    }
+});
+
+
+
+function changeLanguage(lang) {
+    console.log("Cambiando a idioma:", lang);
+    document.getElementById('SubES').style.display = 'none';
+    document.getElementById('SubEN').style.display = 'none';
+
+    // Mostrar el párrafo correspondiente según el idioma
+    if (lang === 'es') {
+        document.getElementById('SubES').style.display = 'block';
+    } else if (lang === 'en') {
+        document.getElementById('SubEN').style.display = 'block';
+    }
+
+
+    if (lang === "es") {
+        document.getElementById("menuES").style.display = "block";
+        document.getElementById("menuEN").style.display = "none";
+
+        document.getElementById("contactES").style.display = "inline-block";
+        document.getElementById("contactEN").style.display = "none";
+
+        document.getElementById("content2ES").style.display = "block";
+        document.getElementById("content2EN").style.display = "none";
+
+        document.getElementById("otimiES").style.display = "block";
+        document.getElementById("otimiEN").style.display = "none";
+
+        document.getElementById("contactUSES").style.display = "inline-block";
+        document.getElementById("contactUSUS").style.display = "none";
+        
+        document.getElementById("contact2USES").style.display = "inline-block";
+        document.getElementById("contact2USUS").style.display = "none";
+
+        document.getElementById("contact3USES").style.display = "inline-block";
+        document.getElementById("contact3USUS").style.display = "none";
+        
+        document.getElementById("contact4USES").style.display = "inline-block";
+        document.getElementById("contact4USEN").style.display = "none";
+        document.getElementById("IntegraES").style.display = "block";
+        document.getElementById("IntegraUS").style.display = "none";
+
+        document.getElementById("ImpulsaES").style.display = "block";
+        document.getElementById("ImpulsaEN").style.display = "none";
+
+        document.getElementById("submenuEs").style.display = "block";
+        document.getElementById("submenuEn").style.display = "none";
+        
+
+    } else {
+        document.getElementById("menuES").style.display = "none";
+        document.getElementById("menuEN").style.display = "block"; 
+          document.getElementById("contactES").style.display = "none";
+        document.getElementById("contactEN").style.display = "inline-block";
+
+        document.getElementById("content2ES").style.display = "none";
+        document.getElementById("content2EN").style.display = "block";
+
+        document.getElementById("otimiES").style.display = "none";
+        document.getElementById("otimiEN").style.display = "block";
+
+        document.getElementById("contactUSES").style.display = "none";
+        document.getElementById("contactUSUS").style.display = "inline-block";
+
+        document.getElementById("contact2USES").style.display = "none";
+        document.getElementById("contact2USUS").style.display = "inline-block";
+
+
+        document.getElementById("contact3USES").style.display = "none";
+        document.getElementById("contact3USUS").style.display = "inline-block";
+
+        document.getElementById("contact4USES").style.display = "none";
+        document.getElementById("contact4USEN").style.display = "inline-block";
+        document.getElementById("IntegraES").style.display = "none";
+        document.getElementById("IntegraUS").style.display = "block";
+
+
+        document.getElementById("ImpulsaES").style.display = "none";
+        document.getElementById("ImpulsaEN").style.display = "block";
+
+        document.getElementById("submenuEs").style.display = "none";
+        document.getElementById("submenuEn").style.display = "block";
+        
+
+    }
+
+   
+
+    // Verifica que el idioma esté disponible en el objeto de traducciones
+    if (translations[lang]) {
+        // Obtiene todos los elementos con el atributo data-translate
+        const elements = document.querySelectorAll('[data-translate]');
+
+        elements.forEach(element => {
+            // Obtiene el valor del atributo data-translate
+            const key = element.getAttribute('data-translate');
+
+            // Si la clave existe en las traducciones, actualiza el contenido del elemento
+            if (translations[lang][key]) {
+                element.innerText = translations[lang][key];
+            }
+        });
+    } else {
+        console.error("Idioma no disponible:", lang);
+    }
+}
+
+
+
+  // Llamar a la función con el idioma deseado (por ejemplo, "es" o "en")
+  changeLanguage("es");
