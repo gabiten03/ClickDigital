@@ -446,7 +446,7 @@ initBalls();
 animate();
 
 document.getElementById("langToggle").addEventListener("change", function () {
-    if (this.checked) {
+    if (!this.checked) {
         changeLanguage("en"); // Cambiar a inglés
     } else {
         changeLanguage("es"); // Cambiar a español
