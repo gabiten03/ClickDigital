@@ -733,13 +733,15 @@
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-indigo-600 text-white leading-9"><i class="uil uil-arrow-up"></i></a>
         <!-- Back to top -->
-        <a
+       <!--  <a
         href="https://wa.me/5491156571982?text=Mensaje"
         class="whatsapp"
         target="_blank"
       >
         <i class="fa fa-whatsapp whatsapp-icon"></i
       ></a>
+
+      -->
         <!-- Switcher -->
 
         <!-- Switcher -->
@@ -749,7 +751,40 @@
 
         <!-- JAVASCRIPTS -->
 
+        
 
+
+        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://clickgabiten.app.n8n.cloud/webhook/15e4d662-3f98-48d0-9f50-68838769ecac/chat',
+        target: '#n8n-chat',
+        mode: 'inline', // o 'overlay' si querés flotante
+        chatInputKey: 'chatInput',
+        chatSessionKey: 'sessionId',
+        metadata: {
+          empresa: 'ClickDigital',
+          origen: 'webchat',
+        },
+        showWelcomeScreen: false,
+        defaultLanguage: 'es',
+        initialMessages: [
+          '¡Hola! 👋',
+          'Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?',
+        ],
+        i18n: {
+          es: {
+            title: 'Bienvenido a ClickDigital 👋',
+            subtitle: '',
+            footer: '',
+            getStarted: 'Nueva conversación',
+            inputPlaceholder: 'Escribí tu pregunta...',
+          },
+        },
+      });
+</script>
 
         <script src="assets/libs/wow.js/wow.min.js"></script>
         <script src="assets/libs/shufflejs/shuffle.min.js"></script>
