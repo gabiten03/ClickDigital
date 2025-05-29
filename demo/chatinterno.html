@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat DickHaus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Chat de n8n -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      createChat({
+
+        
+        webhookUrl: 'https://optiflowar.app.n8n.cloud/webhook/15e4d662-3f98-48d0-9f50-68838769ecac/chat',
+        target: '#n8n-chat',
+        mode: 'inline', // o 'overlay' si querés flotante
+        chatInputKey: 'chatInput',
+        chatSessionKey: 'sessionId',
+        metadata: {
+          empresa: 'DickHaus',
+          origen: 'webchat',
+        },
+        showWelcomeScreen: false,
+        defaultLanguage: 'es',
+        initialMessages: [
+
+     
+          '¡Hola! 👋',
+          'Soy el asistente virtual interno de analisis de Precios de DickHaus. ¿En qué puedo ayudarte hoy?',
+        ],
+        i18n: {
+          es: {
+            title: 'Bienvenido 👋',
+            subtitle: 'Estoy aquí para ayudarte con tus consultas.',
+            
+            getStarted: 'Nueva conversación',
+            inputPlaceholder: 'Escribí tu consulta...',
+          },
+        },
+      });
+    </script>
+
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+      }
+
+      #n8n-chat {
+        width: 100%;
+        height: 100%;
+      }
+      .chat-window-wrapper .chat-window {
+        width: 100% !important ;
+       
+      }
+
+
+      iframe {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="n8n-chat"></div>
+  </body>
+</html>
