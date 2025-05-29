@@ -27,6 +27,8 @@
         <link rel="stylesheet" href="assets/css/icons.css" />
         <link rel="stylesheet" href="assets/css/tailwind.css" />
 
+        <link href="./assets/css/chat.css" rel="stylesheet" />
+
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -771,38 +773,23 @@
         
 
 
-        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+       <!-- Botón flotante -->
+  <button id="chatToggleButton" onclick="toggleChat()">💬</button>
 
-	createChat({
-		webhookUrl: 'https://clickgabiten.app.n8n.cloud/webhook/15e4d662-3f98-48d0-9f50-68838769ecac/chat',
-        target: '#n8n-chat',
-        mode: 'inline', // o 'overlay' si querés flotante
-        chatInputKey: 'chatInput',
-        chatSessionKey: 'sessionId',
-        metadata: {
-          empresa: 'ClickDigital',
-          origen: 'webchat',
-        },
-        showWelcomeScreen: false,
-        defaultLanguage: 'es',
-        initialMessages: [
-          '¡Hola! 👋',
-          'Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?',
-        ],
-        i18n: {
-          es: {
-            title: 'Bienvenido a ClickDigital 👋',
-            subtitle: '',
-            footer: '',
-            getStarted: 'Nueva conversación',
-            inputPlaceholder: 'Escribí tu pregunta...',
-          },
-        },
-      });
-</script>
+  <!-- Chat -->
+  <div id="chatWidget">
+    <div class="chat-header">
+      Bienvenido a ClickDigital 👋
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input id="chatInput" type="text" placeholder="Escribe tu pregunta..." />
+      <button onclick="sendMessage()">></button>
+    </div>
+  </div>
 
+
+ <script src="./assets/js/chat.js"></script> 
         <script src="assets/libs/wow.js/wow.min.js"></script>
         <script src="assets/libs/shufflejs/shuffle.min.js"></script>
         <script src="assets/libs/tobii/js/tobii.min.js"></script>     
