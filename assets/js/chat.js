@@ -32,41 +32,51 @@ async function sendMessage() {
   chatInput.value = '';
 
   try {
-    console.log('Enviando mensaje al webhook...'); // Log 1: Antes de la solicitud fetch
+    console.log('Enviando mensaje al webhook...');
     const response = await fetch('https://n8n.srv844090.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text })
     });
 
-    console.log('Respuesta recibida:', response); // Log 2: Después de recibir la respuesta (objeto Response)
-    console.log('Status de la respuesta:', response.status); // Log 3: Código de estado HTTP
-    console.log('Headers de la respuesta:', response.headers); // Log 4: Encabezados de la respuesta
+    console.log('Respuesta recibida:', response);
+    console.log('Status de la respuesta:', response.status);
+    console.log('Headers de la respuesta:', response.headers);
 
-    // CLAVE: Clonar la respuesta para poder leerla dos veces
-    // Una vez para debug (text()), otra para el parseo (json())
     const clonedResponse = response.clone();
-
-    // Intenta leer la respuesta como texto primero para ver el contenido crudo
     const responseText = await clonedResponse.text();
-    console.log('Contenido de la respuesta (texto crudo):', responseText); // Log 5: Contenido de la respuesta como texto
+    console.log('Contenido de la respuesta (texto crudo):', responseText);
 
-    // Ahora intenta parsear como JSON
-    const data = await response.json(); // Aquí es donde ocurre el SyntaxError
+    if (!responseText) {
+      appendMessage('Respuesta vacía del servidor.', 'bot');
+      return;
+    }
 
-    console.log('Datos parseados (JSON):', data); // Log 6: Después de parsear el JSON
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (jsonError) {
+      console.error('Error parseando JSON:', jsonError);
+      appendMessage('Error interpretando la respuesta del bot.', 'bot');
+      return;
+    }
+
+    console.log('Datos parseados (JSON):', data);
 
     if (Array.isArray(data) && data.length > 0 && data[0].output) {
       appendMessage(data[0].output, 'bot');
+    } else if (data.output) {
+      appendMessage(data.output, 'bot');
     } else {
       appendMessage('Respuesta no disponible.', 'bot');
     }
 
   } catch (error) {
-    console.error('Error en sendMessage:', error); // Log 7: Captura cualquier error en el try/catch
+    console.error('Error en sendMessage:', error);
     appendMessage('Error al contactar al bot.', 'bot');
   }
 }
+
 
 chatInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
