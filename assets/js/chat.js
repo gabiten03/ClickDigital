@@ -32,8 +32,10 @@ async function sendMessage() {
   chatInput.value = '';
 
   try {
+
+    //test
     console.log('Enviando mensaje al webhook...');
-    const response = await fetch('https://https://clickdigital.srv851218.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70', {
+    const response = await fetch('https://clickdigital.srv851218.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text })
