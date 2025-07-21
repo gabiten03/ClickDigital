@@ -1,179 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Rucahaian</title>
+
+  <!-- Fuente Raleway desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Estilos del widget de chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 </head>
 <body>
-    
 
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<!-- Contenedor del chat -->
+<div id="n8n-chat"></div>
+
+<!-- Script de integración -->
 <script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-	
-    createChat({
-
-        
-	webhookUrl: 'https://rucahaian.srv844090.hstgr.cloud/webhook/220c1e94-7c61-46bd-8726-f2160f06486e/chat', // Reemplaza por tu URL real
-	
-	target: '#n8n-chat',
-	mode: 'inline', // o 'inline' si lo embebés directamente
-	chatInputKey: 'chatInput',
-	chatSessionKey: 'sessionId',
-	metadata: {
-		empresa: 'DickHaus',
-		origen: 'webchat',
-	},
-	showWelcomeScreen: false,
-	defaultLanguage: 'es',
-	initialMessages: [
-		'¡Hola! 👋 Soy el asistente virtual de Rucahaian Cabañas Spa & Restó. Tandil.',' ¿En qué puedo ayudarte hoy?',
-	],
-	i18n: {
-		es: {
-			title: 'Bienvenido a Rucahaian',
-			subtitle: '',
-			footer: '',
-			getStarted: 'Nueva conversación',
-			inputPlaceholder: 'Escribí tu pregunta...',
-		},
-	},
-});
+  createChat({
+    webhookUrl: 'https://rucahaian.srv844090.hstgr.cloud/webhook/220c1e94-7c61-46bd-8726-f2160f06486e/chat',
+    target: '#n8n-chat',
+    mode: 'inline',
+    chatInputKey: 'chatInput',
+    chatSessionKey: 'sessionId',
+    metadata: {
+      empresa: 'DickHaus',
+      origen: 'webchat',
+    },
+    showWelcomeScreen: false,
+    defaultLanguage: 'es',
+    initialMessages: [
+      '¡Hola! 👋 Soy el asistente virtual de Rucahaian Cabañas Spa & Restó en Tandil. ¿En qué puedo ayudarte hoy?'
+    ],
+    i18n: {
+      es: {
+        title: 'Bienvenido a Rucahaian',
+        subtitle: '',
+        footer: '',
+        getStarted: 'Nueva conversación',
+        inputPlaceholder: 'Escribí tu pregunta...',
+      },
+    },
+  });
 </script>
 
-    <style>
-        .showHeaderNavbar {
-            opacity: 1 !important;
-            visibility: visible !;
-        }
+<!-- Estilos personalizados -->
+<style>
+  #n8n-chat {
+    font-family: 'Raleway', sans-serif !important;
+  }
 
+  #n8n-chat * {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    line-height: 1.4 !important;
+  }
 
-.chat-message.chat-message-from-bot {
-   
-    border-radius: 24px !important;
-}
+  .chat-header {
+    background: #e74266 !important;
+  }
 
-.
+  .chat-message.chat-message-from-bot {
+    border-radius: 20px !important;
+    background-color: #f9f9f9 !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+  }
 
-        .chat-powered-by{display:none;}
-        .checkoutBtn {
-            outline: none;
-            padding: 9px 20px;
-            border-radius: 21px;
-            vertical-align: top;
-            display: inline-block;
-            border: 1px solid #000;
-            text-transform: uppercase;
-            font: 300 14px/20px "Source Sans Pro", sans-serif;
-            color: white !important;
-            font-weight: 600;
-            background-color: #e46f00;
-            border: solid 1px #e46f00;
-        }
+  .chat-powered-by {
+    display: none !important;
+  }
+</style>
 
-        .checkoutBtn:focus,
-        .checkoutBtn:hover {
-            color: #e46f00 !important;
-            background: white;
-            border: 1px solid #000;
-        }
+<!-- (opcional) Widget ElevenLabs si lo necesitás -->
+<!-- 
+<elevenlabs-convai agent-id="agent_01jww7ekmkfam8g3kjjzt6p1my"></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script> 
+-->
 
-        .headerCartBtn {
-            outline: none;
-            padding: 9px 20px;
-            border-radius: 21px;
-            vertical-align: top;
-            display: inline-block;
-            border: 1px solid #000;
-            text-transform: uppercase;
-            font: 300 14px/20px "Source Sans Pro", sans-serif;
-            color: black !important;
-            font-weight: 600;
-            background-color: transparent;
-        }
-        .chat-header {
-
-            background: #e74266 !important;
-        }
-        .headerCartBtn:focus,
-        .headerCartBtn:hover {
-            color: #e46f00 !important;
-            background: black;
-            border: 1px solid #000;
-        }
-
-        #mobilePromotionBanner {
-            display: none !important;
-        }
-
-        @media(max-width:991px) {
-            #cartTableContainer {
-                width: 95%;
-            }
-
-            #desktopPromotionBanner {
-                display: none;
-            }
-
-            #mobilePromotionBanner {
-                display: block !important;
-            }
-        }
-
-
-
-        @media(max-width:799px) {
-            #cartTableContainer {
-                width: 100%;
-            }
-        }
-
-        .swal2-popup {
-            width: 45em !important;
-            /* padding: 7.25em !important; */
-        }
-
-        #swal2-content {
-            font-size: 20px !important;
-        }
-
-        .swal2-title {
-            font-size: 25px !important;
-            margin: 10px 20px 15px 0px !important;
-        }
-
-        .swal2-styled.swal2-confirm {
-            background-color: #e46f00 !important;
-            font-size: 15px !important;
-            margin-top: 20px !important;
-        }
-
-        .swal2-popup.swal2-toast .swal2-icon {
-            margin-right: 10px !important;
-            margin-bottom: 4px !important;
-        }
-        </style>
-        <style>
-    .grecaptcha-logo {
-        width: 0px !important;
-        visibility: hidden !important;
-        display: none !important;
-
-    box-shadow: none !important;
-    }
-    .grecaptcha-badge { 
-    visibility: hidden;
-}
-
-
-    #n8n-chat {
-      font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif !important;
-    }
- 
-    </style>
-
-<elevenlabs-convai agent-id="agent_01jww7ekmkfam8g3kjjzt6p1my"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 </html>
