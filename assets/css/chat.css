@@ -13,7 +13,8 @@ body {
   position: fixed;
   bottom: 80px; /* Espacio para botón flotante */
   right: 20px;
- 
+  width: 380px;  /* 🔹 ancho fijo */
+  max-width: 90vw; /* 🔹 que no se pase en pantallas chicas */
   height: 500px;
   background: #ffffff;
   display: none;
@@ -22,8 +23,8 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   border-radius: 16px 16px 0 0;
   overflow: hidden;
-  width: auto;
 }
+
 
 @media (max-width: 768px) {
   #chatWidget {
