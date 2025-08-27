@@ -1,5 +1,11 @@
 const translations = {
     es: {
+
+
+        boton_reunion: "Reunión de relevamiento",
+        whatsapp_es: "Contactanos",
+
+
         menu_quienes_somos: "Quiénes Somos",
         menu_servicios: "Servicios",
         menu_trabajos: "Últimos Trabajos",
@@ -51,6 +57,10 @@ const translations = {
         ai_team_message: "Nuestro equipo se encarga de que la IA se convierta en una herramienta clave para hacer crecer tu negocio, optimizar operaciones y mejorar la satisfacción del cliente.",
     },
     en: {
+
+           boton_reunion: "Discovery meeting",
+        whatsapp_es: "Contact Us",
+
         menu_quienes_somos: "Who We Are", 
         menu_servicios: "Services",
         menu_trabajos: "Latest Works",
