@@ -492,6 +492,10 @@ function changeLanguage(lang) {
         
         document.getElementById("contact4USES").style.display = "inline-block";
         document.getElementById("contact4USEN").style.display = "none";
+
+        document.getElementById("calendares").style.display = "inline-block";
+        document.getElementById("calendaren").style.display = "none";
+
         document.getElementById("IntegraES").style.display = "block";
         document.getElementById("IntegraUS").style.display = "none";
 
@@ -500,6 +504,8 @@ function changeLanguage(lang) {
 
         document.getElementById("submenuEs").style.display = "block";
         document.getElementById("submenuEn").style.display = "none";
+
+
         
 
     } else {
@@ -526,6 +532,11 @@ function changeLanguage(lang) {
 
         document.getElementById("contact4USES").style.display = "none";
         document.getElementById("contact4USEN").style.display = "inline-block";
+
+        document.getElementById("calendares").style.display = "none";
+        document.getElementById("calendaren").style.display = "inline-block";
+
+
         document.getElementById("IntegraES").style.display = "none";
         document.getElementById("IntegraUS").style.display = "block";
 
@@ -535,6 +546,8 @@ function changeLanguage(lang) {
 
         document.getElementById("submenuEs").style.display = "none";
         document.getElementById("submenuEn").style.display = "block";
+
+    
         
 
     }
