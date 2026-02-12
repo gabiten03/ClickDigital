@@ -1,0 +1,143 @@
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+ 
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+#chatWidget {
+  position: fixed;
+  bottom: 80px; /* Espacio para botón flotante */
+  right: 20px;
+ 
+  height: 500px;
+  background: #ffffff;
+  display: none;
+  z-index: 999;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  #chatWidget {
+    width: 100vw;
+    height: 85vh;
+    right: 0;
+    bottom: 80px;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+.chat-header {
+  background: rgb(15 23 42 / 1 ) !important;
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f3f5f9;
+}
+
+.message {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.user {
+  background: #20b69e;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+.bot {
+  background: white;
+  color: black;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 12px;
+  background: white;
+  align-items: center;
+  color: black;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-right: 8px;
+}
+
+.chat-input button {
+  background: #20b69e;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chatToggleButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #20b69e;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}

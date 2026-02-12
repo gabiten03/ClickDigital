@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Rucahaian</title>
+
+  <!-- Fuente Raleway desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Estilos del widget de chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Contenedor del chat -->
+<div id="n8n-chat"></div>
+
+<!-- Script de integración -->
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://rucahaian.srv844090.hstgr.cloud/webhook/220c1e94-7c61-46bd-8726-f2160f06486e/chat',
+    target: '#n8n-chat',
+    mode: 'inline',
+    chatInputKey: 'chatInput',
+    chatSessionKey: 'sessionId',
+    metadata: {
+      empresa: 'DickHaus',
+      origen: 'webchat',
+    },
+    showWelcomeScreen: false,
+    defaultLanguage: 'es',
+    initialMessages: [
+      '¡Hola! 👋 Soy el asistente virtual de Rucahaian Cabañas Spa & Restó en Tandil. ¿En qué puedo ayudarte hoy?'
+    ],
+    i18n: {
+      es: {
+        title: 'Bienvenido a Rucahaian',
+        subtitle: '',
+        footer: '',
+        getStarted: 'Nueva conversación',
+        inputPlaceholder: 'Escribí tu pregunta...',
+      },
+    },
+  });
+</script>
+
+<!-- Estilos personalizados -->
+<style>
+  #n8n-chat {
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+  #n8n-chat * {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    line-height: 1.4 !important;
+  }
+
+  .chat-header {
+    background: #e74266 !important;
+  }
+
+  .chat-message.chat-message-from-bot {
+    border-radius: 20px !important;
+    background-color: #f9f9f9 !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+  }
+
+  .chat-powered-by {
+    display: none !important;
+  }
+</style>
+
+<!-- (opcional) Widget ElevenLabs si lo necesitás -->
+<!-- 
+<elevenlabs-convai agent-id="agent_01jww7ekmkfam8g3kjjzt6p1my"></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script> 
+-->
+
+</body>
+</html>

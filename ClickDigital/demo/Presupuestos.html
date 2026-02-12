@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	
+    createChat({
+
+        
+	webhookUrl: 'https://n8n.srv844090.hstgr.cloud/webhook/15e4d662-3f98-48d0-9f50-68838769ecac/chat', // Reemplaza por tu URL real
+	
+	target: '#n8n-chat',
+	mode: 'inline', // o 'inline' si lo embebés directamente
+	chatInputKey: 'chatInput',
+	chatSessionKey: 'sessionId',
+	metadata: {
+		empresa: 'DickHaus',
+		origen: 'webchat',
+	},
+	showWelcomeScreen: false,
+	defaultLanguage: 'es',
+	initialMessages: [
+		'¡Hola! 👋',
+		'Soy el asistente virtual de DickHaus para generar Presupuestos. ¿En qué puedo ayudarte hoy?',
+	],
+	i18n: {
+		es: {
+			title: 'Bienvenido a DickHaus 👋',
+			subtitle: 'Estoy aquí para ayudarte con tus Presupuestos.',
+			footer: 'Horario de atención: Lunes a Viernes, 9 a 18hs',
+			getStarted: 'Nueva conversación',
+			inputPlaceholder: 'Escribí tu pregunta...',
+		},
+	},
+});
+</script>
+
+    <style>
+        .showHeaderNavbar {
+            opacity: 1 !important;
+            visibility: visible !;
+        }
+        .chat-powered-by{display:none;}
+        .checkoutBtn {
+            outline: none;
+            padding: 9px 20px;
+            border-radius: 21px;
+            vertical-align: top;
+            display: inline-block;
+            border: 1px solid #000;
+            text-transform: uppercase;
+            font: 300 14px/20px "Source Sans Pro", sans-serif;
+            color: white !important;
+            font-weight: 600;
+            background-color: #e46f00;
+            border: solid 1px #e46f00;
+        }
+
+        .checkoutBtn:focus,
+        .checkoutBtn:hover {
+            color: #e46f00 !important;
+            background: white;
+            border: 1px solid #000;
+        }
+
+        .headerCartBtn {
+            outline: none;
+            padding: 9px 20px;
+            border-radius: 21px;
+            vertical-align: top;
+            display: inline-block;
+            border: 1px solid #000;
+            text-transform: uppercase;
+            font: 300 14px/20px "Source Sans Pro", sans-serif;
+            color: black !important;
+            font-weight: 600;
+            background-color: transparent;
+        }
+
+        .headerCartBtn:focus,
+        .headerCartBtn:hover {
+            color: #e46f00 !important;
+            background: black;
+            border: 1px solid #000;
+        }
+
+        #mobilePromotionBanner {
+            display: none !important;
+        }
+
+        @media(max-width:991px) {
+            #cartTableContainer {
+                width: 95%;
+            }
+
+            #desktopPromotionBanner {
+                display: none;
+            }
+
+            #mobilePromotionBanner {
+                display: block !important;
+            }
+        }
+
+
+
+        @media(max-width:799px) {
+            #cartTableContainer {
+                width: 100%;
+            }
+        }
+
+        .swal2-popup {
+            width: 45em !important;
+            /* padding: 7.25em !important; */
+        }
+
+        #swal2-content {
+            font-size: 20px !important;
+        }
+
+        .swal2-title {
+            font-size: 25px !important;
+            margin: 10px 20px 15px 0px !important;
+        }
+
+        .swal2-styled.swal2-confirm {
+            background-color: #e46f00 !important;
+            font-size: 15px !important;
+            margin-top: 20px !important;
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon {
+            margin-right: 10px !important;
+            margin-bottom: 4px !important;
+        }
+        </style>
+        <style>
+    .grecaptcha-logo {
+        width: 0px !important;
+        visibility: hidden !important;
+        display: none !important;
+
+    box-shadow: none !important;
+    }
+    .grecaptcha-badge { 
+    visibility: hidden;
+}
+
+
+    #n8n-chat {
+      font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif !important;
+    }
+ 
+    </style>
+</body>
+</html>
