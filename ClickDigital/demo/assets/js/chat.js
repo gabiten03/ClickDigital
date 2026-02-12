@@ -33,7 +33,7 @@ async function sendMessage() {
   chatInput.value = '';
 
   try {
-    const response = await fetch('https://n8n.srv844090.hstgr.cloud/webhook-test/1e2225be-b9c4-4d9f-ba64-d586275c9bfc', {
+    const response = await fetch('https://rucahaian.srv844090.hstgr.cloud/webhook/ruca-chatbot', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text })
