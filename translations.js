@@ -1,136 +1,137 @@
 const translations = {
     es: {
-
-
-        boton_reunion: "Reunión de relevamiento",
+        boton_reunion: "Agendar Discovery",
         whatsapp_es: "Contactanos",
 
-
-        menu_quienes_somos: "Quiénes Somos",
-        menu_servicios: "Servicios",
-        menu_trabajos: "Últimos Trabajos",
+        menu_quienes_somos: "Agencia",
+        menu_servicios: "Soluciones",
+        menu_trabajos: "Casos de Éxito",
         menu_contacto: "Contacto",
-        transformando_ideas: "Transformando Ideas",
-        no_creamos_solo: "No creamos solo",
-        disenos: "diseños",
-        creamos_experiencias: "creamos experiencias",
+        
+        transformando_ideas: "Potenciando tu Negocio",
+        no_creamos_solo: "No escribimos solo",
+        disenos: "código",
+        creamos_experiencias: "diseñamos eficiencia con IA",
 
-        quienes_somos_titulo: "Quiénes Somos",
-        quienes_somos_texto: "Nos enfocamos en ayudar a las empresas a modernizarse mediante la transformación digital. Ofrecemos soluciones de automatización, nuevas tecnologías y diseño web para optimizar la eficiencia y la presencia digital de tu negocio. Nuestro objetivo es que la tecnología y el diseño trabajen juntos para simplificar tareas y potenciar el crecimiento de manera efectiva.",
-        soluciones_personalizadas: "Soluciones digitales personalizadas que se adaptan a tus necesidades",
-        enfoque_web: "Nuestro enfoque se centra en crear sitios web atractivos, funcionales y de alto rendimiento, así como en desarrollar chatbots inteligentes y soluciones a medida que impulsarán tu presencia en línea.",
+        quienes_somos_titulo: "Llevamos tu empresa al siguiente nivel",
+        quienes_somos_texto: "En ClickDigital somos especialistas en integrar tecnología de vanguardia para optimizar operaciones. Ayudamos a empresas a escalar mediante la automatización de procesos repetitivos, el desarrollo de aplicaciones robustas y la implementación estratégica de Inteligencia Artificial.",
+        
+        soluciones_personalizadas: "Tecnología diseñada para escalar",
+        enfoque_web: "Nuestro enfoque se centra en soluciones técnicas que eliminan cuellos de botella: desde agentes de IA que atienden clientes hasta plataformas de gestión logística y salud.",
 
-        desarrollo_app_titulo: "Desarrollo de Aplicaciones Personalizadas",
-        desarrollo_app_texto: "Nuestro proceso optimizado nos permite entregar aplicaciones de alta calidad en tiempo récord, sin comprometer la calidad. Diseñamos interfaces de usuario intuitivas y atractivas que garantizan una experiencia óptima para tus usuarios. Ofrecemos soporte continuo y mantenimiento para asegurar que tu aplicación funcione sin problemas y esté siempre actualizada.",
+        desarrollo_app_titulo: "Desarrollo de Software & Apps",
+        desarrollo_app_texto: "Creamos aplicaciones móviles y plataformas SaaS a medida integradas con tu ecosistema actual (como Google Workspace). Nos enfocamos en escalabilidad, seguridad y una experiencia de usuario superior.",
        
+        mejora_web_titulo: "Web & CRM Operativo",
+        mejora_web_texto: "Desarrollamos sitios web de alto rendimiento integrados directamente con tu CRM y sistemas contables. No es solo una web, es el centro de mando de tu negocio.",
 
-        mejora_web_titulo: "Mejora tu presencia en la Web",
-        mejora_web_texto: "Creamos sitios web atractivos y funcionales que representen tu negocio de manera impactante. Desde el diseño de la interfaz hasta la selección de colores y tipografía, nos aseguramos de que tu sitio web tenga un aspecto profesional y atraiga a tu audiencia objetivo.",
- 
+        optimiza_procesos_titulo: "Automatización de Procesos (BPA)",
+        optimiza_procesos_texto: "Conectamos tus herramientas (Zapier, Make, n8n) para que tu negocio funcione en piloto automático en áreas como:",
+        nuestra_mision: "Nuestra misión es liberar a tu equipo de tareas manuales, reducir errores y maximizar la rentabilidad mediante flujos de trabajo inteligentes.",
 
-        optimiza_procesos_titulo: "Optimiza tus procesos para maximizar la eficiencia",
-        optimiza_procesos_texto: "Transformar sus operaciones a través de la automatización de procesos clave. Simplificamos y optimizamos flujos de trabajo en áreas críticas como:",
-        nuestra_mision: "Nuestra misión es ayudarte a liberar tiempo, reducir errores humanos, y mejorar la productividad mediante soluciones personalizadas para cada etapa de tu negocio.",
+        conecta_titulo: "Conexión Total de Plataformas",
+        conecta_texto: "Sincronizamos tus aplicaciones para una gestión eficiente y datos en tiempo real entre ventas, logística y administración.",
 
-        conecta_titulo: "Conecta y automatiza todas tus plataformas para una gestión eficiente",
-        conecta_texto: "Integra las aplicaciones que ya usas para crear flujos de trabajo completamente automatizados y eficientes:",
-   
-
-        ia_titulo: "Impulsa tu empresa con inteligencia artificial aplicada",
-        ia_texto: "Ofrecemos soluciones basadas en IA que mejoran significativamente la toma de decisiones y la experiencia del cliente:",
+        ia_titulo: "Inteligencia Artificial Aplicada",
+        ia_texto: "Implementamos agentes inteligentes y modelos de lenguaje (RAG) que transforman la forma en que interactúas con tus clientes y datos:",
      
-        integration_message: "Ya sea que utilices un CRM, un sistema de facturación o una plataforma de e-commerce, podemos ayudarte a integrarlos para que trabajen en perfecta armonía, haciendo tu negocio más ágil y conectado.",
-        nuestros_trabajos: "Nuestros Últimos Trabajos",
+        integration_message: "Ya sea un CRM bancario, una plataforma de booking o un sistema de logística, hacemos que todo trabaje en perfecta armonía con IA.",
+        nuestros_trabajos: "Nuestros Casos de Éxito",
         todos: "Todos",
-        web: "Web",
-        app: "App",
+        web: "Web & CRM",
+        app: "Apps & Software",
         ecommerce: "E-Commerce",
-        diseno_medida: "Diseño a Medida",
+        diseno_medida: "IA & Automatización",
 
-        tienes_proyecto: "¿Tienes un proyecto de diseño o una idea ? Hablemos.",
+        tienes_proyecto: "¿Listo para automatizar tu crecimiento?",
         hablemos: "Hablemos.",
 
         whatsapp: "WhatsApp",
         direccion: "Dirección",
-        ciudad: "Ciudad de Buenos Aires, Argentina",
+        ciudad: "Buenos Aires, Argentina",
 
-        ai_team_message: "Nuestro equipo se encarga de que la IA se convierta en una herramienta clave para hacer crecer tu negocio, optimizar operaciones y mejorar la satisfacción del cliente.",
+        ai_team_message: "Nuestro equipo se encarga de que la IA se convierta en la herramienta clave para optimizar tus operaciones y mejorar la satisfacción del cliente."
     },
     en: {
-
-           boton_reunion: "Discovery meeting",
+        boton_reunion: "Book Discovery Call",
         whatsapp_es: "Contact Us",
 
-        menu_quienes_somos: "Who We Are", 
-        menu_servicios: "Services",
-        menu_trabajos: "Latest Works",
+        menu_quienes_somos: "Agency", 
+        menu_servicios: "Solutions",
+        menu_trabajos: "Success Stories",
         menu_contacto: "Contact",
-        transformando_ideas: "Transforming Ideas",
-        no_creamos_solo: "We don't just create",
-        disenos: "designs",
-        creamos_experiencias: "we create experiences",
+        
+        transformando_ideas: "Empowering Your Business",
+        no_creamos_solo: "We don't just write",
+        disenos: "code",
+        creamos_experiencias: "we design efficiency with AI",
 
-        quienes_somos_titulo: "Who We Are",
-        quienes_somos_texto: "We focus on helping businesses modernize through digital transformation. We offer automation solutions, new technologies, and web design to optimize efficiency and enhance your business’s digital presence. Our goal is for technology and design to work together to simplify tasks and effectively drive growth.",
-        soluciones_personalizadas: "Customized digital solutions tailored to your needs",
-        enfoque_web: "Our approach focuses on creating attractive, functional, and high-performance websites, as well as developing intelligent chatbots and tailored solutions to boost your online presence.",
+        quienes_somos_titulo: "Taking your company to the next level",
+        quienes_somos_texto: "At ClickDigital, we specialize in integrating cutting-edge technology to optimize operations. We help companies scale through the automation of repetitive processes, robust application development, and strategic AI implementation.",
+        
+        soluciones_personalizadas: "Technology designed to scale",
+        enfoque_web: "Our focus is on technical solutions that eliminate bottlenecks: from AI agents that serve customers to logistics and health management platforms.",
 
-        desarrollo_app_titulo: "Custom Application Development",
-        desarrollo_app_texto: "Our optimized process allows us to deliver high-quality applications in record time without compromising quality. We design intuitive and engaging user interfaces that ensure an optimal user experience. We offer continuous support and maintenance to keep your application running smoothly and always up to date.",
-     
+        desarrollo_app_titulo: "Software & App Development",
+        desarrollo_app_texto: "We create custom mobile apps and SaaS platforms integrated with your current ecosystem (like Google Workspace). We focus on scalability, security, and superior user experience.",
 
-        mejora_web_titulo: "Enhance Your Web Presence",
-        mejora_web_texto: "We create attractive and functional websites that make a strong impression for your business. From interface design to color and typography selection, we ensure your website looks professional and appeals to your target audience.",
-  
+        mejora_web_titulo: "Web & Operational CRM",
+        mejora_web_texto: "We develop high-performance websites integrated directly with your CRM and accounting systems. It's not just a website; it's your business command center.",
 
-        optimiza_procesos_titulo: "Optimize Your Processes for Maximum Efficiency",
-        optimiza_procesos_texto: "Transform your operations through the automation of key processes. We simplify and optimize workflows in critical areas such as:",
-        ventas_texto: "Sales: Automate lead tracking, customer management, and follow-up reminders to maximize conversion opportunities.",
-        marketing_texto: "Marketing: Implement automated and segmented campaigns, integrating tools that optimize email marketing, social media management, and detailed performance reporting.",
-        gestion_inventario_texto: "Inventory Management: Ensure precise and automated inventory control with restocking alerts, real-time product tracking, and order optimization.",
-        nuestra_mision: "Our mission is to help you save time, reduce human errors, and improve productivity through customized solutions for every stage of your business.",
+        optimiza_procesos_titulo: "Business Process Automation (BPA)",
+        optimiza_procesos_texto: "We connect your tools (Zapier, Make, n8n) so your business runs on autopilot in areas such as:",
+        nuestra_mision: "Our mission is to free your team from manual tasks, reduce errors, and maximize profitability through intelligent workflows.",
 
-        conecta_titulo: "Connect and Automate All Your Platforms for Efficient Management",
-        conecta_texto: "Integrate the applications you already use to create fully automated and efficient workflows:",
- 
+        conecta_titulo: "Total Platform Connection",
+        conecta_texto: "We synchronize your applications for efficient management and real-time data between sales, logistics, and administration.",
 
-        ia_titulo: "Boost Your Business with Applied Artificial Intelligence",
-        ia_texto: "We offer AI-based solutions that significantly improve decision-making and customer experience:",
+        ia_titulo: "Applied Artificial Intelligence",
+        ia_texto: "We implement intelligent agents and language models (RAG) that transform how you interact with your customers and data:",
 
-integration_message: "Whether you use a CRM, a billing system, or an e-commerce platform, we can help you integrate them so they work in perfect harmony, making your business more agile and connected.",
-        nuestros_trabajos: "Our Latest Works",
+        integration_message: "Whether it's a banking CRM, a booking platform, or a logistics system, we make everything work in perfect harmony with AI.",
+        nuestros_trabajos: "Our Success Stories",
         todos: "All",
-        web: "Web",
-        app: "App",
+        web: "Web & CRM",
+        app: "Apps & Software",
         ecommerce: "E-Commerce",
-        diseno_medida: "Custom Design",
+        diseno_medida: "AI & Automation",
 
-        tienes_proyecto: "Do you have a design project or an idea? Let's talk.",
+        tienes_proyecto: "Ready to automate your growth?",
         hablemos: "Let's talk.",
 
         whatsapp: "WhatsApp",
         direccion: "Address",
         ciudad: "Buenos Aires, Argentina",
 
-          ai_team_message: "Our team ensures that AI becomes a key tool for growing your business, optimizing operations, and improving customer satisfaction."
+        ai_team_message: "Our team ensures that AI becomes the key tool for optimizing your operations and improving customer satisfaction."
     }
 };
 
+// Lógica para el switch de idioma
 function setLanguage(lang) {
     document.querySelectorAll("[data-translate]").forEach(element => {
         const key = element.getAttribute("data-translate");
-        if (translations[lang][key]) {
+        if (translations[lang] && translations[lang][key]) {
             element.textContent = translations[lang][key];
         }
     });
+    
+    // Guardar preferencia
+    localStorage.setItem('selectedLang', lang);
 }
 
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
-    const languageSwitcher = document.getElementById("languageSwitcher");
-    if (languageSwitcher) {
-        languageSwitcher.addEventListener("change", (event) => {
-            setLanguage(event.target.value);
+    const langToggle = document.getElementById("langToggle");
+    
+    // Cargar idioma guardado o defecto es
+    const savedLang = localStorage.getItem('selectedLang') || 'es';
+    if (langToggle) {
+        langToggle.checked = (savedLang === 'es');
+        setLanguage(savedLang);
+
+        langToggle.addEventListener("change", () => {
+            const newLang = langToggle.checked ? "es" : "en";
+            setLanguage(newLang);
         });
     }
 });
