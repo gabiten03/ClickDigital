@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correa & Bianco | Estudio Jurídico de Vanguardia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'law-prim': '#0A1A2F', // Azul Prusia Profundo
+                        'law-sec': '#173053',  // Azul Marino Medio
+                        'law-acc': '#C5A065',  // Dorado Viejo/Marrón Premium
+                        'law-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        title: ['Cinzel', 'serif'],    // Para Logos y Encabezados Clave
+                        body: ['Poppins', 'sans-serif'], // Para texto legible
+                        legal: ['Lora', 'serif']        // Para Citas y Bloques Legales
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gradiente suave para el fondo */
+        .bg-pattern {
+            background-color: #0A1A2F;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C5A065' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50 text-gray-900 overflow-x-hidden">
+
+    <div class="bg-law-prim text-law-acc text-xs py-2 px-4 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center font-medium uppercase tracking-wider">
+            <span><i class="fas fa-map-marker-alt mr-2"></i> Buenos Aires, Argentina</span>
+            <div class="flex gap-4">
+                <a href="tel:12345678" class="hover:text-white transition"><i class="fas fa-phone mr-1"></i> +54 11 4444-5555</a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 tracking-tight">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0">
+                    <h1 class="font-title text-3xl font-bold text-law-prim">Correa <span class="text-law-acc">&</span> Bianco</h1>
+                    <p class="font-legal text-xs text-law-sec italic -mt-1 pl-1">Estudio Jurídico</p>
+                </div>
+                <div class="hidden md:flex items-center space-x-1 font-medium text-sm text-law-prim uppercase tracking-wider">
+                    <a href="#" class="px-4 py-2 hover:text-law-acc transition duration-300 rounded">Inicio</a>
+                    <a href="#diferencia" class="px-4 py-2 hover:text-law-acc transition duration-300 rounded">Nosotros</a>
+                    <a href="#areas" class="px-4 py-2 hover:text-law-acc transition duration-300 rounded">Áreas</a>
+                    <a href="#socios" class="px-4 py-2 hover:text-law-acc transition duration-300 rounded">Abogados</a>
+                    <a href="#contacto" class="ml-4 bg-law-acc text-law-prim px-6 py-2.5 font-bold hover:bg-white hover:text-law-acc border-2 border-law-acc transition-all duration-300">Consulta</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-law-prim outline-none mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-[90vh] flex items-center bg-law-prim text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2000&auto=format&fit=crop" alt="Justicia" class="w-full h-full object-cover scaled-image">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-6 py-24 z-10">
+            <div class="max-w-3xl space-y-8">
+                <span class="inline-block bg-law-acc text-law-prim px-4 py-1 text-xs font-bold uppercase tracking-widest">Compromiso. Estrategia. Resultados.</span>
+                <h2 class="font-title text-6xl md:text-7xl font-bold leading-tight tracking-tighter">Defendemos su <span class="border-b-4 border-law-acc">Legado</span> y sus Derechos.</h2>
+                <p class="font-legal text-xl md:text-2xl font-light text-gray-300 italic max-w-2xl">Ofrecemos soluciones legales de alta complejidad con la cercanía de un asesor personal. Su tranquilidad es nuestra prioridad.</p>
+                <div class="flex flex-col sm:flex-row gap-6 pt-6">
+                    <a href="#contacto" class="group bg-law-acc text-law-prim px-10 py-5 text-lg font-bold hover:bg-white hover:text-law-acc transition-all duration-300 text-center flex items-center justify-center gap-2">
+                        Reservar Entrevista Privada <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#areas" class="bg-transparent border-2 border-white/40 hover:border-white px-10 py-5 text-lg font-bold transition-all duration-300 text-center flex items-center justify-center gap-2">
+                         Explorar Especialidades
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#diferencia" class="text-white/70 hover:text-law-acc"><i class="fas fa-chevron-down text-2xl"></i></a>
+        </div>
+    </header>
+
+    <section id="diferencia" class="py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5 relative">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c292321d?q=80&w=800&auto=format&fit=crop" alt="Asesoramiento" class="shadow-2xl border-4 border-law-light">
+                    <div class="absolute -bottom-8 -right-8 bg-law-acc p-6 text-law-prim shadow-xl">
+                        <p class="text-5xl font-title font-bold">25+</p>
+                        <p class="text-xs uppercase font-bold tracking-wider">Años de Trayectoria</p>
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-6">
+                    <h3 class="font-title text-4xl text-law-prim font-bold tracking-tight">La diferencia de Correa & Bianco: Excelencia en cada detalle.</h3>
+                    <div class="w-20 h-1.5 bg-law-acc mb-8"></div>
+                    <p class="font-legal text-lg text-gray-700 leading-relaxed italic">"Creemos que cada caso requiere una arquitectura legal única. No aplicamos fórmulas genéricas, diseñamos estrategias ganadoras."</p>
+                    <p class="text-gray-600 font-body text-base pb-4">Entendemos los desafíos del mundo moderno. Nuestro estudio combina la solidez jurídica tradicional con un enfoque ágil y tecnológico, asegurando que su defensa esté siempre un paso adelante.</p>
+                    <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 pt-4 text-sm font-medium text-law-prim">
+                        <p><i class="fas fa-check-circle text-law-acc mr-2"></i> Atención Exclusiva y Personalizada</p>
+                        <p><i class="fas fa-check-circle text-law-acc mr-2"></i> Alto Índice de Casos Exitosos</p>
+                        <p><i class="fas fa-check-circle text-law-acc mr-2"></i> Transparencia Honoraria Total</p>
+                        <p><i class="fas fa-check-circle text-law-acc mr-2"></i> Reportes Periódicos de Estado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="areas" class="py-28 bg-law-light bg-pattern">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="text-law-acc font-bold uppercase tracking-widest text-sm">Especializaciones</span>
+                <h3 class="font-title text-5xl text-white font-bold tracking-tight mt-3">Áreas de Práctica Estratégica</h3>
+                <div class="w-24 h-1 bg-law-acc mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-law-prim p-10 border border-gray-800 shadow-2xl group hover:border-law-acc transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-law-sec flex items-center justify-center mb-8 border border-gray-700 group-hover:bg-law-acc transition-colors">
+                            <i class="fa-solid fa-scale-unbalanced-flip text-3xl text-law-acc group-hover:text-law-prim transition-colors"></i>
+                        </div>
+                        <h4 class="font-title text-2xl font-bold mb-4 text-white uppercase tracking-tight">Derecho Corporativo</h4>
+                        <p class="text-gray-400 font-body text-sm leading-relaxed mb-6">Asesoramiento a empresas, fusiones, adquisiciones, cumplimiento normativo y resolución de conflictos societarios.</p>
+                    </div>
+                    <a href="#" class="text-law-acc font-bold text-xs uppercase tracking-wider group-hover:text-white flex items-center gap-2">Saber más <i class="fas fa-arrow-right text-xs"></i></a>
+                </div>
+                <div class="bg-law-acc p-10 shadow-2xl transform scale-105 border-4 border-law-prim flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-law-prim flex items-center justify-center mb-8 border border-gray-800">
+                            <i class="fa-solid fa-users-rays text-3xl text-law-acc"></i>
+                        </div>
+                        <h4 class="font-title text-2xl font-bold mb-4 text-law-prim uppercase tracking-tight">Sucesiones Complejas</h4>
+                        <p class="text-law-prim font-body text-sm leading-relaxed mb-6 font-medium">Planificación sucesoria, gestión de herencias con activos múltiples y mediación entre herederos para proteger el patrimonio familiar.</p>
+                    </div>
+                    <a href="#" class="text-law-prim font-bold text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 border-law-prim pb-1 w-fit">Iniciar Proceso</a>
+                </div>
+                <div class="bg-law-prim p-10 border border-gray-800 shadow-2xl group hover:border-law-acc transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-law-sec flex items-center justify-center mb-8 border border-gray-700 group-hover:bg-law-acc transition-colors">
+                            <i class="fa-solid fa-briefcase text-3xl text-law-acc group-hover:text-law-prim transition-colors"></i>
+                        </div>
+                        <h4 class="font-title text-2xl font-bold mb-4 text-white uppercase tracking-tight">Derecho Laboral Premium</h4>
+                        <p class="text-gray-400 font-body text-sm leading-relaxed mb-6">Alta dirección, blindaje de contratos de trabajo, reestructuraciones y defensa estratégica ante reclamos complejos.</p>
+                    </div>
+                    <a href="#" class="text-law-acc font-bold text-xs uppercase tracking-wider group-hover:text-white flex items-center gap-2">Saber más <i class="fas fa-arrow-right text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="socios" class="py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <span class="text-law-acc font-bold uppercase tracking-widest text-sm">Liderazgo</span>
+                    <h3 class="font-title text-5xl text-law-prim font-bold tracking-tight mt-2">La experiencia detrás de la estrategia.</h3>
+                    <div class="w-20 h-1.5 bg-law-acc mb-10"></div>
+                    <p class="font-body text-gray-700 leading-relaxed text-base">Nuestro estudio está liderado por sus socios fundadores, quienes participan activamente en la definición estratégica de cada caso. Creemos en la abogacía de autor, donde la firma del socio garantiza la calidad del servicio.</p>
+                    <div class="pt-8 space-y-8">
+                        <div class="flex gap-6 items-center bg-law-light p-6 border-l-4 border-law-acc">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Dr. Correa" class="w-20 h-20 rounded-full border-4 border-white shadow">
+                            <div>
+                                <h5 class="font-title text-xl font-bold text-law-prim">Dr. Alejandro Correa</h5>
+                                <p class="text-law-acc font-medium text-sm">Socio Fundador - Der. Corporativo</p>
+                                <p class="text-xs text-gray-500 mt-1">UBA - Master en Derecho Empresarial</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-center bg-law-light p-6 border-l-4 border-law-acc">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dra. Bianco" class="w-20 h-20 rounded-full border-4 border-white shadow">
+                            <div>
+                                <h5 class="font-title text-xl font-bold text-law-prim">Dra. Valeria Bianco</h5>
+                                <p class="text-law-acc font-medium text-sm">Socia Fundadora - Der. Civil y Familia</p>
+                                <p class="text-xs text-gray-500 mt-1">Austral - Especialista en Sucesiones</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=800&auto=format&fit=crop" alt="Oficina" class="shadow-2xl">
+                    <div class="absolute inset-0 bg-law-prim/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-28 bg-law-sec text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <i class="fas fa-quote-left text-5xl text-law-acc opacity-40 mb-4"></i>
+                <h3 class="font-title text-4xl font-bold tracking-tight">Voces de Confianza</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-law-prim p-10 shadow-xl relative border-t-2 border-law-acc">
+                    <p class="font-legal text-lg text-gray-200 italic leading-relaxed mb-6">"La Dra. Bianco gestionó la sucesión de mi padre con una sensibilidad y profesionalismo impecables. Logró resolver un conflicto familiar de años en meses."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-law-acc flex items-center justify-center font-bold text-law-prim rounded-full">MF</div>
+                        <div>
+                            <p class="font-bold">María Fernández</p>
+                            <p class="text-xs text-law-acc">Caso de Sucesión Familiar, 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-law-prim p-10 shadow-xl relative border-t-2 border-law-acc">
+                    <p class="font-legal text-lg text-gray-200 italic leading-relaxed mb-6">"El Dr. Correa fue fundamental para la reestructuración de nuestra empresa. Su visión estratégica nos ahorró millones en contingencias laborales."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-law-acc flex items-center justify-center font-bold text-law-prim rounded-full">RG</div>
+                        <div>
+                            <p class="font-bold">Roberto García</p>
+                            <p class="text-xs text-law-acc">Director de TechSolutions S.A.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-28 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="font-title text-4xl text-law-prim font-bold tracking-tight">Resolviendo sus Dudas</h3>
+                <p class="text-gray-600 mt-4">Respuestas inmediatas a las consultas más comunes.</p>
+            </div>
+            <div class="space-y-4">
+                <details class="group bg-law-light p-6 border border-gray-100 open:bg-white open:shadow-lg transition-all" open>
+                    <summary class="flex justify-between items-center font-bold text-law-prim cursor-pointer uppercase text-sm tracking-wider">
+                        ¿Cómo se calculan los honorarios profesionales?
+                        <span class="text-law-acc group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 pt-4 text-sm leading-relaxed font-body">Trabajamos bajo absoluta transparencia. Dependiendo del caso, utilizamos abonos mensuales, honorarios por resultados (cuota litis) o valores fijos por etapa, siempre alineados con la Ley de Honorarios Profesionales y pactados por escrito antes de iniciar.</p>
+                </details>
+                <details class="group bg-law-light p-6 border border-gray-100 open:bg-white open:shadow-lg transition-all">
+                    <summary class="flex justify-between items-center font-bold text-law-prim cursor-pointer uppercase text-sm tracking-wider">
+                        ¿Cuál es el tiempo promedio de resolución de una sucesión?
+                        <span class="text-law-acc group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 pt-4 text-sm leading-relaxed font-body">Si hay acuerdo entre los herederos (sucesión ab-intestato), la declaratoria de herederos puede obtenerse en 3 a 6 meses. La inscripción de bienes depende de la complejidad patrimonial, pero nuestro enfoque es siempre agilizar los plazos judiciales.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="bg-law-prim text-white">
+        <div class="grid md:grid-cols-2">
+            <div class="py-28 px-6 md:px-16 space-y-8">
+                <h3 class="font-title text-4xl font-bold tracking-tight text-law-acc">Inicie su Defensa Hoy</h3>
+                <p class="text-gray-300 font-legal text-lg italic">"Complete el formulario y nos contactaremos dentro de las próximas 2 horas hábiles para coordinar una consulta privada."</p>
+                
+                <form class="space-y-6 pt-4 font-body">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Nombre Completo *" class="w-full p-4 bg-law-sec border border-gray-700 focus:border-law-acc outline-none text-white placeholder-gray-500">
+                        <input type="tel" placeholder="Teléfono de Contacto" class="w-full p-4 bg-law-sec border border-gray-700 focus:border-law-acc outline-none text-white placeholder-gray-500">
+                    </div>
+                    <input type="email" placeholder="Correo Electrónico Profesional *" class="w-full p-4 bg-law-sec border border-gray-700 focus:border-law-acc outline-none text-white placeholder-gray-500">
+                    <textarea placeholder="Breve descripción de su consulta... *" rows="4" class="w-full p-4 bg-law-sec border border-gray-700 focus:border-law-acc outline-none text-white placeholder-gray-500"></textarea>
+                    <button type="submit" class="w-full bg-law-acc text-law-prim p-5 font-bold uppercase tracking-widest hover:bg-white hover:text-law-acc transition-all duration-300">Enviar Solicitud de Consulta</button>
+                </form>
+            </div>
+            <div class="relative min-h-[400px]">
+                <div class="absolute inset-0 bg-gray-300 flex items-center justify-center text-law-prim p-10 text-center">
+                    <div class="space-y-4">
+                        <i class="fas fa-map-marked-alt text-5xl text-law-prim/50"></i>
+                        <p class="font-bold text-xl">Nuestras Oficinas Centrales</p>
+                        <p class="text-sm">Av. Corrientes 1234, Piso 10, CABA<br>Buenos Aires, Argentina</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/TUNUMERO" class="fixed bottom-6 right-6 bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:bg-green-700 transition-all duration-300 z-50 hover:-translate-y-2" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <footer class="bg-black text-gray-500 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 border-b border-gray-800 pb-12 mb-12">
+            <div>
+                <h2 class="font-title text-2xl font-bold text-white mb-2">Correa <span class="text-law-acc">&</span> Bianco</h2>
+                <p class="font-legal italic text-xs mb-4">Eficiencia Jurídica</p>
+            </div>
+            <div class="space-y-3 text-sm">
+                <p class="font-bold text-white uppercase tracking-wider mb-2">Contacto</p>
+                <p><i class="fas fa-phone mr-2 text-law-acc w-4"></i> +54 11 4444-5555</p>
+                <p><i class="fas fa-envelope mr-2 text-law-acc w-4"></i> info@correabianco.com.ar</p>
+            </div>
+            <div class="space-y-3 text-sm md:col-span-2">
+                <p class="font-bold text-white uppercase tracking-wider mb-2">Legal</p>
+                <p class="text-xs leading-relaxed">Este sitio web proporciona información general y no constituye asesoramiento legal. La comunicación a través de este sitio no crea una relación abogado-cliente. Todos los derechos reservados Correa & Bianco 2026.</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs uppercase tracking-widest font-medium">
+            © 2026 Correa & Bianco. Diseño de Vanguardia Legal.
+        </div>
+    </footer>
+
+</body>
+</html>

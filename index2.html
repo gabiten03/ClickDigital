@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClickDigital: Agencia experta en automatización, IA, CRM y Desarrollo.">
+    <title>ClickDigital | IA, Automatización & Desarrollo Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link href="assets/libs/animate.css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <style>
+        /* ─── TOKENS & BASE (Dark & Light Mode) ───────── */
+        :root, [data-theme="dark"] {
+            --accent: #10B981; 
+            --accent-rgb: 16, 185, 129;
+            --accent-alt: #14B8A6; 
+            
+            --bg: #07090E; 
+            --bg-card: rgba(15, 18, 28, 0.45); 
+            --bg-card-h: rgba(20, 24, 38, 0.65);
+            --bg-chat: rgba(15, 18, 28, 0.95);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-h: rgba(16, 185, 129, 0.25);
+            
+            --text: #F1F5F9;
+            --text-mute: #94A3B8;
+            --nav-bg: rgba(7, 9, 14, 0.7);
+            --btn-outline-bg: rgba(255, 255, 255, 0.02);
+            --btn-outline-hover: rgba(255, 255, 255, 0.06);
+            
+            --radius: 20px;
+            --nav-h: 80px;
+            --ease: cubic-bezier(0.25, 1, 0.35, 1);
+        }
+
+        [data-theme="light"] {
+            --bg: #F8FAFC; 
+            --bg-card: rgba(255, 255, 255, 0.6); 
+            --bg-card-h: rgba(255, 255, 255, 0.95);
+            --bg-chat: rgba(255, 255, 255, 0.98);
+            --border: rgba(0, 0, 0, 0.08);
+            --border-h: rgba(16, 185, 129, 0.4);
+            
+            --text: #0F172A;
+            --text-mute: #475569;
+            --nav-bg: rgba(248, 250, 252, 0.8);
+            --btn-outline-bg: rgba(0, 0, 0, 0.03);
+            --btn-outline-hover: rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.4s var(--ease), color 0.4s var(--ease);
+        }
+
+        /* ─── LOGO ───────── */
+        .logo img { height: 32px; width: auto; transition: opacity 0.3s; }
+        [data-theme="dark"] .logo-light { display: none; }
+        [data-theme="dark"] .logo-dark { display: block; }
+        [data-theme="light"] .logo-dark { display: none; }
+        [data-theme="light"] .logo-light { display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* ─── NAVIGATION ─────────────────────────────────────── */
+        nav {
+            position: fixed; top: 0; width: 100%; height: var(--nav-h);
+            z-index: 1000; display: flex; align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.4s, border-color 0.4s;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-mute); }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-ctrls { display: flex; gap: 12px; align-items: center; }
+        .ctrl-btn {
+            background: var(--btn-outline-bg); border: 1px solid var(--border);
+            color: var(--text); border-radius: 50px; cursor: pointer; 
+            font-size: 0.75rem; font-weight: 600; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .lang-btn { padding: 8px 16px; font-family: inherit; }
+        
+        .theme-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+        [data-theme="dark"] .light-icon { display: none; }
+        [data-theme="light"] .dark-icon { display: none; }
+
+        /* ─── BOTONES ────────────────────────────────────────── */
+        .btn-primary {
+            background: var(--accent); color: #000; padding: 16px 36px;
+            border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px;
+            transition: 0.4s var(--ease); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(16, 185, 129, 0.35); }
+        
+        .btn-outline {
+            background: var(--btn-outline-bg); color: var(--text); border: 1px solid var(--border);
+            padding: 16px 36px; border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;
+            backdrop-filter: blur(10px); transition: 0.4s var(--ease);
+        }
+        .btn-outline:hover { background: var(--btn-outline-hover); border-color: var(--text-mute); }
+
+        /* ─── HERO & ANTIGRAVITY EFFECT ──────────────────────── */
+        .hero { 
+            min-height: 100vh; display: flex; align-items: center; 
+            position: relative; padding-top: var(--nav-h); 
+            overflow: hidden; /* Mantiene el canvas dentro del hero */
+        }
+        #particleCanvas { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 0; pointer-events: none; opacity: 0.8; 
+        }
+        .hero-content { text-align: center; width: 100%; max-width: 850px; margin: 0 auto; z-index: 2; position: relative; }
+        
+        .hero-tag {
+            display: inline-block; padding: 8px 20px; border-radius: 50px;
+            background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--accent); font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 28px;
+        }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; 
+            line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; 
+            min-height: 2.2em; /* Previene salto de layout con el typewriter */
+        }
+        .hero h1 span.type-text { 
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+        .cursor {
+            display: inline-block; width: 3px; background-color: var(--accent);
+            animation: blink 0.75s step-end infinite; margin-left: 2px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero p { color: var(--text-mute); font-size: 1.2rem; margin-bottom: 45px; line-height: 1.7; font-weight: 400; }
+
+        /* ─── CARRUSEL TECH STACK (Generico) ─────────────────── */
+        .marquee-container {
+            width: 100%; overflow: hidden; white-space: nowrap;
+            padding: 30px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            background: var(--bg); position: relative; z-index: 2;
+        }
+        .marquee-track {
+            display: inline-flex; gap: 30px; padding-left: 30px;
+            animation: scrollMarquee 35s linear infinite;
+        }
+        .tech-pill {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 28px; border-radius: 50px; background: var(--btn-outline-bg);
+            border: 1px solid var(--border); color: var(--text-mute); font-weight: 600;
+            font-size: 0.95rem; transition: 0.4s var(--ease);
+        }
+        .tech-pill:hover { border-color: var(--accent); color: var(--text); background: rgba(16, 185, 129, 0.05); transform: translateY(-3px); }
+        .tech-pill i { color: var(--accent); font-size: 1.2rem; }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ─── SECTIONS & BENTO GRID ──────────────────────────── */
+        section.pad { padding: 120px 0; }
+        .section-title { text-align: center; margin-bottom: 70px; max-width: 750px; margin-left: auto; margin-right: auto; }
+        .section-title h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .section-title p { color: var(--text-mute); font-size: 1.1rem; line-height: 1.7; }
+        
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+        .bento-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            padding: 40px; border-radius: var(--radius); transition: 0.5s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .bento-card:hover { border-color: var(--border-h); background: var(--bg-card-h); transform: translateY(-5px); }
+        .bento-card.large { grid-column: span 8; }
+        .bento-card.small { grid-column: span 4; }
+        .bento-card.medium { grid-column: span 6; }
+        
+        .icon-box {
+            width: 48px; height: 48px; background: rgba(16, 185, 129, 0.08);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            color: var(--accent); margin-bottom: 24px; font-size: 1.4rem;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+        .bento-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .bento-card p { color: var(--text-mute); font-size: 0.95rem; line-height: 1.6; }
+
+        /* ─── PROCESO ────────────────────────────────── */
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; }
+        .process-grid::before {
+            content: ''; position: absolute; top: 30px; left: 12%; right: 12%;
+            height: 1px; background: var(--border); z-index: 0;
+            border-bottom: 1px dashed rgba(16, 185, 129, 0.2);
+        }
+        .process-step { position: relative; z-index: 1; text-align: center; }
+        .step-num {
+            width: 60px; height: 60px; background: var(--bg); border: 2px solid var(--accent);
+            color: var(--accent); font-size: 1.2rem; font-weight: 800; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+        .process-step h4 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 700; }
+        .process-step p { color: var(--text-mute); font-size: 0.9rem; line-height: 1.6; }
+
+        /* ─── PORTFOLIO (Más chico) ──────────────────────────── */
+        .filter-options { list-style: none; text-align: center; margin-bottom: 50px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .filter-options li {
+            padding: 8px 24px; border-radius: 50px; background: var(--btn-outline-bg);
+            border: 1px solid var(--border); color: var(--text-mute);
+            cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.4s;
+        }
+        .filter-options li:hover, .filter-options li.active { background: rgba(16, 185, 129, 0.08); border-color: var(--accent); color: var(--accent); }
+
+        /* Grilla más pequeña: minmax 250px en lugar de 340px */
+        .port-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .port-item { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border); }
+        .port-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s var(--ease); }
+        .port-item:hover img { transform: scale(1.05); }
+        .port-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,14,0.95) 0%, transparent 80%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 25px;
+            opacity: 0; transition: 0.5s var(--ease);
+        }
+        .port-item:hover .port-overlay { opacity: 1; }
+        .port-overlay h3 { font-size: 1.2rem; margin-bottom: 6px; color: #fff; }
+        .port-overlay p { color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ─── ANIMACIONES ────────────────────────────────────── */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 992px) {
+            .bento-card.large, .bento-card.small, .bento-card.medium { grid-column: span 12; }
+            .nav-links { display: none; }
+            .process-grid { grid-template-columns: 1fr; gap: 50px; }
+            .process-grid::before { display: none; }
+        }
+
+        /* ─── CHATBOT ─────────────────────────────── */
+        #chatToggleButton {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: var(--accent); color: #000; border-radius: 50%;
+            border: none; cursor: pointer; font-size: 24px; z-index: 999;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3); transition: 0.4s var(--ease);
+        }
+        #chatToggleButton:hover { transform: scale(1.08); }
+        
+        #chatWidget {
+            position: fixed; bottom: 100px; right: 30px; width: 340px; height: 480px;
+            background: var(--bg-chat); backdrop-filter: blur(24px); border: 1px solid var(--border-h);
+            border-radius: var(--radius); display: none; flex-direction: column;
+            overflow: hidden; z-index: 998; box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+        #chatWidget.open { display: flex; animation: slideInUp 0.5s var(--ease); }
+        
+        .chat-header {
+            padding: 20px; background: rgba(16, 185, 129, 0.1);
+            border-bottom: 1px solid var(--border); font-weight: 700; color: var(--accent);
+            display: flex; justify-content: space-between; align-items: center; font-size: 1rem;
+        }
+        .close-chat { background: transparent; border: none; color: var(--text-mute); cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
+        .close-chat:hover { color: var(--text); }
+        
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+        .message { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.5; }
+        .message.bot { background: var(--btn-outline-bg); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); }
+        .message.user { background: var(--accent); color: #000; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+        
+        .chat-input { padding: 15px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        .chat-input input {
+            flex: 1; padding: 12px; background: var(--btn-outline-bg);
+            border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: inherit; font-size: 0.9rem;
+        }
+        .chat-input input:focus { outline: none; border-color: var(--accent); }
+        .chat-input button { background: var(--accent); color: #000; border: none; padding: 0 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .chat-input button:hover { transform: scale(1.05); }
+        
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital">
+                <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#quienes" data-translate="nav_about">Quiénes Somos</a></li>
+                <li><a href="#servicios" data-translate="nav_services">Soluciones</a></li>
+                <li><a href="#proceso" data-translate="nav_process">Proceso</a></li>
+                <li><a href="#ultimos" data-translate="nav_work">Portfolio</a></li>
+            </ul>
+            <div class="nav-ctrls">
+                <button class="ctrl-btn lang-btn" id="langToggle" title="Cambiar Idioma">ES</button>
+                <button class="ctrl-btn theme-btn" id="themeToggle" title="Modo Claro/Oscuro">
+                    <i class="uil uil-moon dark-icon"></i>
+                    <i class="uil uil-sun light-icon"></i>
+                </button>
+                <a href="#contacto" class="btn-primary" style="padding: 10px 24px; font-size: 0.9rem; margin-left: 8px;" data-translate="btn_contact">Hablemos</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <canvas id="particleCanvas"></canvas>
+        <div class="container hero-content">
+            <div class="hero-tag wow animate__animated animate__fadeInDown" data-translate="hero_tag">Desarrollo & Automatización Premium</div>
+            
+            <h1 class="wow animate__animated animate__fadeInUp">
+                <span data-translate="hero_title_start">Ecosistemas digitales que</span> <br>
+                <span class="type-text" id="typewriter"></span><span class="cursor"></span>
+            </h1>
+
+            <p class="wow animate__animated animate__fadeInUp" data-translate="hero_sub" data-wow-delay="0.2s">Diseñamos soluciones en IA, automatizamos flujos complejos y desarrollamos software de alto rendimiento para empresas que no tienen tiempo que perder.</p>
+            <div class="wow animate__animated animate__fadeInUp" data-wow-delay="0.4s" style="display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;">
+                <a href="#contacto" class="btn-primary" data-translate="btn_discovery">Agendar Discovery Call</a>
+                <a href="#servicios" class="btn-outline" data-translate="btn_services">Ver Soluciones</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-container">
+        <div class="marquee-track" id="techMarquee">
+            <div class="tech-pill"><i class="uil uil-layer-group"></i> Arquitectura Cloud</div>
+            <div class="tech-pill"><i class="uil uil-sitemap"></i> Automatización Inteligente</div>
+            <div class="tech-pill"><i class="uil uil-chart-pie"></i> Integración de APIs</div>
+            <div class="tech-pill"><i class="uil uil-database"></i> Bases de Datos Escalables</div>
+            <div class="tech-pill"><i class="uil uil-bolt"></i> Desarrollo Low-Code</div>
+            <div class="tech-pill"><i class="uil uil-server"></i> Infraestructura Serverless</div>
+            <div class="tech-pill"><i class="uil uil-programming-language"></i> Código a Medida</div>
+            <div class="tech-pill"><i class="uil uil-robot"></i> Modelos de Lenguaje (LLMs)</div>
+        </div>
+    </div>
+
+    <section id="quienes" class="pad">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 data-translate="about_title">Más que código, visión de negocio</h2>
+                <p data-translate="about_sub">No somos una agencia tradicional. Somos tu departamento de tecnología externalizado, enfocado puramente en el retorno de inversión (ROI).</p>
+            </div>
+            <div class="bento-grid">
+                <div class="bento-card large reveal">
+                    <div class="icon-box"><i class="uil uil-crosshair"></i></div>
+                    <h3 data-translate="about_card1_title">Nuestra Misión</h3>
+                    <p data-translate="about_card1_text">Eliminar las fricciones operativas de tu empresa. Conectamos tus herramientas aisladas, automatizamos las tareas repetitivas y construimos software robusto para que tu equipo se concentre en lo que realmente importa: crecer y vender.</p>
+                </div>
+                <div class="bento-card small reveal">
+                    <div class="icon-box"><i class="uil uil-rocket"></i></div>
+                    <h3 data-translate="about_card2_title">Enfoque Ágil</h3>
+                    <p data-translate="about_card2_text">Utilizamos tecnologías avanzadas (Low-Code y código nativo) para lanzar proyectos complejos en semanas, reduciendo los tiempos de mercado drásticamente sin sacrificar calidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="pad" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 data-translate="srv_title">Soluciones Técnicas Avanzadas</h2>
+                <p data-translate="srv_sub">Un ecosistema tecnológico diseñado para que tu operación fluya sin intervenciones manuales.</p>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-card medium reveal">
+                    <div class="icon-box"><i class="uil uil-circuit"></i></div>
+                    <h3 data-translate="srv1_title">Automatización de Procesos (BPA)</h3>
+                    <p data-translate="srv1_desc">Sincronizamos tus bases de datos y plataformas. Creamos flujos de trabajo en la nube que procesan facturación, onboarding de clientes y tareas operativas 24/7 de forma invisible y sin errores.</p>
+                </div>
+                <div class="bento-card medium reveal">
+                    <div class="icon-box"><i class="uil uil-chart-line"></i></div>
+                    <h3 data-translate="srv2_title">Ecosistemas CRM y Ventas</h3>
+                    <p data-translate="srv2_desc">Implementación arquitectónica de sistemas de gestión. Diseñamos y configuramos embudos de venta complejos, tracking automatizado y dashboards financieros en tiempo real para gerencia.</p>
+                </div>
+                <div class="bento-card medium reveal">
+                    <div class="icon-box"><i class="uil uil-mobile-android"></i></div>
+                    <h3 data-translate="srv3_title">Desarrollo Web & Apps a Medida</h3>
+                    <p data-translate="srv3_desc">Construimos aplicaciones web y móviles nativas de alto rendimiento visual y funcional, conectadas a bases de datos potentes, escalables y seguras en la nube.</p>
+                </div>
+                <div class="bento-card medium reveal">
+                    <div class="icon-box"><i class="uil uil-brain"></i></div>
+                    <h3 data-translate="srv4_title">Agentes de Inteligencia Artificial</h3>
+                    <p data-translate="srv4_desc">Desarrollamos algoritmos a medida y orquestamos APIs cognitivas para crear sistemas inteligentes, como chatbots de atención que entienden contexto o analistas de datos automáticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso" class="pad">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 data-translate="proc_title">Cómo Trabajamos</h2>
+                <p data-translate="proc_sub">Un método estructurado, transparente y ágil para asegurar que tu inversión genere impacto desde el primer sprint.</p>
+            </div>
+            <div class="process-grid reveal">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <h4 data-translate="proc1_t">Discovery & Auditoría</h4>
+                    <p data-translate="proc1_d">Auditamos a fondo tus procesos actuales, identificamos cuellos de botella y definimos el stack tecnológico ideal y más rentable.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <h4 data-translate="proc2_t">Diseño & Arquitectura</h4>
+                    <p data-translate="proc2_d">Modelamos la estructura de la base de datos en la nube y trazamos el mapa lógico de las automatizaciones antes de escribir código.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <h4 data-translate="proc3_t">Desarrollo Iterativo</h4>
+                    <p data-translate="proc3_d">Construimos el software o los flujos en sprints cortos. Tendrás visibilidad total con entregas funcionales para alinear expectativas.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">4</div>
+                    <h4 data-translate="proc4_t">Deploy & Soporte</h4>
+                    <p data-translate="proc4_d">Lanzamos a producción, capacitamos a tu equipo operativo y brindamos pólizas de mantenimiento para escalar el ecosistema a futuro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ultimos" class="pad" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2 data-translate="port_title">Casos de Éxito</h2>
+            </div>
+            
+            <ul class="filter-options reveal">
+                <li class="active" data-group="all" data-translate="port_all">Todos</li>
+                <li data-group="auto" data-translate="port_auto">Automatización</li>
+                <li data-group="crm">CRM</li>
+                <li data-group="apps">Apps</li>
+            </ul>
+
+            <div class="port-grid reveal" id="grid">
+                <div class="port-item picture-item" data-groups='["auto", "crm", "all"]'>
+                    <img src="assets/images/logistica.jpg" alt="Logística">
+                    <div class="port-overlay">
+                        <h3>Automatización Logística</h3>
+                        <p>CRM + Integración API</p>
+                    </div>
+                </div>
+                <div class="port-item picture-item" data-groups='["apps", "all"]'>
+                    <img src="assets/images/wellness.png" alt="App SaaS">
+                    <div class="port-overlay">
+                        <h3>Plataforma SaaS</h3>
+                        <p>Web App + Base de Datos</p>
+                    </div>
+                </div>
+                <div class="port-item picture-item" data-groups='["auto", "all"]'>
+                    <img src="assets/images/banking.png" alt="Finanzas">
+                    <div class="port-overlay">
+                        <h3>Flujo Contable con IA</h3>
+                        <p>Automatización + Código Nativo</p>
+                    </div>
+                </div>
+                 <div class="port-item picture-item" data-groups='["apps", "all"]'>
+                    <img src="assets/images/tandil.png" alt="Reservas">
+                    <div class="port-overlay">
+                        <h3>App de Reservas</h3>
+                        <p>Desarrollo Móvil</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="text-align: center; background: var(--nav-bg); border-top: 1px solid var(--border); padding: 120px 0 60px;">
+        <div class="container reveal">
+            <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 24px; letter-spacing: -2px;" data-translate="contact_title">Hablemos de tu próximo paso</h2>
+            <p class="text-mute" style="max-width: 600px; margin: 0 auto 50px; font-size: 1.1rem;" data-translate="contact_sub">Agenda una llamada de descubrimiento sin costo. Analizamos tu infraestructura actual y diseñamos un plan a medida.</p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 100px;">
+                <a href="https://wa.me/5491156571982" class="btn-primary" style="background: #25D366; color: #fff;">
+                    <i class="uil uil-whatsapp" style="font-size: 1.3rem;"></i> WhatsApp Directo
+                </a>
+                <a href="https://calendar.app.google/Da7Ci7RNL9wdS9kMA" target="_blank" class="btn-outline" style="border-color: var(--accent); color: var(--accent);" data-translate="btn_discovery">Agendar Discovery Call</a>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border); padding-top: 40px; color: var(--text-mute); font-size: 0.9rem;">
+                <div style="font-size: 1.4rem; color: var(--text); font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px;">ClickDigital</div>
+                <p>&copy; <span id="year"></span> <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
+                <p style="margin-top: 8px;">Buenos Aires, Argentina | info@clickdigital.com.ar</p>
+            </div>
+        </div>
+    </section>
+
+    <button id="chatToggleButton" onclick="toggleChat()" title="Hablar con ClickBot"><i class="uil uil-comment-dots"></i></button>
+
+    <div id="chatWidget">
+        <div class="chat-header">
+            <span style="display: flex; align-items: center; gap: 8px;"><div class="logo-dot"></div> ClickBot</span>
+            <button class="close-chat" onclick="toggleChat()"><i class="uil uil-multiply"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Hola 👋 Soy el asistente de ClickDigital. ¿En qué solución estás interesado hoy? (Automatización, Desarrollo de Apps, CRM...)</div>
+        </div>
+        <div class="chat-input">
+            <input id="chatInput" type="text" placeholder="Escribe tu mensaje..." onkeypress="handleChatKeyPress(event)" />
+            <button onclick="sendMessage()"><i class="uil uil-message"></i></button>
+        </div>
+    </div>
+
+    <script src="assets/libs/shufflejs/shuffle.min.js"></script>
+
+    <script>
+        // ─── 0. THEME SWITCHER (DARK/LIGHT MODE) ───
+        const themeToggleBtn = document.getElementById('themeToggle');
+        let currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            initParticles(); // Reinicia el color de las partículas
+        });
+
+        // ─── 1. TYPEWRITER EFFECT ───
+        const words = {
+            es: ["escalan tu negocio.", "optimizan tu tiempo.", "liberan a tu equipo."],
+            en: ["scale your business.", "optimize your time.", "free your team."]
+        };
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typewriterElem = document.getElementById('typewriter');
+        
+        function type() {
+            let currentLangWords = words[currentLang] || words['es'];
+            const currentWord = currentLangWords[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElem.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElem.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pausa al terminar de escribir
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % currentLangWords.length;
+                typeSpeed = 500; // Pausa antes de nueva palabra
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        document.addEventListener("DOMContentLoaded", () => { setTimeout(type, 1000); });
+
+        // ─── 2. TRADUCCIONES ───
+        const translations = {
+            es: {
+                nav_about: "Quiénes Somos", nav_services: "Soluciones", nav_process: "Proceso", nav_work: "Portfolio", btn_contact: "Hablemos",
+                hero_tag: "Desarrollo & Automatización Premium", hero_title_start: "Ecosistemas digitales que", 
+                hero_sub: "Diseñamos soluciones en IA, automatizamos flujos complejos y desarrollamos software de alto rendimiento para empresas que no tienen tiempo que perder.",
+                btn_discovery: "Agendar Discovery Call", btn_services: "Ver Soluciones",
+                about_title: "Más que código, visión de negocio", about_sub: "No somos una agencia tradicional. Somos tu departamento de tecnología externalizado, enfocado puramente en el retorno de inversión (ROI).",
+                about_card1_title: "Nuestra Misión", about_card1_text: "Eliminar las fricciones operativas de tu empresa. Conectamos tus herramientas aisladas, automatizamos las tareas repetitivas y construimos software robusto.",
+                about_card2_title: "Enfoque Ágil", about_card2_text: "Utilizamos tecnologías avanzadas para lanzar proyectos complejos en semanas, reduciendo los tiempos de mercado drásticamente sin sacrificar calidad.",
+                srv_title: "Soluciones Técnicas Avanzadas", srv_sub: "Un ecosistema tecnológico diseñado para que tu operación fluya sin intervenciones manuales.",
+                srv1_title: "Automatización de Procesos (BPA)", srv1_desc: "Sincronizamos tus bases de datos y plataformas. Creamos flujos de trabajo en la nube que procesan facturación y operaciones 24/7 sin errores.",
+                srv2_title: "Ecosistemas CRM y Ventas", srv2_desc: "Implementación de sistemas de gestión. Diseñamos embudos de venta complejos, tracking automatizado y dashboards financieros en tiempo real.",
+                srv3_title: "Desarrollo Web & Apps a Medida", srv3_desc: "Construimos aplicaciones web y móviles nativas de alto rendimiento, conectadas a bases de datos potentes, escalables y seguras en la nube.",
+                srv4_title: "Agentes de Inteligencia Artificial", srv4_desc: "Desarrollamos algoritmos a medida y orquestamos APIs cognitivas para crear chatbots de atención que entienden contexto o analistas de datos automáticos.",
+                proc_title: "Cómo Trabajamos", proc_sub: "Un método estructurado, transparente y ágil para asegurar que tu inversión genere impacto desde el primer sprint.",
+                proc1_t: "Discovery & Auditoría", proc1_d: "Auditamos procesos y definimos el stack tecnológico ideal y rentable.",
+                proc2_t: "Diseño & Arquitectura", proc2_d: "Modelamos la Base de Datos y el flujo lógico de las automatizaciones.",
+                proc3_t: "Desarrollo Iterativo", proc3_d: "Sprints cortos con visibilidad total y entregas funcionales semanales.",
+                proc4_t: "Deploy & Soporte", proc4_d: "Lanzamiento, capacitación y pólizas de mantenimiento para escalar a futuro.",
+                port_title: "Casos de Éxito", port_all: "Todos", port_auto: "Automatización",
+                contact_title: "Hablemos de tu próximo paso", contact_sub: "Agenda una llamada de descubrimiento sin costo. Analizamos tu infraestructura actual y diseñamos un plan a medida.", footer_rights: "Todos los derechos reservados."
+            },
+            en: {
+                nav_about: "About Us", nav_services: "Solutions", nav_process: "Process", nav_work: "Portfolio", btn_contact: "Let's Talk",
+                hero_tag: "Premium Development & Automation", hero_title_start: "Digital ecosystems that", 
+                hero_sub: "We design AI solutions, automate complex workflows, and develop high-performance software for companies that have no time to lose.",
+                btn_discovery: "Book Discovery Call", btn_services: "View Solutions",
+                about_title: "More than code, business vision", about_sub: "We are not a traditional agency. We are your outsourced tech department, purely focused on Return on Investment (ROI).",
+                about_card1_title: "Our Mission", about_card1_text: "Eliminate operational friction. We connect isolated tools, automate repetitive tasks, and build robust software.",
+                about_card2_title: "Agile Approach", about_card2_text: "We use advanced technologies to launch complex projects in weeks, drastically reducing time-to-market without sacrificing quality.",
+                srv_title: "Advanced Technical Solutions", srv_sub: "A tech ecosystem designed to make your operations flow without manual interventions.",
+                srv1_title: "Business Process Automation", srv1_desc: "We sync databases and platforms. Cloud workflows that process billing and operations 24/7 without errors.",
+                srv2_title: "CRM & Sales Ecosystems", srv2_desc: "Management systems implementation. We design complex sales funnels, automated tracking and real-time financial dashboards.",
+                srv3_title: "Custom Web & App Dev", srv3_desc: "We build high-performance native web and mobile apps connected to powerful, scalable and secure cloud databases.",
+                srv4_title: "Artificial Intelligence Agents", srv4_desc: "We develop custom algorithms and orchestrate cognitive APIs to create chatbots that understand context and automated data analysts.",
+                proc_title: "How We Work", proc_sub: "A structured, transparent, and agile method to ensure your investment generates impact from the first sprint.",
+                proc1_t: "Discovery & Audit", proc1_d: "We audit processes and define the ideal and profitable tech stack.",
+                proc2_t: "Design & Architecture", proc2_d: "We model the Database and the logical flow of the automations.",
+                proc3_t: "Iterative Development", proc3_d: "Short sprints with full visibility and weekly functional deliveries.",
+                proc4_t: "Deploy & Support", proc4_d: "Launch, training, and maintenance policies to scale in the future.",
+                port_title: "Success Stories", port_all: "All", port_auto: "Automation",
+                contact_title: "Let's talk about your next step", contact_sub: "Book a free discovery call. We analyze your current infrastructure and design a custom architectural plan.", footer_rights: "All rights reserved."
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'es';
+        function applyTranslations() {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+            });
+            document.getElementById('langToggle').textContent = currentLang.toUpperCase();
+            // Reset typewriter current word on lang change
+            wordIndex = 0; charIndex = 0; isDeleting = false;
+        }
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            localStorage.setItem('selectedLang', currentLang);
+            applyTranslations();
+        });
+
+        // ─── 3. DUPLICAR ITEMS DEL MARQUEE ───
+        const track = document.getElementById('techMarquee');
+        if(track) { track.innerHTML += track.innerHTML; }
+
+        // ─── 4. REVEAL ANIMATIONS ───
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ─── 5. SHUFFLE.JS (PORTFOLIO) ───
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            applyTranslations();
+            
+            const grid = document.getElementById('grid');
+            if (grid && window.Shuffle) {
+                window.shuffleInstance = new window.Shuffle(grid, { itemSelector: '.picture-item', speed: 450 });
+                document.querySelectorAll('.filter-options li').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.filter-options li').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        window.shuffleInstance.filter(this.getAttribute('data-group'));
+                    });
+                });
+            }
+        });
+
+        // ─── 6. CANVAS (ANTIGRAVITY VECTOR FIELD / SPARKS) ───
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: -1000, y: -1000 };
+
+        // Mouse listeners solo en la ventana para actualizar coords
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY + window.scrollY; // Ajustar por scroll
+        });
+
+        class VectorParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                // Ángulo base simulando un vórtice suave alrededor del centro de la pantalla
+                this.baseAngle = Math.atan2(y - window.innerHeight/2, x - window.innerWidth/2) + 0.5;
+                this.angle = this.baseAngle;
+                this.length = Math.random() * 8 + 4; // Líneas cortas (chispas)
+                this.color = (Math.random() > 0.5) ? 'rgba(16, 185, 129, 0.6)' : 'rgba(20, 184, 166, 0.6)';
+                
+                // Variación lenta en el tiempo
+                this.timeOffset = Math.random() * 100;
+            }
+
+            draw(time) {
+                // Si el modo es light, oscurecemos las partículas
+                let isLight = document.documentElement.getAttribute('data-theme') === 'light';
+                let strokeColor = isLight ? 'rgba(15, 23, 42, 0.3)' : this.color;
+
+                // Rotación suave con el tiempo
+                let currentBaseAngle = this.baseAngle + Math.sin(time + this.timeOffset) * 0.2;
+                let targetAngle = currentBaseAngle;
+
+                // Interacción magnética con el mouse
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 300) { // Radio de influencia del mouse
+                    // Calcula el ángulo hacia el mouse
+                    let angleToMouse = Math.atan2(dy, dx);
+                    // Mezcla el ángulo base con el del mouse dependiendo de la distancia
+                    let influence = 1 - (dist / 300);
+                    
+                    // Asegurar interpolación correcta de ángulos
+                    let diff = angleToMouse - targetAngle;
+                    while (diff < -Math.PI) diff += Math.PI * 2;
+                    while (diff > Math.PI) diff -= Math.PI * 2;
+                    
+                    targetAngle += diff * influence;
+                }
+
+                // Suavizado del giro
+                this.angle += (targetAngle - this.angle) * 0.1;
+
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                
+                ctx.strokeStyle = strokeColor;
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                
+                ctx.beginPath();
+                ctx.moveTo(-this.length / 2, 0);
+                ctx.lineTo(this.length / 2, 0);
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight; // Solo ocupará el alto del Hero visualmente
+            particles = [];
+            
+            // Crear una grilla concéntrica o aleatoria
+            let numParticles = (window.innerWidth < 768) ? 300 : 800; 
+            for(let i = 0; i < numParticles; i++) {
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                particles.push(new VectorParticle(x, y));
+            }
+        }
+
+        let animationTime = 0;
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            animationTime += 0.01;
+            
+            for(let i = 0; i < particles.length; i++) {
+                particles[i].draw(animationTime);
+            }
+            requestAnimationFrame(drawParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        drawParticles();
+
+        // ─── 7. CHATBOT WIDGET ───
+        const chatWidget = document.getElementById('chatWidget');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+
+        function toggleChat() { chatWidget.classList.toggle('open'); }
+        function handleChatKeyPress(e) { if(e.key === 'Enter') sendMessage(); }
+        function scrollToBottom() { chatMessages.scrollTop = chatMessages.scrollHeight; }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if(!text) return;
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user'; userDiv.textContent = text;
+            chatMessages.appendChild(userDiv);
+            chatInput.value = ''; scrollToBottom();
+
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot';
+                botDiv.textContent = getBotResponse(text);
+                chatMessages.appendChild(botDiv); scrollToBottom();
+            }, 800);
+        }
+
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+            if(input.includes('crm')) return "Implementamos y optimizamos ecosistemas de ventas robustos. ¿Estás buscando implementar desde cero o reestructurar un flujo actual?";
+            if(input.includes('app') || input.includes('desarrollo')) return "Podemos tener la primera versión de tu aplicación escalable lista en pocas semanas. ¿De qué trata tu idea?";
+            if(input.includes('automatización') || input.includes('automatizacion')) return "Nuestras automatizaciones ahorran cientos de horas al mes. Cuéntame, ¿cuál es el proceso manual que más le cuesta a tu equipo hoy en día?";
+            return "¡Me parece un proyecto muy interesante! Lo mejor para asesorarte con precisión será agendar una breve Discovery Call con nuestros ingenieros.";
+        }
+    </script>
+</body>
+</html>
