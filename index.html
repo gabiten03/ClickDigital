@@ -12,60 +12,37 @@
     <link href="assets/libs/animate.css/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <style>
-        :root, [data-theme="dark"] {
-            --accent:#10B981; --accent-alt:#14B8A6;
-            --bg:#07090E; --bg-card:rgba(15,18,28,0.45); --bg-card-h:rgba(20,24,38,0.65);
-            --bg-chat:rgba(15,18,28,0.95); --border:rgba(255,255,255,0.08); --border-h:rgba(16,185,129,0.25);
-            --text:#F1F5F9; --text-mute:#94A3B8; --nav-bg:rgba(7,9,14,0.7);
-            --btn-bg:rgba(255,255,255,0.02); --btn-hover:rgba(255,255,255,0.06);
-            --modal-bg:rgba(10,13,20,0.97);
-            --radius:20px; --nav-h:80px; --ease:cubic-bezier(0.25,1,0.35,1);
-        }
-        [data-theme="light"] {
-            --bg:#F8FAFC; --bg-card:rgba(255,255,255,0.6); --bg-card-h:rgba(255,255,255,0.95);
-            --bg-chat:rgba(255,255,255,0.98); --border:rgba(0,0,0,0.08); --border-h:rgba(16,185,129,0.4);
-            --text:#0F172A; --text-mute:#475569; --nav-bg:rgba(248,250,252,0.85);
-            --btn-bg:rgba(0,0,0,0.03); --btn-hover:rgba(0,0,0,0.08);
-            --modal-bg:rgba(248,250,252,0.98);
-        }
+        :root,[data-theme="dark"]{--accent:#10B981;--accent-alt:#14B8A6;--bg:#07090E;--bg-card:rgba(15,18,28,0.45);--bg-card-h:rgba(20,24,38,0.65);--border:rgba(255,255,255,0.08);--border-h:rgba(16,185,129,0.25);--text:#F1F5F9;--text-mute:#94A3B8;--nav-bg:rgba(7,9,14,0.7);--btn-bg:rgba(255,255,255,0.02);--btn-hover:rgba(255,255,255,0.06);--modal-bg:rgba(10,13,20,0.97);--radius:20px;--nav-h:80px;--ease:cubic-bezier(0.25,1,0.35,1);}
+        [data-theme="light"]{--bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);--border:rgba(0,0,0,0.08);--border-h:rgba(16,185,129,0.4);--text:#0F172A;--text-mute:#475569;--nav-bg:rgba(248,250,252,0.85);--btn-bg:rgba(0,0,0,0.03);--btn-hover:rgba(0,0,0,0.08);--modal-bg:rgba(248,250,252,0.98);}
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
         .container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
         a{text-decoration:none;color:inherit;transition:.3s;}
         ul{list-style:none;}
-
-        /* ── LOGO ── */
+        /* LOGO */
         .logo{display:flex;align-items:center;}
         .logo img{height:34px;width:auto;display:block;}
-        [data-theme="dark"] .logo-light{display:none!important;}
-        [data-theme="dark"] .logo-dark{display:block!important;}
-        [data-theme="light"] .logo-dark{display:none!important;}
-        [data-theme="light"] .logo-light{display:block!important;}
-
-        /* Fallback text logo if image fails */
+        [data-theme="dark"] .logo-light{display:none!important;}[data-theme="dark"] .logo-dark{display:block!important;}
+        [data-theme="light"] .logo-dark{display:none!important;}[data-theme="light"] .logo-light{display:block!important;}
         .logo-text{font-size:1.3rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent);display:none;}
-
-        /* ── NAV ── */
+        /* NAV */
         nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .4s,border-color .4s;}
         .nav-inner{display:flex;justify-content:space-between;align-items:center;width:100%;}
         .nav-links{display:flex;gap:32px;}
-        .nav-links a{font-size:.8rem;font-weight:500;color:var(--text-mute);text-transform: uppercase;}
+        .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mute);}
         .nav-links a:hover{color:var(--accent);}
         .nav-ctrls{display:flex;gap:12px;align-items:center;}
         .ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-size:.75rem;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
         .ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
         .lang-btn{padding:8px 16px;font-family:inherit;}
         .theme-btn{width:36px;height:36px;font-size:1.1rem;}
-        [data-theme="dark"] .light-icon{display:none;}
-        [data-theme="light"] .dark-icon{display:none;}
-
-        /* ── BUTTONS ── */
+        [data-theme="dark"] .light-icon{display:none;}[data-theme="light"] .dark-icon{display:none;}
+        /* BUTTONS */
         .btn-primary{background:var(--accent);color:#000;padding:16px 36px;border-radius:50px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(16,185,129,.2);}
         .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(16,185,129,.35);}
         .btn-outline{background:var(--btn-bg);color:var(--text);border:1px solid var(--border);padding:16px 36px;border-radius:50px;font-weight:600;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(10px);transition:.4s var(--ease);}
         .btn-outline:hover{background:var(--btn-hover);border-color:var(--text-mute);}
-
-        /* ── HERO ── */
+        /* HERO */
         .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding-top:var(--nav-h);overflow:hidden;}
         #particleCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
         .hero-content{text-align:center;width:100%;max-width:850px;margin:0 auto;z-index:2;position:relative;}
@@ -75,91 +52,57 @@
         .cursor{display:inline-block;width:3px;background-color:var(--accent);animation:blink .75s step-end infinite;margin-left:2px;}
         @keyframes blink{50%{opacity:0;}}
         .hero p{color:var(--text-mute);font-size:1.2rem;margin-bottom:45px;line-height:1.7;font-weight:400;}
-
-        /* ── MARQUEE ── */
+        /* MARQUEE */
         .marquee-container{width:100%;overflow:hidden;white-space:nowrap;padding:30px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg);position:relative;z-index:2;}
         .marquee-track{display:inline-flex;gap:30px;padding-left:30px;animation:scrollMarquee 35s linear infinite;}
         .tech-pill{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);color:var(--text-mute);font-weight:600;font-size:.95rem;transition:.4s var(--ease);}
         .tech-pill:hover{border-color:var(--accent);color:var(--text);background:rgba(16,185,129,.05);transform:translateY(-3px);}
         .tech-pill i{color:var(--accent);font-size:1.2rem;}
         @keyframes scrollMarquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-
-        /* ── SECTIONS ── */
+        /* SECTIONS */
         section.pad{padding:120px 0;}
         .section-title{text-align:center;margin-bottom:70px;max-width:750px;margin-left:auto;margin-right:auto;}
         .section-title h2{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;margin-bottom:20px;letter-spacing:-1.5px;}
         .section-title p{color:var(--text-mute);font-size:1.1rem;line-height:1.7;}
-
-        /* ── BENTO ── */
+        /* BENTO */
         .bento-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;}
         .bento-card{background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(24px);padding:40px;border-radius:var(--radius);transition:.5s var(--ease);position:relative;overflow:hidden;}
         .bento-card:hover{border-color:var(--border-h);background:var(--bg-card-h);transform:translateY(-5px);}
-        .bento-card.large{grid-column:span 8;} .bento-card.small{grid-column:span 4;} .bento-card.medium{grid-column:span 6;}
+        .bento-card.large{grid-column:span 8;}.bento-card.small{grid-column:span 4;}.bento-card.medium{grid-column:span 6;}
         .icon-box{width:48px;height:48px;background:rgba(16,185,129,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:24px;font-size:1.4rem;border:1px solid rgba(16,185,129,.15);}
         .bento-card h3{font-size:1.4rem;font-weight:700;margin-bottom:12px;letter-spacing:-.5px;}
         .bento-card p{color:var(--text-mute);font-size:.95rem;line-height:1.6;}
-
-        /* ── PROCESS ── */
+        /* PROCESS */
         .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;}
         .process-grid::before{content:'';position:absolute;top:30px;left:12%;right:12%;height:1px;border-bottom:1px dashed rgba(16,185,129,.2);}
         .process-step{position:relative;z-index:1;text-align:center;}
         .step-num{width:60px;height:60px;background:var(--bg);border:2px solid var(--accent);color:var(--accent);font-size:1.2rem;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 15px rgba(16,185,129,.15);}
         .process-step h4{font-size:1.2rem;margin-bottom:10px;font-weight:700;}
         .process-step p{color:var(--text-mute);font-size:.9rem;line-height:1.6;}
-
-        /* ── PORTFOLIO MASONRY ── */
+        /* PORTFOLIO MASONRY */
         .filter-options{list-style:none;text-align:center;margin-bottom:36px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
         .filter-options li{padding:6px 20px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);color:var(--text-mute);cursor:pointer;font-size:.8rem;font-weight:600;transition:.3s;}
         .filter-options li:hover,.filter-options li.active{background:rgba(16,185,129,.08);border-color:var(--accent);color:var(--accent);}
-
         .port-masonry{columns:4;column-gap:12px;}
-        @media(max-width:1024px){.port-masonry{columns:3;}}
-        @media(max-width:680px){.port-masonry{columns:2;}}
-        @media(max-width:400px){.port-masonry{columns:1;}}
-
-        .port-item{
-            break-inside:avoid;display:block;position:relative;border-radius:10px;
-            overflow:hidden;border:1px solid var(--border);margin-bottom:12px;cursor:pointer;
-            opacity:0;transform:translateY(20px) scale(.97);
-            transition:opacity .5s var(--ease),transform .5s var(--ease),border-color .3s,box-shadow .3s;
-        }
+        @media(max-width:1024px){.port-masonry{columns:3;}}@media(max-width:680px){.port-masonry{columns:2;}}@media(max-width:400px){.port-masonry{columns:1;}}
+        .port-item{break-inside:avoid;display:block;position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:12px;cursor:pointer;opacity:0;transform:translateY(20px) scale(.97);transition:opacity .5s var(--ease),transform .5s var(--ease),border-color .3s,box-shadow .3s;}
         .port-item.in{opacity:1;transform:translateY(0) scale(1);}
         .port-item.gone{opacity:0!important;transform:scale(.95)!important;pointer-events:none;height:0;margin:0;overflow:hidden;transition:opacity .3s,transform .3s,height .3s .2s,margin .3s .2s;}
-
-        .port-item:nth-child(5n+1) img{height:130px;}
-        .port-item:nth-child(5n+2) img{height:165px;}
-        .port-item:nth-child(5n+3) img{height:148px;}
-        .port-item:nth-child(5n+4) img{height:158px;}
-        .port-item:nth-child(5n+5) img{height:140px;}
+        .port-item:nth-child(5n+1) img{height:130px;}.port-item:nth-child(5n+2) img{height:165px;}.port-item:nth-child(5n+3) img{height:148px;}.port-item:nth-child(5n+4) img{height:158px;}.port-item:nth-child(5n+5) img{height:140px;}
         .port-item img{width:100%;display:block;object-fit:cover;transition:transform .6s var(--ease);}
         .port-item:hover{border-color:var(--border-h);box-shadow:0 6px 22px rgba(16,185,129,.13);}
         .port-item:hover img{transform:scale(1.05);}
-
         .port-info{padding:10px 12px 12px;background:var(--bg-card);}
         .port-info h3{font-size:.82rem;font-weight:700;margin-bottom:2px;color:var(--text);}
         .port-info span{color:var(--accent);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
-
-        /* click hint */
         .port-hint{position:absolute;top:8px;right:8px;background:rgba(16,185,129,.85);color:#000;font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:20px;opacity:0;transition:opacity .3s;text-transform:uppercase;letter-spacing:.5px;}
         .port-item:hover .port-hint{opacity:1;}
-
         .port-item::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .35s var(--ease);}
         .port-item:hover::after{width:100%;}
-
-        /* ── MODAL ── */
-        .modal-overlay{
-            position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;
-            display:flex;align-items:center;justify-content:center;padding:20px;
-            opacity:0;pointer-events:none;transition:opacity .35s var(--ease);
-            backdrop-filter:blur(8px);
-        }
+        /* MODAL */
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease);backdrop-filter:blur(8px);}
         .modal-overlay.open{opacity:1;pointer-events:all;}
-        .modal-box{
-            background:var(--modal-bg);border:1px solid var(--border-h);border-radius:var(--radius);
-            max-width:680px;width:100%;max-height:90vh;overflow-y:auto;
-            transform:translateY(30px) scale(.97);transition:transform .4s var(--ease);
-            position:relative;
-        }
+        .modal-box{background:var(--modal-bg);border:1px solid var(--border-h);border-radius:var(--radius);max-width:680px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(30px) scale(.97);transition:transform .4s var(--ease);position:relative;}
         .modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
         .modal-img{width:100%;height:200px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;}
         .modal-body{padding:32px 36px 36px;}
@@ -178,117 +121,51 @@
         .modal-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,.3);}
         .modal-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.4);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.3s;z-index:10;}
         .modal-close:hover{background:rgba(0,0,0,.7);}
-
-        /* ── REVEAL ── */
+        /* REVEAL */
         .reveal{opacity:0;transform:translateY(30px);transition:.8s var(--ease);}
         .reveal.visible{opacity:1;transform:translateY(0);}
-
         @media(max-width:992px){
             .bento-card.large,.bento-card.small,.bento-card.medium{grid-column:span 12;}
             .nav-links{display:none;}
             .process-grid{grid-template-columns:1fr;gap:50px;}
             .process-grid::before{display:none;}
-            .modal-results{grid-template-columns:repeat(3,1fr);}
         }
-        @media(max-width:500px){
-            .modal-results{grid-template-columns:1fr 1fr;}
-            .modal-body{padding:20px;}
-        }
-
-        /* ── CHATBOT ── */
-        #chatToggleButton{
-            position:fixed;bottom:24px;right:24px;
-            background:#10B981;color:#000;border:none;border-radius:50%;
-            width:58px;height:58px;font-size:26px;cursor:pointer;
-            box-shadow:0 4px 20px rgba(16,185,129,.4);z-index:1000;
-            display:flex;align-items:center;justify-content:center;
-            transition:.35s var(--ease);
-        }
+        @media(max-width:500px){.modal-results{grid-template-columns:1fr 1fr;}.modal-body{padding:20px;}}
+        /* CHATBOT */
+        #chatToggleButton{position:fixed;bottom:24px;right:24px;background:#10B981;color:#000;border:none;border-radius:50%;width:58px;height:58px;font-size:26px;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,.4);z-index:1000;display:flex;align-items:center;justify-content:center;transition:.35s var(--ease);}
         #chatToggleButton:hover{transform:scale(1.1);}
-
-        #chatWidget{
-            position:fixed;bottom:96px;right:24px;
-            width:380px;max-width:92vw;height:520px;
-            background:#ffffff;display:none;flex-direction:column;
-            z-index:999;border-radius:18px 18px 4px 18px;overflow:hidden;
-            box-shadow:0 8px 40px rgba(0,0,0,.22);
-            border:1px solid var(--border-h);
-            animation:slideInUp .4s var(--ease);
-        }
-        @media(max-width:768px){
-            #chatWidget{width:100vw;max-width:100vw;height:82vh;right:0;bottom:80px;border-radius:18px 18px 0 0;}
-        }
-        /* display controlled by JS toggleChat() */
-
-        .chat-header{
-            background:#0F172A;color:#fff;
-            padding:14px 18px;font-size:1rem;font-weight:700;
-            display:flex;justify-content:space-between;align-items:center;
-            flex-shrink:0;
-        }
+        #chatWidget{position:fixed;bottom:96px;right:24px;width:380px;max-width:92vw;height:520px;background:#ffffff;display:none;flex-direction:column;z-index:999;border-radius:18px 18px 4px 18px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.22);border:1px solid var(--border-h);}
+        @media(max-width:768px){#chatWidget{width:100vw;max-width:100vw;height:82vh;right:0;bottom:80px;border-radius:18px 18px 0 0;}}
+        .chat-header{background:#0F172A;color:#fff;padding:14px 18px;font-size:1rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
         .chat-header-info{display:flex;align-items:center;gap:10px;}
-        .chat-avatar{
-            width:34px;height:34px;border-radius:50%;
-            background:linear-gradient(135deg,#10B981,#14B8A6);
-            display:flex;align-items:center;justify-content:center;font-size:16px;
-        }
-        .chat-header-text{}
+        .chat-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#10B981,#14B8A6);display:flex;align-items:center;justify-content:center;font-size:16px;}
         .chat-header-name{font-size:.95rem;font-weight:700;line-height:1.2;}
         .chat-header-status{font-size:.72rem;color:#10B981;font-weight:600;}
         .close-chat{background:transparent;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:1.4rem;line-height:1;transition:.2s;padding:4px;}
         .close-chat:hover{color:#fff;}
-
-        .chat-messages{
-            flex:1;padding:20px 18px;overflow-y:auto;
-            display:flex;flex-direction:column;gap:10px;
-            background:#f3f5f9;
-        }
-        .message{
-            max-width:78%;padding:11px 15px;border-radius:14px;
-            font-size:.9rem;line-height:1.55;white-space:pre-wrap;word-break:break-word;
-        }
-        .message.user{
-            background:#10B981;color:#fff;
-            align-self:flex-end;border-bottom-right-radius:3px;font-weight:500;
-        }
-        .message.bot{
-            background:#fff;color:#0F172A;
-            align-self:flex-start;border-bottom-left-radius:3px;
-            box-shadow:0 1px 4px rgba(0,0,0,.08);
-        }
+        .chat-messages{flex:1;padding:20px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f3f5f9;}
+        .message{max-width:78%;padding:11px 15px;border-radius:14px;font-size:.9rem;line-height:1.55;white-space:pre-wrap;word-break:break-word;}
+        .message.user{background:#10B981;color:#fff;align-self:flex-end;border-bottom-right-radius:3px;font-weight:500;}
+        .message.bot{background:#fff;color:#0F172A;align-self:flex-start;border-bottom-left-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.08);}
         .typing-indicator{display:flex;gap:5px;align-items:center;padding:12px 15px;background:#fff;border-radius:14px;border-bottom-left-radius:3px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.08);}
         .typing-dot{width:7px;height:7px;background:#94A3B8;border-radius:50%;animation:typingBounce 1.2s infinite;}
-        .typing-dot:nth-child(2){animation-delay:.2s;}
-        .typing-dot:nth-child(3){animation-delay:.4s;}
+        .typing-dot:nth-child(2){animation-delay:.2s;}.typing-dot:nth-child(3){animation-delay:.4s;}
         @keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
-
-        .chat-input{
-            display:flex;gap:8px;padding:12px 14px;
-            border-top:1px solid #e2e8f0;background:#fff;flex-shrink:0;
-        }
-        .chat-input input{
-            flex:1;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;
-            font-size:.9rem;font-family:inherit;color:#0F172A;outline:none;transition:.2s;
-        }
+        .chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid #e2e8f0;background:#fff;flex-shrink:0;}
+        .chat-input input{flex:1;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:.9rem;font-family:inherit;color:#0F172A;outline:none;transition:.2s;}
         .chat-input input:focus{border-color:#10B981;}
-        .chat-input button{
-            background:#10B981;color:#fff;border:none;
-            width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;
-            display:flex;align-items:center;justify-content:center;transition:.25s;flex-shrink:0;
-        }
+        .chat-input button{background:#10B981;color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;flex-shrink:0;}
         .chat-input button:hover{background:#0EA271;transform:scale(1.08);}
         @keyframes slideInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
     </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
     <div class="container nav-inner">
         <a href="#" class="logo">
-            <!-- Si las imágenes no cargan, se ocultan y el JS muestra el texto -->
             <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
-            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
             <span class="logo-text">ClickDigital</span>
         </a>
         <ul class="nav-links">
@@ -308,7 +185,6 @@
     </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
     <canvas id="particleCanvas"></canvas>
     <div class="container hero-content">
@@ -325,7 +201,6 @@
     </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-container">
     <div class="marquee-track" id="techMarquee">
         <div class="tech-pill"><i class="uil uil-layer-group"></i> Arquitectura Cloud</div>
@@ -339,7 +214,6 @@
     </div>
 </div>
 
-<!-- QUIENES -->
 <section id="quienes" class="pad">
     <div class="container">
         <div class="section-title reveal">
@@ -361,7 +235,6 @@
     </div>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios" class="pad" style="border-top:1px solid var(--border);">
     <div class="container">
         <div class="section-title reveal">
@@ -393,7 +266,6 @@
     </div>
 </section>
 
-<!-- PROCESO -->
 <section id="proceso" class="pad">
     <div class="container">
         <div class="section-title reveal">
@@ -425,7 +297,6 @@
     </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="ultimos" class="pad" style="border-top:1px solid var(--border);">
     <div class="container">
         <div class="section-title reveal">
@@ -439,41 +310,31 @@
             <li data-group="apps">Apps</li>
             <li data-group="web">Web</li>
         </ul>
-        <div class="port-masonry reveal" id="masonryGrid">
-
-            <!-- CASO 1: Rucahain Tandil -->
+        <div class="port-masonry" id="masonryGrid">
             <div class="port-item" data-groups="web apps auto all" data-case="rucahain">
                 <img src="assets/images/tandil.png" alt="Rucahain Cabañas">
                 <div class="port-hint">Ver detalle</div>
                 <div class="port-info"><h3>Rucahain Cabañas</h3><span>Web + Booking + Chatbot</span></div>
             </div>
-
-            <!-- CASO 2: Special-Bid Fintech -->
             <div class="port-item" data-groups="crm auto apps all" data-case="specialbid">
                 <img src="assets/images/banking.png" alt="Special-Bid Fintech">
                 <div class="port-hint">Ver detalle</div>
                 <div class="port-info"><h3>Special-Bid</h3><span>CRM + IA + Fintech</span></div>
             </div>
-
-            <!-- CASO 3: Correa Arias y Bianco -->
             <div class="port-item" data-groups="apps auto all" data-case="correaybianco">
                 <img src="assets/images/logistica.jpg" alt="Estudio Correa y Bianco">
                 <div class="port-hint">Ver detalle</div>
                 <div class="port-info"><h3>Correa Arias y Bianco</h3><span>App + Automatización</span></div>
             </div>
-
-            <!-- CASO 4: SaaS Wellness -->
             <div class="port-item" data-groups="apps all" data-case="wellness">
                 <img src="assets/images/wellness.png" alt="Plataforma SaaS">
                 <div class="port-hint">Ver detalle</div>
                 <div class="port-info"><h3>Plataforma SaaS Wellness</h3><span>Web App + Base de Datos</span></div>
             </div>
-
         </div>
     </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto" style="text-align:center;background:var(--nav-bg);border-top:1px solid var(--border);padding:120px 0 60px;">
     <div class="container reveal">
         <h2 style="font-size:clamp(2.5rem,5vw,3.5rem);font-weight:800;margin-bottom:24px;letter-spacing:-2px;" data-translate="contact_title">Hablemos de tu próximo paso</h2>
@@ -485,25 +346,21 @@
             <a href="https://calendar.app.google/Da7Ci7RNL9wdS9kMA" target="_blank" class="btn-outline" style="border-color:var(--accent);color:var(--accent);" data-translate="btn_discovery">Agendar Discovery Call</a>
         </div>
         <div style="border-top:1px solid var(--border);padding-top:40px;color:var(--text-mute);font-size:.9rem;">
-            <div style="font-size:1.4rem;color:var(--text);font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">     
-            <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
-            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
-           </div>
+            <div style="font-size:1.4rem;color:var(--text);font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">  <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';"></div>
             <p>&copy; <span id="year"></span> <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
-            <p style="margin-top:8px;">Buenos Aires, Argentina | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1970777f76597a75707a727d707e706d7875377a767437786b">[email&#160;protected]</a></p>
+            <p style="margin-top:8px;">Buenos Aires, Argentina | info@clickdigital.com.ar</p>
         </div>
     </div>
 </section>
 
-<!-- CHAT TOGGLE -->
+<!-- CHAT -->
 <button id="chatToggleButton" onclick="toggleChat()" title="Hablar con ClickBot">💬</button>
-
-<!-- CHAT WIDGET -->
 <div id="chatWidget">
     <div class="chat-header">
         <div class="chat-header-info">
             <div class="chat-avatar">🤖</div>
-            <div class="chat-header-text">
+            <div>
                 <div class="chat-header-name">ClickBot</div>
                 <div class="chat-header-status">● En línea</div>
             </div>
@@ -536,65 +393,13 @@
     </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── DATA DE CASOS ──
+<script>
+// ── CASES DATA ──
 const cases = {
-    rucahain: {
-        tag: "Turismo · Web · IA",
-        title: "Rucahain Cabañas",
-        client: "rucahain.com — Tandil, Buenos Aires",
-        img: "assets/images/tandil.png",
-        desc: "Desarrollamos el ecosistema digital completo para este complejo de cabañas en las sierras de Tandil. El proyecto incluyó un sitio web de alto impacto visual con galería inmersiva, sistema de booking online integrado con disponibilidad en tiempo real y un chatbot con IA entrenado con la información del complejo: precios, temporadas, servicios y consultas frecuentes. El bot atiende consultas y guía reservas las 24 horas sin intervención humana, reduciendo la carga operativa del dueño drásticamente.",
-        stack: ["Next.js", "Booking Engine", "WhatsApp API", "Chatbot IA", "Google Calendar", "Cloudflare"],
-        results: [
-            { num: "68%", lab: "Reservas online" },
-            { num: "24/7", lab: "Atención automática" },
-            { num: "-80%", lab: "Consultas manuales" }
-        ],
-        link: "https://rucahain.com"
-    },
-    specialbid: {
-        tag: "Fintech · CRM · IA · Workspace",
-        title: "Special-Bid",
-        client: "special-bid.com — Integrador Fintech",
-        img: "assets/images/banking.png",
-        desc: "Proyecto integral para este integrador fintech especializado en instrumentos de crédito. Implementamos un CRM a medida con pipeline de clientes, automatización de seguimiento de leads y alertas inteligentes. Desarrollamos la página web corporativa, migramos y configuramos Google Workspace Suite para el equipo, integramos un agente de IA para clasificación de oportunidades comerciales y construimos un dashboard ejecutivo en tiempo real para seguimiento de operaciones, KPIs y cartera activa.",
-        stack: ["HubSpot CRM", "Google Workspace", "Make / Zapier", "Agente IA GPT-4", "Dashboard App", "React", "Node.js"],
-        results: [
-            { num: "3x", lab: "Velocidad de cierre" },
-            { num: "100%", lab: "Operación digitalizada" },
-            { num: "-60%", lab: "Trabajo manual" }
-        ],
-        link: "https://special-bid.com"
-    },
-    correaybianco: {
-        tag: "Legal · App · Automatización",
-        title: "Correa Arias y Bianco Abogados",
-        client: "estudiocorreaybianco.com — Buenos Aires",
-        img: "assets/images/logistica.jpg",
-        desc: "Para este estudio jurídico con 20 años de trayectoria en recupero de créditos y derecho comercial, construimos una aplicación web interna de gestión de proveedores y facturación. El sistema permite a los proveedores cargar sus facturas directamente desde un portal seguro, con validación automática de datos fiscales. El flujo incluye automatización completa del ciclo de vida de cada factura: recepción, control, aprobación por el área legal, notificación al proveedor y cambio de estado a 'cobrado' una vez procesado el pago, todo sin intervención manual del equipo administrativo.",
-        stack: ["Portal Web App", "React", "Node.js", "PostgreSQL", "Automatización de estados", "Email triggers", "AFIP API"],
-        results: [
-            { num: "0", lab: "Errores de carga" },
-            { num: "100%", lab: "Trazabilidad" },
-            { num: "-90%", lab: "Gestión manual" }
-        ],
-        link: "https://www.estudiocorreaybianco.com"
-    },
-    wellness: {
-        tag: "SaaS · Web App · Cloud",
-        title: "Plataforma SaaS Wellness",
-        client: "Sector salud & bienestar",
-        img: "assets/images/wellness.png",
-        desc: "Diseñamos y desarrollamos desde cero una plataforma SaaS B2B para el sector de bienestar y salud. La aplicación permite a centros de bienestar gestionar clientes, turnos, pagos y métricas desde un único panel. Arquitectura serverless en la nube con base de datos escalable, autenticación segura multi-tenant y dashboard analítico para seguimiento de métricas de negocio en tiempo real.",
-        stack: ["React", "Supabase", "Stripe", "Vercel", "PostgreSQL", "Serverless", "Auth JWT"],
-        results: [
-            { num: "8 sem", lab: "Tiempo de entrega" },
-            { num: "99.9%", lab: "Uptime garantizado" },
-            { num: "Multi", lab: "Tenant listo" }
-        ],
-        link: "#contacto"
-    }
+    rucahain:{tag:"Turismo · Web · IA",title:"Rucahain Cabañas",client:"rucahain.com — Tandil, Buenos Aires",img:"assets/images/tandil.png",desc:"Desarrollamos el ecosistema digital completo para este complejo de cabañas en las sierras de Tandil. El proyecto incluyó un sitio web de alto impacto visual con galería inmersiva, sistema de booking online integrado con disponibilidad en tiempo real y un chatbot con IA entrenado con la información del complejo: precios, temporadas, servicios y consultas frecuentes. El bot atiende consultas y guía reservas las 24 horas sin intervención humana.",stack:["Next.js","Booking Engine","WhatsApp API","Chatbot IA","Google Calendar","Cloudflare"],results:[{num:"68%",lab:"Reservas online"},{num:"24/7",lab:"Atención automática"},{num:"-80%",lab:"Consultas manuales"}],link:"https://rucahain.com"},
+    specialbid:{tag:"Fintech · CRM · IA · Workspace",title:"Special-Bid",client:"special-bid.com — Integrador Fintech",img:"assets/images/banking.png",desc:"Proyecto integral para este integrador fintech especializado en instrumentos de crédito. Implementamos un CRM a medida con pipeline de clientes, automatización de seguimiento de leads y alertas inteligentes. Desarrollamos la página web corporativa, migramos y configuramos Google Workspace Suite para el equipo, integramos un agente de IA para clasificación de oportunidades comerciales y construimos un dashboard ejecutivo en tiempo real.",stack:["HubSpot CRM","Google Workspace","Make / Zapier","Agente IA GPT-4","Dashboard App","React","Node.js"],results:[{num:"3x",lab:"Velocidad de cierre"},{num:"100%",lab:"Operación digitalizada"},{num:"-60%",lab:"Trabajo manual"}],link:"https://special-bid.com"},
+    correaybianco:{tag:"Legal · App · Automatización",title:"Correa Arias y Bianco Abogados",client:"estudiocorreaybianco.com — Buenos Aires",img:"assets/images/logistica.jpg",desc:"Para este estudio jurídico con 20 años de trayectoria en recupero de créditos y derecho comercial, construimos una aplicación web interna de gestión de proveedores y facturación. El sistema permite a los proveedores cargar sus facturas directamente desde un portal seguro, con validación automática de datos fiscales y automatización completa del ciclo: recepción, control, aprobación y cambio de estado a 'cobrado' sin intervención manual.",stack:["Portal Web App","React","Node.js","PostgreSQL","Automatización de estados","Email triggers","AFIP API"],results:[{num:"0",lab:"Errores de carga"},{num:"100%",lab:"Trazabilidad"},{num:"-90%",lab:"Gestión manual"}],link:"https://www.estudiocorreaybianco.com"},
+    wellness:{tag:"SaaS · Web App · Cloud",title:"Plataforma SaaS Wellness",client:"Sector salud & bienestar",img:"assets/images/wellness.png",desc:"Diseñamos y desarrollamos desde cero una plataforma SaaS B2B para el sector de bienestar y salud. La aplicación permite a centros de bienestar gestionar clientes, turnos, pagos y métricas desde un único panel. Arquitectura serverless en la nube con base de datos escalable, autenticación segura multi-tenant y dashboard analítico en tiempo real.",stack:["React","Supabase","Stripe","Vercel","PostgreSQL","Serverless","Auth JWT"],results:[{num:"8 sem",lab:"Tiempo de entrega"},{num:"99.9%",lab:"Uptime garantizado"},{num:"Multi",lab:"Tenant listo"}],link:"#contacto"}
 };
 
 // ── THEME ──
@@ -610,360 +415,256 @@ themeToggleBtn.addEventListener('click', () => {
 
 // ── TYPEWRITER ──
 const words = {
-    es: ["escalan tu negocio.", "optimizan tu tiempo.", "liberan a tu equipo."],
-    en: ["scale your business.", "optimize your time.", "free your team."]
+    es:["escalan tu negocio.","optimizan tu tiempo.","liberan a tu equipo."],
+    en:["scale your business.","optimize your time.","free your team."]
 };
-let wordIndex = 0, charIndex = 0, isDeleting = false;
-const typewriterElem = document.getElementById('typewriter');
-function type() {
-    const list = words[currentLang] || words.es;
-    const word = list[wordIndex];
-    typewriterElem.textContent = isDeleting ? word.substring(0, charIndex-1) : word.substring(0, charIndex+1);
-    isDeleting ? charIndex-- : charIndex++;
-    let speed = isDeleting ? 50 : 100;
-    if (!isDeleting && charIndex === word.length) { speed = 2000; isDeleting = true; }
-    else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex+1) % list.length; speed = 500; }
-    setTimeout(type, speed);
+let wordIndex=0,charIndex=0,isDeleting=false;
+const typewriterElem=document.getElementById('typewriter');
+function type(){
+    const list=words[currentLang]||words.es, word=list[wordIndex];
+    typewriterElem.textContent=isDeleting?word.substring(0,charIndex-1):word.substring(0,charIndex+1);
+    isDeleting?charIndex--:charIndex++;
+    let speed=isDeleting?50:100;
+    if(!isDeleting&&charIndex===word.length){speed=2000;isDeleting=true;}
+    else if(isDeleting&&charIndex===0){isDeleting=false;wordIndex=(wordIndex+1)%list.length;speed=500;}
+    setTimeout(type,speed);
 }
-document.addEventListener('DOMContentLoaded', () => setTimeout(type, 1000));
+document.addEventListener('DOMContentLoaded',()=>setTimeout(type,1000));
 
 // ── TRANSLATIONS ──
-const translations = {
-    es: {
-        nav_about:"Quiénes Somos", nav_services:"Soluciones", nav_process:"Proceso", nav_work:"Portfolio", btn_contact:"Hablemos",
-        hero_tag:"Desarrollo & Automatización Premium", hero_title_start:"Ecosistemas digitales que",
-        hero_sub:"Diseñamos soluciones en IA, automatizamos flujos complejos y desarrollamos software de alto rendimiento para empresas que no tienen tiempo que perder.",
-        btn_discovery:"Agendar Discovery Call", btn_services:"Ver Soluciones",
-        about_title:"Más que código, visión de negocio", about_sub:"No somos una agencia tradicional. Somos tu departamento de tecnología externalizado, enfocado puramente en el retorno de inversión (ROI).",
-        about_card1_title:"Nuestra Misión", about_card1_text:"Eliminar las fricciones operativas de tu empresa. Conectamos tus herramientas aisladas, automatizamos las tareas repetitivas y construimos software robusto para que tu equipo se concentre en lo que realmente importa: crecer y vender.",
-        about_card2_title:"Enfoque Ágil", about_card2_text:"Utilizamos tecnologías avanzadas (Low-Code y código nativo) para lanzar proyectos complejos en semanas, reduciendo los tiempos de mercado drásticamente sin sacrificar calidad.",
-        srv_title:"Soluciones Técnicas Avanzadas", srv_sub:"Un ecosistema tecnológico diseñado para que tu operación fluya sin intervenciones manuales.",
-        srv1_title:"Automatización de Procesos (BPA)", srv1_desc:"Sincronizamos tus bases de datos y plataformas. Creamos flujos de trabajo en la nube que procesan facturación, onboarding de clientes y tareas operativas 24/7 de forma invisible y sin errores.",
-        srv2_title:"Ecosistemas CRM y Ventas", srv2_desc:"Implementación arquitectónica de sistemas de gestión. Diseñamos y configuramos embudos de venta complejos, tracking automatizado y dashboards financieros en tiempo real para gerencia.",
-        srv3_title:"Desarrollo Web & Apps a Medida", srv3_desc:"Construimos aplicaciones web y móviles nativas de alto rendimiento visual y funcional, conectadas a bases de datos potentes, escalables y seguras en la nube.",
-        srv4_title:"Agentes de Inteligencia Artificial", srv4_desc:"Desarrollamos algoritmos a medida y orquestamos APIs cognitivas para crear sistemas inteligentes, como chatbots de atención que entienden contexto o analistas de datos automáticos.",
-        proc_title:"Cómo Trabajamos", proc_sub:"Un método estructurado, transparente y ágil para asegurar que tu inversión genere impacto desde el primer sprint.",
-        proc1_t:"Discovery & Auditoría", proc1_d:"Auditamos a fondo tus procesos actuales, identificamos cuellos de botella y definimos el stack tecnológico ideal y más rentable.",
-        proc2_t:"Diseño & Arquitectura", proc2_d:"Modelamos la estructura de la base de datos en la nube y trazamos el mapa lógico de las automatizaciones antes de escribir código.",
-        proc3_t:"Desarrollo Iterativo", proc3_d:"Construimos el software o los flujos en sprints cortos. Tendrás visibilidad total con entregas funcionales para alinear expectativas.",
-        proc4_t:"Deploy & Soporte", proc4_d:"Lanzamos a producción, capacitamos a tu equipo operativo y brindamos pólizas de mantenimiento para escalar el ecosistema a futuro.",
-        port_title:"Casos de Éxito", port_hint:"Hacé click en cada proyecto para ver el detalle", port_all:"Todos", port_auto:"Automatización",
-        contact_title:"Hablemos de tu próximo paso", contact_sub:"Agenda una llamada de descubrimiento sin costo. Analizamos tu infraestructura actual y diseñamos un plan a medida.", footer_rights:"Todos los derechos reservados."
-    },
-    en: {
-        nav_about:"About Us", nav_services:"Solutions", nav_process:"Process", nav_work:"Portfolio", btn_contact:"Let's Talk",
-        hero_tag:"Premium Development & Automation", hero_title_start:"Digital ecosystems that",
-        hero_sub:"We design AI solutions, automate complex workflows, and develop high-performance software for companies that have no time to lose.",
-        btn_discovery:"Book Discovery Call", btn_services:"View Solutions",
-        about_title:"More than code, business vision", about_sub:"We are not a traditional agency. We are your outsourced tech department, purely focused on Return on Investment (ROI).",
-        about_card1_title:"Our Mission", about_card1_text:"Eliminate operational friction. We connect isolated tools, automate repetitive tasks, and build robust software so your team can focus on what truly matters: growing and selling.",
-        about_card2_title:"Agile Approach", about_card2_text:"We use advanced technologies to launch complex projects in weeks, drastically reducing time-to-market without sacrificing quality.",
-        srv_title:"Advanced Technical Solutions", srv_sub:"A tech ecosystem designed so your operations flow without manual interventions.",
-        srv1_title:"Business Process Automation", srv1_desc:"We sync your databases and platforms. Cloud workflows that process billing, client onboarding and operations 24/7 invisibly and without errors.",
-        srv2_title:"CRM & Sales Ecosystems", srv2_desc:"Management systems implementation. We design complex sales funnels, automated tracking and real-time financial dashboards.",
-        srv3_title:"Custom Web & App Development", srv3_desc:"We build high-performance native web and mobile apps, connected to powerful, scalable and secure cloud databases.",
-        srv4_title:"Artificial Intelligence Agents", srv4_desc:"We develop custom algorithms and orchestrate cognitive APIs to create context-aware chatbots or automated data analysts.",
-        proc_title:"How We Work", proc_sub:"A structured, transparent, and agile method to ensure your investment generates impact from the first sprint.",
-        proc1_t:"Discovery & Audit", proc1_d:"We audit your current processes, identify bottlenecks and define the ideal tech stack.",
-        proc2_t:"Design & Architecture", proc2_d:"We model the cloud database structure and map the logical automation flow before writing code.",
-        proc3_t:"Iterative Development", proc3_d:"We build software or flows in short sprints with full visibility and weekly functional deliveries.",
-        proc4_t:"Deploy & Support", proc4_d:"Launch, team training, and maintenance policies to scale the ecosystem in the future.",
-        port_title:"Success Stories", port_hint:"Click on each project to see the details", port_all:"All", port_auto:"Automation",
-        contact_title:"Let's talk about your next step", contact_sub:"Book a free discovery call. We analyze your current infrastructure and design a custom plan.", footer_rights:"All rights reserved."
-    }
+const translations={
+    es:{nav_about:"Quiénes Somos",nav_services:"Soluciones",nav_process:"Proceso",nav_work:"Portfolio",btn_contact:"Hablemos",hero_tag:"Desarrollo & Automatización Premium",hero_title_start:"Ecosistemas digitales que",hero_sub:"Diseñamos soluciones en IA, automatizamos flujos complejos y desarrollamos software de alto rendimiento para empresas que no tienen tiempo que perder.",btn_discovery:"Agendar Discovery Call",btn_services:"Ver Soluciones",about_title:"Más que código, visión de negocio",about_sub:"No somos una agencia tradicional. Somos tu departamento de tecnología externalizado, enfocado puramente en el retorno de inversión (ROI).",about_card1_title:"Nuestra Misión",about_card1_text:"Eliminar las fricciones operativas de tu empresa. Conectamos tus herramientas aisladas, automatizamos las tareas repetitivas y construimos software robusto para que tu equipo se concentre en lo que realmente importa: crecer y vender.",about_card2_title:"Enfoque Ágil",about_card2_text:"Utilizamos tecnologías avanzadas (Low-Code y código nativo) para lanzar proyectos complejos en semanas, reduciendo los tiempos de mercado drásticamente sin sacrificar calidad.",srv_title:"Soluciones Técnicas Avanzadas",srv_sub:"Un ecosistema tecnológico diseñado para que tu operación fluya sin intervenciones manuales.",srv1_title:"Automatización de Procesos (BPA)",srv1_desc:"Sincronizamos tus bases de datos y plataformas. Creamos flujos de trabajo en la nube que procesan facturación, onboarding de clientes y tareas operativas 24/7 de forma invisible y sin errores.",srv2_title:"Ecosistemas CRM y Ventas",srv2_desc:"Implementación arquitectónica de sistemas de gestión. Diseñamos y configuramos embudos de venta complejos, tracking automatizado y dashboards financieros en tiempo real para gerencia.",srv3_title:"Desarrollo Web & Apps a Medida",srv3_desc:"Construimos aplicaciones web y móviles nativas de alto rendimiento visual y funcional, conectadas a bases de datos potentes, escalables y seguras en la nube.",srv4_title:"Agentes de Inteligencia Artificial",srv4_desc:"Desarrollamos algoritmos a medida y orquestamos APIs cognitivas para crear sistemas inteligentes, como chatbots de atención que entienden contexto o analistas de datos automáticos.",proc_title:"Cómo Trabajamos",proc_sub:"Un método estructurado, transparente y ágil para asegurar que tu inversión genere impacto desde el primer sprint.",proc1_t:"Discovery & Auditoría",proc1_d:"Auditamos a fondo tus procesos actuales, identificamos cuellos de botella y definimos el stack tecnológico ideal y más rentable.",proc2_t:"Diseño & Arquitectura",proc2_d:"Modelamos la estructura de la base de datos en la nube y trazamos el mapa lógico de las automatizaciones antes de escribir código.",proc3_t:"Desarrollo Iterativo",proc3_d:"Construimos el software o los flujos en sprints cortos. Tendrás visibilidad total con entregas funcionales para alinear expectativas.",proc4_t:"Deploy & Soporte",proc4_d:"Lanzamos a producción, capacitamos a tu equipo operativo y brindamos pólizas de mantenimiento para escalar el ecosistema a futuro.",port_title:"Casos de Éxito",port_hint:"Hacé click en cada proyecto para ver el detalle",port_all:"Todos",port_auto:"Automatización",contact_title:"Hablemos de tu próximo paso",contact_sub:"Agenda una llamada de descubrimiento sin costo. Analizamos tu infraestructura actual y diseñamos un plan a medida.",footer_rights:"Todos los derechos reservados."},
+    en:{nav_about:"About Us",nav_services:"Solutions",nav_process:"Process",nav_work:"Portfolio",btn_contact:"Let's Talk",hero_tag:"Premium Development & Automation",hero_title_start:"Digital ecosystems that",hero_sub:"We design AI solutions, automate complex workflows, and develop high-performance software for companies that have no time to lose.",btn_discovery:"Book Discovery Call",btn_services:"View Solutions",about_title:"More than code, business vision",about_sub:"We are not a traditional agency. We are your outsourced tech department, purely focused on Return on Investment (ROI).",about_card1_title:"Our Mission",about_card1_text:"Eliminate operational friction. We connect isolated tools, automate repetitive tasks, and build robust software so your team can focus on what truly matters.",about_card2_title:"Agile Approach",about_card2_text:"We use advanced technologies to launch complex projects in weeks, drastically reducing time-to-market without sacrificing quality.",srv_title:"Advanced Technical Solutions",srv_sub:"A tech ecosystem designed so your operations flow without manual interventions.",srv1_title:"Business Process Automation",srv1_desc:"We sync your databases and platforms. Cloud workflows that process billing, client onboarding and operations 24/7 without errors.",srv2_title:"CRM & Sales Ecosystems",srv2_desc:"Management systems implementation. We design complex sales funnels, automated tracking and real-time financial dashboards.",srv3_title:"Custom Web & App Development",srv3_desc:"We build high-performance native web and mobile apps, connected to powerful, scalable and secure cloud databases.",srv4_title:"Artificial Intelligence Agents",srv4_desc:"We develop custom algorithms and orchestrate cognitive APIs to create context-aware chatbots or automated data analysts.",proc_title:"How We Work",proc_sub:"A structured, transparent, and agile method to ensure your investment generates impact from the first sprint.",proc1_t:"Discovery & Audit",proc1_d:"We audit your current processes, identify bottlenecks and define the ideal tech stack.",proc2_t:"Design & Architecture",proc2_d:"We model the cloud database structure and map the logical automation flow.",proc3_t:"Iterative Development",proc3_d:"Short sprints with full visibility and weekly functional deliveries.",proc4_t:"Deploy & Support",proc4_d:"Launch, training, and maintenance policies to scale in the future.",port_title:"Success Stories",port_hint:"Click on each project to see the details",port_all:"All",port_auto:"Automation",contact_title:"Let's talk about your next step",contact_sub:"Book a free discovery call. We analyze your current infrastructure and design a custom plan.",footer_rights:"All rights reserved."}
 };
-let currentLang = localStorage.getItem('selectedLang') || 'es';
-function applyTranslations() {
-    document.querySelectorAll('[data-translate]').forEach(el => {
-        const k = el.getAttribute('data-translate');
-        if (translations[currentLang]?.[k]) el.innerHTML = translations[currentLang][k];
-    });
-    document.getElementById('langToggle').textContent = currentLang.toUpperCase();
-    wordIndex = 0; charIndex = 0; isDeleting = false;
+let currentLang=localStorage.getItem('selectedLang')||'es';
+function applyTranslations(){
+    document.querySelectorAll('[data-translate]').forEach(el=>{const k=el.getAttribute('data-translate');if(translations[currentLang]?.[k])el.innerHTML=translations[currentLang][k];});
+    document.getElementById('langToggle').textContent=currentLang.toUpperCase();
+    wordIndex=0;charIndex=0;isDeleting=false;
 }
-document.getElementById('langToggle').addEventListener('click', () => {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    localStorage.setItem('selectedLang', currentLang);
-    applyTranslations();
-});
+document.getElementById('langToggle').addEventListener('click',()=>{currentLang=currentLang==='es'?'en':'es';localStorage.setItem('selectedLang',currentLang);applyTranslations();});
 
 // ── MARQUEE ──
-const track = document.getElementById('techMarquee');
-if (track) track.innerHTML += track.innerHTML;
+const track=document.getElementById('techMarquee');
+if(track)track.innerHTML+=track.innerHTML;
 
 // ── REVEAL ──
-const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
 // ── PORTFOLIO ──
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('year').textContent=new Date().getFullYear();
     applyTranslations();
-
-    const items = Array.from(document.querySelectorAll('.port-item'));
-
-    // Staggered reveal
-    const portObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                const idx = items.indexOf(e.target);
-                setTimeout(() => e.target.classList.add('in'), idx * 110);
-                portObs.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.05 });
-    items.forEach(el => portObs.observe(el));
-
-    // Click: open modal
-    items.forEach(el => {
-        el.addEventListener('click', () => openModal(el.getAttribute('data-case')));
-    });
-
-    // Filter
-    document.querySelectorAll('.filter-options li').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-options li').forEach(b => b.classList.remove('active'));
+    const items=Array.from(document.querySelectorAll('.port-item'));
+    const portObs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){const idx=items.indexOf(e.target);setTimeout(()=>e.target.classList.add('in'),idx*110);portObs.unobserve(e.target);}});
+    },{threshold:0.05});
+    items.forEach(el=>portObs.observe(el));
+    items.forEach(el=>el.addEventListener('click',()=>openModal(el.getAttribute('data-case'))));
+    document.querySelectorAll('.filter-options li').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            document.querySelectorAll('.filter-options li').forEach(b=>b.classList.remove('active'));
             this.classList.add('active');
-            const group = this.getAttribute('data-group');
-            let vi = 0;
-            items.forEach(el => {
-                const g = el.getAttribute('data-groups') || '';
-                const match = group === 'all' || g.includes(group);
-                if (match) {
-                    el.classList.remove('gone');
-                    const i = vi++;
-                    setTimeout(() => el.classList.add('in'), 40 + i * 80);
-                } else {
-                    el.classList.remove('in');
-                    setTimeout(() => el.classList.add('gone'), 280);
-                }
+            const group=this.getAttribute('data-group');
+            let vi=0;
+            items.forEach(el=>{
+                const g=el.getAttribute('data-groups')||'';
+                const match=group==='all'||g.includes(group);
+                if(match){el.classList.remove('gone');const i=vi++;setTimeout(()=>el.classList.add('in'),40+i*80);}
+                else{el.classList.remove('in');setTimeout(()=>el.classList.add('gone'),280);}
             });
         });
     });
 });
 
 // ── MODAL ──
-function openModal(key) {
-    const c = cases[key]; if (!c) return;
-    document.getElementById('modalImg').src = c.img;
-    document.getElementById('modalImg').alt = c.title;
-    document.getElementById('modalTag').textContent = c.tag;
-    document.getElementById('modalTitle').textContent = c.title;
-    document.getElementById('modalClient').innerHTML = `<i class="uil uil-building"></i> ${c.client}`;
-    document.getElementById('modalDesc').textContent = c.desc;
-
-    const stackEl = document.getElementById('modalStack');
-    stackEl.innerHTML = c.stack.map(s => `<span>${s}</span>`).join('');
-
-    const resEl = document.getElementById('modalResults');
-    resEl.innerHTML = c.results.map(r => `
-        <div class="modal-result-card">
-            <span class="num">${r.num}</span>
-            <span class="lab">${r.lab}</span>
-        </div>`).join('');
-
-    const linkEl = document.getElementById('modalLink');
-    if (c.link && c.link !== '#contacto') {
-        linkEl.href = c.link; linkEl.style.display = 'inline-flex';
-    } else { linkEl.style.display = 'none'; }
-
+function openModal(key){
+    const c=cases[key];if(!c)return;
+    document.getElementById('modalImg').src=c.img;
+    document.getElementById('modalImg').alt=c.title;
+    document.getElementById('modalTag').textContent=c.tag;
+    document.getElementById('modalTitle').textContent=c.title;
+    document.getElementById('modalClient').innerHTML='<i class="uil uil-building"></i> '+c.client;
+    document.getElementById('modalDesc').textContent=c.desc;
+    document.getElementById('modalStack').innerHTML=c.stack.map(s=>'<span>'+s+'</span>').join('');
+    document.getElementById('modalResults').innerHTML=c.results.map(r=>'<div class="modal-result-card"><span class="num">'+r.num+'</span><span class="lab">'+r.lab+'</span></div>').join('');
+    const lnk=document.getElementById('modalLink');
+    if(c.link&&c.link!=='#contacto'){lnk.href=c.link;lnk.style.display='inline-flex';}else{lnk.style.display='none';}
     document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow='hidden';
 }
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-}
-function closeModalOutside(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// ── NEURAL NETWORK PARTICLES ──
-(function() {
-    const canvas = document.getElementById('particleCanvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, nodes = [];
-    let mouse = { x: -9999, y: -9999 };
-    const MAX_LINK = 130, MOUSE_R = 200;
+// ── PARTICLE EFFECT: bolitas rebotando en círculo (estilo app.js original) ──
+// Adaptado: paleta verde/teal de la marca, opacidad sutil, sin borde de círculo visible.
+(function(){
+    const canvas=document.getElementById('particleCanvas');
+    const ctx=canvas.getContext('2d');
+    let W,H,circleRadius,balls=[];
+    const NUM_BALLS=180;
+    const MAX_R=3.5;    // más pequeñas que el original (era 5)
+    const SPEED=1.8;    // más lentas (era 3) → más sutiles
 
-    function isLight() { return document.documentElement.getAttribute('data-theme') === 'light'; }
+    // Paleta de colores de la marca con baja opacidad
+    const DARK_COLORS=[
+        'rgba(16,185,129,',   // --accent
+        'rgba(20,184,166,',   // --accent-alt
+        'rgba(52,211,153,',
+        'rgba(5,150,105,',
+        'rgba(110,231,183,',
+        'rgba(167,243,208,',
+    ];
+    const LIGHT_COLORS=[
+        'rgba(16,185,129,',
+        'rgba(5,150,105,',
+        'rgba(20,184,166,',
+        'rgba(4,120,87,',
+        'rgba(52,211,153,',
+    ];
 
-    class Node {
-        constructor() {
-            this.x = Math.random() * (W || window.innerWidth);
-            this.y = Math.random() * (H || window.innerHeight);
-            this.vx = (Math.random() - 0.5) * 0.45;
-            this.vy = (Math.random() - 0.5) * 0.45;
-            this.r = Math.random() * 1.8 + 1;
-            this.pulse = Math.random() * Math.PI * 2;
+    function isLight(){return document.documentElement.getAttribute('data-theme')==='light';}
+    function randColor(){
+        const palette=isLight()?LIGHT_COLORS:DARK_COLORS;
+        const c=palette[Math.floor(Math.random()*palette.length)];
+        const alpha=isLight()?(Math.random()*0.25+0.25):(Math.random()*0.35+0.2);
+        return c+alpha+')';
+    }
+
+    const mouse={x:-9999,y:-9999,inside:false};
+
+    class Ball{
+        constructor(){
+            this.x=Math.random()*W;
+            this.y=Math.random()*H;
+            this.radius=Math.random()*MAX_R+0.8;
+            this.color=randColor();
+            this.vx=(Math.random()*SPEED*2)-SPEED;
+            this.vy=(Math.random()*SPEED*2)-SPEED;
         }
-        update() {
-            this.pulse += 0.022;
-            const dx = mouse.x - this.x, dy = mouse.y - this.y;
-            const d = Math.sqrt(dx*dx + dy*dy);
-            if (d < MOUSE_R && d > 1) {
-                const f = (1 - d/MOUSE_R) * 0.028;
-                this.vx += dx/d*f; this.vy += dy/d*f;
+        update(){
+            const cx=W/2,cy=H/2;
+            const dx=this.x-cx,dy=this.y-cy;
+            const dist=Math.sqrt(dx*dx+dy*dy);
+            // Rebotar en el borde del círculo invisible
+            if(dist>circleRadius-this.radius){
+                const angle=Math.atan2(dy,dx);
+                this.vx=-Math.cos(angle)*SPEED;
+                this.vy=-Math.sin(angle)*SPEED;
             }
-            this.vx *= 0.982; this.vy *= 0.982;
-            this.x += this.vx; this.y += this.vy;
-            if (this.x < -15) this.x = W+15;
-            if (this.x > W+15) this.x = -15;
-            if (this.y < -15) this.y = H+15;
-            if (this.y > H+15) this.y = -15;
+            // Flocking suave hacia el mouse si está dentro del círculo
+            const mdx=mouse.x-cx,mdy=mouse.y-cy;
+            const mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+            if(mdist<circleRadius){
+                const fx=mouse.x-this.x,fy=mouse.y-this.y;
+                const fd=Math.sqrt(fx*fx+fy*fy);
+                if(fd>1){
+                    const force=Math.min(2/fd,0.06); // más sutil que el original
+                    this.vx+=fx*force;
+                    this.vy+=fy*force;
+                    this.vx*=0.97;
+                    this.vy*=0.97;
+                }
+            }
+            this.x+=this.vx;
+            this.y+=this.vy;
         }
-        draw() {
-            const p = 0.85 + Math.sin(this.pulse) * 0.15;
-            const a = (isLight() ? 0.55 : 0.65) * p;
+        draw(){
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r * 3, 0, Math.PI*2);
-            ctx.fillStyle = `rgba(16,185,129,${a * 0.12})`;
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r * p, 0, Math.PI*2);
-            ctx.fillStyle = isLight() ? `rgba(5,150,105,${a})` : `rgba(16,185,129,${a})`;
+            ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+            ctx.fillStyle=this.color;
             ctx.fill();
         }
     }
 
-    function initCanvas() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = (document.querySelector('.hero').offsetHeight || window.innerHeight);
-        const count = W < 768 ? 55 : 115;
-        nodes = Array.from({ length: count }, () => new Node());
+    function initCanvas(){
+        W=canvas.width=window.innerWidth;
+        H=canvas.height=(document.querySelector('.hero').offsetHeight||window.innerHeight);
+        circleRadius=Math.min(W,H)/2.2; // círculo que ocupa casi todo el hero
+        balls=[];
+        for(let i=0;i<NUM_BALLS;i++) balls.push(new Ball());
     }
-    window._initCanvas = initCanvas;
+    window._initCanvas=initCanvas;
 
-    function loop() {
-        ctx.clearRect(0, 0, W, H);
-        // Lines
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i+1; j < nodes.length; j++) {
-                const dx = nodes[j].x - nodes[i].x, dy = nodes[j].y - nodes[i].y;
-                if (Math.abs(dx) > MAX_LINK || Math.abs(dy) > MAX_LINK) continue;
-                const d = Math.sqrt(dx*dx + dy*dy);
-                if (d > MAX_LINK) continue;
-                const t = 1 - d/MAX_LINK;
-                ctx.strokeStyle = isLight() ? `rgba(16,185,129,${t*.28})` : `rgba(20,184,166,${t*.22})`;
-                ctx.lineWidth = t * 1.2;
-                ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
-            }
-            // Mouse lines
-            const mx = mouse.x - nodes[i].x, my = mouse.y - nodes[i].y;
-            const md = Math.sqrt(mx*mx + my*my);
-            if (md < MOUSE_R) {
-                const t = 1 - md/MOUSE_R;
-                ctx.strokeStyle = isLight() ? `rgba(5,150,105,${t*.55})` : `rgba(52,211,153,${t*.6})`;
-                ctx.lineWidth = t * 1.5;
-                ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
-            }
-        }
-        nodes.forEach(n => { n.update(); n.draw(); });
+    function loop(){
+        ctx.clearRect(0,0,W,H);
+        balls.forEach(b=>{b.update();b.draw();});
         requestAnimationFrame(loop);
     }
 
-    window.addEventListener('mousemove', e => {
-        const r = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    window.addEventListener('mousemove',e=>{
+        const r=canvas.getBoundingClientRect();
+        mouse.x=e.clientX-r.left;
+        mouse.y=e.clientY-r.top;
     });
-    window.addEventListener('touchmove', e => {
-        const r = canvas.getBoundingClientRect();
-        mouse.x = e.touches[0].clientX - r.left; mouse.y = e.touches[0].clientY - r.top;
-    }, { passive: true });
-    document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-    window.addEventListener('click', e => {
-        const r = canvas.getBoundingClientRect();
-        const cx = e.clientX - r.left, cy = e.clientY - r.top;
-        nodes.forEach(n => {
-            const dx = n.x-cx, dy = n.y-cy, d = Math.sqrt(dx*dx+dy*dy);
-            if (d < 180 && d > 0) { const f=(180-d)/180*4.5; n.vx+=dx/d*f; n.vy+=dy/d*f; }
-        });
-    });
-    window.addEventListener('resize', initCanvas);
-    initCanvas(); loop();
-})();
+    window.addEventListener('touchmove',e=>{
+        const r=canvas.getBoundingClientRect();
+        mouse.x=e.touches[0].clientX-r.left;
+        mouse.y=e.touches[0].clientY-r.top;
+    },{passive:true});
+    document.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
 
+    window.addEventListener('resize',initCanvas);
+    initCanvas();
+    loop();
+})();
 
 // ── CHATBOT (webhook n8n) ──
-(function() {
-    const chatMessages = document.getElementById('chatMessages');
-    const chatInput    = document.getElementById('chatInput');
-    const chatWidget   = document.getElementById('chatWidget');
-    const toggleBtn    = document.getElementById('chatToggleButton');
-    let isChatOpen = false;
-    let firstOpen  = true;
+(function(){
+    const chatMessages=document.getElementById('chatMessages');
+    const chatInput=document.getElementById('chatInput');
+    const chatWidget=document.getElementById('chatWidget');
+    const toggleBtn=document.getElementById('chatToggleButton');
+    let isChatOpen=false,firstOpen=true;
 
-    window.toggleChat = function() {
-        isChatOpen = !isChatOpen;
-        chatWidget.style.display = isChatOpen ? 'flex' : 'none';
-        toggleBtn.textContent = isChatOpen ? '⌄' : '💬';
-        if (isChatOpen && firstOpen) {
-            firstOpen = false;
-            appendMessage('¡Hola! 👋', 'bot');
-            setTimeout(() => appendMessage('Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?', 'bot'), 600);
+    window.toggleChat=function(){
+        isChatOpen=!isChatOpen;
+        chatWidget.style.display=isChatOpen?'flex':'none';
+        toggleBtn.textContent=isChatOpen?'⌄':'💬';
+        if(isChatOpen&&firstOpen){
+            firstOpen=false;
+            appendMessage('¡Hola! 👋','bot');
+            setTimeout(()=>appendMessage('Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?','bot'),600);
         }
     };
 
-    function appendMessage(text, sender) {
-        const div = document.createElement('div');
-        div.classList.add('message', sender);
-        div.textContent = text;
+    function appendMessage(text,sender){
+        const div=document.createElement('div');
+        div.classList.add('message',sender);
+        div.textContent=text;
         chatMessages.appendChild(div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        chatMessages.scrollTop=chatMessages.scrollHeight;
     }
-
-    function showTyping() {
-        const el = document.createElement('div');
-        el.className = 'typing-indicator';
-        el.id = 'typingIndicator';
-        el.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-        chatMessages.appendChild(el);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    function showTyping(){
+        const el=document.createElement('div');
+        el.className='typing-indicator';el.id='typingIndicator';
+        el.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        chatMessages.appendChild(el);chatMessages.scrollTop=chatMessages.scrollHeight;
     }
+    function hideTyping(){const el=document.getElementById('typingIndicator');if(el)el.remove();}
 
-    function hideTyping() {
-        const el = document.getElementById('typingIndicator');
-        if (el) el.remove();
-    }
-
-    window.sendMessage = async function() {
-        const text = chatInput.value.trim();
-        if (!text) return;
-        appendMessage(text, 'user');
-        chatInput.value = '';
-        showTyping();
-        try {
-            const response = await fetch('https://clickdigital.srv851218.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
+    window.sendMessage=async function(){
+        const text=chatInput.value.trim();if(!text)return;
+        appendMessage(text,'user');chatInput.value='';showTyping();
+        try{
+            const response=await fetch('https://clickdigital.srv851218.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70',{
+                method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})
             });
-            const responseText = await response.text();
-            hideTyping();
-            if (!responseText) { appendMessage('No recibí respuesta del servidor.', 'bot'); return; }
+            const responseText=await response.text();hideTyping();
+            if(!responseText){appendMessage('No recibí respuesta del servidor.','bot');return;}
             let data;
-            try { data = JSON.parse(responseText); } catch(e) { appendMessage('Error interpretando la respuesta.', 'bot'); return; }
-            if (Array.isArray(data) && data.length > 0 && data[0].output) {
-                appendMessage(data[0].output, 'bot');
-            } else if (data.output) {
-                appendMessage(data.output, 'bot');
-            } else {
-                appendMessage('No pude procesar tu consulta. Intentá de nuevo.', 'bot');
-            }
-        } catch(error) {
-            hideTyping();
-            appendMessage('Error al conectar con el asistente. Intentá más tarde.', 'bot');
+            try{data=JSON.parse(responseText);}catch(e){appendMessage('Error interpretando la respuesta.','bot');return;}
+            if(Array.isArray(data)&&data.length>0&&data[0].output)appendMessage(data[0].output,'bot');
+            else if(data.output)appendMessage(data.output,'bot');
+            else appendMessage('No pude procesar tu consulta. Intentá de nuevo.','bot');
+        }catch(err){
+            hideTyping();appendMessage('Error al conectar con el asistente. Intentá más tarde.','bot');
         }
     };
-
-    chatInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') { e.preventDefault(); window.sendMessage(); }
-    });
+    chatInput.addEventListener('keypress',e=>{if(e.key==='Enter'){e.preventDefault();window.sendMessage();}});
 })();
-
 </script>
 </body>
 </html>
