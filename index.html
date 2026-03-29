@@ -131,32 +131,108 @@
             .process-grid::before{display:none;}
         }
         @media(max-width:500px){.modal-results{grid-template-columns:1fr 1fr;}.modal-body{padding:20px;}}
-        /* CHATBOT */
-        #chatToggleButton{position:fixed;bottom:24px;right:24px;background:#10B981;color:#000;border:none;border-radius:50%;width:58px;height:58px;font-size:26px;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,.4);z-index:1000;display:flex;align-items:center;justify-content:center;transition:.35s var(--ease);}
-        #chatToggleButton:hover{transform:scale(1.1);}
-        #chatWidget{position:fixed;bottom:96px;right:24px;width:380px;max-width:92vw;height:520px;background:#ffffff;display:none;flex-direction:column;z-index:999;border-radius:18px 18px 4px 18px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.22);border:1px solid var(--border-h);}
-        @media(max-width:768px){#chatWidget{width:100vw;max-width:100vw;height:82vh;right:0;bottom:80px;border-radius:18px 18px 0 0;}}
-        .chat-header{background:#0F172A;color:#fff;padding:14px 18px;font-size:1rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-        .chat-header-info{display:flex;align-items:center;gap:10px;}
-        .chat-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#10B981,#14B8A6);display:flex;align-items:center;justify-content:center;font-size:16px;}
-        .chat-header-name{font-size:.95rem;font-weight:700;line-height:1.2;}
-        .chat-header-status{font-size:.72rem;color:#10B981;font-weight:600;}
-        .close-chat{background:transparent;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:1.4rem;line-height:1;transition:.2s;padding:4px;}
-        .close-chat:hover{color:#fff;}
-        .chat-messages{flex:1;padding:20px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f3f5f9;}
-        .message{max-width:78%;padding:11px 15px;border-radius:14px;font-size:.9rem;line-height:1.55;white-space:pre-wrap;word-break:break-word;}
+
+        /* ── CHATBOT ── */
+        #chatToggleButton{
+            position:fixed;bottom:24px;right:24px;
+            background:#10B981;color:#fff;border:none;border-radius:50%;
+            width:56px;height:56px;cursor:pointer;
+            box-shadow:0 4px 24px rgba(16,185,129,.45);z-index:1000;
+            display:flex;align-items:center;justify-content:center;
+            transition:.35s var(--ease);
+        }
+        #chatToggleButton:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(16,185,129,.6);}
+        #chatToggleButton svg{width:24px;height:24px;transition:.35s var(--ease);}
+
+        #chatWidget{
+            position:fixed;bottom:92px;right:24px;
+            width:370px;max-width:92vw;height:520px;
+            background:#ffffff;display:none;flex-direction:column;
+            z-index:999;border-radius:16px;overflow:hidden;
+            box-shadow:0 12px 48px rgba(0,0,0,.18);
+            border:1px solid rgba(16,185,129,.2);
+            animation:chatSlideIn .35s var(--ease);
+        }
+        @keyframes chatSlideIn{from{opacity:0;transform:translateY(16px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+        @media(max-width:768px){#chatWidget{width:100vw;max-width:100vw;height:82vh;right:0;bottom:80px;border-radius:16px 16px 0 0;}}
+
+        /* Header del chat — nuevo diseño */
+        .chat-header{
+            background:#07090E;
+            padding:0 18px;
+            height:64px;
+            display:flex;align-items:center;justify-content:space-between;
+            flex-shrink:0;
+            border-bottom:1px solid rgba(16,185,129,.15);
+            position:relative;
+            overflow:hidden;
+        }
+        /* Línea accent izquierda */
+        .chat-header::before{
+            content:'';position:absolute;left:0;top:0;bottom:0;
+            width:3px;background:linear-gradient(180deg,#10B981,#14B8A6);
+        }
+        .chat-header-left{display:flex;align-items:center;gap:12px;}
+        /* Ícono SVG del bot */
+        .chat-bot-icon{
+            width:38px;height:38px;border-radius:10px;
+            background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(20,184,166,.08));
+            border:1px solid rgba(16,185,129,.25);
+            display:flex;align-items:center;justify-content:center;
+            flex-shrink:0;
+        }
+        .chat-bot-icon svg{width:20px;height:20px;color:#10B981;}
+        .chat-header-text{}
+        .chat-header-name{
+            font-family:'Plus Jakarta Sans',sans-serif;
+            font-size:.92rem;font-weight:700;
+            color:#F1F5F9;letter-spacing:-.2px;line-height:1.2;
+        }
+        .chat-header-sub{
+            font-size:.68rem;font-weight:500;
+            color:#10B981;letter-spacing:.3px;
+            display:flex;align-items:center;gap:4px;margin-top:1px;
+        }
+        .chat-status-dot{
+            width:6px;height:6px;border-radius:50%;
+            background:#10B981;
+            box-shadow:0 0 6px rgba(16,185,129,.8);
+            animation:pulse 2s infinite;
+        }
+        @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+        .close-chat{
+            background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+            color:#94A3B8;cursor:pointer;
+            width:30px;height:30px;border-radius:8px;
+            display:flex;align-items:center;justify-content:center;
+            transition:.2s;flex-shrink:0;
+        }
+        .close-chat:hover{background:rgba(255,255,255,.12);color:#F1F5F9;}
+        .close-chat svg{width:14px;height:14px;}
+
+        /* Mensajes */
+        .chat-messages{flex:1;padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f3f5f9;}
+        .message{max-width:78%;padding:11px 15px;border-radius:14px;font-size:.875rem;line-height:1.55;white-space:pre-wrap;word-break:break-word;font-family:'Plus Jakarta Sans',sans-serif;}
         .message.user{background:#10B981;color:#fff;align-self:flex-end;border-bottom-right-radius:3px;font-weight:500;}
         .message.bot{background:#fff;color:#0F172A;align-self:flex-start;border-bottom-left-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.08);}
         .typing-indicator{display:flex;gap:5px;align-items:center;padding:12px 15px;background:#fff;border-radius:14px;border-bottom-left-radius:3px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.08);}
         .typing-dot{width:7px;height:7px;background:#94A3B8;border-radius:50%;animation:typingBounce 1.2s infinite;}
         .typing-dot:nth-child(2){animation-delay:.2s;}.typing-dot:nth-child(3){animation-delay:.4s;}
         @keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
-        .chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid #e2e8f0;background:#fff;flex-shrink:0;}
-        .chat-input input{flex:1;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:.9rem;font-family:inherit;color:#0F172A;outline:none;transition:.2s;}
-        .chat-input input:focus{border-color:#10B981;}
-        .chat-input button{background:#10B981;color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;flex-shrink:0;}
-        .chat-input button:hover{background:#0EA271;transform:scale(1.08);}
-        @keyframes slideInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+        /* Input */
+        .chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid #e8ecf0;background:#fff;flex-shrink:0;align-items:center;}
+        .chat-input input{flex:1;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:.875rem;font-family:'Plus Jakarta Sans',inherit;color:#0F172A;outline:none;transition:.2s;background:#f8fafc;}
+        .chat-input input:focus{border-color:#10B981;background:#fff;}
+        .chat-input input::placeholder{color:#94A3B8;}
+        .chat-send-btn{
+            background:#10B981;color:#fff;border:none;
+            width:38px;height:38px;border-radius:10px;
+            cursor:pointer;display:flex;align-items:center;justify-content:center;
+            transition:.25s;flex-shrink:0;
+        }
+        .chat-send-btn:hover{background:#0ea271;transform:scale(1.06);}
+        .chat-send-btn svg{width:16px;height:16px;}
     </style>
 </head>
 <body>
@@ -322,7 +398,7 @@
                 <div class="port-info"><h3>Special-Bid</h3><span>CRM + IA + Fintech</span></div>
             </div>
             <div class="port-item" data-groups="apps auto all" data-case="correaybianco">
-                <img src="assets/images/logistica.jpg" alt="Estudio Correa y Bianco">
+                <img src="assets/images/lawyer.png" alt="Estudio Correa y Bianco">
                 <div class="port-hint">Ver detalle</div>
                 <div class="port-info"><h3>Correa Arias y Bianco</h3><span>App + Automatización</span></div>
             </div>
@@ -346,31 +422,61 @@
             <a href="https://calendar.app.google/Da7Ci7RNL9wdS9kMA" target="_blank" class="btn-outline" style="border-color:var(--accent);color:var(--accent);" data-translate="btn_discovery">Agendar Discovery Call</a>
         </div>
         <div style="border-top:1px solid var(--border);padding-top:40px;color:var(--text-mute);font-size:.9rem;">
-            <div style="font-size:1.4rem;color:var(--text);font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">  <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
-            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';"></div>
+            <div style="margin-bottom:14px;">
+                <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" style="height:28px;display:inline-block;" onerror="this.style.display='none';document.getElementById('footer-brand').style.display='block';">
+                <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" style="height:28px;display:none;" onerror="this.style.display='none';">
+                <span id="footer-brand" style="display:none;font-size:1.3rem;color:var(--text);font-weight:800;letter-spacing:-.5px;">ClickDigital</span>
+            </div>
             <p>&copy; <span id="year"></span> <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
             <p style="margin-top:8px;">Buenos Aires, Argentina | info@clickdigital.com.ar</p>
         </div>
     </div>
 </section>
 
-<!-- CHAT -->
-<button id="chatToggleButton" onclick="toggleChat()" title="Hablar con ClickBot">💬</button>
+<!-- CHAT TOGGLE BUTTON -->
+<button id="chatToggleButton" onclick="toggleChat()" title="Hablar con ClickBot" aria-label="Abrir chat">
+    <!-- Ícono chat (por defecto) -->
+    <svg id="iconChat" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4.33-1L3 20l1.18-3.54A7.96 7.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+    <!-- Ícono cerrar (oculto por defecto) -->
+    <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="display:none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+</button>
+
+<!-- CHAT WIDGET -->
 <div id="chatWidget">
     <div class="chat-header">
-        <div class="chat-header-info">
-            <div class="chat-avatar">🤖</div>
-            <div>
+        <div class="chat-header-left">
+            <!-- Ícono SVG del bot alineado con el sitio -->
+            <div class="chat-bot-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#10B981" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.75a.75.75 0 00-1.5 0v.75H6A2.25 2.25 0 003.75 6.75v10.5A2.25 2.25 0 006 19.5h12a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0018 4.5h-2.25v-.75a.75.75 0 00-1.5 0v.75h-4.5v-.75zM6 6h12v1.5H6V6zm0 3h12v7.5H6V9zm2.25 1.5a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5zm3.75 0a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5zm3.75 0a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5zm-7.5 3a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5zm3.75 0a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5z"/>
+                </svg>
+            </div>
+            <div class="chat-header-text">
                 <div class="chat-header-name">ClickBot</div>
-                <div class="chat-header-status">● En línea</div>
+                <div class="chat-header-sub">
+                    <span class="chat-status-dot"></span>
+                    Asistente IA · En línea
+                </div>
             </div>
         </div>
-        <button class="close-chat" onclick="toggleChat()">✕</button>
+        <button class="close-chat" onclick="toggleChat()" aria-label="Cerrar chat">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
     </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input">
-        <input id="chatInput" type="text" placeholder="Escribí tu consulta..." />
-        <button onclick="sendMessage()" title="Enviar">➤</button>
+        <input id="chatInput" type="text" placeholder="Escribí tu consulta..." autocomplete="off"/>
+        <button class="chat-send-btn" onclick="sendMessage()" title="Enviar" aria-label="Enviar mensaje">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+            </svg>
+        </button>
     </div>
 </div>
 
@@ -398,7 +504,7 @@
 const cases = {
     rucahain:{tag:"Turismo · Web · IA",title:"Rucahain Cabañas",client:"rucahain.com — Tandil, Buenos Aires",img:"assets/images/tandil.png",desc:"Desarrollamos el ecosistema digital completo para este complejo de cabañas en las sierras de Tandil. El proyecto incluyó un sitio web de alto impacto visual con galería inmersiva, sistema de booking online integrado con disponibilidad en tiempo real y un chatbot con IA entrenado con la información del complejo: precios, temporadas, servicios y consultas frecuentes. El bot atiende consultas y guía reservas las 24 horas sin intervención humana.",stack:["Next.js","Booking Engine","WhatsApp API","Chatbot IA","Google Calendar","Cloudflare"],results:[{num:"68%",lab:"Reservas online"},{num:"24/7",lab:"Atención automática"},{num:"-80%",lab:"Consultas manuales"}],link:"https://rucahain.com"},
     specialbid:{tag:"Fintech · CRM · IA · Workspace",title:"Special-Bid",client:"special-bid.com — Integrador Fintech",img:"assets/images/banking.png",desc:"Proyecto integral para este integrador fintech especializado en instrumentos de crédito. Implementamos un CRM a medida con pipeline de clientes, automatización de seguimiento de leads y alertas inteligentes. Desarrollamos la página web corporativa, migramos y configuramos Google Workspace Suite para el equipo, integramos un agente de IA para clasificación de oportunidades comerciales y construimos un dashboard ejecutivo en tiempo real.",stack:["HubSpot CRM","Google Workspace","Make / Zapier","Agente IA GPT-4","Dashboard App","React","Node.js"],results:[{num:"3x",lab:"Velocidad de cierre"},{num:"100%",lab:"Operación digitalizada"},{num:"-60%",lab:"Trabajo manual"}],link:"https://special-bid.com"},
-    correaybianco:{tag:"Legal · App · Automatización",title:"Correa Arias y Bianco Abogados",client:"estudiocorreaybianco.com — Buenos Aires",img:"assets/images/logistica.jpg",desc:"Para este estudio jurídico con 20 años de trayectoria en recupero de créditos y derecho comercial, construimos una aplicación web interna de gestión de proveedores y facturación. El sistema permite a los proveedores cargar sus facturas directamente desde un portal seguro, con validación automática de datos fiscales y automatización completa del ciclo: recepción, control, aprobación y cambio de estado a 'cobrado' sin intervención manual.",stack:["Portal Web App","React","Node.js","PostgreSQL","Automatización de estados","Email triggers","AFIP API"],results:[{num:"0",lab:"Errores de carga"},{num:"100%",lab:"Trazabilidad"},{num:"-90%",lab:"Gestión manual"}],link:"https://www.estudiocorreaybianco.com"},
+    correaybianco:{tag:"Legal · App · Automatización",title:"Correa Arias y Bianco Abogados",client:"estudiocorreaybianco.com — Buenos Aires",img:"assets/images/lawyer.png",desc:"Para este estudio jurídico con 20 años de trayectoria en recupero de créditos y derecho comercial, construimos una aplicación web interna de gestión de proveedores y facturación. El sistema permite a los proveedores cargar sus facturas directamente desde un portal seguro, con validación automática de datos fiscales y automatización completa del ciclo: recepción, control, aprobación y cambio de estado a 'cobrado' sin intervención manual.",stack:["Portal Web App","React","Node.js","PostgreSQL","Automatización de estados","Email triggers","AFIP API"],results:[{num:"0",lab:"Errores de carga"},{num:"100%",lab:"Trazabilidad"},{num:"-90%",lab:"Gestión manual"}],link:"https://www.estudiocorreaybianco.com"},
     wellness:{tag:"SaaS · Web App · Cloud",title:"Plataforma SaaS Wellness",client:"Sector salud & bienestar",img:"assets/images/wellness.png",desc:"Diseñamos y desarrollamos desde cero una plataforma SaaS B2B para el sector de bienestar y salud. La aplicación permite a centros de bienestar gestionar clientes, turnos, pagos y métricas desde un único panel. Arquitectura serverless en la nube con base de datos escalable, autenticación segura multi-tenant y dashboard analítico en tiempo real.",stack:["React","Supabase","Stripe","Vercel","PostgreSQL","Serverless","Auth JWT"],results:[{num:"8 sem",lab:"Tiempo de entrega"},{num:"99.9%",lab:"Uptime garantizado"},{num:"Multi",lab:"Tenant listo"}],link:"#contacto"}
 };
 
@@ -410,18 +516,14 @@ themeToggleBtn.addEventListener('click', () => {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
     localStorage.setItem('theme', currentTheme);
-    if (window._initCanvas) window._initCanvas();
 });
 
 // ── TYPEWRITER ──
-const words = {
-    es:["escalan tu negocio.","optimizan tu tiempo.","liberan a tu equipo."],
-    en:["scale your business.","optimize your time.","free your team."]
-};
+const words = {es:["escalan tu negocio.","optimizan tu tiempo.","liberan a tu equipo."],en:["scale your business.","optimize your time.","free your team."]};
 let wordIndex=0,charIndex=0,isDeleting=false;
 const typewriterElem=document.getElementById('typewriter');
 function type(){
-    const list=words[currentLang]||words.es, word=list[wordIndex];
+    const list=words[currentLang]||words.es,word=list[wordIndex];
     typewriterElem.textContent=isDeleting?word.substring(0,charIndex-1):word.substring(0,charIndex+1);
     isDeleting?charIndex--:charIndex++;
     let speed=isDeleting?50:100;
@@ -457,9 +559,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('year').textContent=new Date().getFullYear();
     applyTranslations();
     const items=Array.from(document.querySelectorAll('.port-item'));
-    const portObs=new IntersectionObserver(entries=>{
-        entries.forEach(e=>{if(e.isIntersecting){const idx=items.indexOf(e.target);setTimeout(()=>e.target.classList.add('in'),idx*110);portObs.unobserve(e.target);}});
-    },{threshold:0.05});
+    const portObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=items.indexOf(e.target);setTimeout(()=>e.target.classList.add('in'),idx*110);portObs.unobserve(e.target);}});},{threshold:0.05});
     items.forEach(el=>portObs.observe(el));
     items.forEach(el=>el.addEventListener('click',()=>openModal(el.getAttribute('data-case'))));
     document.querySelectorAll('.filter-options li').forEach(btn=>{
@@ -469,8 +569,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             const group=this.getAttribute('data-group');
             let vi=0;
             items.forEach(el=>{
-                const g=el.getAttribute('data-groups')||'';
-                const match=group==='all'||g.includes(group);
+                const g=el.getAttribute('data-groups')||'',match=group==='all'||g.includes(group);
                 if(match){el.classList.remove('gone');const i=vi++;setTimeout(()=>el.classList.add('in'),40+i*80);}
                 else{el.classList.remove('in');setTimeout(()=>el.classList.add('gone'),280);}
             });
@@ -481,109 +580,73 @@ document.addEventListener('DOMContentLoaded',()=>{
 // ── MODAL ──
 function openModal(key){
     const c=cases[key];if(!c)return;
-    document.getElementById('modalImg').src=c.img;
-    document.getElementById('modalImg').alt=c.title;
-    document.getElementById('modalTag').textContent=c.tag;
-    document.getElementById('modalTitle').textContent=c.title;
+    document.getElementById('modalImg').src=c.img;document.getElementById('modalImg').alt=c.title;
+    document.getElementById('modalTag').textContent=c.tag;document.getElementById('modalTitle').textContent=c.title;
     document.getElementById('modalClient').innerHTML='<i class="uil uil-building"></i> '+c.client;
     document.getElementById('modalDesc').textContent=c.desc;
     document.getElementById('modalStack').innerHTML=c.stack.map(s=>'<span>'+s+'</span>').join('');
     document.getElementById('modalResults').innerHTML=c.results.map(r=>'<div class="modal-result-card"><span class="num">'+r.num+'</span><span class="lab">'+r.lab+'</span></div>').join('');
     const lnk=document.getElementById('modalLink');
     if(c.link&&c.link!=='#contacto'){lnk.href=c.link;lnk.style.display='inline-flex';}else{lnk.style.display='none';}
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow='hidden';
+    document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
 function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// --- PARTÍCULAS AUTÓNOMAS (SIN REACCIÓN A MOUSE/CLICK) ---
-const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
-let w, h, balls = [];
-
-class Ball {
-    constructor() {
-        this.init();
+// ── PARTÍCULAS ──
+const canvas=document.getElementById('particleCanvas');
+const ctx=canvas.getContext('2d');
+let w,h,balls=[];
+class Ball{
+    constructor(){this.init();}
+    init(){
+        this.x=Math.random()*w; this.y=Math.random()*h;
+        this.vx=(Math.random()-.5)*1.2; this.vy=(Math.random()-.5)*1.2;
+        this.radius=Math.random()*3+1;
+        this.color='rgba(16,185,129,'+(Math.random()*.4+.2)+')';
     }
-    init() {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        // Velocidad base aleatoria constante
-        this.vx = (Math.random() - 0.5) * 1.2;
-        this.vy = (Math.random() - 0.5) * 1.2;
-        this.radius = Math.random() * 3 + 1;
-        // Color verde esmeralda con opacidad variable
-        this.color = `rgba(16, 185, 129, ${Math.random() * 0.4 + 0.2})`;
+    update(){
+        this.x+=this.vx; this.y+=this.vy;
+        if(this.x<0||this.x>w)this.vx*=-1;
+        if(this.y<0||this.y>h)this.vy*=-1;
     }
-    update() {
-        // Movimiento autónomo constante
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Rebotar en bordes suavemente
-        if (this.x < 0 || this.x > w) this.vx *= -1;
-        if (this.y < 0 || this.y > h) this.vy *= -1;
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();}
 }
-
-function setup() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    balls = [];
-    const count = Math.min(Math.floor(w / 12), 120); 
-    for (let i = 0; i < count; i++) balls.push(new Ball());
+function setup(){
+    w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;
+    balls=[];const count=Math.min(Math.floor(w/12),120);
+    for(let i=0;i<count;i++)balls.push(new Ball());
 }
+function loop(){ctx.clearRect(0,0,w,h);balls.forEach(b=>{b.update();b.draw();});requestAnimationFrame(loop);}
+window.addEventListener('resize',setup);setup();loop();
 
-function loop() {
-    ctx.clearRect(0, 0, w, h);
-    balls.forEach(b => {
-        b.update();
-        b.draw();
-    });
-    requestAnimationFrame(loop);
-}
-
-window.addEventListener('resize', setup);
-setup();
-loop();
-
-// ── CHATBOT (webhook n8n) ──
+// ── CHATBOT ──
 (function(){
     const chatMessages=document.getElementById('chatMessages');
     const chatInput=document.getElementById('chatInput');
     const chatWidget=document.getElementById('chatWidget');
-    const toggleBtn=document.getElementById('chatToggleButton');
+    const iconChat=document.getElementById('iconChat');
+    const iconClose=document.getElementById('iconClose');
     let isChatOpen=false,firstOpen=true;
 
     window.toggleChat=function(){
         isChatOpen=!isChatOpen;
         chatWidget.style.display=isChatOpen?'flex':'none';
-        toggleBtn.textContent=isChatOpen?'⌄':'💬';
+        iconChat.style.display=isChatOpen?'none':'block';
+        iconClose.style.display=isChatOpen?'block':'none';
         if(isChatOpen&&firstOpen){
             firstOpen=false;
             appendMessage('¡Hola! 👋','bot');
             setTimeout(()=>appendMessage('Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?','bot'),600);
         }
     };
-
     function appendMessage(text,sender){
-        const div=document.createElement('div');
-        div.classList.add('message',sender);
-        div.textContent=text;
-        chatMessages.appendChild(div);
-        chatMessages.scrollTop=chatMessages.scrollHeight;
+        const div=document.createElement('div');div.classList.add('message',sender);div.textContent=text;
+        chatMessages.appendChild(div);chatMessages.scrollTop=chatMessages.scrollHeight;
     }
     function showTyping(){
-        const el=document.createElement('div');
-        el.className='typing-indicator';el.id='typingIndicator';
+        const el=document.createElement('div');el.className='typing-indicator';el.id='typingIndicator';
         el.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
         chatMessages.appendChild(el);chatMessages.scrollTop=chatMessages.scrollHeight;
     }
@@ -603,9 +666,7 @@ loop();
             if(Array.isArray(data)&&data.length>0&&data[0].output)appendMessage(data[0].output,'bot');
             else if(data.output)appendMessage(data.output,'bot');
             else appendMessage('No pude procesar tu consulta. Intentá de nuevo.','bot');
-        }catch(err){
-            hideTyping();appendMessage('Error al conectar con el asistente. Intentá más tarde.','bot');
-        }
+        }catch(err){hideTyping();appendMessage('Error al conectar con el asistente. Intentá más tarde.','bot');}
     };
     chatInput.addEventListener('keypress',e=>{if(e.key==='Enter'){e.preventDefault();window.sendMessage();}});
 })();
