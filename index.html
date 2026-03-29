@@ -394,36 +394,109 @@
 </div>
 
 <script>
-// --- TYPEWRITER ---
-const words = ["escalan tu negocio.", "optimizan tu tiempo.", "liberan a tu equipo."];
-let wordIdx = 0, charIdx = 0, isDeleting = false;
-function type() {
-    const currentWord = words[wordIdx];
-    const display = isDeleting ? currentWord.substring(0, charIdx - 1) : currentWord.substring(0, charIdx + 1);
-    document.getElementById('typewriter').textContent = display;
-    charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
-    if (!isDeleting && charIdx === currentWord.length) { isDeleting = true; setTimeout(type, 2000); }
-    else if (isDeleting && charIdx === 0) { isDeleting = false; wordIdx = (wordIdx + 1) % words.length; setTimeout(type, 500); }
-    else setTimeout(type, isDeleting ? 50 : 100);
-}
-type();
-
-// --- THEME ---
-const themeBtn = document.getElementById('themeToggle');
-themeBtn.onclick = () => {
-    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
+// ── CASES DATA ──
+const cases = {
+    rucahain:{tag:"Turismo · Web · IA",title:"Rucahain Cabañas",client:"rucahain.com — Tandil, Buenos Aires",img:"assets/images/tandil.png",desc:"Desarrollamos el ecosistema digital completo para este complejo de cabañas en las sierras de Tandil. El proyecto incluyó un sitio web de alto impacto visual con galería inmersiva, sistema de booking online integrado con disponibilidad en tiempo real y un chatbot con IA entrenado con la información del complejo: precios, temporadas, servicios y consultas frecuentes. El bot atiende consultas y guía reservas las 24 horas sin intervención humana.",stack:["Next.js","Booking Engine","WhatsApp API","Chatbot IA","Google Calendar","Cloudflare"],results:[{num:"68%",lab:"Reservas online"},{num:"24/7",lab:"Atención automática"},{num:"-80%",lab:"Consultas manuales"}],link:"https://rucahain.com"},
+    specialbid:{tag:"Fintech · CRM · IA · Workspace",title:"Special-Bid",client:"special-bid.com — Integrador Fintech",img:"assets/images/banking.png",desc:"Proyecto integral para este integrador fintech especializado en instrumentos de crédito. Implementamos un CRM a medida con pipeline de clientes, automatización de seguimiento de leads y alertas inteligentes. Desarrollamos la página web corporativa, migramos y configuramos Google Workspace Suite para el equipo, integramos un agente de IA para clasificación de oportunidades comerciales y construimos un dashboard ejecutivo en tiempo real.",stack:["HubSpot CRM","Google Workspace","Make / Zapier","Agente IA GPT-4","Dashboard App","React","Node.js"],results:[{num:"3x",lab:"Velocidad de cierre"},{num:"100%",lab:"Operación digitalizada"},{num:"-60%",lab:"Trabajo manual"}],link:"https://special-bid.com"},
+    correaybianco:{tag:"Legal · App · Automatización",title:"Correa Arias y Bianco Abogados",client:"estudiocorreaybianco.com — Buenos Aires",img:"assets/images/logistica.jpg",desc:"Para este estudio jurídico con 20 años de trayectoria en recupero de créditos y derecho comercial, construimos una aplicación web interna de gestión de proveedores y facturación. El sistema permite a los proveedores cargar sus facturas directamente desde un portal seguro, con validación automática de datos fiscales y automatización completa del ciclo: recepción, control, aprobación y cambio de estado a 'cobrado' sin intervención manual.",stack:["Portal Web App","React","Node.js","PostgreSQL","Automatización de estados","Email triggers","AFIP API"],results:[{num:"0",lab:"Errores de carga"},{num:"100%",lab:"Trazabilidad"},{num:"-90%",lab:"Gestión manual"}],link:"https://www.estudiocorreaybianco.com"},
+    wellness:{tag:"SaaS · Web App · Cloud",title:"Plataforma SaaS Wellness",client:"Sector salud & bienestar",img:"assets/images/wellness.png",desc:"Diseñamos y desarrollamos desde cero una plataforma SaaS B2B para el sector de bienestar y salud. La aplicación permite a centros de bienestar gestionar clientes, turnos, pagos y métricas desde un único panel. Arquitectura serverless en la nube con base de datos escalable, autenticación segura multi-tenant y dashboard analítico en tiempo real.",stack:["React","Supabase","Stripe","Vercel","PostgreSQL","Serverless","Auth JWT"],results:[{num:"8 sem",lab:"Tiempo de entrega"},{num:"99.9%",lab:"Uptime garantizado"},{num:"Multi",lab:"Tenant listo"}],link:"#contacto"}
 };
 
-// --- REVEAL ---
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold: 0.1});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// ── THEME ──
+const themeToggleBtn = document.getElementById('themeToggle');
+let currentTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', currentTheme);
+themeToggleBtn.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    if (window._initCanvas) window._initCanvas();
+});
 
-// --- MARQUEE ---
-const track = document.getElementById('techMarquee');
-track.innerHTML += track.innerHTML;
+// ── TYPEWRITER ──
+const words = {
+    es:["escalan tu negocio.","optimizan tu tiempo.","liberan a tu equipo."],
+    en:["scale your business.","optimize your time.","free your team."]
+};
+let wordIndex=0,charIndex=0,isDeleting=false;
+const typewriterElem=document.getElementById('typewriter');
+function type(){
+    const list=words[currentLang]||words.es, word=list[wordIndex];
+    typewriterElem.textContent=isDeleting?word.substring(0,charIndex-1):word.substring(0,charIndex+1);
+    isDeleting?charIndex--:charIndex++;
+    let speed=isDeleting?50:100;
+    if(!isDeleting&&charIndex===word.length){speed=2000;isDeleting=true;}
+    else if(isDeleting&&charIndex===0){isDeleting=false;wordIndex=(wordIndex+1)%list.length;speed=500;}
+    setTimeout(type,speed);
+}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(type,1000));
+
+// ── TRANSLATIONS ──
+const translations={
+    es:{nav_about:"Quiénes Somos",nav_services:"Soluciones",nav_process:"Proceso",nav_work:"Portfolio",btn_contact:"Hablemos",hero_tag:"Desarrollo & Automatización Premium",hero_title_start:"Ecosistemas digitales que",hero_sub:"Diseñamos soluciones en IA, automatizamos flujos complejos y desarrollamos software de alto rendimiento para empresas que no tienen tiempo que perder.",btn_discovery:"Agendar Discovery Call",btn_services:"Ver Soluciones",about_title:"Más que código, visión de negocio",about_sub:"No somos una agencia tradicional. Somos tu departamento de tecnología externalizado, enfocado puramente en el retorno de inversión (ROI).",about_card1_title:"Nuestra Misión",about_card1_text:"Eliminar las fricciones operativas de tu empresa. Conectamos tus herramientas aisladas, automatizamos las tareas repetitivas y construimos software robusto para que tu equipo se concentre en lo que realmente importa: crecer y vender.",about_card2_title:"Enfoque Ágil",about_card2_text:"Utilizamos tecnologías avanzadas (Low-Code y código nativo) para lanzar proyectos complejos en semanas, reduciendo los tiempos de mercado drásticamente sin sacrificar calidad.",srv_title:"Soluciones Técnicas Avanzadas",srv_sub:"Un ecosistema tecnológico diseñado para que tu operación fluya sin intervenciones manuales.",srv1_title:"Automatización de Procesos (BPA)",srv1_desc:"Sincronizamos tus bases de datos y plataformas. Creamos flujos de trabajo en la nube que procesan facturación, onboarding de clientes y tareas operativas 24/7 de forma invisible y sin errores.",srv2_title:"Ecosistemas CRM y Ventas",srv2_desc:"Implementación arquitectónica de sistemas de gestión. Diseñamos y configuramos embudos de venta complejos, tracking automatizado y dashboards financieros en tiempo real para gerencia.",srv3_title:"Desarrollo Web & Apps a Medida",srv3_desc:"Construimos aplicaciones web y móviles nativas de alto rendimiento visual y funcional, conectadas a bases de datos potentes, escalables y seguras en la nube.",srv4_title:"Agentes de Inteligencia Artificial",srv4_desc:"Desarrollamos algoritmos a medida y orquestamos APIs cognitivas para crear sistemas inteligentes, como chatbots de atención que entienden contexto o analistas de datos automáticos.",proc_title:"Cómo Trabajamos",proc_sub:"Un método estructurado, transparente y ágil para asegurar que tu inversión genere impacto desde el primer sprint.",proc1_t:"Discovery & Auditoría",proc1_d:"Auditamos a fondo tus procesos actuales, identificamos cuellos de botella y definimos el stack tecnológico ideal y más rentable.",proc2_t:"Diseño & Arquitectura",proc2_d:"Modelamos la estructura de la base de datos en la nube y trazamos el mapa lógico de las automatizaciones antes de escribir código.",proc3_t:"Desarrollo Iterativo",proc3_d:"Construimos el software o los flujos en sprints cortos. Tendrás visibilidad total con entregas funcionales para alinear expectativas.",proc4_t:"Deploy & Soporte",proc4_d:"Lanzamos a producción, capacitamos a tu equipo operativo y brindamos pólizas de mantenimiento para escalar el ecosistema a futuro.",port_title:"Casos de Éxito",port_hint:"Hacé click en cada proyecto para ver el detalle",port_all:"Todos",port_auto:"Automatización",contact_title:"Hablemos de tu próximo paso",contact_sub:"Agenda una llamada de descubrimiento sin costo. Analizamos tu infraestructura actual y diseñamos un plan a medida.",footer_rights:"Todos los derechos reservados."},
+    en:{nav_about:"About Us",nav_services:"Solutions",nav_process:"Process",nav_work:"Portfolio",btn_contact:"Let's Talk",hero_tag:"Premium Development & Automation",hero_title_start:"Digital ecosystems that",hero_sub:"We design AI solutions, automate complex workflows, and develop high-performance software for companies that have no time to lose.",btn_discovery:"Book Discovery Call",btn_services:"View Solutions",about_title:"More than code, business vision",about_sub:"We are not a traditional agency. We are your outsourced tech department, purely focused on Return on Investment (ROI).",about_card1_title:"Our Mission",about_card1_text:"Eliminate operational friction. We connect isolated tools, automate repetitive tasks, and build robust software so your team can focus on what truly matters.",about_card2_title:"Agile Approach",about_card2_text:"We use advanced technologies to launch complex projects in weeks, drastically reducing time-to-market without sacrificing quality.",srv_title:"Advanced Technical Solutions",srv_sub:"A tech ecosystem designed so your operations flow without manual interventions.",srv1_title:"Business Process Automation",srv1_desc:"We sync your databases and platforms. Cloud workflows that process billing, client onboarding and operations 24/7 without errors.",srv2_title:"CRM & Sales Ecosystems",srv2_desc:"Management systems implementation. We design complex sales funnels, automated tracking and real-time financial dashboards.",srv3_title:"Custom Web & App Development",srv3_desc:"We build high-performance native web and mobile apps, connected to powerful, scalable and secure cloud databases.",srv4_title:"Artificial Intelligence Agents",srv4_desc:"We develop custom algorithms and orchestrate cognitive APIs to create context-aware chatbots or automated data analysts.",proc_title:"How We Work",proc_sub:"A structured, transparent, and agile method to ensure your investment generates impact from the first sprint.",proc1_t:"Discovery & Audit",proc1_d:"We audit your current processes, identify bottlenecks and define the ideal tech stack.",proc2_t:"Design & Architecture",proc2_d:"We model the cloud database structure and map the logical automation flow.",proc3_t:"Iterative Development",proc3_d:"Short sprints with full visibility and weekly functional deliveries.",proc4_t:"Deploy & Support",proc4_d:"Launch, training, and maintenance policies to scale in the future.",port_title:"Success Stories",port_hint:"Click on each project to see the details",port_all:"All",port_auto:"Automation",contact_title:"Let's talk about your next step",contact_sub:"Book a free discovery call. We analyze your current infrastructure and design a custom plan.",footer_rights:"All rights reserved."}
+};
+let currentLang=localStorage.getItem('selectedLang')||'es';
+function applyTranslations(){
+    document.querySelectorAll('[data-translate]').forEach(el=>{const k=el.getAttribute('data-translate');if(translations[currentLang]?.[k])el.innerHTML=translations[currentLang][k];});
+    document.getElementById('langToggle').textContent=currentLang.toUpperCase();
+    wordIndex=0;charIndex=0;isDeleting=false;
+}
+document.getElementById('langToggle').addEventListener('click',()=>{currentLang=currentLang==='es'?'en':'es';localStorage.setItem('selectedLang',currentLang);applyTranslations();});
+
+// ── MARQUEE ──
+const track=document.getElementById('techMarquee');
+if(track)track.innerHTML+=track.innerHTML;
+
+// ── REVEAL ──
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── PORTFOLIO ──
+document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('year').textContent=new Date().getFullYear();
+    applyTranslations();
+    const items=Array.from(document.querySelectorAll('.port-item'));
+    const portObs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){const idx=items.indexOf(e.target);setTimeout(()=>e.target.classList.add('in'),idx*110);portObs.unobserve(e.target);}});
+    },{threshold:0.05});
+    items.forEach(el=>portObs.observe(el));
+    items.forEach(el=>el.addEventListener('click',()=>openModal(el.getAttribute('data-case'))));
+    document.querySelectorAll('.filter-options li').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            document.querySelectorAll('.filter-options li').forEach(b=>b.classList.remove('active'));
+            this.classList.add('active');
+            const group=this.getAttribute('data-group');
+            let vi=0;
+            items.forEach(el=>{
+                const g=el.getAttribute('data-groups')||'';
+                const match=group==='all'||g.includes(group);
+                if(match){el.classList.remove('gone');const i=vi++;setTimeout(()=>el.classList.add('in'),40+i*80);}
+                else{el.classList.remove('in');setTimeout(()=>el.classList.add('gone'),280);}
+            });
+        });
+    });
+});
+
+// ── MODAL ──
+function openModal(key){
+    const c=cases[key];if(!c)return;
+    document.getElementById('modalImg').src=c.img;
+    document.getElementById('modalImg').alt=c.title;
+    document.getElementById('modalTag').textContent=c.tag;
+    document.getElementById('modalTitle').textContent=c.title;
+    document.getElementById('modalClient').innerHTML='<i class="uil uil-building"></i> '+c.client;
+    document.getElementById('modalDesc').textContent=c.desc;
+    document.getElementById('modalStack').innerHTML=c.stack.map(s=>'<span>'+s+'</span>').join('');
+    document.getElementById('modalResults').innerHTML=c.results.map(r=>'<div class="modal-result-card"><span class="num">'+r.num+'</span><span class="lab">'+r.lab+'</span></div>').join('');
+    const lnk=document.getElementById('modalLink');
+    if(c.link&&c.link!=='#contacto'){lnk.href=c.link;lnk.style.display='inline-flex';}else{lnk.style.display='none';}
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 // --- PARTÍCULAS AUTÓNOMAS (SIN REACCIÓN A MOUSE/CLICK) ---
 const canvas = document.getElementById('particleCanvas');
@@ -481,6 +554,61 @@ function loop() {
 window.addEventListener('resize', setup);
 setup();
 loop();
+
+// ── CHATBOT (webhook n8n) ──
+(function(){
+    const chatMessages=document.getElementById('chatMessages');
+    const chatInput=document.getElementById('chatInput');
+    const chatWidget=document.getElementById('chatWidget');
+    const toggleBtn=document.getElementById('chatToggleButton');
+    let isChatOpen=false,firstOpen=true;
+
+    window.toggleChat=function(){
+        isChatOpen=!isChatOpen;
+        chatWidget.style.display=isChatOpen?'flex':'none';
+        toggleBtn.textContent=isChatOpen?'⌄':'💬';
+        if(isChatOpen&&firstOpen){
+            firstOpen=false;
+            appendMessage('¡Hola! 👋','bot');
+            setTimeout(()=>appendMessage('Soy el asistente virtual de ClickDigital. ¿En qué puedo ayudarte hoy?','bot'),600);
+        }
+    };
+
+    function appendMessage(text,sender){
+        const div=document.createElement('div');
+        div.classList.add('message',sender);
+        div.textContent=text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop=chatMessages.scrollHeight;
+    }
+    function showTyping(){
+        const el=document.createElement('div');
+        el.className='typing-indicator';el.id='typingIndicator';
+        el.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        chatMessages.appendChild(el);chatMessages.scrollTop=chatMessages.scrollHeight;
+    }
+    function hideTyping(){const el=document.getElementById('typingIndicator');if(el)el.remove();}
+
+    window.sendMessage=async function(){
+        const text=chatInput.value.trim();if(!text)return;
+        appendMessage(text,'user');chatInput.value='';showTyping();
+        try{
+            const response=await fetch('https://clickdigital.srv851218.hstgr.cloud/webhook/87446e0f-b084-4dfd-a9e8-499cc5c13f70',{
+                method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})
+            });
+            const responseText=await response.text();hideTyping();
+            if(!responseText){appendMessage('No recibí respuesta del servidor.','bot');return;}
+            let data;
+            try{data=JSON.parse(responseText);}catch(e){appendMessage('Error interpretando la respuesta.','bot');return;}
+            if(Array.isArray(data)&&data.length>0&&data[0].output)appendMessage(data[0].output,'bot');
+            else if(data.output)appendMessage(data.output,'bot');
+            else appendMessage('No pude procesar tu consulta. Intentá de nuevo.','bot');
+        }catch(err){
+            hideTyping();appendMessage('Error al conectar con el asistente. Intentá más tarde.','bot');
+        }
+    };
+    chatInput.addEventListener('keypress',e=>{if(e.key==='Enter'){e.preventDefault();window.sendMessage();}});
+})();
 </script>
 </body>
 </html>
