@@ -208,8 +208,8 @@
 <nav>
     <div class="container nav-inner">
         <a href="#" class="logo">
-            <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
-            <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+            <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+            <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
             <span class="logo-text">ClickDigital</span>
         </a>
         <ul class="nav-links">
@@ -468,16 +468,14 @@
             <a href="https://calendar.app.google/Da7Ci7RNL9wdS9kMA" target="_blank" class="btn-outline" style="border-color:var(--accent);color:var(--accent);" data-translate="btn_discovery">Agendar Discovery Call</a>
         </div>
         <div style="border-top:1px solid var(--border);padding-top:40px;color:var(--text-mute);font-size:.9rem;">
-            <div style="margin-bottom:14px;">
-                <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" style="height:28px;display:inline-block;" onerror="this.style.display='none';document.getElementById('footer-brand').style.display='block';">
-                <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" style="height:28px;display:none;" onerror="this.style.display='none';">
-                <span id="footer-brand" style="display:none;font-size:1.3rem;color:var(--text);font-weight:800;letter-spacing:-.5px;">ClickDigital</span>
-            </div>
-            <p>&copy; <span id="year"></span> <span data-translate="footer_rights">Todos los derechos reservados.</span></p>
-            <p style="margin-top:8px;">Buenos Aires, Argentina | info@clickdigital.com.ar</p>
+ <footer>
+    <div style="margin-bottom:12px;"><img src="assets/images/logo-light.png" alt="ClickDigital" style="height:26px;opacity:.6;" onerror="this.style.display='none';"></div>
+    <p>&copy; <span id="yr"></span> ClickDigital. Todos los derechos reservados. · Buenos Aires, Argentina · <a href="mailto:info@clickdigital.com.ar">info@clickdigital.com.ar</a></p>
+</footer>
         </div>
     </div>
 </section>
+
 
 <button id="chatToggleButton" onclick="toggleChat()" title="Hablar con ClickBot" aria-label="Abrir chat">
     <svg id="iconChat" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
