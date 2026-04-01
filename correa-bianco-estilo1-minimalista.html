@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correa & Bianco | Estudio Jurídico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#1A1A1A;
+  --white:#FFFFFF;
+  --off:#F7F7F5;
+  --border:#E8E8E4;
+  --muted:#888;
+  --mid:#555;
+}
+html{font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+
+/* TOP BAR */
+.top-bar{background:var(--off);border-bottom:1px solid var(--border);padding:8px 48px;display:flex;justify-content:space-between;align-items:center}
+.top-bar span{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* NAV */
+nav{padding:20px 48px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--white);z-index:100}
+.logo-name{font-family:'DM Serif Display',serif;font-size:24px;color:var(--black)}
+.logo-sub{font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:12px;color:var(--mid);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.btn-nav{background:var(--black);color:var(--white);padding:10px 24px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-nav:hover{background:#333}
+
+/* HERO */
+.hero{min-height:90vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 48px;gap:64px;background:var(--white)}
+.hero-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.hero-title{font-family:'DM Serif Display',serif;font-size:60px;line-height:1.05;color:var(--black);margin-bottom:24px}
+.hero-title em{font-style:italic}
+.hero-body{font-size:15px;color:#666;line-height:1.85;max-width:380px;margin-bottom:40px;font-weight:300}
+.hero-actions{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--black);color:var(--white);padding:16px 32px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-primary:hover{background:#333}
+.btn-ghost{background:none;border:none;font-size:12px;color:var(--black);letter-spacing:.06em;border-bottom:1px solid var(--black);padding-bottom:2px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+.btn-ghost:hover{opacity:.5}
+.hero-visual{background:var(--off);height:520px;display:flex;align-items:flex-end;justify-content:flex-start;position:relative;border:1px solid var(--border)}
+.hero-badge{position:absolute;bottom:32px;left:32px;background:var(--white);border:1px solid var(--border);padding:20px 28px}
+.hero-badge p{font-family:'DM Serif Display',serif;font-size:40px;color:var(--black);line-height:1}
+.hero-badge span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.hero-deco{position:absolute;top:40px;right:40px;font-family:'DM Serif Display',serif;font-size:120px;color:#E0E0DC;line-height:1}
+
+/* DIFERENCIA */
+.diferencia{padding:120px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;background:var(--off);border-top:1px solid var(--border)}
+.diferencia-img{background:var(--border);height:480px;position:relative}
+.diferencia-img img{width:100%;height:100%;object-fit:cover;display:block}
+.diferencia-num{position:absolute;bottom:-24px;right:-24px;background:var(--black);color:var(--white);padding:24px 32px;text-align:center}
+.diferencia-num p{font-family:'DM Serif Display',serif;font-size:48px;line-height:1}
+.diferencia-num span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#aaa}
+.section-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.section-title{font-family:'DM Serif Display',serif;font-size:42px;line-height:1.1;color:var(--black);margin-bottom:24px}
+.section-divider{width:40px;height:1px;background:var(--black);margin-bottom:24px}
+.diferencia-quote{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#444;line-height:1.7;margin-bottom:20px;padding-left:20px;border-left:2px solid var(--black)}
+.diferencia-body{font-size:14px;color:#666;line-height:1.85;margin-bottom:32px}
+.check-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check-item{font-size:12px;color:var(--black);display:flex;align-items:center;gap:8px}
+.check-item::before{content:"—";color:var(--muted)}
+
+/* AREAS */
+.areas{padding:120px 48px;background:var(--white);border-top:1px solid var(--border)}
+.areas-header{text-align:center;margin-bottom:64px}
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.area-card{background:var(--white);padding:48px 40px;transition:background .2s}
+.area-card:hover{background:var(--off)}
+.area-card.featured{background:var(--black)}
+.area-card.featured .area-title{color:var(--white)}
+.area-card.featured .area-body{color:#888}
+.area-card.featured .area-link{color:#aaa;border-bottom-color:#555}
+.area-num{font-family:'DM Serif Display',serif;font-size:48px;color:var(--border);line-height:1;margin-bottom:24px}
+.area-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--black);margin-bottom:16px}
+.area-body{font-size:13px;color:#666;line-height:1.8;margin-bottom:24px}
+.area-link{font-size:11px;color:var(--black);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--black);padding-bottom:2px;display:inline-block;text-decoration:none}
+
+/* SOCIOS */
+.socios{padding:120px 48px;background:var(--off);border-top:1px solid var(--border)}
+.socios-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.socios-list{margin-top:40px;display:flex;flex-direction:column;gap:32px}
+.socio-card{display:flex;gap:24px;align-items:center;padding:28px;background:var(--white);border:1px solid var(--border)}
+.socio-img{width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.socio-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--black)}
+.socio-role{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.socio-edu{font-size:12px;color:#888;margin-top:6px}
+.socios-img{background:var(--border);height:520px;position:relative}
+.socios-img img{width:100%;height:100%;object-fit:cover}
+
+/* TESTIMONIOS */
+.testimonios{padding:120px 48px;background:var(--white);border-top:1px solid var(--border)}
+.testimonios-header{text-align:center;margin-bottom:64px}
+.testimonios-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.testimonio{background:var(--white);padding:48px;transition:background .2s}
+.testimonio:hover{background:var(--off)}
+.testimonio-text{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#333;line-height:1.7;margin-bottom:32px}
+.testimonio-author{display:flex;align-items:center;gap:16px}
+.testimonio-avatar{width:44px;height:44px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--white);font-weight:500}
+.testimonio-name{font-size:14px;font-weight:600;color:var(--black)}
+.testimonio-detail{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* FAQ */
+.faq{padding:120px 48px;background:var(--off);border-top:1px solid var(--border)}
+.faq-header{margin-bottom:48px;max-width:480px}
+.faq-list{max-width:720px}
+details{border-bottom:1px solid var(--border);padding:24px 0}
+summary{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--black);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:20px;font-weight:300;color:var(--muted)}
+details[open] summary::after{content:"−"}
+.faq-body{font-size:14px;color:#666;line-height:1.85;padding-top:16px;max-width:600px}
+
+/* CONTACTO */
+.contacto{padding:0;display:grid;grid-template-columns:1fr 1fr;background:var(--white);border-top:1px solid var(--border)}
+.contacto-form{padding:100px 64px;background:var(--black)}
+.contacto-form .section-label{color:#555}
+.contacto-form .section-title{color:var(--white)}
+.contacto-tagline{font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;color:#666;margin-bottom:48px;line-height:1.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-input{width:100%;padding:16px;background:#111;border:1px solid #333;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.form-input::placeholder{color:#555}
+.form-input:focus{border-color:#666}
+.form-btn{width:100%;background:var(--white);color:var(--black);padding:18px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;margin-top:8px;transition:background .2s}
+.form-btn:hover{background:#ddd}
+.contacto-info{padding:100px 64px;background:var(--off);display:flex;flex-direction:column;justify-content:center;gap:40px}
+.info-block{border-left:1px solid var(--border);padding-left:24px}
+.info-label{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:8px}
+.info-value{font-family:'DM Serif Display',serif;font-size:20px;color:var(--black)}
+.info-value a{color:var(--black);text-decoration:none}
+
+/* FOOTER */
+footer{background:var(--black);color:#555;padding:64px 48px;border-top:1px solid #222}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid #222}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:24px;color:var(--white);margin-bottom:8px}
+.footer-sub{font-size:10px;color:#444;letter-spacing:.12em;text-transform:uppercase}
+.footer-col-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#666;margin-bottom:20px;font-weight:600}
+.footer-col a,.footer-col p{font-size:13px;color:#444;text-decoration:none;display:block;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:#888}
+.footer-legal{font-size:11px;color:#333;line-height:1.8}
+.footer-bottom{font-size:11px;color:#333;letter-spacing:.1em;text-transform:uppercase;text-align:center}
+
+/* WHATSAPP */
+.wa-btn{position:fixed;bottom:32px;right:32px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--white);text-decoration:none;z-index:200;transition:transform .2s}
+.wa-btn:hover{transform:scale(1.1)}
+
+@media(max-width:768px){
+  .hero,.diferencia,.socios-inner,.contacto,.footer-inner{grid-template-columns:1fr}
+  .hero{min-height:auto;padding:60px 24px}
+  .hero-title{font-size:40px}
+  .areas-grid{grid-template-columns:1fr}
+  .testimonios-grid{grid-template-columns:1fr}
+  nav{padding:16px 24px}
+  .top-bar,.diferencia,.areas,.socios,.testimonios,.faq,.contacto-form,.contacto-info{padding-left:24px;padding-right:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Buenos Aires, Argentina</span>
+  <span>+54 11 4444-5555 · info@correabianco.com.ar</span>
+</div>
+
+<nav>
+  <div>
+    <div class="logo-name">Correa & Bianco</div>
+    <div class="logo-sub">Estudio Jurídico</div>
+  </div>
+  <div class="nav-links">
+    <a href="#diferencia">Nosotros</a>
+    <a href="#areas">Áreas</a>
+    <a href="#socios">Abogados</a>
+    <button class="btn-nav">Consulta</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-label">Compromiso · Estrategia · Resultados</div>
+    <h1 class="hero-title">Defendemos<br>su <em>legado</em><br>y sus derechos.</h1>
+    <p class="hero-body">Soluciones legales de alta complejidad con la cercanía de un asesor personal. Su tranquilidad es nuestra prioridad.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">Reservar entrevista privada</button>
+      <button class="btn-ghost" onclick="document.querySelector('#areas').scrollIntoView({behavior:'smooth'})">Ver especialidades</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-deco">§</div>
+    <div class="hero-badge">
+      <p>25+</p>
+      <span>Años de trayectoria</span>
+    </div>
+  </div>
+</section>
+
+<section id="diferencia" class="diferencia">
+  <div class="diferencia-img">
+    <img src="https://images.unsplash.com/photo-1521791136064-7986c292321d?q=80&w=800&auto=format&fit=crop" alt="Asesoramiento">
+    <div class="diferencia-num">
+      <p>25+</p>
+      <span>Años</span>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Nuestra diferencia</div>
+    <h2 class="section-title">Excelencia en cada detalle.</h2>
+    <div class="section-divider"></div>
+    <blockquote class="diferencia-quote">"Cada caso requiere una arquitectura legal única. No aplicamos fórmulas genéricas, diseñamos estrategias ganadoras."</blockquote>
+    <p class="diferencia-body">Combinamos la solidez jurídica tradicional con un enfoque ágil y tecnológico, asegurando que su defensa esté siempre un paso adelante.</p>
+    <div class="check-list">
+      <span class="check-item">Atención exclusiva y personalizada</span>
+      <span class="check-item">Alto índice de casos exitosos</span>
+      <span class="check-item">Transparencia honoraria total</span>
+      <span class="check-item">Reportes periódicos de estado</span>
+    </div>
+  </div>
+</section>
+
+<section id="areas" class="areas">
+  <div class="areas-header">
+    <div class="section-label">Especializaciones</div>
+    <h2 class="section-title">Áreas de práctica</h2>
+  </div>
+  <div class="areas-grid">
+    <div class="area-card">
+      <div class="area-num">01</div>
+      <h3 class="area-title">Derecho Corporativo</h3>
+      <p class="area-body">Asesoramiento a empresas, fusiones, adquisiciones, cumplimiento normativo y resolución de conflictos societarios.</p>
+      <a href="#contacto" class="area-link">Saber más</a>
+    </div>
+    <div class="area-card featured">
+      <div class="area-num" style="color:#333">02</div>
+      <h3 class="area-title">Sucesiones Complejas</h3>
+      <p class="area-body">Planificación sucesoria, gestión de herencias con activos múltiples y mediación entre herederos.</p>
+      <a href="#contacto" class="area-link">Iniciar proceso</a>
+    </div>
+    <div class="area-card">
+      <div class="area-num">03</div>
+      <h3 class="area-title">Derecho Laboral</h3>
+      <p class="area-body">Alta dirección, contratos de trabajo, reestructuraciones y defensa estratégica ante reclamos complejos.</p>
+      <a href="#contacto" class="area-link">Saber más</a>
+    </div>
+  </div>
+</section>
+
+<section id="socios" class="socios">
+  <div class="socios-inner">
+    <div>
+      <div class="section-label">Liderazgo</div>
+      <h2 class="section-title">La experiencia detrás de la estrategia.</h2>
+      <div class="section-divider"></div>
+      <p class="diferencia-body">Nuestro estudio está liderado por sus socios fundadores, quienes participan activamente en la definición estratégica de cada caso.</p>
+      <div class="socios-list">
+        <div class="socio-card">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Dr. Correa" class="socio-img">
+          <div>
+            <div class="socio-name">Dr. Alejandro Correa</div>
+            <div class="socio-role">Socio Fundador · Derecho Corporativo</div>
+            <div class="socio-edu">UBA — Master en Derecho Empresarial</div>
+          </div>
+        </div>
+        <div class="socio-card">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dra. Bianco" class="socio-img">
+          <div>
+            <div class="socio-name">Dra. Valeria Bianco</div>
+            <div class="socio-role">Socia Fundadora · Derecho Civil y Familia</div>
+            <div class="socio-edu">Austral — Especialista en Sucesiones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="socios-img">
+      <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=800&auto=format&fit=crop" alt="Oficina">
+    </div>
+  </div>
+</section>
+
+<section class="testimonios">
+  <div class="testimonios-header">
+    <div class="section-label">Testimonios</div>
+    <h2 class="section-title">Voces de confianza</h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio">
+      <p class="testimonio-text">"La Dra. Bianco gestionó la sucesión de mi padre con una sensibilidad y profesionalismo impecables. Logró resolver un conflicto familiar de años en meses."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">MF</div>
+        <div>
+          <div class="testimonio-name">María Fernández</div>
+          <div class="testimonio-detail">Caso de Sucesión Familiar · 2025</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio">
+      <p class="testimonio-text">"El Dr. Correa fue fundamental para la reestructuración de nuestra empresa. Su visión estratégica nos ahorró millones en contingencias laborales."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">RG</div>
+        <div>
+          <div class="testimonio-name">Roberto García</div>
+          <div class="testimonio-detail">Director de TechSolutions S.A.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq-header">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title">Resolviendo sus dudas</h2>
+  </div>
+  <div class="faq-list">
+    <details open>
+      <summary>¿Cómo se calculan los honorarios profesionales?</summary>
+      <p class="faq-body">Trabajamos bajo absoluta transparencia. Dependiendo del caso, utilizamos abonos mensuales, honorarios por resultados (cuota litis) o valores fijos por etapa, siempre alineados con la Ley de Honorarios Profesionales y pactados por escrito antes de iniciar.</p>
+    </details>
+    <details>
+      <summary>¿Cuál es el tiempo promedio de resolución de una sucesión?</summary>
+      <p class="faq-body">Con acuerdo entre herederos, la declaratoria puede obtenerse en 3 a 6 meses. La inscripción de bienes depende de la complejidad patrimonial, pero nuestro enfoque es siempre agilizar los plazos judiciales.</p>
+    </details>
+    <details>
+      <summary>¿Atienden casos del interior del país?</summary>
+      <p class="faq-body">Sí. Contamos con infraestructura para atender clientes de todo el país mediante consultas virtuales, con derivación a corresponsales de confianza en cada jurisdicción cuando es necesario.</p>
+    </details>
+  </div>
+</section>
+
+<section id="contacto" class="contacto">
+  <div class="contacto-form">
+    <div class="section-label" style="color:#444">Contacto</div>
+    <h2 class="section-title" style="font-family:'DM Serif Display',serif;font-size:42px;color:#fff;margin-bottom:16px">Inicie su defensa hoy.</h2>
+    <p class="contacto-tagline">Nos contactaremos dentro de las próximas 2 horas hábiles para coordinar una consulta privada.</p>
+    <div class="form-row">
+      <input class="form-input" type="text" placeholder="Nombre completo *">
+      <input class="form-input" type="tel" placeholder="Teléfono">
+    </div>
+    <input class="form-input" type="email" placeholder="Correo electrónico *" style="width:100%;margin-bottom:16px">
+    <textarea class="form-input" rows="5" placeholder="Descripción de su consulta *" style="width:100%;resize:vertical;margin-bottom:8px"></textarea>
+    <button class="form-btn">Enviar solicitud de consulta</button>
+  </div>
+  <div class="contacto-info">
+    <div>
+      <div class="section-label">Nuestras oficinas</div>
+      <h2 class="section-title" style="font-size:32px">Encuéntrenos</h2>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Dirección</div>
+      <div class="info-value">Av. Corrientes 1234, Piso 10<br>CABA, Buenos Aires</div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Teléfono</div>
+      <div class="info-value"><a href="tel:+541144445555">+54 11 4444-5555</a></div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Email</div>
+      <div class="info-value"><a href="mailto:info@correabianco.com.ar">info@correabianco.com.ar</a></div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Horario</div>
+      <div class="info-value">Lun–Vie · 9:00 a 18:00</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Correa & Bianco</div>
+      <div class="footer-sub">Estudio Jurídico · Est. 2000</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Áreas</div>
+      <a href="#areas">Derecho Corporativo</a>
+      <a href="#areas">Sucesiones</a>
+      <a href="#areas">Derecho Laboral</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Estudio</div>
+      <a href="#diferencia">Nosotros</a>
+      <a href="#socios">Abogados</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <p class="footer-legal">Este sitio proporciona información general y no constituye asesoramiento legal. La comunicación a través de este sitio no crea una relación abogado-cliente. © 2026 Correa & Bianco. Todos los derechos reservados.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Correa & Bianco · Buenos Aires, Argentina</div>
+</footer>
+
+<a href="https://wa.me/541144445555" class="wa-btn" target="_blank">💬</a>
+
+</body>
+</html>
