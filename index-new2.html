@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baterías Dínamo – Vitrina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --negro: #0d0d0d;
+      --amarillo: #f5c400;
+      --amarillo-dark: #c29a00;
+      --gris-oscuro: #1a1a1a;
+      --gris-medio: #2c2c2c;
+      --gris-claro: #888;
+      --blanco: #f7f5f0;
+      --rojo: #e63946;
+      --card-bg: #181818;
+      --font-titulo: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radio: 6px;
+      --sombra: 0 4px 24px rgba(0,0,0,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--negro);
+      color: var(--blanco);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-family: var(--font-titulo);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--amarillo);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--blanco); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--gris-claro);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--amarillo); }
+
+    .nav-wsp {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: #25d366;
+      color: #fff;
+      text-decoration: none;
+      padding: .45rem 1rem;
+      border-radius: 99px;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .nav-wsp:hover { background: #1eb858; }
+    .nav-wsp svg { width: 16px; height: 16px; fill: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+
+    /* Diagonal slice background */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(112deg, #0a0a0a 52%, #120f00 52%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Scan lines texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,.012) 3px,
+        rgba(255,255,255,.012) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      padding: clamp(4rem,10vw,7rem) clamp(1.5rem,5vw,4rem) clamp(4rem,10vw,7rem) clamp(1.5rem,6vw,5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Glow blob behind battery */
+    .hero-glow {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,196,0,.22) 0%, transparent 68%);
+      pointer-events: none;
+      animation: pulse-glow 3.5s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: .8; }
+      50% { transform: scale(1.12); opacity: 1; }
+    }
+
+    /* Floating badge top right */
+    .hero-float-badge {
+      position: absolute;
+      top: clamp(1rem, 4vw, 2.5rem);
+      right: clamp(1.5rem, 5vw, 4rem);
+      z-index: 3;
+      background: rgba(245,196,0,.1);
+      border: 1px solid rgba(245,196,0,.3);
+      border-radius: 99px;
+      padding: .4rem 1rem;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--amarillo);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.4rem;
+    }
+    .eyebrow-line {
+      width: 32px;
+      height: 2px;
+      background: var(--amarillo);
+      border-radius: 2px;
+    }
+    .eyebrow-text {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amarillo);
+    }
+
+    .hero h1 {
+      font-family: var(--font-titulo);
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: .88;
+      letter-spacing: 1px;
+      color: var(--blanco);
+      margin-bottom: .6rem;
+    }
+    .hero h1 .accent { color: var(--amarillo); display: block; }
+    .hero h1 .outline {
+      -webkit-text-stroke: 1.5px var(--blanco);
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 1.6rem;
+      color: var(--gris-claro);
+      font-size: clamp(.9rem, 1.6vw, 1.05rem);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: .8rem;
+      margin-top: 2.4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--amarillo);
+      color: var(--negro);
+      padding: .85rem 2rem;
+      border-radius: var(--radio);
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .15s, background .2s;
+      white-space: nowrap;
+    }
+    .hero-cta:hover { transform: translateY(-2px); background: var(--amarillo-dark); }
+
+    .hero-cta-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--blanco);
+      padding: .85rem 2rem;
+      border-radius: var(--radio);
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      border: 1px solid #333;
+      transition: border-color .2s, color .2s;
+      white-space: nowrap;
+    }
+    .hero-cta-sec:hover { border-color: var(--amarillo); color: var(--amarillo); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3.5rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid #222;
+    }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: var(--font-titulo);
+      font-size: 2.4rem;
+      color: var(--amarillo);
+      line-height: 1;
+    }
+    .stat-label { font-size: .72rem; color: var(--gris-claro); letter-spacing: 1.2px; margin-top: .3rem; text-transform: uppercase; }
+
+    /* Pill badges near battery */
+    .hero-pill {
+      position: absolute;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 99px;
+      padding: .45rem 1rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--blanco);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      z-index: 4;
+      animation: float-pill 4s ease-in-out infinite;
+    }
+    .hero-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #25d366;
+      flex-shrink: 0;
+    }
+    .hero-pill.p1 { top: 18%; left: 4%; animation-delay: 0s; }
+    .hero-pill.p2 { bottom: 22%; right: 3%; animation-delay: 1.5s; }
+    .hero-pill.p3 { top: 55%; left: 2%; animation-delay: 0.8s; }
+
+    @keyframes float-pill {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Battery SVG animation */
+    .battery-svg { position: relative; z-index: 3; filter: drop-shadow(0 0 40px rgba(245,196,0,.25)); }
+    .batt-charge { animation: charge 2.8s ease-in-out infinite; transform-origin: bottom; }
+    @keyframes charge {
+      0%   { opacity: .4; }
+      60%  { opacity: 1; }
+      100% { opacity: .4; }
+    }
+    .batt-bolt { animation: bolt-flash 2.8s ease-in-out infinite; }
+    @keyframes bolt-flash {
+      0%, 40% { opacity: 0; transform: scale(.8); }
+      55%, 75% { opacity: 1; transform: scale(1.1); }
+      90%, 100% { opacity: 0; transform: scale(.8); }
+    }
+
+    /* Responsive hero */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero::after {
+        background: linear-gradient(180deg, #0a0a0a 55%, #120f00 55%);
+      }
+      .hero-right { display: none; }
+      .hero-float-badge { display: none; }
+      .hero-pill { display: none; }
+      .hero h1 { font-size: clamp(3.5rem, 14vw, 5rem); }
+    }
+
+    /* ── STRIP CONFIG ── */
+    #config-strip {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radio);
+      margin: 2rem clamp(1rem,4vw,3rem);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+    #config-strip label { font-size: .75rem; color: var(--gris-claro); display: block; margin-bottom: .3rem; letter-spacing: .5px; }
+    #config-strip input, #config-strip select {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: var(--blanco);
+      padding: .5rem .8rem;
+      border-radius: 4px;
+      font-size: .88rem;
+      font-family: var(--font-body);
+      width: 100%;
+      min-width: 200px;
+    }
+    #config-strip input:focus, #config-strip select:focus { outline: 2px solid var(--amarillo); border-color: transparent; }
+    .cfg-field { flex: 1; min-width: 180px; }
+    .cfg-btn {
+      background: var(--amarillo);
+      color: var(--negro);
+      border: none;
+      padding: .6rem 1.4rem;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: .88rem;
+      white-space: nowrap;
+      transition: background .2s;
+      align-self: flex-end;
+    }
+    .cfg-btn:hover { background: var(--amarillo-dark); }
+    .cfg-note { font-size: .72rem; color: #555; margin-top: .4rem; }
+
+    /* ── SECCIÓN PRODUCTOS ── */
+    .seccion {
+      padding: clamp(2rem,5vw,4rem) clamp(1rem,4vw,3rem);
+    }
+
+    .seccion-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .seccion-titulo {
+      font-family: var(--font-titulo);
+      font-size: clamp(2rem,5vw,3.2rem);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .seccion-titulo .linea { display: block; width: 48px; height: 3px; background: var(--amarillo); margin-bottom: .5rem; border-radius: 2px; }
+
+    /* Filtros */
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 2rem;
+    }
+    .filtro-btn {
+      background: var(--gris-medio);
+      color: var(--gris-claro);
+      border: 1px solid #333;
+      border-radius: 99px;
+      padding: .4rem 1rem;
+      font-size: .82rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 500;
+      transition: all .2s;
+    }
+    .filtro-btn:hover, .filtro-btn.activo {
+      background: var(--amarillo);
+      color: var(--negro);
+      border-color: var(--amarillo);
+    }
+
+    /* Buscador */
+    .buscador-wrap {
+      position: relative;
+      max-width: 340px;
+    }
+    .buscador-wrap svg {
+      position: absolute;
+      left: .8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .4;
+    }
+    #buscador {
+      width: 100%;
+      background: var(--gris-medio);
+      border: 1px solid #333;
+      color: var(--blanco);
+      padding: .55rem .8rem .55rem 2.4rem;
+      border-radius: 99px;
+      font-size: .88rem;
+      font-family: var(--font-body);
+    }
+    #buscador:focus { outline: 2px solid var(--amarillo); border-color: transparent; }
+
+    /* Grid */
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* Card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid #222;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s, border-color .22s, box-shadow .22s;
+      animation: fadeUp .4s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amarillo);
+      box-shadow: 0 8px 32px rgba(245,196,0,.1);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: #111;
+      overflow: hidden;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1rem;
+      transition: transform .3s;
+    }
+    .card:hover .card-img-wrap img { transform: scale(1.06); }
+
+    .card-badge {
+      position: absolute;
+      top: .6rem; left: .6rem;
+      background: var(--amarillo);
+      color: var(--negro);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: .2rem .6rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-marca {
+      font-size: .7rem;
+      color: var(--amarillo);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+
+    .card-nombre {
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--blanco);
+      line-height: 1.35;
+      margin-bottom: .5rem;
+      flex: 1;
+    }
+
+    .card-precio {
+      font-family: var(--font-titulo);
+      font-size: 1.7rem;
+      color: var(--amarillo);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .card-precio .simbolo { font-size: 1rem; }
+
+    .card-acciones {
+      display: flex;
+      gap: .6rem;
+    }
+
+    .btn-ver {
+      flex: 1;
+      background: #252525;
+      color: var(--blanco);
+      border: 1px solid #333;
+      border-radius: var(--radio);
+      padding: .55rem .8rem;
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: background .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .btn-ver:hover { background: #333; border-color: #555; }
+
+    .btn-wsp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      flex: 1;
+      background: #25d366;
+      color: #fff;
+      border: none;
+      border-radius: var(--radio);
+      padding: .55rem .8rem;
+      font-size: .82rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-wsp:hover { background: #1eb858; }
+    .btn-wsp svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+
+    /* Estados */
+    .estado {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--gris-claro);
+    }
+    .estado svg { opacity: .3; margin-bottom: 1rem; }
+    .estado h3 { font-size: 1.2rem; margin-bottom: .5rem; color: var(--blanco); }
+    .estado p { font-size: .9rem; }
+
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid #333;
+      border-top-color: var(--amarillo);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Paginación */
+    .paginacion {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .pag-btn {
+      background: var(--gris-medio);
+      color: var(--gris-claro);
+      border: 1px solid #333;
+      border-radius: var(--radio);
+      padding: .45rem .9rem;
+      font-size: .85rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all .2s;
+    }
+    .pag-btn:hover, .pag-btn.activo { background: var(--amarillo); color: var(--negro); border-color: var(--amarillo); font-weight: 700; }
+    .pag-btn:disabled { opacity: .3; pointer-events: none; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    .modal-overlay.abierto { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--gris-oscuro);
+      border: 1px solid #333;
+      border-radius: 12px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform .25s;
+    }
+    .modal-overlay.abierto .modal { transform: translateY(0); }
+
+    .modal-cerrar {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: #333;
+      border: none;
+      color: var(--blanco);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .modal-cerrar:hover { background: var(--rojo); }
+
+    .modal img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      background: #111;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .modal .modal-precio {
+      font-family: var(--font-titulo);
+      font-size: 2.5rem;
+      color: var(--amarillo);
+      margin-bottom: 1rem;
+    }
+    .modal .modal-desc {
+      font-size: .88rem;
+      color: var(--gris-claro);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .modal-acciones { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .modal-acciones a { flex: 1; min-width: 140px; text-align: center; }
+
+    /* Footer */
+    footer {
+      background: var(--gris-oscuro);
+      border-top: 1px solid #222;
+      padding: 2.5rem clamp(1rem,4vw,3rem);
+      margin-top: 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo { font-family: var(--font-titulo); font-size: 1.6rem; color: var(--amarillo); letter-spacing: 2px; }
+    .footer-logo span { color: var(--blanco); }
+    .footer-info { font-size: .82rem; color: var(--gris-claro); line-height: 1.8; }
+    .footer-info a { color: var(--amarillo); text-decoration: none; }
+    .footer-copy { font-size: .75rem; color: #444; width: 100%; border-top: 1px solid #222; padding-top: 1.2rem; margin-top: .5rem; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 3.2rem; }
+      #config-strip { flex-direction: column; }
+      #config-strip input, #config-strip select { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">BATERÍAS <span>DÍNAMO</span></a>
+  <ul class="nav-links">
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="/tienda/">Tienda completa</a></li>
+    <li><a href="/tienda/content/7-servicios">Servicios</a></li>
+    <li><a href="/tienda/content/6-contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-wsp" href="https://wa.me/5491167097987" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Badge flotante -->
+  <div class="hero-float-badge">⚡ Entrega en menos de 50 min – CABA</div>
+
+  <!-- Pills flotantes sobre la batería -->
+  <div class="hero-pill p1"><span class="dot"></span> Stock disponible</div>
+  <div class="hero-pill p3"><span class="dot" style="background:var(--amarillo)"></span> Instalación incluida</div>
+  <div class="hero-pill p2"><span class="dot" style="background:#3b9eff"></span> Garantía oficial</div>
+
+  <!-- Columna izquierda: texto -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Baterías Dínamo – Agronomía, CABA</span>
+    </div>
+
+    <h1>
+      TU BATERÍA
+      <span class="accent">HOY</span>
+      <span class="outline">MISMO</span>
+    </h1>
+
+    <p class="hero-sub">La mejor selección de baterías para autos, náutica y energía solar. Precios directos, asesoramiento profesional y colocación a domicilio.</p>
+
+    <div class="hero-ctas">
+      <a class="hero-cta" href="#catalogo">
+        Ver catálogo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="hero-cta-sec" href="https://wa.me/5491167097987" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar ahora
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">50'</span>
+        <span class="stat-label">minutos de entrega</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <span class="stat-label">marcas premium</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">+500</span>
+        <span class="stat-label">clientes atendidos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna derecha: ilustración SVG -->
+  <div class="hero-right">
+    <div class="hero-glow"></div>
+    <svg class="battery-svg" viewBox="0 0 320 420" width="340" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Sombra base -->
+      <ellipse cx="160" cy="400" rx="100" ry="14" fill="rgba(245,196,0,.12)"/>
+
+      <!-- Cuerpo principal batería -->
+      <rect x="40" y="80" width="240" height="300" rx="18" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="1.5"/>
+
+      <!-- Tapa superior (terminales) -->
+      <rect x="40" y="68" width="240" height="20" rx="6" fill="#141414" stroke="#2a2a2a" stroke-width="1"/>
+
+      <!-- Terminal + -->
+      <rect x="72" y="48" width="44" height="26" rx="7" fill="#f5c400"/>
+      <rect x="91" y="36" width="7" height="18" rx="3" fill="#f5c400"/>
+
+      <!-- Terminal - -->
+      <rect x="204" y="48" width="44" height="26" rx="7" fill="#444"/>
+      <rect x="222" y="36" width="7" height="18" rx="3" fill="#333"/>
+
+      <!-- Label + - -->
+      <text x="94" y="65" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#0a0a0a" text-anchor="middle">+</text>
+      <text x="226" y="65" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#888" text-anchor="middle">–</text>
+
+      <!-- Relleno de carga animado -->
+      <clipPath id="charge-clip">
+        <rect x="52" y="100" width="216" height="266" rx="10"/>
+      </clipPath>
+      <rect x="52" y="100" width="216" height="266" rx="10" fill="#111"/>
+
+      <!-- Barras de nivel -->
+      <g clip-path="url(#charge-clip)">
+        <!-- nivel 1 (más bajo, más opaco) -->
+        <rect class="batt-charge" x="52" y="326" width="216" height="40" fill="#f5c400" opacity=".9" style="animation-delay:0s"/>
+        <!-- nivel 2 -->
+        <rect class="batt-charge" x="52" y="280" width="216" height="40" fill="#f5c400" opacity=".75" style="animation-delay:.3s"/>
+        <!-- nivel 3 -->
+        <rect class="batt-charge" x="52" y="234" width="216" height="40" fill="#f5c400" opacity=".55" style="animation-delay:.6s"/>
+        <!-- nivel 4 -->
+        <rect class="batt-charge" x="52" y="188" width="216" height="40" fill="#f5c400" opacity=".35" style="animation-delay:.9s"/>
+        <!-- nivel 5 (más alto, más tenue) -->
+        <rect class="batt-charge" x="52" y="142" width="216" height="40" fill="#f5c400" opacity=".18" style="animation-delay:1.2s"/>
+      </g>
+
+      <!-- Separadores entre barras -->
+      <line x1="52" y1="270" x2="268" y2="270" stroke="#0a0a0a" stroke-width="3"/>
+      <line x1="52" y1="224" x2="268" y2="224" stroke="#0a0a0a" stroke-width="3"/>
+      <line x1="52" y1="178" x2="268" y2="178" stroke="#0a0a0a" stroke-width="3"/>
+      <line x1="52" y1="132" x2="268" y2="132" stroke="#0a0a0a" stroke-width="3"/>
+
+      <!-- Borde interior brillo -->
+      <rect x="52" y="100" width="216" height="266" rx="10" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+
+      <!-- Rayo / bolt -->
+      <g class="batt-bolt">
+        <polygon points="172,155 148,220 164,220 148,285 192,200 174,200 192,155" fill="#f5c400" opacity=".95"/>
+      </g>
+
+      <!-- Etiqueta marca -->
+      <rect x="75" y="348" width="170" height="32" rx="5" fill="rgba(245,196,0,.08)" stroke="rgba(245,196,0,.2)" stroke-width=".8"/>
+      <text x="160" y="369" font-family="'Bebas Neue',sans-serif" font-size="16" fill="#f5c400" text-anchor="middle" letter-spacing="4">BATERÍAS DÍNAMO</text>
+
+      <!-- Indicador 12V -->
+      <text x="160" y="95" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#333" text-anchor="middle" letter-spacing="2">12V</text>
+    </svg>
+  </div>
+
+</section>
+
+<!-- CONFIG (oculto – datos precargados) -->
+<div id="config-strip" style="display:none">
+  <input type="text" id="ps-url" value="https://bateriasdinamo.com.ar"/>
+  <input type="text" id="ps-key" value="UCPKSH4RFSD67HKJEFZWT2DYSMM27IIZ"/>
+  <select id="ps-limit"><option value="24" selected>24</option></select>
+</div>
+
+<!-- CATÁLOGO -->
+<section class="seccion" id="catalogo">
+  <div class="seccion-header">
+    <div class="seccion-titulo">
+      <span class="linea"></span>
+      CATÁLOGO
+    </div>
+    <div class="buscador-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="buscador" placeholder="Buscar producto..." oninput="filtrarLocal()"/>
+    </div>
+  </div>
+
+  <div class="filtros" id="filtros-categorias">
+    <button class="filtro-btn activo" onclick="filtrarCategoria(null, this)">Todos</button>
+  </div>
+
+  <div id="productos-grid" class="grid-productos">
+    <div class="estado" style="grid-column:1/-1">
+      <div class="spinner"></div>
+      <h3>Cargando productos...</h3>
+      <p>Conectando con PrestaShop</p>
+    </div>
+  </div>
+
+  <div class="paginacion" id="paginacion"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="cerrarModal(event)">
+  <div class="modal" id="modal-contenido">
+    <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">BATERÍAS <span>DÍNAMO</span></div>
+    <div class="footer-info" style="margin-top:.5rem">
+      Agronomía, CABA &nbsp;|&nbsp;
+      <a href="tel:5491167097987">+54 9 11 6709-7987</a><br>
+      Lun–Vie 9–18hs &nbsp;|&nbsp; Sáb 9–14hs
+    </div>
+  </div>
+  <a class="nav-wsp" href="https://wa.me/5491167097987" target="_blank" style="align-self:center">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consultá por WhatsApp
+  </a>
+  <div class="footer-copy">© 2025 Baterías Dínamo. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════
+let TODOS_PRODUCTOS = [];
+let FILTRADO_ACTUAL = [];
+let CATEGORIA_ACTIVA = null;
+let PAG_ACTUAL = 1;
+let WSP_NUM = '5491167097987';
+
+// ════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════
+const $ = id => document.getElementById(id);
+
+function getConfig() {
+  return {
+    url: $('ps-url').value.replace(/\/$/, ''),
+    key: $('ps-key').value.trim(),
+    limit: parseInt($('ps-limit').value)
+  };
+}
+
+function formatPrecio(val) {
+  const n = parseFloat(val);
+  if (isNaN(n)) return '—';
+  return n.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
+
+// PS 1.7 devuelve campos de texto como string | array de {language} | objeto {language}
+function extraerTexto(campo) {
+  if (!campo) return '';
+  if (typeof campo === 'string') return campo;
+  if (Array.isArray(campo)) {
+    const item = campo.find(x => x.language) || campo[0];
+    if (!item) return '';
+    const lang = item.language;
+    if (Array.isArray(lang)) return lang[0]?.value || '';
+    return lang?.value || '';
+  }
+  if (campo.language) {
+    const lang = campo.language;
+    if (Array.isArray(lang)) return lang[0]?.value || '';
+    return lang?.value || '';
+  }
+  return String(campo);
+}
+
+function slugify(str) {
+  return (str||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+
+function imgUrl(psUrl, id, size = 'home_default') {
+  return `${psUrl}/img/p/${[...String(id)].join('/')}/${id}-${size}.jpg`;
+}
+
+function mostrarEstado(html) {
+  $('productos-grid').innerHTML = `<div class="estado" style="grid-column:1/-1">${html}</div>`;
+  $('paginacion').innerHTML = '';
+}
+
+function mostrarCargando() {
+  mostrarEstado('<div class="spinner"></div><h3>Cargando productos...</h3><p>Conectando con PrestaShop</p>');
+}
+
+// ════════════════════════════════════════
+//  API PRESTASHOP – CORS PROXY
+// ════════════════════════════════════════
+async function psGet(endpoint, params = {}) {
+  const { url, key } = getConfig();
+  const qs = new URLSearchParams({ output_format: 'JSON', ws_key: key, ...params });
+  const apiUrl = `${url}/api/${endpoint}?${qs}`;
+  // Usamos el proxy de allorigins para evitar CORS cuando aplica
+  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+  
+  try {
+    // Primero intentamos directo (mismo dominio)
+    const resp = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
+    if (resp.ok) return await resp.json();
+  } catch (_) { /* fallback a proxy */ }
+
+  // Fallback con proxy
+  const resp2 = await fetch(proxyUrl);
+  if (!resp2.ok) throw new Error('No se pudo conectar con la API');
+  const data2 = await resp2.json();
+  return JSON.parse(data2.contents);
+}
+
+// ════════════════════════════════════════
+//  CARGAR CATEGORÍAS
+// ════════════════════════════════════════
+async function cargarCategorias() {
+  try {
+    const data = await psGet('categories', { display: '[id,name]', limit: '50', id_parent: '[2,3,4,5,6,7,8,9,10,11,12,13,14,15]' });
+    const cats = data.categories || [];
+    const wrap = $('filtros-categorias');
+    wrap.innerHTML = '<button class="filtro-btn activo" onclick="filtrarCategoria(null, this)">Todos</button>';
+    cats.forEach(c => {
+      const nombre = extraerTexto(c.name);
+      if (nombre && nombre !== 'Root' && nombre !== 'Home' && nombre !== 'Inicio') {
+        const btn = document.createElement('button');
+        btn.className = 'filtro-btn';
+        btn.textContent = nombre;
+        btn.onclick = function() { filtrarCategoria(c.id, this); };
+        wrap.appendChild(btn);
+      }
+    });
+  } catch (e) {
+    console.warn('No se pudieron cargar categorías:', e);
+  }
+}
+
+// ════════════════════════════════════════
+//  CARGAR PRODUCTOS
+// ════════════════════════════════════════
+async function cargarProductos(pag = 1) {
+  const { url, key, limit } = getConfig();
+  PAG_ACTUAL = pag;
+
+  if (!key) {
+    mostrarEstado(`
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <h3>Falta la API Key</h3>
+      <p>Ingresá tu API key de PrestaShop Webservice arriba</p>
+    `);
+    return;
+  }
+
+  mostrarCargando();
+
+  try {
+    await cargarCategorias();
+
+    const offset = (pag - 1) * limit;
+    const data = await psGet('products', {
+      display: '[id,name,price,id_default_image,id_manufacturer,id_category_default,description_short,reference]',
+      limit: `${offset},${limit}`,
+    });
+
+    const countData = await psGet('products', { display: '[id]', limit: '1000' });
+    const total = (countData.products || []).length;
+    const totalPags = Math.ceil(total / limit);
+
+    TODOS_PRODUCTOS = (data.products || []).map(p => ({
+      id: p.id,
+      nombre: extraerTexto(p.name),
+      precio: p.price,
+      imagen: imgUrl(url, p.id_default_image),
+      categoria: p.id_category_default,
+      referencia: p.reference || '',
+      descripcion: extraerTexto(p.description_short),
+      linkTienda: `${url}/inicio/${p.id}-${slugify(extraerTexto(p.name))}.html`,
+    }));
+
+    FILTRADO_ACTUAL = TODOS_PRODUCTOS;
+    renderProductos(FILTRADO_ACTUAL);
+    renderPaginacion(pag, totalPags);
+
+  } catch (err) {
+    console.error(err);
+    mostrarEstado(`
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <h3>Error de conexión</h3>
+      <p>Verificá que la URL sea correcta, que el Webservice esté activo en PrestaShop y que la API key tenga permisos de lectura en "products".</p>
+      <br><small style="color:#444">${err.message}</small>
+    `);
+  }
+}
+
+// ════════════════════════════════════════
+//  RENDER PRODUCTOS
+// ════════════════════════════════════════
+function renderProductos(lista) {
+  const grid = $('productos-grid');
+
+  if (!lista.length) {
+    mostrarEstado('<h3>Sin resultados</h3><p>Probá con otra búsqueda o categoría</p>');
+    return;
+  }
+
+  grid.innerHTML = lista.map((p, i) => {
+    const precio = parseFloat(p.precio);
+    const precioFmt = formatPrecio(precio);
+    const msg = encodeURIComponent(`Hola! Me interesa la *${p.nombre}* (Ref: ${p.referencia}). ¿Podés darme más info y precio final?`);
+    const wspLink = `https://wa.me/${WSP_NUM}?text=${msg}`;
+    const delay = (i % 12) * 40;
+
+    return `
+      <div class="card" style="animation-delay:${delay}ms" onclick="abrirModal(${p.id})">
+        <div class="card-img-wrap">
+          <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/300x200/111111/444444?text=Sin+imagen'" loading="lazy"/>
+          ${precio > 0 ? '<span class="card-badge">STOCK</span>' : ''}
+        </div>
+        <div class="card-body">
+          <div class="card-marca">${p.referencia || 'DÍNAMO'}</div>
+          <div class="card-nombre">${p.nombre}</div>
+          <div class="card-precio">
+            <span class="simbolo">AR$ </span>${precio > 0 ? precioFmt : 'Consultar'}
+          </div>
+          <div class="card-acciones" onclick="event.stopPropagation()">
+            <a class="btn-ver" href="${p.linkTienda}" target="_blank">Ver detalle</a>
+            <a class="btn-wsp" href="${wspLink}" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consultar
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ════════════════════════════════════════
+//  PAGINACIÓN
+// ════════════════════════════════════════
+function renderPaginacion(actual, total) {
+  const wrap = $('paginacion');
+  if (total <= 1) { wrap.innerHTML = ''; return; }
+
+  let html = `<button class="pag-btn" onclick="cargarProductos(${actual - 1})" ${actual === 1 ? 'disabled' : ''}>← Anterior</button>`;
+
+  const inicio = Math.max(1, actual - 2);
+  const fin = Math.min(total, actual + 2);
+  for (let i = inicio; i <= fin; i++) {
+    html += `<button class="pag-btn ${i === actual ? 'activo' : ''}" onclick="cargarProductos(${i})">${i}</button>`;
+  }
+
+  html += `<button class="pag-btn" onclick="cargarProductos(${actual + 1})" ${actual === total ? 'disabled' : ''}>Siguiente →</button>`;
+  wrap.innerHTML = html;
+}
+
+// ════════════════════════════════════════
+//  FILTROS
+// ════════════════════════════════════════
+function filtrarCategoria(id, btn) {
+  CATEGORIA_ACTIVA = id;
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+  if (btn) btn.classList.add('activo');
+  $('buscador').value = '';
+  FILTRADO_ACTUAL = id ? TODOS_PRODUCTOS.filter(p => p.categoria == id) : TODOS_PRODUCTOS;
+  renderProductos(FILTRADO_ACTUAL);
+  $('paginacion').innerHTML = '';
+}
+
+function filtrarLocal() {
+  const q = $('buscador').value.toLowerCase().trim();
+  const base = CATEGORIA_ACTIVA ? TODOS_PRODUCTOS.filter(p => p.categoria == CATEGORIA_ACTIVA) : TODOS_PRODUCTOS;
+  FILTRADO_ACTUAL = q ? base.filter(p => p.nombre.toLowerCase().includes(q) || (p.referencia || '').toLowerCase().includes(q)) : base;
+  renderProductos(FILTRADO_ACTUAL);
+}
+
+// ════════════════════════════════════════
+//  MODAL
+// ════════════════════════════════════════
+function abrirModal(id) {
+  const p = TODOS_PRODUCTOS.find(x => x.id == id);
+  if (!p) return;
+
+  const precio = parseFloat(p.precio);
+  const msg = encodeURIComponent(`Hola! Me interesa la *${p.nombre}* (Ref: ${p.referencia}). ¿Podés darme más info?`);
+  const desc = p.descripcion.replace(/<[^>]+>/g, '');
+
+  $('modal-body').innerHTML = `
+    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/400x260/111111/444444?text=Sin+imagen'"/>
+    <div style="font-size:.7rem;color:var(--amarillo);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem">${p.referencia || ''}</div>
+    <h2>${p.nombre}</h2>
+    <div class="modal-precio">AR$ ${precio > 0 ? formatPrecio(precio) : 'Consultar'}</div>
+    ${desc ? `<div class="modal-desc">${desc}</div>` : ''}
+    <div class="modal-acciones">
+      <a class="btn-ver" href="${p.linkTienda}" target="_blank" style="display:block;text-decoration:none;padding:.7rem 1rem">🛒 Ver en tienda</a>
+      <a class="btn-wsp" href="https://wa.me/${WSP_NUM}?text=${msg}" target="_blank" style="display:flex">
+        <svg viewBox="0 0 24 24" width="16" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar precio
+      </a>
+    </div>
+  `;
+
+  $('modal-overlay').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarModal(e) {
+  if (e && e.target !== $('modal-overlay') && !e.target.classList.contains('modal-cerrar')) return;
+  $('modal-overlay').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal({ target: $('modal-overlay') }); });
+
+// ── Autocargar al abrir la página ──
+document.addEventListener('DOMContentLoaded', () => cargarProductos(1));
+</script>
+</body>
+</html>
