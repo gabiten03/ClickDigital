@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Patagonia Containers — Containers para vivienda y espacios en Reta, costa bonaerense.">
+<title>Patagonia Containers · Reta</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --terra:#C4581A;--terra-light:#E07040;--ochre:#D4960A;
+  --atlantic:#5B8FA8;--dune:#A89070;
+  --bg:#FAF5EC;--bg2:#F2EAD8;--bg3:#E8DEC8;
+  --card:#FFFFFF;--card-border:rgba(160,130,90,0.18);
+  --text-primary:#2C1F0E;--text-secondary:#6B5030;--text-muted:#9C8060;
+  --nav-bg:rgba(250,245,236,0.90);--accent:#C4581A;--accent-light:#E07040;
+}
+[data-theme="dark"]{
+  --bg:#1A1208;--bg2:#251A0C;--bg3:#322414;
+  --card:#2A1E10;--card-border:rgba(180,130,70,0.15);
+  --text-primary:#F5ECD8;--text-secondary:#C4A878;--text-muted:#8A7055;
+  --nav-bg:rgba(26,18,8,0.92);--accent:#E07040;--accent-light:#F08050;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Urbanist',sans-serif;background:var(--bg);color:var(--text-primary);overflow-x:hidden;transition:background .4s,color .4s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--card-border);transition:background .4s}
+.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:-.03em;color:var(--text-primary);line-height:1.15;text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-logo small{display:block;font-size:.56rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-secondary);font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.theme-toggle{width:52px;height:28px;border-radius:14px;background:var(--bg3);border:1px solid var(--card-border);cursor:pointer;position:relative;transition:background .4s;flex-shrink:0}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--accent);transition:transform .3s}
+[data-theme="dark"] .theme-toggle::after{transform:translateX(24px)}
+.toggle-icons{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px;font-size:11px;pointer-events:none}
+.nav-cta{background:var(--accent);color:#fff;padding:.5rem 1.2rem;border-radius:100px;font-size:.82rem;font-weight:700;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center;gap:.4rem}
+.nav-cta:hover{background:var(--accent-light)}
+
+/* ======= HERO ======= */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+
+/* Deep warm night sky base */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 70% 40%, #3D1800 0%, #1A0C04 40%, #0A0F1A 100%);
+}
+
+/* Stars canvas */
+#starsCanvas{position:absolute;inset:0;width:100%;height:100%}
+
+/* Sand dune silhouette at bottom */
+.hero-dune{
+  position:absolute;bottom:0;left:0;right:0;height:38%;
+  background:linear-gradient(to top, #1A0C04 0%, #2A1408 40%, transparent 100%);
+  clip-path:ellipse(60% 100% at 40% 100%);
+}
+.hero-dune2{
+  position:absolute;bottom:0;left:0;right:0;height:30%;
+  background:linear-gradient(to top, #251004 0%, #1A0C04 50%, transparent 100%);
+  clip-path:ellipse(70% 100% at 65% 100%);
+}
+
+/* Warm horizon glow */
+.hero-horizon{
+  position:absolute;bottom:24%;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, transparent 0%, rgba(196,88,26,.5) 20%, rgba(212,150,10,.7) 50%, rgba(196,88,26,.4) 80%, transparent 100%);
+  filter:blur(1px);
+}
+.hero-horizon-glow{
+  position:absolute;bottom:20%;left:10%;right:10%;height:80px;
+  background:radial-gradient(ellipse 60% 100% at 50% 100%, rgba(212,120,10,.18) 0%, transparent 100%);
+}
+
+/* Moon */
+.hero-moon{
+  position:absolute;top:14%;right:18%;width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle at 38% 38%, #FFF8E0, #F5D88A 50%, #D4A830 100%);
+  box-shadow:0 0 40px 12px rgba(212,168,48,.25), 0 0 80px 30px rgba(212,150,10,.10);
+}
+/* Moon craters */
+.hero-moon::before{content:'';position:absolute;top:22%;left:25%;width:10px;height:10px;border-radius:50%;background:rgba(180,130,20,.3)}
+.hero-moon::after{content:'';position:absolute;top:52%;left:55%;width:7px;height:7px;border-radius:50%;background:rgba(180,130,20,.25)}
+
+/* Container silhouette */
+.hero-cnt-silhouette{
+  position:absolute;right:8%;bottom:26%;
+  width:42%;max-width:500px;
+  opacity:.55;
+  filter:drop-shadow(0 -4px 20px rgba(212,150,10,.15));
+}
+
+.hero-content{position:relative;z-index:3;padding:0 3rem 0;max-width:640px;margin-top:2rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(196,88,26,.18);border:1px solid rgba(196,88,26,.32);color:#FFB888;padding:.38rem .9rem;border-radius:100px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.2rem}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#E07040;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-loc{display:flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;color:#7BB0CC;letter-spacing:.04em;margin-bottom:1.2rem}
+.hero h1{font-size:clamp(2.8rem,5.5vw,4.6rem);font-weight:900;line-height:.96;letter-spacing:-.05em;color:#F5ECD8;margin-bottom:1.3rem}
+.hero h1 em{font-style:italic;color:#FFB068;display:block}
+.hero p{font-size:1rem;color:rgba(245,236,216,.58);line-height:1.78;max-width:480px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:.85rem 1.8rem;border-radius:100px;font-size:.95rem;font-weight:700;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:'Urbanist',sans-serif}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,88,26,.4)}
+.btn-ghost-white{border:1.5px solid rgba(245,236,216,.25);color:#F5ECD8;padding:.85rem 1.8rem;border-radius:100px;font-size:.95rem;font-weight:600;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,236,216,.06)}
+.btn-ghost-white:hover{border-color:rgba(245,236,216,.55);background:rgba(245,236,216,.12)}
+
+/* scroll hint */
+.scroll-hint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(245,236,216,.3);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;animation:sbounce 2.5s ease-in-out infinite}
+@keyframes sbounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ======= STATS ======= */
+.stats-bar{background:var(--accent);padding:2.2rem 3rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center;transition:background .4s}
+.stat-num{font-size:2.2rem;font-weight:900;color:#fff;letter-spacing:-.04em}
+.stat-label{font-size:.74rem;font-weight:600;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.07em;margin-top:.15rem}
+
+/* ======= SECTIONS ======= */
+section{padding:5rem 3rem;transition:background .4s}
+.section-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.section-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:.9rem;color:var(--text-primary)}
+.section-sub{font-size:.95rem;color:var(--text-secondary);line-height:1.75;max-width:520px}
+
+/* ======= CONTAINERS ======= */
+.containers-section{background:var(--bg2)}
+.containers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:2.5rem}
+.container-product{background:var(--card);border:1px solid var(--card-border);border-radius:18px;overflow:hidden;transition:border-color .3s,transform .3s,background .4s}
+.container-product:hover{border-color:rgba(196,88,26,.4);transform:translateY(-3px)}
+.cp-accent-bar{height:4px;background:linear-gradient(90deg,#C4581A,#D4960A)}
+.cp-body{padding:1.6rem 1.8rem 1.8rem}
+.cp-type{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.cp-name{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;color:var(--text-primary);margin-bottom:.45rem}
+.cp-dim{font-size:.82rem;color:var(--text-muted);margin-bottom:1.1rem;display:flex;align-items:center;gap:.4rem}
+.cp-dim i{color:var(--atlantic);font-size:.7rem}
+.cp-features{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.4rem}
+.cp-feat{display:flex;align-items:center;gap:.55rem;font-size:.83rem;color:var(--text-secondary)}
+.cp-feat i{color:var(--accent);font-size:.65rem;flex-shrink:0}
+.cp-footer{display:flex;align-items:center;justify-content:flex-end}
+.cp-btn{background:rgba(196,88,26,.12);color:var(--accent);border:1.5px solid rgba(196,88,26,.25);padding:.6rem 1.3rem;border-radius:100px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Urbanist',sans-serif;display:inline-flex;align-items:center;gap:.4rem}
+.cp-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ======= SERVICES ======= */
+.services-section{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.service-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:1.6rem;transition:all .3s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#C4581A,#D4960A);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.service-card:hover::after{transform:scaleX(1)}
+.service-card:hover{border-color:rgba(196,88,26,.22);transform:translateY(-2px)}
+.svc-icon{width:42px;height:42px;border-radius:10px;background:rgba(196,88,26,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.1rem;color:var(--accent)}
+.svc-name{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:.45rem;letter-spacing:-.01em}
+.svc-desc{font-size:.8rem;color:var(--text-secondary);line-height:1.65}
+
+/* ======= ADDONS ======= */
+.addons-section{background:var(--bg2)}
+.addons-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:2.5rem}
+.addon-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:1.4rem;text-align:center;transition:all .3s}
+.addon-card:hover{border-color:rgba(196,88,26,.35);transform:translateY(-2px)}
+.addon-icon{font-size:1.9rem;margin-bottom:.7rem;display:block}
+.addon-name{font-size:.92rem;font-weight:700;color:var(--text-primary);margin-bottom:.35rem}
+.addon-desc{font-size:.76rem;color:var(--text-secondary);line-height:1.55}
+
+/* ======= PROCESS ======= */
+.process-section{background:var(--bg3)}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:2.5rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:26px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,88,26,.35),rgba(196,88,26,.35),transparent)}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .5rem}
+.step-num{width:52px;height:52px;border-radius:50%;border:2px solid rgba(196,88,26,.35);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:var(--accent);margin-bottom:1rem;position:relative;z-index:1;transition:background .4s}
+.step-name{font-size:.82rem;font-weight:700;color:var(--text-primary);margin-bottom:.35rem}
+.step-desc{font-size:.72rem;color:var(--text-secondary);line-height:1.5}
+
+/* ======= CTA ======= */
+.cta-section{background:var(--bg2);padding:5rem 3rem;text-align:center;border-top:1px solid var(--card-border)}
+.btn-ghost{border:1.5px solid var(--card-border);color:var(--text-primary);padding:.85rem 1.8rem;border-radius:100px;font-size:.95rem;font-weight:600;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ======= FOOTER ======= */
+footer{background:var(--bg3);padding:2.2rem 3rem;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;transition:background .4s}
+.footer-logo{font-size:1rem;font-weight:800;letter-spacing:-.03em;color:var(--text-primary)}
+.footer-logo span{color:var(--accent)}
+.footer-logo small{display:block;font-size:.54rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.footer-text{font-size:.75rem;color:var(--text-muted)}
+.footer-links{display:flex;gap:1.4rem}
+.footer-links a{font-size:.78rem;color:var(--text-secondary);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:.35rem}
+.footer-links a:hover{color:var(--accent)}
+
+/* ======= RESPONSIVE ======= */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero-content{padding:0 1.5rem}.hero-cnt-silhouette{display:none}
+  .stats-bar{grid-template-columns:repeat(2,1fr);padding:2rem 1.5rem}
+  section{padding:4rem 1.5rem}
+  .containers-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .addons-row{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr;gap:1.5rem}.process-steps::before{display:none}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}.footer-links{justify-content:center}
+}
+@media(max-width:600px){.services-grid,.addons-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Patagonia<span>Containers</span><small>patagoniacontainers.com.ar</small></a>
+  <ul class="nav-links">
+    <li><a href="#containers">Containers</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#adicionales">Adicionales</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Modo claro/oscuro">
+      <span class="toggle-icons"><span>☀️</span><span>🌙</span></span>
+    </button>
+    <a href="https://wa.me/5491136131385" class="nav-cta" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+  </div>
+</nav>
+
+<!-- HERO: Noche estrellada en Reta -->
+<section class="hero">
+  <canvas id="starsCanvas"></canvas>
+  <div class="hero-dune"></div>
+  <div class="hero-dune2"></div>
+  <div class="hero-horizon-glow"></div>
+  <div class="hero-horizon"></div>
+  <div class="hero-moon"></div>
+
+  <!-- Container silhouette as CSS/SVG -->
+  <svg class="hero-cnt-silhouette" viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- ground/pilares -->
+    <rect x="40" y="168" width="14" height="32" rx="2" fill="#3D1800"/>
+    <rect x="446" y="168" width="14" height="32" rx="2" fill="#3D1800"/>
+    <rect x="160" y="168" width="14" height="32" rx="2" fill="#3D1800"/>
+    <rect x="326" y="168" width="14" height="32" rx="2" fill="#3D1800"/>
+    <!-- container body -->
+    <rect x="20" y="30" width="460" height="140" rx="4" fill="#2A1408"/>
+    <!-- roof highlight -->
+    <rect x="20" y="30" width="460" height="8" rx="2" fill="#3D1E08"/>
+    <!-- ribbing -->
+    <line x1="112" y1="38" x2="112" y2="170" stroke="#3D1E08" stroke-width="3"/>
+    <line x1="204" y1="38" x2="204" y2="170" stroke="#3D1E08" stroke-width="3"/>
+    <line x1="296" y1="38" x2="296" y2="170" stroke="#3D1E08" stroke-width="3"/>
+    <line x1="388" y1="38" x2="388" y2="170" stroke="#3D1E08" stroke-width="3"/>
+    <!-- door -->
+    <rect x="190" y="100" width="120" height="70" rx="2" fill="#1A0C04"/>
+    <line x1="250" y1="100" x2="250" y2="170" stroke="#3D1E08" stroke-width="2"/>
+    <!-- window with warm light inside -->
+    <rect x="38" y="65" width="55" height="38" rx="3" fill="#3D2200"/>
+    <rect x="39" y="66" width="53" height="36" rx="2" fill="#C47010" opacity="0.35"/>
+    <rect x="407" y="65" width="55" height="38" rx="3" fill="#3D2200"/>
+    <rect x="408" y="66" width="53" height="36" rx="2" fill="#C47010" opacity="0.3"/>
+    <!-- warm glow from windows -->
+    <ellipse cx="65" cy="84" rx="45" ry="30" fill="#D47010" opacity="0.08"/>
+    <ellipse cx="434" cy="84" rx="45" ry="30" fill="#D47010" opacity="0.06"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Balneario Reta · Costa Bonaerense</div>
+    <div class="hero-loc"><i class="fas fa-map-pin"></i>Reta, Partido de Tres Arroyos</div>
+    <h1>Tu lugar<br>en Reta,<br><em>en container.</em></h1>
+    <p>Containers para vivienda, cabañas y espacios en la costa. Limpieza de terreno, pilares, ventanas, instalaciones y adicionales off-grid. Listos para disfrutar todo el año.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5491136131385?text=Hola!%20Quiero%20consultar%20sobre%20un%20container%20para%20Reta." class="btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Consultá ahora</a>
+      <a href="#containers" class="btn-ghost-white">Ver productos</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><i class="fas fa-chevron-down"></i>scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div><div class="stat-num">+150</div><div class="stat-label">Containers entregados</div></div>
+  <div><div class="stat-num">8</div><div class="stat-label">Años de experiencia</div></div>
+  <div><div class="stat-num">15</div><div class="stat-label">Días promedio de entrega</div></div>
+  <div><div class="stat-num">100%</div><div class="stat-label">Financiación disponible</div></div>
+</div>
+
+<!-- CONTAINERS -->
+<section class="containers-section" id="containers">
+  <span class="section-tag">Productos</span>
+  <div class="section-title">Containers disponibles</div>
+  <p class="section-sub">Containers secos revisados, listos para vivienda, cabaña o local comercial en Reta y la región.</p>
+  <div class="containers-grid">
+    <div class="container-product">
+      <div class="cp-accent-bar"></div>
+      <div class="cp-body">
+        <div class="cp-type">Container corto</div>
+        <div class="cp-name">Estándar 20 pies</div>
+        <div class="cp-dim"><i class="fas fa-ruler-combined"></i>6m largo · 2,4m ancho · 2,6m alto · ~14m²</div>
+        <div class="cp-features">
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Acero Corten estructural</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Puertas doble batiente originales</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Ideal para habitación o cabaña básica</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Revisado y libre de óxido estructural</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Apto para habitar con modificaciones</div>
+        </div>
+        <div class="cp-footer"><button class="cp-btn" onclick="window.open('https://wa.me/5491136131385?text=Hola!%20Me%20interesa%20el%20container%2020%20pies.','_blank')"><i class="fab fa-whatsapp"></i>Consultar</button></div>
+      </div>
+    </div>
+    <div class="container-product">
+      <div class="cp-accent-bar"></div>
+      <div class="cp-body">
+        <div class="cp-type">Container largo</div>
+        <div class="cp-name">Estándar 40 pies</div>
+        <div class="cp-dim"><i class="fas fa-ruler-combined"></i>12m largo · 2,4m ancho · 2,6m alto · ~28m²</div>
+        <div class="cp-features">
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Acero Corten estructural</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Espacio para vivienda o cabaña completa</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Admite 2-3 ambientes cómodos</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Admite corte y unión de módulos</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Puertas doble batiente originales</div>
+        </div>
+        <div class="cp-footer"><button class="cp-btn" onclick="window.open('https://wa.me/5491136131385?text=Hola!%20Me%20interesa%20el%20container%2040%20pies.','_blank')"><i class="fab fa-whatsapp"></i>Consultar</button></div>
+      </div>
+    </div>
+    <div class="container-product">
+      <div class="cp-accent-bar"></div>
+      <div class="cp-body">
+        <div class="cp-type">Container corto alta cúbica</div>
+        <div class="cp-name">High Cube 20 pies</div>
+        <div class="cp-dim"><i class="fas fa-ruler-combined"></i>6m largo · 2,4m ancho · 2,9m alto · ~14m²</div>
+        <div class="cp-features">
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>30cm extra de altura sobre el estándar</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Ideal para instalar altillo interior</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Mayor sensación de amplitud costera</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Apto para cielorraso y aislación térmica</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Listo para personalizar</div>
+        </div>
+        <div class="cp-footer"><button class="cp-btn" onclick="window.open('https://wa.me/5491136131385?text=Hola!%20Me%20interesa%20el%20High%20Cube%2020%20pies.','_blank')"><i class="fab fa-whatsapp"></i>Consultar</button></div>
+      </div>
+    </div>
+    <div class="container-product">
+      <div class="cp-accent-bar"></div>
+      <div class="cp-body">
+        <div class="cp-type">Container largo alta cúbica</div>
+        <div class="cp-name">High Cube 40 pies</div>
+        <div class="cp-dim"><i class="fas fa-ruler-combined"></i>12m largo · 2,4m ancho · 2,9m alto · ~28m²</div>
+        <div class="cp-features">
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>El más completo para cabaña permanente</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Espacio para 2-3 ambientes holgados</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Altura ideal para ventilación cruzada</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Recomendado para uso todo el año</div>
+          <div class="cp-feat"><i class="fas fa-circle-check"></i>Máxima versatilidad de diseño interior</div>
+        </div>
+        <div class="cp-footer"><button class="cp-btn" onclick="window.open('https://wa.me/5491136131385?text=Hola!%20Me%20interesa%20el%20High%20Cube%2040%20pies.','_blank')"><i class="fab fa-whatsapp"></i>Consultar</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios">
+  <span class="section-tag">Servicios</span>
+  <div class="section-title">Todo para instalarlo en Reta</div>
+  <p class="section-sub">Nos encargamos de cada etapa para que llegues al balneario y solo tengas que disfrutarlo.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-seedling"></i></div><div class="svc-name">Limpieza y preparación del terreno</div><div class="svc-desc">Desmonte, nivelación y preparación del terreno. Incluye retiro de escombros y maleza.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-building-columns"></i></div><div class="svc-name">Pilares y estructura de apoyo</div><div class="svc-desc">Pilares de hormigón armado según terreno y carga. Container elevado, ventilado y nivelado.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-cut"></i></div><div class="svc-name">Corte estructural</div><div class="svc-desc">Apertura de vanos para puertas y ventanas con refuerzo de perfiles metálicos incluido.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-window-maximize"></i></div><div class="svc-name">Instalación de ventanas</div><div class="svc-desc">Ventanas de aluminio o PVC con DVH, sellado hermético y marcos para exterior costero.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-truck-ramp-box"></i></div><div class="svc-name">Traslado e instalación</div><div class="svc-desc">Transporte hasta tu terreno en Reta, descarga con grúa y posicionamiento final en pilares.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-paint-roller"></i></div><div class="svc-name">Pintura anticorrosiva</div><div class="svc-desc">Lijado, imprimación anticorrosiva y pintura en el color que elijas. Interior y exterior.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-plug-circle-bolt"></i></div><div class="svc-name">Instalación eléctrica</div><div class="svc-desc">Tablero, circuitos, tomacorrientes y luces. Apto para conectar a red o a paneles solares.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-faucet-drip"></i></div><div class="svc-name">Instalación sanitaria</div><div class="svc-desc">Plomería, desagüe, baño completo o media cocina. Conexión a pozo, red o biodigestor.</div></div>
+    <div class="service-card"><div class="svc-icon"><i class="fas fa-layer-group"></i></div><div class="svc-name">Aislación térmica y acústica</div><div class="svc-desc">Poliuretano proyectado o lana de vidrio + drywall. Clave para el invierno en la costa.</div></div>
+  </div>
+</section>
+
+<!-- ADDONS -->
+<section class="addons-section" id="adicionales">
+  <span class="section-tag">Adicionales Off-grid</span>
+  <div class="section-title">Vivir sin depender de la red</div>
+  <p class="section-sub">Soluciones para terrenos en Reta y la costa sin infraestructura completa.</p>
+  <div class="addons-row">
+    <div class="addon-card"><span class="addon-icon">☀️</span><div class="addon-name">Paneles solares</div><div class="addon-desc">Kit completo: paneles monocristalinos, inversor, baterías de litio y tablero. Autonomía 1-3 días.</div></div>
+    <div class="addon-card"><span class="addon-icon">🌿</span><div class="addon-name">Biodigestor</div><div class="addon-desc">Efluentes cloacales sin pozo ciego. Cumple normativa ambiental. Capacidad 1-5 personas.</div></div>
+    <div class="addon-card"><span class="addon-icon">💧</span><div class="addon-name">Tanque + bomba</div><div class="addon-desc">Tanque tricapa 500 o 1000L elevado, bomba presurizada y flotante automático. Instalado y probado.</div></div>
+    <div class="addon-card"><span class="addon-icon">⛏️</span><div class="addon-name">Perforación / Pozo</div><div class="addon-desc">Pozo de agua subterránea con bomba sumergible y cañería hasta el tanque.</div></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="proceso">
+  <span class="section-tag">Proceso</span>
+  <div class="section-title">De la consulta a la entrega</div>
+  <p class="section-sub">Cinco pasos claros para que tu proyecto en Reta llegue a buen puerto.</p>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">01</div><div class="step-name">Consulta</div><div class="step-desc">Contás tu proyecto y te asesoramos sin compromiso</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-name">Presupuesto</div><div class="step-desc">Cotización detallada a medida de tu terreno</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-name">Producción</div><div class="step-desc">Preparamos y modificamos el container en depósito</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-name">Instalación</div><div class="step-desc">Trasladamos y posicionamos en tu terreno en Reta</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-name">Entrega</div><div class="step-desc">Verificación final y entrega con garantía escrita</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <div style="max-width:540px;margin:0 auto">
+    <span class="section-tag">¿Listo para empezar?</span>
+    <div class="section-title" style="margin-bottom:.9rem">Cotizá tu container<br>en <em style="color:var(--accent);font-style:italic">Reta</em></div>
+    <p style="color:var(--text-secondary);margin-bottom:2rem;font-size:.95rem;line-height:1.75">Respondemos en menos de 24 horas. Armamos una propuesta a medida para tu terreno sin costo ni compromiso.</p>
+    <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.6rem">
+      <a href="https://wa.me/5491136131385?text=Hola!%20Quiero%20consultar%20sobre%20un%20container%20para%20Reta." class="btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Escribinos al WhatsApp</a>
+      <a href="mailto:info@patagoniacontainers.com.ar" class="btn-ghost"><i class="fas fa-envelope"></i>Enviar email</a>
+    </div>
+    <p style="font-size:.74rem;color:var(--text-muted)">patagoniacontainers.com.ar · Lun–Sáb 8 a 18hs · Reta, Tres Arroyos y alrededores</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Patagonia<span>Containers</span><small>patagoniacontainers.com.ar</small></div>
+  <div class="footer-text">© 2026 Patagonia Containers · Reta, Buenos Aires</div>
+  <div class="footer-links">
+    <a href="https://wa.me/5491136131385" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="mailto:info@patagoniacontainers.com.ar"><i class="fas fa-envelope"></i> Email</a>
+  </div>
+</footer>
+
+<script>
+/* ---- THEME ---- */
+const toggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+try { const s = localStorage.getItem('pc-theme'); if (s) html.setAttribute('data-theme', s); } catch(e){}
+toggle.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('pc-theme', next); } catch(e){}
+});
+
+/* ---- SMOOTH SCROLL ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+/* ---- STARFIELD ---- */
+const canvas = document.getElementById('starsCanvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Star types: small static, medium twinkle, large bright
+const stars = [];
+for (let i = 0; i < 280; i++) {
+  stars.push({
+    x: Math.random(),
+    y: Math.random() * 0.72, // only in sky area
+    r: Math.random() < 0.85 ? 0.5 + Math.random() * 0.8 : 1.2 + Math.random() * 1.4,
+    twinkle: Math.random() < 0.4,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.4 + Math.random() * 1.2,
+    base: 0.5 + Math.random() * 0.5,
+  });
+}
+
+// Milky way band
+function drawMilkyWay(t) {
+  const grad = ctx.createLinearGradient(W * 0.1, 0, W * 0.9, H * 0.7);
+  grad.addColorStop(0, 'rgba(255,220,160,0)');
+  grad.addColorStop(0.3, 'rgba(255,200,120,0.025)');
+  grad.addColorStop(0.5, 'rgba(255,180,100,0.04)');
+  grad.addColorStop(0.7, 'rgba(255,200,120,0.02)');
+  grad.addColorStop(1, 'rgba(255,220,160,0)');
+  ctx.save();
+  ctx.translate(W * 0.5, H * 0.35);
+  ctx.rotate(-0.35);
+  ctx.fillStyle = grad;
+  ctx.fillRect(-W * 0.8, -H * 0.7, W * 1.6, H * 1.4);
+  ctx.restore();
+}
+
+// Shooting star
+let shooter = null;
+function maybeShooter(ts) {
+  if (!shooter && Math.random() < 0.003) {
+    shooter = {
+      x: Math.random() * W * 0.7 + W * 0.1,
+      y: Math.random() * H * 0.3,
+      vx: 3 + Math.random() * 4,
+      vy: 1.5 + Math.random() * 2.5,
+      len: 80 + Math.random() * 60,
+      life: 1,
+    };
+  }
+  if (shooter) {
+    shooter.x += shooter.vx;
+    shooter.y += shooter.vy;
+    shooter.life -= 0.025;
+    if (shooter.life <= 0 || shooter.x > W || shooter.y > H * 0.72) shooter = null;
+    else {
+      const grad = ctx.createLinearGradient(
+        shooter.x - shooter.vx * 6, shooter.y - shooter.vy * 6,
+        shooter.x, shooter.y
+      );
+      grad.addColorStop(0, 'rgba(255,230,180,0)');
+      grad.addColorStop(1, `rgba(255,230,180,${shooter.life * 0.9})`);
+      ctx.beginPath();
+      ctx.moveTo(shooter.x - shooter.vx * 10, shooter.y - shooter.vy * 10);
+      ctx.lineTo(shooter.x, shooter.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      // tip glow
+      ctx.beginPath();
+      ctx.arc(shooter.x, shooter.y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,230,180,${shooter.life})`;
+      ctx.fill();
+    }
+  }
+}
+
+function draw(ts) {
+  ctx.clearRect(0, 0, W, H);
+  drawMilkyWay(ts);
+
+  stars.forEach(s => {
+    let alpha = s.base;
+    if (s.twinkle) {
+      alpha = s.base * (0.5 + 0.5 * Math.sin(ts * 0.001 * s.speed + s.phase));
+    }
+    // warm tint for some stars
+    const warm = s.r > 1.2;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = warm
+      ? `rgba(255,220,160,${alpha})`
+      : `rgba(240,235,225,${alpha})`;
+    ctx.fill();
+
+    // glow for bright stars
+    if (s.r > 1.2) {
+      const grd = ctx.createRadialGradient(s.x * W, s.y * H, 0, s.x * W, s.y * H, s.r * 4);
+      grd.addColorStop(0, `rgba(255,200,120,${alpha * 0.3})`);
+      grd.addColorStop(1, 'rgba(255,200,120,0)');
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r * 4, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+    }
+  });
+
+  maybeShooter(ts);
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
