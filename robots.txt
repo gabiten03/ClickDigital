@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /campanarucajunio.html
+Disallow: /campanasruca.html
