@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agente Virtual para Estudios Jurídicos — ClickDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<style>
+:root,[data-theme="dark"]{
+  --accent:#10B981;--accent-alt:#14B8A6;
+  --bg:#07090E;--bg-card:rgba(15,18,28,0.45);--bg-card-h:rgba(20,24,38,0.65);
+  --border:rgba(255,255,255,0.08);--border-h:rgba(16,185,129,0.25);
+  --text:#F1F5F9;--text-mute:#94A3B8;
+  --nav-bg:rgba(7,9,14,0.7);--btn-bg:rgba(255,255,255,0.02);--btn-hover:rgba(255,255,255,0.06);
+  --radius:20px;--nav-h:80px;--ease:cubic-bezier(0.25,1,0.35,1);
+  --red:#EF4444;--amber:#F59E0B;
+}
+[data-theme="light"]{
+  --bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);
+  --border:rgba(0,0,0,0.08);--border-h:rgba(16,185,129,0.4);
+  --text:#0F172A;--text-mute:#475569;
+  --nav-bg:rgba(248,250,252,0.85);--btn-bg:rgba(0,0,0,0.03);--btn-hover:rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Urbanist',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+a{text-decoration:none;color:inherit;transition:.3s;}
+ul{list-style:none;}
+nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .4s,border-color .4s;}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;width:100%;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text-mute);text-transform:uppercase;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--accent);}
+.nav-ctrls{display:flex;gap:12px;align-items:center;}
+.ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-size:.75rem;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
+.ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+.theme-btn{width:36px;height:36px;font-size:1.1rem;}
+[data-theme="dark"] .light-icon{display:none;}
+[data-theme="light"] .dark-icon{display:none;}
+.logo-text{font-size:1.1rem;font-weight:800;color:var(--accent);letter-spacing:-.5px;}
+.btn-primary{background:var(--accent);color:#000;padding:10px 24px;border-radius:50px;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(16,185,129,.2);cursor:pointer;border:none;font-family:'Urbanist',sans-serif;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(16,185,129,.35);}
+.progress-bar{position:fixed;top:var(--nav-h);left:0;height:2px;background:var(--accent);z-index:999;transition:width .2s;box-shadow:0 0 8px rgba(16,185,129,.5);}
+.slide-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:100;}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--border);border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.3s;}
+.sdot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.4);}
+.sdot:hover{background:var(--accent);opacity:.6;}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 60px) 0 80px;position:relative;border-bottom:1px solid var(--border);}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent);}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:28px;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.big-h{font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:20px;}
+.big-h em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-alt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sub-p{color:var(--text-mute);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:40px;}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:48px;}
+.stat-item{background:var(--bg);padding:24px 16px;text-align:center;transition:.3s;}
+.stat-item:hover{background:var(--bg-card);}
+.stat-num{font-size:2.2rem;font-weight:900;color:var(--accent);letter-spacing:-1px;display:block;}
+.stat-lab{color:var(--text-mute);font-size:.73rem;font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.8px;}
+.glass{background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(24px);border-radius:var(--radius);transition:.5s var(--ease);}
+.glass:hover{border-color:var(--border-h);background:var(--bg-card-h);}
+.glass.red-top{border-top:2px solid var(--red);}
+.glass.amber-top{border-top:2px solid var(--amber);}
+.glass.green-top{border-top:2px solid var(--accent);}
+.icon-box{width:48px;height:48px;background:rgba(16,185,129,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:16px;font-size:1.3rem;border:1px solid rgba(16,185,129,.15);}
+.metric{font-size:3.4rem;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:8px;}
+.metric.green{color:var(--accent);}
+.metric.red{color:var(--red);}
+.metric.amber{color:var(--amber);}
+.src{font-size:.64rem;color:var(--text-mute);font-style:italic;margin-top:10px;opacity:.7;}
+.badge{display:inline-block;font-size:.65rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-top:8px;}
+.badge.green{background:rgba(16,185,129,.1);color:var(--accent);border:1px solid rgba(16,185,129,.2);}
+.badge.red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2);}
+.badge.amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tl{display:flex;flex-direction:column;}
+.tl-row{display:grid;grid-template-columns:64px 1fr;gap:16px;position:relative;}
+.tl-row:not(:last-child)::after{content:'';position:absolute;left:31px;top:46px;bottom:-12px;width:1px;background:var(--border);}
+.tl-time{font-size:.72rem;font-weight:700;color:var(--text-mute);text-align:right;padding-top:14px;letter-spacing:.5px;}
+.tl-card{border-radius:14px;padding:16px 20px;margin-bottom:12px;border:1px solid var(--border);background:var(--bg-card);backdrop-filter:blur(12px);position:relative;}
+.tl-card.lost{border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.04);}
+.tl-card.won{border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.05);}
+.tl-dot{width:8px;height:8px;border-radius:50%;position:absolute;left:-24px;top:18px;border:2px solid var(--bg);}
+.tl-card.lost .tl-dot{background:var(--red);}
+.tl-card.won .tl-dot{background:var(--accent);}
+.tl-title{font-size:.88rem;font-weight:700;margin-bottom:3px;}
+.tl-text{font-size:.8rem;color:var(--text-mute);line-height:1.55;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;}
+.process-grid::before{content:'';position:absolute;top:27px;left:12%;right:12%;height:1px;border-bottom:1px dashed rgba(16,185,129,.2);}
+.step-num{width:56px;height:56px;background:var(--bg);border:2px solid var(--accent);color:var(--accent);font-size:1.1rem;font-weight:900;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 0 15px rgba(16,185,129,.15);}
+.cost-line{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:.83rem;}
+.cost-line:last-of-type{border:none;}
+.cost-line .name{color:var(--text-mute);}
+.cost-line .val{font-weight:700;}
+.cost-line .val.red{color:var(--red);}
+.cost-line .val.green{color:var(--accent);}
+.cost-total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;margin-top:6px;border-top:1px solid var(--border);}
+.cost-label-sm{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-mute);}
+.cost-val-big{font-size:1.5rem;font-weight:900;letter-spacing:-1px;}
+.cost-val-big.red{color:var(--red);}
+.cost-val-big.green{color:var(--accent);}
+.saving-banner{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:var(--radius);padding:24px 32px;text-align:center;margin-top:24px;}
+.saving-banner .big{font-size:2.2rem;font-weight:900;letter-spacing:-1.5px;color:var(--accent);}
+.saving-banner p{font-size:.85rem;color:var(--text-mute);margin-top:6px;line-height:1.65;}
+.roi-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.83rem;}
+.roi-row .k{color:var(--text-mute);}
+.roi-row .v{font-weight:700;}
+.roi-result{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.roi-result .rl{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mute);}
+.roi-result .rv{font-size:1.6rem;font-weight:900;letter-spacing:-1px;color:var(--accent);}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.bar-row:last-child{margin-bottom:0;}
+.bar-lbl{font-size:.75rem;color:var(--text-mute);width:120px;flex-shrink:0;}
+.bar-track{flex:1;height:7px;background:var(--btn-bg);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+.bar-fill.amber{background:var(--amber);}
+.plan-card{background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(24px);border-radius:var(--radius);padding:30px 24px;position:relative;transition:.5s var(--ease);}
+.plan-card:hover{border-color:var(--border-h);background:var(--bg-card-h);}
+.plan-card.featured{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.04);}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.65rem;font-weight:800;padding:4px 16px;border-radius:50px;white-space:nowrap;text-transform:uppercase;letter-spacing:1px;}
+.plan-tier{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text-mute);margin-bottom:6px;}
+.plan-name{font-size:1.6rem;font-weight:900;letter-spacing:-1px;margin-bottom:6px;}
+.plan-setup{display:inline-flex;align-items:center;gap:6px;background:var(--btn-bg);border:1px solid var(--border);border-radius:8px;padding:4px 10px;margin-bottom:14px;}
+.plan-setup span{font-size:.7rem;color:var(--text-mute);}
+.plan-setup strong{font-size:.75rem;}
+.plan-price{font-size:3rem;font-weight:900;letter-spacing:-2px;line-height:1;}
+.plan-price sup{font-size:1rem;vertical-align:top;margin-top:10px;color:var(--text-mute);font-weight:600;}
+.plan-period{color:var(--text-mute);font-size:.75rem;margin:4px 0 14px;}
+.plan-desc{color:var(--text-mute);font-size:.83rem;line-height:1.65;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.plan-feature{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;margin-bottom:8px;line-height:1.5;}
+.plan-feature i.uil-check-circle{color:var(--accent);font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.plan-feature i.uil-circle{color:rgba(148,163,184,.2);font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.plan-feature.dim span{color:var(--text-mute);opacity:.4;}
+.plan-btn{width:100%;padding:12px;border-radius:50px;font-weight:700;font-size:.86rem;cursor:pointer;border:1px solid var(--border);background:var(--btn-bg);color:var(--text);transition:.3s;font-family:'Urbanist',sans-serif;margin-top:20px;}
+.plan-btn:hover{border-color:var(--accent);color:var(--accent);}
+.plan-card.featured .plan-btn{background:var(--accent);color:#000;border-color:var(--accent);}
+.plan-card.featured .plan-btn:hover{opacity:.9;}
+.addon{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;transition:.4s var(--ease);}
+.addon:hover{border-color:var(--border-h);background:var(--bg-card-h);}
+.addon-icon{width:34px;height:34px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;flex-shrink:0;}
+.addon-name{font-size:.85rem;font-weight:700;}
+.addon-desc{color:var(--text-mute);font-size:.72rem;}
+.addon-price{font-size:.95rem;font-weight:800;color:var(--accent);white-space:nowrap;padding-left:12px;}
+.btn-hero{background:var(--accent);color:#000;padding:15px 36px;border-radius:50px;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(16,185,129,.2);cursor:pointer;border:none;font-family:'Urbanist',sans-serif;}
+.btn-hero:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(16,185,129,.35);}
+.btn-outline-hero{background:var(--btn-bg);color:var(--text);border:1px solid var(--border);padding:15px 32px;border-radius:50px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(10px);transition:.4s var(--ease);cursor:pointer;font-family:'Urbanist',sans-serif;}
+.btn-outline-hero:hover{background:var(--btn-hover);border-color:var(--text-mute);}
+.footer-inner{border-top:1px solid var(--border);padding-top:40px;color:var(--text-mute);font-size:.88rem;text-align:center;}
+.footer-links{display:flex;justify-content:center;gap:28px;margin:16px 0;flex-wrap:wrap;}
+.footer-links a{color:var(--text-mute);font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.5px;}
+.footer-links a:hover{color:var(--accent);}
+.reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+#particleCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* CAPABILITY CARDS */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.cap-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.4s var(--ease);}
+.cap-card:hover{border-color:var(--border-h);background:var(--bg-card-h);transform:translateY(-3px);}
+.cap-num{font-size:2rem;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;margin-bottom:10px;}
+.cap-title{font-size:.92rem;font-weight:700;margin-bottom:6px;}
+.cap-desc{font-size:.8rem;color:var(--text-mute);line-height:1.6;}
+
+/* LEVEL FLOW */
+.level-flow{display:flex;flex-direction:column;gap:16px;margin-top:40px;}
+.level-row{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start;}
+.level-tag{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 12px;border-radius:14px;text-align:center;}
+.level-tag.l1{background:rgba(148,163,184,.06);border:1px solid rgba(148,163,184,.15);}
+.level-tag.l2{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);}
+.level-tag.l3{background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.2);}
+.level-tag.l4{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);}
+.level-tag .lt-num{font-size:1.6rem;font-weight:900;letter-spacing:-1px;line-height:1;}
+.level-tag.l1 .lt-num{color:var(--text-mute);}
+.level-tag.l2 .lt-num{color:var(--accent);}
+.level-tag.l3 .lt-num{color:var(--accent-alt);}
+.level-tag.l4 .lt-num{color:var(--amber);}
+.level-tag .lt-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.level-tag.l1 .lt-label{color:var(--text-mute);}
+.level-tag.l2 .lt-label,.level-tag.l3 .lt-label{color:var(--accent);}
+.level-tag.l4 .lt-label{color:var(--amber);}
+.level-content{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;}
+.level-content h4{font-size:.95rem;font-weight:700;margin-bottom:6px;}
+.level-content p{font-size:.82rem;color:var(--text-mute);line-height:1.6;margin-bottom:10px;}
+.level-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.lpill{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;background:var(--btn-bg);border:1px solid var(--border);color:var(--text-mute);}
+.lpill.green{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.2);color:var(--accent);}
+.lpill.amber{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.2);color:var(--amber);}
+
+@media(max-width:992px){
+  .nav-links{display:none;}
+  .g2,.g3,.cap-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;}
+  .process-grid::before{display:none;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+  .slide-dots{display:none;}
+  .level-row{grid-template-columns:90px 1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="https://clickdigital.com.ar" class="logo-text">ClickDigital</a>
+    <ul class="nav-links">
+      <li><a href="#problema">El problema</a></li>
+      <li><a href="#capacidades">Capacidades</a></li>
+      <li><a href="#costos">Costos</a></li>
+      <li><a href="#roi">ROI</a></li>
+      <li><a href="#planes">Planes</a></li>
+    </ul>
+    <div class="nav-ctrls">
+      <button class="ctrl-btn theme-btn" id="themeToggle">
+        <i class="uil uil-moon dark-icon"></i>
+        <i class="uil uil-sun light-icon"></i>
+      </button>
+      <a href="https://wa.me/5491156571982?text=Quiero%20agendar%20una%20demo%20del%20Agente%20Virtual%20para%20mi%20estudio%20jur%C3%ADdico" target="_blank" class="btn-primary" style="margin-left:8px;">
+        <i class="uil uil-calendar-alt"></i> Demo gratuita
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="slide-dots" id="slideDots"></div>
+
+<!-- ══ PORTADA ══ -->
+<section class="slide" id="s-portada" style="text-align:center;overflow:hidden;">
+  <canvas id="particleCanvas"></canvas>
+  <div class="container" style="z-index:2;position:relative;">
+    <div class="hero-tag" style="margin:0 auto 28px;">Agente Virtual para Estudios Jurídicos · by ClickDigital</div>
+    <h1 class="big-h" style="font-size:clamp(3rem,6.5vw,5.2rem);max-width:860px;margin:0 auto 24px;">
+      Tu estudio atiende<br><em>aunque estés en audiencia.</em>
+    </h1>
+    <p class="sub-p" style="margin:0 auto 44px;text-align:center;">
+      Un sistema de IA que responde consultas, filtra casos, agenda turnos y mantiene tu pipeline actualizado — en todos tus canales, las 24 horas, sin que intervengas.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/5491156571982?text=Quiero%20agendar%20una%20demo%20del%20Agente%20Virtual%20para%20mi%20estudio%20jur%C3%ADdico" target="_blank" class="btn-hero">
+        <i class="uil uil-rocket"></i> Quiero empezar
+      </a>
+      <button class="btn-outline-hero" onclick="document.getElementById('problema').scrollIntoView({behavior:'smooth'})">
+        <i class="uil uil-arrow-down"></i> Ver presentación
+      </button>
+    </div>
+    <div class="stats-strip reveal">
+      <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-lab">Atención automática</span></div>
+      <div class="stat-item"><span class="stat-num">&lt;30s</span><span class="stat-lab">Tiempo de respuesta</span></div>
+      <div class="stat-item"><span class="stat-num">80%</span><span class="stat-lab">Consultas resueltas solas</span></div>
+      <div class="stat-item"><span class="stat-num">$0</span><span class="stat-lab">Setup en plan Starter</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EL PROBLEMA ══ -->
+<section class="slide" id="problema" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">El problema</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Cada consulta sin respuesta<br>es un cliente que <em>elige otro estudio.</em></h2>
+  <div class="g2 reveal" style="margin-top:40px;">
+    <div class="glass red-top" style="padding:32px;">
+      <div class="metric red">79%</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">elige al primer abogado que responde</h3>
+      <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;">Cuando alguien necesita un abogado tiene urgencia. Si no recibe respuesta rápida, llama al siguiente del listado — sin importar tu trayectoria o especialización.</p>
+      <div class="src">Clio Legal Trends Report 2024 · Attorney at Work Survey</div>
+    </div>
+    <div class="glass red-top" style="padding:32px;">
+      <div class="metric red">42%</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">de las consultas llegan fuera del horario de oficina</h3>
+      <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;">Las personas buscan abogados cuando tienen el problema encima: a la noche, el fin de semana, en medio de una crisis. Exactamente cuando el estudio está cerrado.</p>
+      <div class="src">MyCase Legal Industry Report 2024</div>
+    </div>
+    <div class="glass amber-top" style="padding:32px;">
+      <div class="metric amber">40%</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">del tiempo del abogado se va en tareas no facturables</h3>
+      <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;">Atender consultas iniciales, coordinar turnos, responder preguntas básicas sobre honorarios y procedimientos — todo tiempo que no se factura y que la IA puede resolver.</p>
+      <div class="src">Thomson Reuters Institute 2024 · Clio Legal Trends</div>
+    </div>
+    <div class="glass amber-top" style="padding:32px;">
+      <div class="metric amber">3.9x</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px;">más ingresos en estudios con comunicación digital</h3>
+      <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;">Estudios que adoptan herramientas digitales de atención generan casi 4 veces más ingresos que los que siguen solo con teléfono y mail.</p>
+      <div class="src">Clio Legal Trends Report 2024</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ CASO TÍPICO ══ -->
+<section class="slide" id="caso">
+<div class="container">
+  <div class="section-label reveal">El caso típico</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Lo que pasa mientras<br><em>estás en audiencia.</em></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;" class="reveal">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:20px;">
+        <i class="uil uil-times-circle"></i> Sin Agente Virtual — el mejor escenario
+      </div>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-time">10:15</div>
+          <div class="tl-card lost"><div class="tl-dot"></div>
+            <div class="tl-title">Potencial cliente escribe</div>
+            <div class="tl-text">"Hola, me despidieron hoy. ¿Atienden casos laborales?"</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">10:16</div>
+          <div class="tl-card lost"><div class="tl-dot"></div>
+            <div class="tl-title">Silencio. Estás en audiencia.</div>
+            <div class="tl-text">El mensaje queda en visto. El cliente está angustiado y no sabe si lo recibiste.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">10:20</div>
+          <div class="tl-card lost"><div class="tl-dot"></div>
+            <div class="tl-title">Busca otro estudio</div>
+            <div class="tl-text">Googlea "abogado laboral". Escribe a otros dos estudios.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">13:30</div>
+          <div class="tl-card lost"><div class="tl-dot"></div>
+            <div class="tl-title">Salís de audiencia y respondés</div>
+            <div class="tl-text">"Hola! Sí atendemos casos laborales..."</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">13:31</div>
+          <div class="tl-card lost"><div class="tl-dot"></div>
+            <div class="tl-title">Ya tiene abogado</div>
+            <div class="tl-text">"Gracias, ya contraté a otro que respondió enseguida."</div>
+            <div class="badge red">Cliente perdido — 3 hs tarde</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:20px;">
+        <i class="uil uil-check-circle"></i> Con Agente Virtual — sin que intervengas
+      </div>
+      <div class="tl">
+        <div class="tl-row">
+          <div class="tl-time">10:15</div>
+          <div class="tl-card won"><div class="tl-dot"></div>
+            <div class="tl-title">Potencial cliente escribe</div>
+            <div class="tl-text">"Hola, me despidieron hoy. ¿Atienden casos laborales?"</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">10:15</div>
+          <div class="tl-card won"><div class="tl-dot"></div>
+            <div class="tl-title">IA responde al instante</div>
+            <div class="tl-text">"Hola, lamentamos lo que estás pasando. Sí atendemos derecho laboral. ¿Fue con o sin causa? Te cuento cómo podemos ayudarte."</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">10:18</div>
+          <div class="tl-card won"><div class="tl-dot"></div>
+            <div class="tl-title">Recolecta información del caso</div>
+            <div class="tl-text">Antigüedad, tipo de relación, liquidación recibida, documentación disponible. Todo listo para la primera reunión.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">10:22</div>
+          <div class="tl-card won"><div class="tl-dot"></div>
+            <div class="tl-title">Agenda el turno y registra el caso</div>
+            <div class="tl-text">Propone horarios, confirma la reunión y carga el lead con todos los datos en tu sistema. Sin que toques el teléfono.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">13:30</div>
+          <div class="tl-card won"><div class="tl-dot"></div>
+            <div class="tl-title">Salís de audiencia con la agenda llena</div>
+            <div class="tl-text">Tenés el caso registrado, los datos pre-cargados y el turno confirmado. Solo llegás y ejercés tu profesión.</div>
+            <div class="badge green">Cliente capturado — 100% automático</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ CAPACIDADES ══ -->
+<section class="slide" id="capacidades" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">Qué puede hacer</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Un sistema que trabaja<br><em>dentro y fuera</em> del estudio.</h2>
+  <p class="sub-p reveal">Las capacidades se activan según el plan y las necesidades del estudio. No hay un único modelo — armamos el sistema que tiene sentido para tu operación.</p>
+
+  <!-- HACIA AFUERA -->
+  <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-mute);margin-bottom:14px;" class="reveal">
+    Hacia afuera — atención al potencial cliente
+  </div>
+  <div class="cap-grid reveal" style="margin-top:0;">
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-comment-dots"></i></div>
+      <div class="cap-title">Respuesta inmediata 24/7</div>
+      <div class="cap-desc">El primer mensaje siempre recibe una respuesta en segundos — aunque sean las 3am o un domingo de feria.</div>
+    </div>
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-filter"></i></div>
+      <div class="cap-title">Filtrado y clasificación de casos</div>
+      <div class="cap-desc">La IA identifica el área de práctica, evalúa la urgencia y determina si el caso es para el estudio antes de molestar a nadie.</div>
+    </div>
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-info-circle"></i></div>
+      <div class="cap-title">FAQ jurídico del estudio</div>
+      <div class="cap-desc">Responde preguntas frecuentes: honorarios orientativos, documentación necesaria por tipo de caso, plazos, procedimientos. Sin dar asesoramiento legal.</div>
+    </div>
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-calendar-alt"></i></div>
+      <div class="cap-title">Agenda de turnos automática</div>
+      <div class="cap-desc">Propone horarios disponibles, confirma la reunión y envía recordatorios. El cliente llega puntual, el abogado ya tiene el contexto.</div>
+    </div>
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-database"></i></div>
+      <div class="cap-title">Registro automático del lead</div>
+      <div class="cap-desc">Cada consulta se registra con nombre, contacto, tipo de caso y urgencia. Nada queda en el chat de WhatsApp — todo va al sistema.</div>
+    </div>
+    <div class="cap-card">
+      <div class="icon-box"><i class="uil uil-users-alt"></i></div>
+      <div class="cap-title">Derivación por especialidad</div>
+      <div class="cap-desc">Para estudios con varios abogados: la IA asigna el caso al profesional correcto según el área de práctica y notifica directamente.</div>
+    </div>
+  </div>
+
+  <!-- HACIA ADENTRO -->
+  <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--amber);margin:40px 0 14px;" class="reveal">
+    Hacia adentro — herramientas para el abogado
+  </div>
+  <div class="cap-grid reveal" style="margin-top:0;">
+    <div class="cap-card" style="border-color:rgba(245,158,11,.15);">
+      <div class="icon-box" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-file-edit-alt"></i></div>
+      <div class="cap-title">Redacción de escritos y borradores</div>
+      <div class="cap-desc">El abogado describe el caso y recibe un borrador de carta documento, demanda o contrato en minutos. Él revisa, corrige y firma.</div>
+    </div>
+    <div class="cap-card" style="border-color:rgba(245,158,11,.15);">
+      <div class="icon-box" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-search"></i></div>
+      <div class="cap-title">Búsqueda en base jurídica propia</div>
+      <div class="cap-desc">La IA busca en la jurisprudencia, doctrina y modelos de escritos del propio estudio. Encuentra precedentes relevantes en segundos.</div>
+    </div>
+    <div class="cap-card" style="border-color:rgba(245,158,11,.15);">
+      <div class="icon-box" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-file-alt"></i></div>
+      <div class="cap-title">Resumen de expedientes</div>
+      <div class="cap-desc">"Resumime el caso García antes de la audiencia" — la IA lee el historial y entrega un resumen ejecutivo con los puntos clave en segundos.</div>
+    </div>
+  </div>
+  <div class="glass reveal" style="padding:16px 24px;margin-top:12px;display:flex;align-items:center;gap:14px;">
+    <i class="uil uil-shield-check" style="color:var(--amber);font-size:1.2rem;flex-shrink:0;"></i>
+    <div style="font-size:.82rem;color:var(--text-mute);line-height:1.6;">
+      <strong style="color:var(--text);">Importante:</strong> la IA nunca da asesoramiento legal al cliente ni firma escritos. Genera borradores que el abogado revisa y valida. La responsabilidad profesional siempre es del abogado.
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ NIVELES DE IMPLEMENTACIÓN ══ -->
+<section class="slide" id="niveles" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">Cómo se implementa</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Cuatro niveles.<br><em>Empezás donde tiene sentido.</em></h2>
+  <p class="sub-p reveal">No todos los estudios necesitan lo mismo. Evaluamos tu operación y definimos el nivel de implementación que tiene sentido hoy — y el camino para escalar después.</p>
+
+  <div class="level-flow reveal">
+    <div class="level-row">
+      <div class="level-tag l1">
+        <div class="lt-num">01</div>
+        <div class="lt-label">Base</div>
+      </div>
+      <div class="level-content">
+        <h4>Presencia unificada y atención centralizada</h4>
+        <p>Todos los canales del estudio en un solo panel. La recepcionista o los abogados atienden desde un único lugar, con respuestas automáticas configuradas. Nunca más revisar 4 apps por separado.</p>
+        <div class="level-pills">
+          <span class="lpill green">Panel unificado</span>
+          <span class="lpill green">WhatsApp Business</span>
+          <span class="lpill green">Email</span>
+          <span class="lpill green">Respuestas automáticas</span>
+          <span class="lpill green">Métricas de respuesta por agente</span>
+        </div>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-tag l2">
+        <div class="lt-num">02</div>
+        <div class="lt-label">IA</div>
+      </div>
+      <div class="level-content">
+        <h4>Agente de IA conversacional + agenda automática</h4>
+        <p>La IA filtra casos, recolecta información del cliente y agenda el turno sola. Los abogados y la recepcionista solo intervienen cuando el caso ya está calificado y el turno confirmado.</p>
+        <div class="level-pills">
+          <span class="lpill green">Todo el nivel Base</span>
+          <span class="lpill green">IA entrenada con el estudio</span>
+          <span class="lpill green">Filtrado de urgencia</span>
+          <span class="lpill green">Agenda automática</span>
+          <span class="lpill green">Handoff a humano cuando es necesario</span>
+        </div>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-tag l3">
+        <div class="lt-num">03</div>
+        <div class="lt-label">CRM</div>
+      </div>
+      <div class="level-content">
+        <h4>Pipeline de casos actualizado automáticamente</h4>
+        <p>Cada consulta de WhatsApp entra sola al CRM como lead con etapa, datos del caso y urgencia. El abogado llega a la oficina y ya sabe qué casos nuevos entraron y cuál es el próximo paso en cada uno.</p>
+        <div class="level-pills">
+          <span class="lpill green">Todo el nivel IA</span>
+          <span class="lpill green">CRM integrado</span>
+          <span class="lpill green">Lead automático por cada consulta</span>
+          <span class="lpill green">Pipeline visual por etapas</span>
+          <span class="lpill green">Seguimiento de deals</span>
+          <span class="lpill amber">Según sistema del estudio</span>
+        </div>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-tag l4">
+        <div class="lt-num">04</div>
+        <div class="lt-label">Legal AI</div>
+      </div>
+      <div class="level-content">
+        <h4>IA jurídica interna — escritos, búsqueda y resúmenes</h4>
+        <p>La IA trabaja dentro del estudio: redacta borradores de escritos, busca en la jurisprudencia y modelos propios del estudio, y resume expedientes antes de audiencias. El abogado recupera horas facturables por día.</p>
+        <div class="level-pills">
+          <span class="lpill green">Todo el nivel CRM</span>
+          <span class="lpill amber">Base de conocimiento jurídico propia</span>
+          <span class="lpill amber">Redacción de escritos y contratos</span>
+          <span class="lpill amber">Búsqueda de jurisprudencia</span>
+          <span class="lpill amber">Resumen de expedientes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ COSTOS ══ -->
+<section class="slide" id="costos" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">El costo real</div>
+  <h2 class="big-h reveal" style="max-width:780px;">¿Qué podrías hacer con<br><em>2 horas facturables más por día?</em></h2>
+  <p class="sub-p reveal">El tiempo que hoy se va en atender consultas iniciales, coordinar turnos y responder preguntas básicas es tiempo que podrías estar facturando.</p>
+
+  <div class="glass reveal" style="padding:28px 32px;margin-bottom:24px;border-color:rgba(245,158,11,.2);">
+    <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--amber);margin-bottom:16px;">Lo que hoy hacés vos — y lo que podrías hacer en cambio</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:10px;">Hoy gastás</div>
+        <div style="background:var(--btn-bg);border:1px solid rgba(239,68,68,.15);border-radius:12px;padding:16px 18px;margin-bottom:10px;">
+          <div style="font-size:1.8rem;font-weight:900;color:var(--red);letter-spacing:-1px;line-height:1;">2–3 hs</div>
+          <div style="font-size:.78rem;color:var(--text-mute);margin-top:4px;line-height:1.5;">diarias en consultas sin filtrar, turnos y preguntas básicas que no facturás</div>
+        </div>
+        <div style="background:var(--btn-bg);border:1px solid rgba(239,68,68,.15);border-radius:12px;padding:16px 18px;">
+          <div style="font-size:1.8rem;font-weight:900;color:var(--red);letter-spacing:-1px;line-height:1;">0 hs</div>
+          <div style="font-size:.78rem;color:var(--text-mute);margin-top:4px;line-height:1.5;">de cobertura mientras estás en audiencia, redactando o en reuniones</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:10px;">Con el Agente Virtual podrías</div>
+        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+          <i class="uil uil-invoice" style="color:var(--accent);font-size:1.1rem;flex-shrink:0;"></i>
+          <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Facturar 2 horas más por día de trabajo real</div>
+        </div>
+        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+          <i class="uil uil-focus" style="color:var(--accent);font-size:1.1rem;flex-shrink:0;"></i>
+          <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Concentrarte en los casos que importan sin interrupciones</div>
+        </div>
+        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+          <i class="uil uil-chart-growth" style="color:var(--accent);font-size:1.1rem;flex-shrink:0;"></i>
+          <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Recibir más clientes sin aumentar la carga operativa</div>
+        </div>
+        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:10px;">
+          <i class="uil uil-heart" style="color:var(--accent);font-size:1.1rem;flex-shrink:0;"></i>
+          <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Terminar el día sin mensajes pendientes acumulados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2 reveal">
+    <div class="glass" style="padding:32px;border-color:rgba(239,68,68,.2);">
+      <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:18px;">Si contratás una secretaria/recepcionista</div>
+      <div class="cost-line"><span class="name">Sueldo bruto</span><span class="val red">$900.000</span></div>
+      <div class="cost-line"><span class="name">Cargas sociales (~35%)</span><span class="val red">$315.000</span></div>
+      <div class="cost-line"><span class="name">SAC prorrateado</span><span class="val red">$100.000</span></div>
+      <div class="cost-line"><span class="name">Horas de cobertura</span><span class="val">8 hs/día · Lun–Vie</span></div>
+      <div class="cost-line"><span class="name">Noches y fines de semana</span><span class="val red">Sin cobertura</span></div>
+      <div class="cost-line"><span class="name">Canales simultáneos</span><span class="val">1 persona · 1 canal</span></div>
+      <div class="cost-total-row">
+        <span class="cost-label-sm">Costo mensual mínimo</span>
+        <span class="cost-val-big red">~$1.315.000</span>
+      </div>
+      <div style="margin-top:14px;padding:12px 14px;background:rgba(239,68,68,.05);border-radius:10px;font-size:.78rem;color:var(--text-mute);line-height:1.6;">
+        Ese capital mensual podría ir a capacitación, a un abogado junior, a marketing del estudio, o directamente a tu facturación.
+      </div>
+    </div>
+    <div class="glass" style="padding:32px;border-color:var(--border-h);">
+      <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;">Agente Virtual — Plan Pro</div>
+      <div class="cost-line"><span class="name">Precio mensual</span><span class="val green">$380 USD</span></div>
+      <div class="cost-line"><span class="name">En pesos (ref. $1.300/USD)</span><span class="val green">~$494.000</span></div>
+      <div class="cost-line"><span class="name">Cargas sociales / SAC</span><span class="val green">$0</span></div>
+      <div class="cost-line"><span class="name">Horas de cobertura</span><span class="val green">24 hs · 365 días</span></div>
+      <div class="cost-line"><span class="name">Canales simultáneos</span><span class="val green">Todos al mismo tiempo</span></div>
+      <div class="cost-line"><span class="name">Tu tiempo liberado</span><span class="val green">40–60 hs/mes</span></div>
+      <div class="cost-total-row">
+        <span class="cost-label-sm">Costo mensual total</span>
+        <span class="cost-val-big green">~$494.000</span>
+      </div>
+    </div>
+  </div>
+  <div class="saving-banner reveal">
+    <div class="big">+$820.000/mes disponibles para crecer</div>
+    <p>Lo que antes ibas a gastar en atención podés invertirlo en lo que realmente hace crecer el estudio. Cobertura 24hs · 365 días · todos los canales · sin ausencias ni aguinaldo.</p>
+  </div>
+  <div class="src reveal" style="text-align:center;margin-top:12px;">* Comparación basada en escala salarial empleados administrativos + cargas sociales. Tipo de cambio referencial.</div>
+</div>
+</section>
+
+<!-- ══ ROI ══ -->
+<section class="slide" id="roi" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">El retorno</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Con capturar 2 clientes<br>nuevos por mes, <em>se paga solo.</em></h2>
+  <p class="sub-p reveal">Los honorarios varían por área y complejidad. Pero el razonamiento es el mismo en cualquier práctica: cada cliente perdido por falta de respuesta tiene un valor concreto.</p>
+
+  <div class="g3 reveal" style="margin-top:32px;">
+    <div class="glass" style="padding:28px;">
+      <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin-bottom:14px;">Abogado independiente</div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$350.000</span></div>
+      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">2</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$700.000</span></div>
+      <div class="roi-row"><span class="k">Horas facturables recuperadas</span><span class="v green">40 hs/mes</span></div>
+      <div class="roi-row"><span class="k">Costo plan Starter</span><span class="v">~$325.000</span></div>
+      <div class="roi-result">
+        <span class="rl">Ganancia neta/mes</span>
+        <span class="rv" style="font-size:1.3rem;">+$375.000</span>
+      </div>
+      <div class="src" style="margin-top:8px;">Sin contar el valor de las horas recuperadas para trabajo facturable.</div>
+    </div>
+    <div class="glass" style="padding:28px;border-color:var(--border-h);">
+      <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:14px;">Estudio chico · 2-5 abogados ★</div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$600.000</span></div>
+      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">3</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$1.800.000</span></div>
+      <div class="roi-row"><span class="k">Horas facturables recuperadas</span><span class="v green">60 hs/mes</span></div>
+      <div class="roi-row"><span class="k">Costo plan Pro</span><span class="v">~$494.000</span></div>
+      <div class="roi-result">
+        <span class="rl">Ganancia neta/mes</span>
+        <span class="rv">+$1.306.000</span>
+      </div>
+      <div class="src" style="margin-top:8px;">3 clientes nuevos al mes que antes se perdían por falta de respuesta.</div>
+    </div>
+    <div class="glass" style="padding:28px;border-color:rgba(245,158,11,.3);">
+      <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--amber);margin-bottom:14px;">Estudio mediano · 5-20 abogados</div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$1.200.000</span></div>
+      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">4</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$4.800.000</span></div>
+      <div class="roi-row"><span class="k">Derivación automática por área</span><span class="v green">Incluido</span></div>
+      <div class="roi-row"><span class="k">Costo plan Full</span><span class="v">~$676.000</span></div>
+      <div class="roi-result">
+        <span class="rl">Ganancia neta/mes</span>
+        <span class="rv" style="color:var(--amber);">+$4.124.000</span>
+      </div>
+      <div class="src" style="margin-top:8px;">Derivación automática al abogado correcto según área de práctica.</div>
+    </div>
+  </div>
+
+  <div class="glass reveal" style="padding:24px 32px;margin-top:20px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:220px;">
+      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">Punto de equilibrio</div>
+      <div style="font-size:1.9rem;font-weight:900;letter-spacing:-1px;">1–2 clientes/mes</div>
+      <div style="font-size:.82rem;color:var(--text-mute);margin-top:4px;line-height:1.6;">Con capturar 1 o 2 clientes nuevos por mes que antes se perdían por no responder a tiempo, el servicio se paga solo desde el primer mes.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div class="badge green">Sin contratos laborales</div>
+      <div class="badge green">Sin cargas sociales</div>
+      <div class="badge green">Sin ausencias</div>
+      <div class="badge green">40–60 hs/mes liberadas</div>
+      <div class="badge green">Operativo en 7 días</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ PLANES ══ -->
+<section class="slide" id="planes" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">Los planes</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Empezás sin riesgo.<br><em>Escalás cuando lo necesitás.</em></h2>
+
+  <!-- TABLA COMPARATIVA -->
+  <div class="glass reveal" style="padding:20px 28px;margin-top:40px;margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr repeat(3,1fr);gap:0;font-size:.78rem;">
+      <div style="padding:8px 0;color:var(--text-mute);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:.65rem;"></div>
+      <div style="padding:8px 12px;text-align:center;font-weight:800;color:var(--text-mute);">Starter</div>
+      <div style="padding:8px 12px;text-align:center;font-weight:800;color:var(--accent);">Pro</div>
+      <div style="padding:8px 12px;text-align:center;font-weight:800;color:var(--amber);">Full</div>
+
+      <div style="padding:10px 0;border-top:1px solid var(--border);color:var(--text-mute);font-size:.75rem;">¿Quién atiende?</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;">Equipo desde un panel</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--accent);">IA filtra + equipo cierra</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--amber);">IA filtra, agenda y deriva</div>
+
+      <div style="padding:10px 0;border-top:1px solid var(--border);color:var(--text-mute);font-size:.75rem;">¿Qué resuelve?</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;">No perder consultas</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--accent);">No perder clientes + pipeline</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--amber);">Captación automática total</div>
+
+      <div style="padding:10px 0;border-top:1px solid var(--border);color:var(--text-mute);font-size:.75rem;">Nivel de implementación</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;">01 — Base</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--accent);">02 IA + 03 CRM</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--amber);">02 IA + 03 CRM + derivación</div>
+
+      <div style="padding:10px 0;border-top:1px solid var(--border);color:var(--text-mute);font-size:.75rem;">Setup de entrada</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-weight:800;color:var(--accent);font-size:.85rem;">$0</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">$400 USD</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">desde $500 USD</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="reveal">
+    <!-- STARTER -->
+    <div class="plan-card">
+      <div class="plan-tier">Plan 01</div>
+      <div class="plan-name">Starter</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:5px 12px;margin-bottom:14px;">
+        <i class="uil uil-gift" style="color:var(--accent);font-size:.85rem;"></i>
+        <span style="font-size:.72rem;color:var(--accent);font-weight:700;">Sin costo de setup</span>
+      </div>
+      <div class="plan-price"><sup>USD</sup>250</div>
+      <div class="plan-period">USD / mes · hasta 2 usuarios en el panel</div>
+      <p class="plan-desc">Tu estudio presente y organizado en todos los canales. Ninguna consulta se pierde aunque estés en audiencia.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span><strong>Conexión y configuración incluida</strong> — todos los canales integrados por nosotros</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel unificado — todos los mensajes en un solo lugar</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Respuestas automáticas con info del estudio y áreas de práctica</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Métricas de respuesta por agente</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Soporte y mantenimiento continuo incluido</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>IA conversacional avanzada</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>CRM y pipeline de casos</span></div>
+      <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Starter%20del%20Agente%20Virtual%20para%20mi%20estudio%20jur%C3%ADdico','_blank')">Empezar sin riesgo</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="plan-card featured">
+      <div class="plan-badge">Más elegido</div>
+      <div class="plan-tier">Plan 02</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>$400 USD</strong></div>
+      <div class="plan-price"><sup>USD</sup>380</div>
+      <div class="plan-period">USD / mes · hasta 3 usuarios en el panel</div>
+      <p class="plan-desc">IA que filtra casos, recolecta info y agenda turnos + pipeline de casos actualizado automáticamente. El equipo solo interviene cuando el caso ya está calificado.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Starter incluido</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>IA entrenada con el estudio — áreas, honorarios, procedimientos</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Filtrado de urgencia y tipo de caso</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Agenda automática de turnos</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>CRM integrado — cada consulta entra sola como lead</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Pipeline visual con etapas del caso</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>Derivación automática por especialidad</span></div>
+      <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Pro%20del%20Agente%20Virtual%20para%20mi%20estudio%20jur%C3%ADdico','_blank')">Empezar con Pro</button>
+    </div>
+
+    <!-- FULL -->
+    <div class="plan-card">
+      <div class="plan-tier">Plan 03</div>
+      <div class="plan-name">Full</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>desde $500 USD</strong></div>
+      <div class="plan-price"><sup>USD</sup>520</div>
+      <div class="plan-period">USD / mes · hasta 4 usuarios en el panel</div>
+      <p class="plan-desc">Para estudios con varios abogados. La IA deriva el caso al profesional correcto según área de práctica, agenda y notifica automáticamente a cada uno.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Pro incluido</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Derivación automática por área de práctica</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Cada abogado recibe sus leads directamente</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Agenda integrada por abogado</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Notificación automática al profesional asignado</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Reportes por abogado y área de práctica</span></div>
+      <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Full%20del%20Agente%20Virtual%20para%20mi%20estudio%20jur%C3%ADdico','_blank')">Consultar Full</button>
+    </div>
+  </div>
+
+  <!-- ADDONS -->
+  <div class="reveal" style="margin-top:12px;">
+    <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin:32px 0 14px;display:flex;align-items:center;gap:10px;">
+      Módulos adicionales para cualquier plan
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-user-plus"></i></div><div><div class="addon-name">Usuario adicional</div><div class="addon-desc">Abogado o administrativo extra en el panel</div></div></div><div class="addon-price">+$45 USD/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-channel"></i></div><div><div class="addon-name">Canal adicional</div><div class="addon-desc">Instagram, Telegram u otro</div></div></div><div class="addon-price">+$25 USD/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-apps"></i></div><div><div class="addon-name">Integración con sistema propio</div><div class="addon-desc">Conexión con el software de gestión del estudio</div></div></div><div class="addon-price">desde +$80 USD/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-file-edit-alt"></i></div><div><div class="addon-name">Legal AI — IA jurídica interna</div><div class="addon-desc">Escritos, jurisprudencia y resumen de expedientes</div></div></div><div class="addon-price">+$200 USD/mes</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ PROCESO ══ -->
+<section class="slide" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">Cómo funciona</div>
+  <h2 class="big-h reveal" style="max-width:600px;"><em>Operativo en 7 días.</em><br>Sin complicaciones técnicas.</h2>
+  <div class="process-grid reveal" style="margin-top:48px;">
+    <div style="text-align:center;">
+      <div class="step-num">1</div>
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Demo gratuita</h4>
+      <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">30 minutos para entender tu estudio — áreas de práctica, equipo, canales actuales y cómo llegan los clientes hoy.</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="step-num">2</div>
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Diseño a medida</h4>
+      <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Definimos juntos el nivel de implementación y las integraciones. Vos no tomás decisiones técnicas — nosotros te recomendamos qué tiene sentido.</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="step-num">3</div>
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Configuración</h4>
+      <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Conectamos los canales, cargamos la información del estudio y probamos todos los flujos con casos reales. Vos no tocás nada técnico.</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="step-num">4</div>
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">En vivo</h4>
+      <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Operativo. Los primeros 30 días ajustamos lo que sea necesario sin costo extra. Soporte continuo incluido.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="slide" style="border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal">Preguntas frecuentes</div>
+  <h2 class="big-h reveal" style="max-width:640px;">Todo lo que querés saber<br>antes de <em>empezar.</em></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;" class="reveal">
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-shield-check"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿La IA da asesoramiento legal?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">No. La IA nunca da opiniones ni asesoramiento jurídico al cliente. Recolecta información, filtra urgencia y agenda el turno. Todo el trabajo legal sigue siendo del abogado.</div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-question-circle"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿Puedo tomar el control de una conversación cuando quiero?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Sí, siempre. El panel muestra todas las conversaciones en tiempo real. Cualquier miembro del equipo puede intervenir en cualquier momento.</div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-question-circle"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿Qué pasa si el caso es urgente?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">La IA detecta indicadores de urgencia y puede notificarte directamente o priorizar la derivación. Los criterios de urgencia los definís vos en la configuración.</div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-question-circle"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿Funciona con el software que ya usamos?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Depende del sistema. Evaluamos en la demo qué integraciones son posibles. En muchos casos adaptamos la solución a lo que ya tienen sin necesidad de cambiar nada.</div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-question-circle"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿Hay contrato de permanencia?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">No. El servicio es mes a mes. Podés cancelar cuando quieras. El único costo fijo es la configuración inicial en los planes Pro y Full.</div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="padding:24px 28px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div class="icon-box" style="width:36px;height:36px;font-size:.95rem;flex-shrink:0;margin-bottom:0;"><i class="uil uil-question-circle"></i></div>
+        <div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:6px;">¿Tenemos varios abogados con distintas especialidades — funciona igual?</div>
+          <div style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Sí, es una de las mayores ventajas del Plan Full. La IA identifica el área del caso y deriva al abogado correcto automáticamente, notificándolo directamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="slide" style="text-align:center;border-top:1px solid var(--border);">
+<div class="container">
+  <div class="section-label reveal" style="justify-content:center;">Siguiente paso</div>
+  <h2 class="big-h reveal" style="font-size:clamp(2.8rem,6vw,4.8rem);max-width:760px;margin:0 auto 20px;">¿Cuántos clientes perdiste<br>mientras <em>estabas en audiencia?</em></h2>
+  <p class="sub-p reveal" style="text-align:center;margin:0 auto 44px;">Demo gratuita de 30 minutos. Te mostramos cómo funciona aplicado a tu estudio y tus áreas de práctica. Sin compromiso ni permanencia.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal">
+    <a href="https://wa.me/5491156571982?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20del%20Agente%20Virtual%20para%20estudios%20jur%C3%ADdicos%20y%20quiero%20agendar%20una%20demo%20gratuita." target="_blank" class="btn-hero">
+      <i class="uil uil-rocket"></i> Quiero empezar
+    </a>
+    <a href="https://wa.me/5491156571982?text=Quiero%20agendar%20una%20demo%20gratuita%20del%20Agente%20Virtual%20para%20estudios%20jur%C3%ADdicos." target="_blank" class="btn-outline-hero">
+      <i class="uil uil-calendar-alt"></i> Agendar demo gratuita
+    </a>
+  </div>
+  <div class="stats-strip reveal" style="max-width:760px;margin:56px auto 0;">
+    <div class="stat-item"><span class="stat-num">7 días</span><span class="stat-lab">Para estar operativo</span></div>
+    <div class="stat-item"><span class="stat-num">30 días</span><span class="stat-lab">Ajustes sin costo</span></div>
+    <div class="stat-item"><span class="stat-num">$0</span><span class="stat-lab">Sin permanencia</span></div>
+    <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-lab">Cobertura total</span></div>
+  </div>
+  <div class="footer-inner" style="margin-top:64px;">
+    <div style="margin-bottom:14px;"><span class="logo-text" style="font-size:1.3rem;">ClickDigital</span></div>
+    <div class="footer-links">
+      <a href="https://clickdigital.com.ar#quienes">Quiénes Somos</a>
+      <a href="https://clickdigital.com.ar#servicios">Soluciones</a>
+      <a href="https://clickdigital.com.ar#proceso">Proceso</a>
+      <a href="https://clickdigital.com.ar#ultimos">Portfolio</a>
+      <a href="https://clickdigital.com.ar#contacto">Contacto</a>
+    </div>
+    <div style="margin-top:12px;font-size:.82rem;">
+      <p>&copy; <span id="year"></span> ClickDigital · Todos los derechos reservados.</p>
+      <p style="margin-top:4px;">Buenos Aires, Argentina &nbsp;|&nbsp; info@clickdigital.com.ar</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<script>
+let currentTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', currentTheme);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  localStorage.setItem('theme', currentTheme);
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, balls = [];
+class Ball {
+  constructor() { this.reset(); }
+  reset() {
+    this.x=Math.random()*W; this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*1.1; this.vy=(Math.random()-.5)*1.1;
+    this.r=Math.random()*2.5+.5; this.a=Math.random()*.4+.15;
+  }
+  update() {
+    this.x+=this.vx; this.y+=this.vy;
+    if(this.x<0||this.x>W)this.vx*=-1;
+    if(this.y<0||this.y>H)this.vy*=-1;
+  }
+  draw() {
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(16,185,129,${this.a})`; ctx.fill();
+  }
+}
+function setupCanvas(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;balls=[];const n=Math.min(Math.floor(W/12),110);for(let i=0;i<n;i++)balls.push(new Ball());}
+function loop(){ctx.clearRect(0,0,W,H);balls.forEach(b=>{b.update();b.draw();});requestAnimationFrame(loop);}
+window.addEventListener('resize',setupCanvas);setupCanvas();loop();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('slideDots');
+const progressEl=document.getElementById('progressBar');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='sdot';d.title=`Slide ${i+1}`;d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});dotsEl.appendChild(d);});
+function onScroll(){
+  const sy=window.scrollY;const dh=document.documentElement.scrollHeight-window.innerHeight;
+  progressEl.style.width=(dh>0?(sy/dh*100):0)+'%';
+  const dots=dotsEl.querySelectorAll('.sdot');
+  slides.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=window.innerHeight/2&&r.bottom>=window.innerHeight/2){dots.forEach(d=>d.classList.remove('active'));if(dots[i])dots[i].classList.add('active');}});
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>
