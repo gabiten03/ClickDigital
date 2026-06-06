@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agente Multicanal IA — ClickDigital</title>
+<meta name="description" content="Un agente de IA que atiende por WhatsApp, Instagram, Facebook y Email. Tus clientes siempre respondidos, vos siempre libre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<style>
+:root,[data-theme="dark"]{
+  --accent:#10B981;--accent-alt:#14B8A6;
+  --bg:#07090E;--bg-card:rgba(15,18,28,0.45);--bg-card-h:rgba(20,24,38,0.65);
+  --border:rgba(255,255,255,0.08);--border-h:rgba(16,185,129,0.25);
+  --text:#F1F5F9;--text-mute:#94A3B8;
+  --nav-bg:rgba(7,9,14,0.7);--btn-bg:rgba(255,255,255,0.02);--btn-hover:rgba(255,255,255,0.06);
+  --radius:20px;--nav-h:80px;--ease:cubic-bezier(0.25,1,0.35,1);
+  --wa:#25D366;--ig:#E1306C;--fb:#1877F2;--mail:#6366F1;
+}
+[data-theme="light"]{
+  --bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);
+  --border:rgba(0,0,0,0.08);--border-h:rgba(16,185,129,0.4);
+  --text:#0F172A;--text-mute:#475569;
+  --nav-bg:rgba(248,250,252,0.85);--btn-bg:rgba(0,0,0,0.03);--btn-hover:rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Urbanist',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+a{text-decoration:none;color:inherit;transition:.3s;}
+ul{list-style:none;}
+
+/* NAV */
+.logo{display:flex;align-items:center;}
+.logo img{height:34px;width:auto;display:block;}
+[data-theme="dark"] .logo-light{display:none!important;}
+[data-theme="dark"] .logo-dark{display:block!important;}
+[data-theme="light"] .logo-dark{display:none!important;}
+[data-theme="light"] .logo-light{display:block!important;}
+.logo-text{font-size:1.1rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent);}
+nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .4s,border-color .4s;}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;width:100%;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text-mute);text-transform:uppercase;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--accent);}
+.nav-ctrls{display:flex;gap:12px;align-items:center;}
+.ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-size:.75rem;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
+.ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+.theme-btn{width:36px;height:36px;font-size:1.1rem;}
+[data-theme="dark"] .light-icon{display:none;}
+[data-theme="light"] .dark-icon{display:none;}
+
+/* BUTTONS */
+.btn-primary{background:var(--accent);color:#000;padding:14px 32px;border-radius:50px;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(16,185,129,.2);cursor:pointer;border:none;font-family:'Urbanist',sans-serif;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(16,185,129,.35);}
+.btn-outline{background:var(--btn-bg);color:var(--text);border:1px solid var(--border);padding:14px 32px;border-radius:50px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(10px);transition:.4s var(--ease);}
+.btn-outline:hover{background:var(--btn-hover);border-color:var(--text-mute);}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:var(--nav-h);left:0;height:2px;background:var(--accent);z-index:999;transition:width .2s;box-shadow:0 0 8px rgba(16,185,129,.5);}
+
+/* SLIDE DOTS */
+.slide-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:100;}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--border);border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.3s;}
+.sdot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.4);}
+.sdot:hover{background:var(--accent);opacity:.6;}
+
+/* SLIDES */
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 60px) 0 80px;position:relative;border-bottom:1px solid var(--border);}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent);}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:28px;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.big-h{font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:20px;}
+.big-h em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-alt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sub-p{color:var(--text-mute);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:40px;}
+
+/* GLASS */
+.glass{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(20px);}
+.glass:hover{border-color:var(--border-h);}
+
+/* CHANNELS */
+.channels-strip{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;}
+.channel-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:50px;font-size:.85rem;font-weight:700;border:1px solid;transition:.3s var(--ease);}
+.channel-pill:hover{transform:translateY(-3px);}
+.ch-wa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.25);color:var(--wa);}
+.ch-ig{background:rgba(225,48,108,.08);border-color:rgba(225,48,108,.25);color:var(--ig);}
+.ch-fb{background:rgba(24,119,242,.08);border-color:rgba(24,119,242,.25);color:var(--fb);}
+.ch-mail{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.25);color:var(--mail);}
+
+/* STATS STRIP */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:60px;}
+.stat-box{background:var(--bg-card);padding:28px 20px;text-align:center;backdrop-filter:blur(20px);}
+.stat-num{font-size:2.4rem;font-weight:900;letter-spacing:-2px;color:var(--accent);line-height:1;}
+.stat-lab{font-size:.72rem;color:var(--text-mute);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-top:8px;}
+
+/* PROBLEM/PAIN GRID */
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.pain-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;align-items:flex-start;gap:16px;transition:.4s var(--ease);}
+.pain-card:hover{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.04);}
+.pain-icon{width:40px;height:40px;border-radius:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;color:#EF4444;font-size:1.1rem;flex-shrink:0;}
+.pain-card h4{font-size:.95rem;font-weight:700;margin-bottom:6px;}
+.pain-card p{font-size:.82rem;color:var(--text-mute);line-height:1.6;}
+
+/* FEATURE CARDS */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:.5s var(--ease);position:relative;overflow:hidden;}
+.feat-card:hover{border-color:var(--border-h);transform:translateY(-4px);}
+.feat-icon{width:48px;height:48px;border-radius:14px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.3rem;margin-bottom:20px;}
+.feat-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;letter-spacing:-.3px;}
+.feat-card p{font-size:.85rem;color:var(--text-mute);line-height:1.7;}
+
+/* CHANNEL BREAKDOWN */
+.channel-breakdown{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.ch-card{border-radius:20px;padding:32px;border:1px solid;transition:.4s var(--ease);}
+.ch-card:hover{transform:translateY(-4px);}
+.ch-card-wa{background:rgba(37,211,102,.06);border-color:rgba(37,211,102,.2);}
+.ch-card-ig{background:rgba(225,48,108,.06);border-color:rgba(225,48,108,.2);}
+.ch-card-fb{background:rgba(24,119,242,.06);border-color:rgba(24,119,242,.2);}
+.ch-card-mail{background:rgba(99,102,241,.06);border-color:rgba(99,102,241,.2);}
+.ch-card-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.ch-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.ch-icon-wa{background:rgba(37,211,102,.15);color:var(--wa);}
+.ch-icon-ig{background:rgba(225,48,108,.15);color:var(--ig);}
+.ch-icon-fb{background:rgba(24,119,242,.15);color:var(--fb);}
+.ch-icon-mail{background:rgba(99,102,241,.15);color:var(--mail);}
+.ch-name{font-size:1.2rem;font-weight:800;letter-spacing:-.3px;}
+.ch-list{display:flex;flex-direction:column;gap:8px;}
+.ch-item{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--text-mute);}
+.ch-item i{color:var(--accent);font-size:.85rem;}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
+.how-grid::before{content:'';position:absolute;top:30px;left:10%;right:10%;height:1px;border-bottom:1px dashed rgba(16,185,129,.2);}
+.how-step{text-align:center;position:relative;z-index:1;}
+.how-num{width:60px;height:60px;background:var(--bg);border:2px solid var(--accent);color:var(--accent);font-size:1.1rem;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(16,185,129,.15);}
+.how-step h4{font-size:1rem;font-weight:700;margin-bottom:8px;}
+.how-step p{font-size:.8rem;color:var(--text-mute);line-height:1.6;}
+
+/* USE CASES */
+.usecase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.uc-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.3s var(--ease);}
+.uc-card:hover{border-color:var(--border-h);}
+.uc-tag{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.uc-card h4{font-size:1rem;font-weight:700;margin-bottom:8px;}
+.uc-card p{font-size:.8rem;color:var(--text-mute);line-height:1.6;}
+
+/* CHAT MOCKUP */
+.chat-mockup{background:#0A0D14;border:1px solid var(--border-h);border-radius:20px;overflow:hidden;max-width:480px;}
+.mock-header{background:#111827;padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.06);}
+.mock-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-alt));display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:#000;}
+.mock-name{font-size:.9rem;font-weight:700;}
+.mock-status{font-size:.7rem;color:var(--accent);font-weight:500;}
+.mock-body{padding:20px;display:flex;flex-direction:column;gap:10px;}
+.mock-msg{max-width:80%;padding:10px 14px;border-radius:14px;font-size:.82rem;line-height:1.5;}
+.mock-msg.bot{background:#1A2535;color:var(--text);align-self:flex-start;border-bottom-left-radius:3px;}
+.mock-msg.user{background:var(--accent);color:#000;align-self:flex-end;border-bottom-right-radius:3px;font-weight:600;}
+.mock-ch-badge{font-size:.6rem;color:var(--text-mute);text-align:right;margin-top:2px;}
+.mock-ch-badge.left{text-align:left;}
+
+/* PLANS */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.plan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative;transition:.4s var(--ease);}
+.plan-card:hover{transform:translateY(-4px);}
+.plan-card.featured{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.04);}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 16px;border-radius:20px;}
+.plan-tier{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin-bottom:6px;}
+.plan-name{font-size:1.6rem;font-weight:900;letter-spacing:-.5px;margin-bottom:14px;}
+.plan-price{font-size:3rem;font-weight:900;letter-spacing:-2px;line-height:1;}
+.plan-price sup{font-size:1rem;font-weight:700;vertical-align:top;margin-top:10px;margin-right:2px;}
+.plan-period{font-size:.75rem;color:var(--text-mute);margin-bottom:20px;margin-top:4px;}
+.plan-desc{font-size:.82rem;color:var(--text-mute);line-height:1.6;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.plan-feature{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.82rem;}
+.plan-feature i{color:var(--accent);font-size:.9rem;flex-shrink:0;margin-top:1px;}
+.plan-feature.dim{opacity:.35;}
+.plan-feature.dim i{color:var(--text-mute);}
+.plan-btn{display:block;width:100%;background:var(--accent);color:#000;padding:14px;border-radius:12px;font-weight:700;font-size:.9rem;text-align:center;border:none;cursor:pointer;font-family:'Urbanist',sans-serif;margin-top:24px;transition:.3s var(--ease);}
+.plan-card.featured .plan-btn{box-shadow:0 8px 25px rgba(16,185,129,.3);}
+.plan-btn:hover{transform:translateY(-2px);}
+.plan-btn.outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.plan-btn.outline:hover{border-color:var(--accent);color:var(--accent);}
+.plan-setup{font-size:.72rem;color:var(--text-mute);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.plan-setup strong{color:var(--text);font-weight:700;}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:12px;max-width:800px;margin:0 auto;}
+.faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s;}
+.faq-item.open{border-color:rgba(16,185,129,.3);}
+.faq-q{padding:20px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;font-size:.95rem;}
+.faq-icon{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;transition:.35s var(--ease);}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(16,185,129,.15);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding .3s;font-size:.88rem;color:var(--text-mute);line-height:1.7;padding:0 22px;}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px;}
+
+/* CTA SECTION */
+.cta-section{text-align:center;padding:80px 0;}
+.cta-tag{display:inline-block;padding:6px 16px;border-radius:30px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:.8s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-mute);font-size:.8rem;}
+footer a{color:var(--accent);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .how-grid{grid-template-columns:repeat(2,1fr);}
+  .how-grid::before{display:none;}
+  .channel-breakdown{grid-template-columns:1fr;}
+  .plan-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+  .pain-grid{grid-template-columns:1fr;}
+  .usecase-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .feat-grid{grid-template-columns:1fr;}
+  .usecase-grid{grid-template-columns:1fr;}
+  .channel-breakdown{grid-template-columns:1fr;}
+  .stats-strip{grid-template-columns:1fr 1fr;}
+  .channels-strip{gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- SLIDE DOTS -->
+<div class="slide-dots" id="slideDots">
+  <div class="sdot active" data-target="slide1"></div>
+  <div class="sdot" data-target="slide2"></div>
+  <div class="sdot" data-target="slide3"></div>
+  <div class="sdot" data-target="slide4"></div>
+  <div class="sdot" data-target="slide5"></div>
+  <div class="sdot" data-target="slide6"></div>
+  <div class="sdot" data-target="slide7"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+      <img src="assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+      <span class="logo-text" style="display:none;">ClickDigital</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problema">El Problema</a></li>
+      <li><a href="#canales">Canales</a></li>
+      <li><a href="#como-funciona">Cómo Funciona</a></li>
+      <li><a href="#planes">Planes</a></li>
+    </ul>
+    <div class="nav-ctrls">
+      <button class="ctrl-btn theme-btn" id="themeToggle">
+        <i class="uil uil-moon dark-icon"></i>
+        <i class="uil uil-sun light-icon"></i>
+      </button>
+      <a href="https://wa.me/5491156571982?text=Me%20interesa%20el%20Agente%20Multicanal" target="_blank" class="btn-primary" style="padding:10px 22px;font-size:.85rem;">
+        <i class="uil uil-whatsapp"></i> Hablemos
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+  SLIDE 1 — HERO
+════════════════════════════════ -->
+<section class="slide" id="slide1">
+<div class="container">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div>
+      <div class="hero-tag">Agente IA Multicanal</div>
+      <h1 class="big-h">Tu negocio responde.<br><em>Siempre. En todos lados.</em></h1>
+      <p class="sub-p">Un agente de inteligencia artificial que atiende a tus clientes por WhatsApp, Instagram, Facebook y Email — al mismo tiempo, sin descansos, sin errores, sin que intervengas.</p>
+      <div class="channels-strip">
+        <div class="channel-pill ch-wa"><i class="uil uil-whatsapp"></i> WhatsApp</div>
+        <div class="channel-pill ch-ig"><i class="uil uil-instagram"></i> Instagram</div>
+        <div class="channel-pill ch-fb"><i class="uil uil-facebook-f"></i> Facebook</div>
+        <div class="channel-pill ch-mail"><i class="uil uil-envelope"></i> Email</div>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="#planes" class="btn-primary"><i class="uil uil-bolt"></i> Ver Planes</a>
+        <a href="#como-funciona" class="btn-outline"><i class="uil uil-play-circle"></i> Cómo funciona</a>
+      </div>
+    </div>
+
+    <!-- CHAT MOCKUP -->
+    <div class="chat-mockup" style="margin-left:auto;">
+      <div class="mock-header">
+        <div class="mock-avatar">IA</div>
+        <div>
+          <div class="mock-name">Asistente Virtual</div>
+          <div class="mock-status">● En línea ahora</div>
+        </div>
+      </div>
+      <div class="mock-body">
+        <div>
+          <div class="mock-msg user">Hola, cuánto cuesta el servicio de limpieza mensual?</div>
+          <div class="mock-ch-badge">vía Instagram DM · 11:23pm</div>
+        </div>
+        <div>
+          <div class="mock-msg bot">¡Hola! 👋 El plan de limpieza mensual tiene un costo de $18.000. Incluye 2 visitas por semana y los productos de limpieza. ¿Te gustaría agendar una visita de prueba sin costo?</div>
+          <div class="mock-ch-badge left">Agente IA · respuesta en 4 seg</div>
+        </div>
+        <div>
+          <div class="mock-msg user">Sí! Cuándo pueden venir?</div>
+          <div class="mock-ch-badge">vía Instagram DM · 11:24pm</div>
+        </div>
+        <div>
+          <div class="mock-msg bot">Perfecto 🎉 Tenemos disponibilidad el martes y jueves de esta semana. ¿Qué horario te queda mejor? Te comparto también el formulario de confirmación.</div>
+          <div class="mock-ch-badge left">Agente IA · respuesta en 3 seg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip reveal">
+    <div class="stat-box">
+      <div class="stat-num">24/7</div>
+      <div class="stat-lab">Disponibilidad total</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">&lt;5s</div>
+      <div class="stat-lab">Tiempo de respuesta</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">4</div>
+      <div class="stat-lab">Canales simultáneos</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">7 días</div>
+      <div class="stat-lab">Para estar operativo</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 2 — EL PROBLEMA
+════════════════════════════════ -->
+<section class="slide" id="slide2">
+<div class="container">
+  <div class="section-label reveal">El problema</div>
+  <h2 class="big-h reveal" style="max-width:700px;">Cada mensaje sin respuesta<br>es un cliente que se va.</h2>
+  <p class="sub-p reveal">Las consultas llegan a cualquier hora, desde cualquier canal. Y mientras no respondés, tu competencia sí lo hace.</p>
+
+  <div class="pain-grid reveal">
+    <div class="pain-card">
+      <div class="pain-icon"><i class="uil uil-clock-three"></i></div>
+      <div>
+        <h4>Mensajes que esperan horas</h4>
+        <p>Los clientes escriben de noche, los fines de semana, en feriados. Si no hay respuesta en los primeros minutos, el 70% se va a otro lado.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon"><i class="uil uil-apps"></i></div>
+      <div>
+        <h4>4 apps abiertas todo el día</h4>
+        <p>WhatsApp, Instagram, Facebook y el mail. Saltar entre plataformas todo el día es agotador y te hace perder mensajes igual.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon"><i class="uil uil-copy-alt"></i></div>
+      <div>
+        <h4>Las mismas preguntas, siempre</h4>
+        <p>¿Cuánto cuesta? ¿Dónde están ubicados? ¿Tienen stock? Tu tiempo vale demasiado para responder esto cien veces por semana.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon"><i class="uil uil-chart-down"></i></div>
+      <div>
+        <h4>Ventas que se evaporan</h4>
+        <p>Un cliente interesado que no recibe respuesta caliente se enfría rápido. Cada consulta sin atender es una venta que no cierra.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass reveal" style="padding:32px;margin-top:32px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div style="font-size:3.5rem;font-weight:900;color:var(--accent);letter-spacing:-3px;line-height:1;">78%</div>
+    <div style="flex:1;min-width:220px;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:6px;">de los clientes esperan respuesta en menos de 5 minutos</div>
+      <div style="color:var(--text-mute);font-size:.85rem;line-height:1.6;">Si la respuesta tarda más, la probabilidad de convertir esa consulta en venta cae un 80%. Fuente: HubSpot & Drift Report 2024.</div>
+    </div>
+    <a href="#planes" class="btn-primary" style="flex-shrink:0;"><i class="uil uil-arrow-right"></i> Resolver esto</a>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 3 — CANALES
+════════════════════════════════ -->
+<section class="slide" id="slide3">
+<div class="container">
+  <div class="section-label reveal">Los canales</div>
+  <h2 class="big-h reveal">Un agente.<br><em>Cuatro canales.</em> Sin perder nada.</h2>
+  <p class="sub-p reveal">Tu IA atiende por todos los canales desde un solo backend unificado. Sin duplicar trabajo, sin perder contexto entre plataformas.</p>
+
+  <div class="channel-breakdown reveal">
+    <div class="ch-card ch-card-wa">
+      <div class="ch-card-head">
+        <div class="ch-icon ch-icon-wa"><i class="uil uil-whatsapp"></i></div>
+        <div>
+          <div class="ch-name">WhatsApp</div>
+          <div style="font-size:.75rem;color:var(--text-mute);">API oficial · sin riesgo de ban</div>
+        </div>
+      </div>
+      <div class="ch-list">
+        <div class="ch-item"><i class="uil uil-check"></i> Responde consultas de texto y voz</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Envía catálogos, imágenes y links de pago</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Califica leads y agenda turnos</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Notificaciones y seguimientos automáticos</div>
+      </div>
+    </div>
+    <div class="ch-card ch-card-ig">
+      <div class="ch-card-head">
+        <div class="ch-icon ch-icon-ig"><i class="uil uil-instagram"></i></div>
+        <div>
+          <div class="ch-name">Instagram</div>
+          <div style="font-size:.75rem;color:var(--text-mute);">Direct Messages · comentarios</div>
+        </div>
+      </div>
+      <div class="ch-list">
+        <div class="ch-item"><i class="uil uil-check"></i> DMs respondidos en segundos</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Responde comentarios clave en publicaciones</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Deriva a WhatsApp para cerrar la venta</div>
+        <div class="ch-item"><i class="uil uil-check"></i> No pierde ninguna mención de tu marca</div>
+      </div>
+    </div>
+    <div class="ch-card ch-card-fb">
+      <div class="ch-card-head">
+        <div class="ch-icon ch-icon-fb"><i class="uil uil-facebook-f"></i></div>
+        <div>
+          <div class="ch-name">Facebook</div>
+          <div style="font-size:.75rem;color:var(--text-mute);">Messenger · página de negocio</div>
+        </div>
+      </div>
+      <div class="ch-list">
+        <div class="ch-item"><i class="uil uil-check"></i> Messenger automatizado con flujos de ventas</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Responde consultas de anuncios automáticamente</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Califica interesados de tus campañas pagas</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Sincronia con tu CRM</div>
+      </div>
+    </div>
+    <div class="ch-card ch-card-mail">
+      <div class="ch-card-head">
+        <div class="ch-icon ch-icon-mail"><i class="uil uil-envelope"></i></div>
+        <div>
+          <div class="ch-name">Email</div>
+          <div style="font-size:.75rem;color:var(--text-mute);">Bandeja de entrada unificada</div>
+        </div>
+      </div>
+      <div class="ch-list">
+        <div class="ch-item"><i class="uil uil-check"></i> Clasifica y prioriza mails automáticamente</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Responde consultas de formularios web</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Seguimientos programados post-consulta</div>
+        <div class="ch-item"><i class="uil uil-check"></i> Escala a humano cuando es necesario</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 4 — FUNCIONALIDADES
+════════════════════════════════ -->
+<section class="slide" id="slide4">
+<div class="container">
+  <div class="section-label reveal">Funcionalidades</div>
+  <h2 class="big-h reveal" style="max-width:700px;">No es solo un chatbot.<br><em>Es tu mejor empleado.</em></h2>
+
+  <div class="feat-grid reveal">
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-brain"></i></div>
+      <h3>IA entrenada con tu negocio</h3>
+      <p>El agente aprende tus productos, precios, políticas, horarios y el tono de tu marca. Responde como si fuera de tu equipo.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-users-alt"></i></div>
+      <h3>Deriva a humano inteligente</h3>
+      <p>Cuando detecta que necesita intervención humana, transfiere la conversación al agente indicado con todo el contexto.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-calendar-alt"></i></div>
+      <h3>Agenda y turnos automáticos</h3>
+      <p>Gestiona disponibilidad, confirma turnos y envía recordatorios. Conectado con Google Calendar o tu sistema actual.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-chart-bar"></i></div>
+      <h3>Panel de métricas en tiempo real</h3>
+      <p>Ves todo: conversaciones, tasa de resolución, canales más activos, horarios pico, tiempo promedio de respuesta.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-link"></i></div>
+      <h3>Integración con tu CRM</h3>
+      <p>Cada lead capturado se registra en tu CRM automáticamente. Compatible con HubSpot, Zoho, Pipedrive y más.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><i class="uil uil-shield-check"></i></div>
+      <h3>Sin riesgo de ban</h3>
+      <p>Usamos la API oficial de WhatsApp Business. Cumple con todas las políticas de Meta. Tu número está 100% seguro.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 5 — CÓMO FUNCIONA
+════════════════════════════════ -->
+<section class="slide" id="slide5">
+<div class="container">
+  <div class="section-label reveal">El proceso</div>
+  <h2 class="big-h reveal" style="max-width:600px;">De cero a operativo<br>en <em>7 días hábiles.</em></h2>
+  <p class="sub-p reveal">Nos encargamos de todo el setup técnico. Vos solo nos contás tu negocio.</p>
+
+  <div class="how-grid reveal" style="margin-top:50px;">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <h4>Discovery call</h4>
+      <p>Nos reunimos 30 min para entender tu negocio, canales activos, preguntas frecuentes y objetivos.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <h4>Entrenamiento del agente</h4>
+      <p>Configuramos y entrenamos la IA con tu información: precios, servicios, políticas y tono de marca.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <h4>Integración de canales</h4>
+      <p>Conectamos WhatsApp API, Instagram, Facebook y Email a tu panel unificado. Sin que toques nada técnico.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">04</div>
+      <h4>Lanzamiento y monitoreo</h4>
+      <p>El agente sale a producción. Monitoreamos los primeros días y ajustamos respuestas en tiempo real.</p>
+    </div>
+  </div>
+
+  <!-- USE CASES -->
+  <div style="margin-top:70px;">
+    <div class="section-label reveal">Para quién es</div>
+    <h3 class="reveal" style="font-size:1.8rem;font-weight:800;letter-spacing:-.5px;margin-bottom:30px;margin-top:10px;">Funciona para cualquier rubro</h3>
+    <div class="usecase-grid reveal">
+      <div class="uc-card">
+        <div class="uc-tag">Salud & Bienestar</div>
+        <h4>Consultorios y clínicas</h4>
+        <p>Agenda turnos, responde preguntas sobre cobertura y envía recordatorios automáticos a pacientes.</p>
+      </div>
+      <div class="uc-card">
+        <div class="uc-tag">Comercio</div>
+        <h4>Tiendas y e-commerce</h4>
+        <p>Responde sobre disponibilidad de stock, estados de pedido, métodos de pago y zonas de envío.</p>
+      </div>
+      <div class="uc-card">
+        <div class="uc-tag">Servicios</div>
+        <h4>Profesionales y consultoras</h4>
+        <p>Califica leads, agenda reuniones y entrega presupuestos automáticos sin intervención humana.</p>
+      </div>
+      <div class="uc-card">
+        <div class="uc-tag">Gastronomía</div>
+        <h4>Restaurantes y deliveries</h4>
+        <p>Responde el menú, toma reservas, informa horarios y gestiona pedidos especiales vía WhatsApp.</p>
+      </div>
+      <div class="uc-card">
+        <div class="uc-tag">Turismo</div>
+        <h4>Hoteles y cabañas</h4>
+        <p>Consultas de disponibilidad, precios por temporada, servicios incluidos y cierre de reservas automático.</p>
+      </div>
+      <div class="uc-card">
+        <div class="uc-tag">Educación</div>
+        <h4>Institutos y academias</h4>
+        <p>Inscripciones, información sobre cursos, planes de pago y resolución de dudas académicas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 6 — PLANES
+════════════════════════════════ -->
+<section class="slide" id="slide6">
+<div class="container">
+  <div class="section-label reveal">Los planes</div>
+  <h2 class="big-h reveal" style="max-width:650px;">Empezás en 7 días.<br><em>Escalás cuando querés.</em></h2>
+
+  <div class="plan-grid reveal" style="margin-top:50px;">
+
+    <!-- STARTER -->
+    <div class="plan-card">
+      <div class="plan-tier">Plan 01</div>
+      <div class="plan-name">Starter</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:5px 12px;margin-bottom:14px;">
+        <i class="uil uil-gift" style="color:var(--accent);font-size:.85rem;"></i>
+        <span style="font-size:.72rem;color:var(--accent);font-weight:700;">Sin costo de setup</span>
+      </div>
+      <div class="plan-price"><sup>USD</sup>180</div>
+      <div class="plan-period">USD / mes · 1 canal activo</div>
+      <p class="plan-desc">Arrancás con un canal principal (WhatsApp), panel unificado y respuestas automáticas configuradas. Ideal para testear la herramienta sin riesgo.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>1 canal activo (WhatsApp recomendado)</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Respuestas automáticas con tu FAQ</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel de conversaciones unificado</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Setup y onboarding incluido</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Soporte técnico mensual</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>IA conversacional avanzada</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>Integración CRM</span></div>
+      <button class="plan-btn outline" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Starter%20del%20Agente%20Multicanal','_blank')">Empezar sin riesgo</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="plan-card featured">
+      <div class="plan-badge">Más elegido</div>
+      <div class="plan-tier">Plan 02</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="font-size:.85rem;"></i><span>Config. única:</span><strong>$400 USD</strong></div>
+      <div class="plan-price"><sup>USD</sup>290</div>
+      <div class="plan-period">USD / mes · hasta 4 canales</div>
+      <p class="plan-desc">Todo el Starter más IA real entrenada con tu negocio, todos los canales activos y derivación inteligente a humano. El punto dulce.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>WhatsApp + Instagram + Facebook + Email</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>IA entrenada con datos reales de tu negocio</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Derivación a humano con contexto completo</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel de métricas básico</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Hasta 2 agentes humanos</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Soporte prioritario</span></div>
+      <div class="plan-feature dim"><i class="uil uil-circle"></i><span>Integración CRM avanzada</span></div>
+      <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Pro%20del%20Agente%20Multicanal','_blank')">Empezar con Pro</button>
+    </div>
+
+    <!-- FULL -->
+    <div class="plan-card">
+      <div class="plan-tier">Plan 03</div>
+      <div class="plan-name">Full</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="font-size:.85rem;"></i><span>Config. única:</span><strong>desde $500 USD</strong></div>
+      <div class="plan-price"><sup>USD</sup>420</div>
+      <div class="plan-period">USD / mes · operación 100% autónoma</div>
+      <p class="plan-desc">Todo el Pro más integración con tu CRM, agendamiento automático, análisis avanzado de conversiones y acompañamiento mensual personalizado.</p>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Pro incluido</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Integración CRM (HubSpot, Zoho, Pipedrive)</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Agendamiento automático con Google Calendar</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Métricas avanzadas de conversión por canal</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Hasta 5 agentes humanos</span></div>
+      <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Reunión mensual de optimización</span></div>
+      <button class="plan-btn outline" onclick="window.open('https://wa.me/5491156571982?text=Me%20interesa%20el%20plan%20Full%20del%20Agente%20Multicanal','_blank')">Consultar Full</button>
+    </div>
+  </div>
+
+  <!-- PUNTO DE EQUILIBRIO -->
+  <div class="glass reveal" style="padding:28px 36px;margin-top:28px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">Punto de equilibrio</div>
+      <div style="font-size:2rem;font-weight:900;letter-spacing:-1px;line-height:1;">1–2 ventas extra / mes</div>
+      <div style="font-size:.82rem;color:var(--text-mute);margin-top:6px;">En promedio, las empresas que implementan el agente ven su punto de equilibrio en el primer mes. Todo lo que viene después, es ganancia.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="padding:8px 16px;border-radius:30px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.75rem;font-weight:700;">Sin empleados extra</div>
+      <div style="padding:8px 16px;border-radius:30px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.75rem;font-weight:700;">Sin costos laborales</div>
+      <div style="padding:8px 16px;border-radius:30px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.75rem;font-weight:700;">Operativo en 7 días</div>
+      <div style="padding:8px 16px;border-radius:30px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.75rem;font-weight:700;">Sin bajar guardia nunca</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════════════════════════
+  SLIDE 7 — FAQ + CTA
+════════════════════════════════ -->
+<section class="slide" id="slide7" style="border-bottom:none;">
+<div class="container">
+  <div class="section-label reveal" style="justify-content:center;margin-bottom:20px;">Preguntas frecuentes</div>
+  <h2 class="big-h reveal" style="text-align:center;max-width:600px;margin:0 auto 50px;">Todo lo que querés saber antes de empezar.</h2>
+
+  <div class="faq-list reveal">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿El agente puede confundirse y dar información incorrecta? <div class="faq-icon">+</div></div>
+      <div class="faq-a">El agente solo responde dentro de la información que nosotros le entrenamos. Si no sabe algo, lo dice y deriva a un humano. No inventa ni improvisa. Además, monitoreamos las conversaciones para detectar y corregir cualquier error rápidamente.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Cómo saben mis clientes que están hablando con una IA? <div class="faq-icon">+</div></div>
+      <div class="faq-a">Eso lo decidís vos. Podés presentarlo como "asistente virtual de [tu marca]" o integrarlo con el nombre y tono que prefieras. Muchos clientes ni se dan cuenta — porque el agente responde como lo haría alguien de tu equipo.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Qué pasa si el agente no puede resolver una consulta? <div class="faq-icon">+</div></div>
+      <div class="faq-a">El agente tiene flujos de derivación configurados. Cuando detecta que no puede resolver algo — o cuando el cliente pide hablar con un humano — transfiere la conversación a vos o a tu equipo con todo el contexto de la charla, para que no haya que repetir nada.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Necesito conocimientos técnicos para usarlo? <div class="faq-icon">+</div></div>
+      <div class="faq-a">Ninguno. Nosotros hacemos todo el setup. Vos recibís acceso a un panel web simple donde ves las conversaciones, métricas y podés ajustar cosas básicas. Si algo necesita cambio técnico, lo hacemos nosotros.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Se puede actualizar cuando cambio precios o servicios? <div class="faq-icon">+</div></div>
+      <div class="faq-a">Sí, y es parte del servicio. Cada vez que tenés cambios en tu negocio, nos avisás y actualizamos el agente. No hay costo adicional por actualizaciones dentro de tu plan.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Hay contratos de permanencia? <div class="faq-icon">+</div></div>
+      <div class="faq-a">No hay contratos de largo plazo. El servicio es mes a mes con aviso previo de 30 días para cancelar. Confiamos en que el resultado habla por sí solo.</div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-section reveal">
+    <div class="cta-tag">¿Listo para empezar?</div>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;margin-bottom:16px;">Tu primer mes de prueba.<br>Sin excusas para no intentarlo.</h2>
+    <p style="color:var(--text-mute);font-size:1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto;">Agendemos una llamada de 30 minutos, entendemos tu negocio y te mostramos exactamente cómo el agente puede funcionar para vos.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/5491156571982?text=Quiero%20agendar%20una%20demo%20del%20Agente%20Multicanal" target="_blank" class="btn-primary" style="font-size:1rem;padding:16px 36px;">
+        <i class="uil uil-whatsapp"></i> Agendar demo gratis
+      </a>
+      <a href="index.html" class="btn-outline" style="font-size:1rem;padding:16px 36px;">
+        <i class="uil uil-arrow-left"></i> Volver al inicio
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> ClickDigital · Todos los derechos reservados · <a href="index.html">clickdigital.com.ar</a></p>
+  </div>
+</footer>
+
+<script>
+// THEME
+const html=document.documentElement;
+const saved=localStorage.getItem('theme')||'dark';
+html.setAttribute('data-theme',saved);
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const t=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+});
+
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  const pct=(doc.scrollTop)/(doc.scrollHeight-doc.clientHeight)*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+});
+
+// SLIDE DOTS
+const dots=document.querySelectorAll('.sdot');
+const slides=document.querySelectorAll('.slide');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      dots.forEach(d=>{d.classList.remove('active');if(d.dataset.target===id)d.classList.add('active');});
+    }
+  });
+},{threshold:.4});
+slides.forEach(s=>obs.observe(s));
+dots.forEach(d=>d.addEventListener('click',()=>{
+  document.getElementById(d.dataset.target)?.scrollIntoView({behavior:'smooth'});
+}));
+
+// REVEAL
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// FAQ
+function toggleFaq(item){
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
