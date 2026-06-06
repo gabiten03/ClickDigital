@@ -141,6 +141,10 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
 .plan-btn:hover{border-color:var(--accent);color:var(--accent);}
 .plan-card.featured .plan-btn{background:var(--accent);color:#000;border-color:var(--accent);}
 .plan-card.featured .plan-btn:hover{opacity:.9;}
+.plan-card.legal-ai{border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.03);}
+.plan-card.legal-ai:hover{border-color:rgba(245,158,11,.45);}
+.plan-card.legal-ai .plan-btn{border-color:rgba(245,158,11,.3);color:var(--amber);}
+.plan-card.legal-ai .plan-btn:hover{border-color:var(--amber);background:rgba(245,158,11,.08);}
 .addon{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;transition:.4s var(--ease);}
 .addon:hover{border-color:var(--border-h);background:var(--bg-card-h);}
 .addon-icon{width:34px;height:34px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;flex-shrink:0;}
@@ -200,6 +204,10 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
   .stats-strip{grid-template-columns:repeat(2,1fr);}
   .slide-dots{display:none;}
   .level-row{grid-template-columns:90px 1fr;}
+  .plans-4{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:600px){
+  .plans-4{grid-template-columns:1fr!important;}
 }
 </style>
 </head>
@@ -395,7 +403,6 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
   <h2 class="big-h reveal" style="max-width:700px;">Un sistema que trabaja<br><em>dentro y fuera</em> del estudio.</h2>
   <p class="sub-p reveal">Las capacidades se activan según el plan y las necesidades del estudio. No hay un único modelo — armamos el sistema que tiene sentido para tu operación.</p>
 
-  <!-- HACIA AFUERA -->
   <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-mute);margin-bottom:14px;" class="reveal">
     Hacia afuera — atención al potencial cliente
   </div>
@@ -432,7 +439,6 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
     </div>
   </div>
 
-  <!-- HACIA ADENTRO -->
   <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--amber);margin:40px 0 14px;" class="reveal">
     Hacia adentro — herramientas para el abogado
   </div>
@@ -588,40 +594,40 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
 
   <div class="g2 reveal">
     <div class="glass" style="padding:32px;border-color:rgba(239,68,68,.2);">
-      <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:18px;">Si contratás una secretaria/recepcionista</div>
-      <div class="cost-line"><span class="name">Sueldo bruto</span><span class="val red">$900.000</span></div>
-      <div class="cost-line"><span class="name">Cargas sociales (~35%)</span><span class="val red">$315.000</span></div>
-      <div class="cost-line"><span class="name">SAC prorrateado</span><span class="val red">$100.000</span></div>
+      <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:18px;">Alternativa: recepcionista/secretaria</div>
+      <div class="cost-line"><span class="name">Sueldo bruto</span><span class="val red">~USD 700</span></div>
+      <div class="cost-line"><span class="name">Cargas sociales (~35%)</span><span class="val red">~USD 245</span></div>
+      <div class="cost-line"><span class="name">SAC prorrateado</span><span class="val red">~USD 80</span></div>
       <div class="cost-line"><span class="name">Horas de cobertura</span><span class="val">8 hs/día · Lun–Vie</span></div>
       <div class="cost-line"><span class="name">Noches y fines de semana</span><span class="val red">Sin cobertura</span></div>
       <div class="cost-line"><span class="name">Canales simultáneos</span><span class="val">1 persona · 1 canal</span></div>
       <div class="cost-total-row">
         <span class="cost-label-sm">Costo mensual mínimo</span>
-        <span class="cost-val-big red">~$1.315.000</span>
+        <span class="cost-val-big red">~USD 1.025</span>
       </div>
       <div style="margin-top:14px;padding:12px 14px;background:rgba(239,68,68,.05);border-radius:10px;font-size:.78rem;color:var(--text-mute);line-height:1.6;">
-        Ese capital mensual podría ir a capacitación, a un abogado junior, a marketing del estudio, o directamente a tu facturación.
+        Sin contar días de enfermedad, vacaciones, aguinaldo ni el tiempo que tomás para capacitar a alguien nuevo.
       </div>
     </div>
     <div class="glass" style="padding:32px;border-color:var(--border-h);">
       <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;">Agente Virtual — Plan Pro</div>
-      <div class="cost-line"><span class="name">Precio mensual</span><span class="val green">$380 USD</span></div>
-      <div class="cost-line"><span class="name">En pesos (ref. $1.300/USD)</span><span class="val green">~$494.000</span></div>
-      <div class="cost-line"><span class="name">Cargas sociales / SAC</span><span class="val green">$0</span></div>
+      <div class="cost-line"><span class="name">Precio mensual</span><span class="val green">USD 279</span></div>
+      <div class="cost-line"><span class="name">Cargas sociales / SAC</span><span class="val green">USD 0</span></div>
       <div class="cost-line"><span class="name">Horas de cobertura</span><span class="val green">24 hs · 365 días</span></div>
       <div class="cost-line"><span class="name">Canales simultáneos</span><span class="val green">Todos al mismo tiempo</span></div>
       <div class="cost-line"><span class="name">Tu tiempo liberado</span><span class="val green">40–60 hs/mes</span></div>
+      <div class="cost-line"><span class="name">Ausencias / aguinaldo</span><span class="val green">Nunca</span></div>
       <div class="cost-total-row">
         <span class="cost-label-sm">Costo mensual total</span>
-        <span class="cost-val-big green">~$494.000</span>
+        <span class="cost-val-big green">USD 279</span>
       </div>
     </div>
   </div>
   <div class="saving-banner reveal">
-    <div class="big">+$820.000/mes disponibles para crecer</div>
-    <p>Lo que antes ibas a gastar en atención podés invertirlo en lo que realmente hace crecer el estudio. Cobertura 24hs · 365 días · todos los canales · sin ausencias ni aguinaldo.</p>
+    <div class="big">Más de USD 700/mes de diferencia</div>
+    <p>La diferencia de costo podés invertirla en lo que realmente hace crecer el estudio: capacitación, marketing, un abogado junior, o simplemente mejorar tu margen. Cobertura 24 hs · 365 días · todos los canales · sin ausencias.</p>
   </div>
-  <div class="src reveal" style="text-align:center;margin-top:12px;">* Comparación basada en escala salarial empleados administrativos + cargas sociales. Tipo de cambio referencial.</div>
+  <div class="src reveal" style="text-align:center;margin-top:12px;">* Referencia de costos laborales orientativa. Los valores reales varían según convenio y categoría.</div>
 </div>
 </section>
 
@@ -629,46 +635,68 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
 <section class="slide" id="roi" style="border-top:1px solid var(--border);">
 <div class="container">
   <div class="section-label reveal">El retorno</div>
-  <h2 class="big-h reveal" style="max-width:700px;">Con capturar 2 clientes<br>nuevos por mes, <em>se paga solo.</em></h2>
-  <p class="sub-p reveal">Los honorarios varían por área y complejidad. Pero el razonamiento es el mismo en cualquier práctica: cada cliente perdido por falta de respuesta tiene un valor concreto.</p>
+  <h2 class="big-h reveal" style="max-width:760px;">No es una herramienta de costo.<br><em>Es infraestructura de captación.</em></h2>
+  <p class="sub-p reveal">El sistema trabaja todos los días, en todos los canales, sin que estés presente. Cada consulta que antes se perdía por falta de respuesta ahora entra sola a tu pipeline — y eso tiene un valor concreto y acumulable.</p>
+
+  <!-- ROI HIGHLIGHT BOX -->
+  <div class="glass reveal" style="padding:28px 32px;margin-bottom:24px;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.03);">
+    <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;">El cambio real que produce el sistema</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="background:var(--btn-bg);border:1px solid var(--border);border-radius:12px;padding:18px;">
+        <div style="font-size:1.4rem;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;margin-bottom:6px;">Más leads</div>
+        <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Consultas que antes quedaban sin respuesta ahora entran calificadas a tu pipeline, con los datos del caso listos.</div>
+      </div>
+      <div style="background:var(--btn-bg);border:1px solid var(--border);border-radius:12px;padding:18px;">
+        <div style="font-size:1.4rem;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;margin-bottom:6px;">Más tiempo</div>
+        <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">Entre 40 y 60 horas mensuales que antes se iban en tareas administrativas ahora están disponibles para trabajo facturable.</div>
+      </div>
+      <div style="background:var(--btn-bg);border:1px solid var(--border);border-radius:12px;padding:18px;">
+        <div style="font-size:1.4rem;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1;margin-bottom:6px;">Menos fricción</div>
+        <div style="font-size:.8rem;color:var(--text-mute);line-height:1.5;">El cliente que llega a la primera reunión ya está informado, el turno está confirmado y el abogado conoce el caso de antemano.</div>
+      </div>
+    </div>
+  </div>
 
   <div class="g3 reveal" style="margin-top:32px;">
     <div class="glass" style="padding:28px;">
       <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin-bottom:14px;">Abogado independiente</div>
-      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$350.000</span></div>
-      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">2</span></div>
-      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$700.000</span></div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">USD 350</span></div>
+      <div class="roi-row"><span class="k">Leads calificados adicionales/mes</span><span class="v" style="color:var(--accent);">+3 leads</span></div>
+      <div class="roi-row"><span class="k">Tasa de conversión estimada</span><span class="v">~60%</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional estimado</span><span class="v">~USD 630</span></div>
       <div class="roi-row"><span class="k">Horas facturables recuperadas</span><span class="v green">40 hs/mes</span></div>
-      <div class="roi-row"><span class="k">Costo plan Starter</span><span class="v">~$325.000</span></div>
+      <div class="roi-row"><span class="k">Costo plan Starter</span><span class="v">USD 179</span></div>
       <div class="roi-result">
-        <span class="rl">Ganancia neta/mes</span>
-        <span class="rv" style="font-size:1.3rem;">+$375.000</span>
+        <span class="rl">Ingreso adicional neto est.</span>
+        <span class="rv" style="font-size:1.3rem;">~+USD 450/mes</span>
       </div>
-      <div class="src" style="margin-top:8px;">Sin contar el valor de las horas recuperadas para trabajo facturable.</div>
+      <div class="src" style="margin-top:8px;">Sin contar el valor económico de las horas recuperadas para trabajo facturable.</div>
     </div>
     <div class="glass" style="padding:28px;border-color:var(--border-h);">
       <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:14px;">Estudio chico · 2-5 abogados ★</div>
-      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$600.000</span></div>
-      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">3</span></div>
-      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$1.800.000</span></div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">USD 600</span></div>
+      <div class="roi-row"><span class="k">Leads calificados adicionales/mes</span><span class="v" style="color:var(--accent);">+5 leads</span></div>
+      <div class="roi-row"><span class="k">Tasa de conversión estimada</span><span class="v">~60%</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional estimado</span><span class="v">~USD 1.800</span></div>
       <div class="roi-row"><span class="k">Horas facturables recuperadas</span><span class="v green">60 hs/mes</span></div>
-      <div class="roi-row"><span class="k">Costo plan Pro</span><span class="v">~$494.000</span></div>
+      <div class="roi-row"><span class="k">Costo plan Pro</span><span class="v">USD 279</span></div>
       <div class="roi-result">
-        <span class="rl">Ganancia neta/mes</span>
-        <span class="rv">+$1.306.000</span>
+        <span class="rl">Ingreso adicional neto est.</span>
+        <span class="rv">~+USD 1.520/mes</span>
       </div>
-      <div class="src" style="margin-top:8px;">3 clientes nuevos al mes que antes se perdían por falta de respuesta.</div>
+      <div class="src" style="margin-top:8px;">Leads que antes se perdían por no responder a tiempo, ahora entran solos al pipeline.</div>
     </div>
     <div class="glass" style="padding:28px;border-color:rgba(245,158,11,.3);">
       <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--amber);margin-bottom:14px;">Estudio mediano · 5-20 abogados</div>
-      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">$1.200.000</span></div>
-      <div class="roi-row"><span class="k">Clientes capturados/mes</span><span class="v" style="color:var(--amber);">4</span></div>
-      <div class="roi-row"><span class="k">Ingreso adicional</span><span class="v">$4.800.000</span></div>
+      <div class="roi-row"><span class="k">Honorario promedio por caso</span><span class="v">USD 1.200</span></div>
+      <div class="roi-row"><span class="k">Leads calificados adicionales/mes</span><span class="v" style="color:var(--amber);">+6 leads</span></div>
+      <div class="roi-row"><span class="k">Tasa de conversión estimada</span><span class="v">~60%</span></div>
+      <div class="roi-row"><span class="k">Ingreso adicional estimado</span><span class="v">~USD 4.320</span></div>
       <div class="roi-row"><span class="k">Derivación automática por área</span><span class="v green">Incluido</span></div>
-      <div class="roi-row"><span class="k">Costo plan Full</span><span class="v">~$676.000</span></div>
+      <div class="roi-row"><span class="k">Costo plan Full</span><span class="v">USD 389</span></div>
       <div class="roi-result">
-        <span class="rl">Ganancia neta/mes</span>
-        <span class="rv" style="color:var(--amber);">+$4.124.000</span>
+        <span class="rl">Ingreso adicional neto est.</span>
+        <span class="rv" style="color:var(--amber);">~+USD 3.930/mes</span>
       </div>
       <div class="src" style="margin-top:8px;">Derivación automática al abogado correcto según área de práctica.</div>
     </div>
@@ -676,9 +704,9 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
 
   <div class="glass reveal" style="padding:24px 32px;margin-top:20px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
     <div style="flex:1;min-width:220px;">
-      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">Punto de equilibrio</div>
-      <div style="font-size:1.9rem;font-weight:900;letter-spacing:-1px;">1–2 clientes/mes</div>
-      <div style="font-size:.82rem;color:var(--text-mute);margin-top:4px;line-height:1.6;">Con capturar 1 o 2 clientes nuevos por mes que antes se perdían por no responder a tiempo, el servicio se paga solo desde el primer mes.</div>
+      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">¿Cuánto tarda en verse el impacto?</div>
+      <div style="font-size:1.9rem;font-weight:900;letter-spacing:-1px;">Desde el primer mes</div>
+      <div style="font-size:.82rem;color:var(--text-mute);margin-top:4px;line-height:1.6;">El sistema empieza a operar desde el día 7. Las consultas que llegaban fuera de horario o sin respuesta empiezan a convertirse en leads calificados desde la primera semana.</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div class="badge green">Sin contratos laborales</div>
@@ -688,6 +716,7 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
       <div class="badge green">Operativo en 7 días</div>
     </div>
   </div>
+  <div class="src reveal" style="margin-top:12px;">* Proyecciones orientativas basadas en tasas de respuesta y conversión típicas del sector legal. Los resultados reales varían según el estudio.</div>
 </div>
 </section>
 
@@ -721,9 +750,9 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
       <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--amber);">02 IA + 03 CRM + derivación</div>
 
       <div style="padding:10px 0;border-top:1px solid var(--border);color:var(--text-mute);font-size:.75rem;">Setup de entrada</div>
-      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-weight:800;color:var(--accent);font-size:.85rem;">$0</div>
-      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">$400 USD</div>
-      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">desde $500 USD</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-weight:800;color:var(--accent);font-size:.85rem;">USD 0</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">USD 250</div>
+      <div style="padding:10px 12px;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-mute);">USD 350</div>
     </div>
   </div>
 
@@ -736,7 +765,7 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
         <i class="uil uil-gift" style="color:var(--accent);font-size:.85rem;"></i>
         <span style="font-size:.72rem;color:var(--accent);font-weight:700;">Sin costo de setup</span>
       </div>
-      <div class="plan-price"><sup>USD</sup>250</div>
+      <div class="plan-price"><sup>USD</sup>179</div>
       <div class="plan-period">USD / mes · hasta 2 usuarios en el panel</div>
       <p class="plan-desc">Tu estudio presente y organizado en todos los canales. Ninguna consulta se pierde aunque estés en audiencia.</p>
       <div class="plan-feature"><i class="uil uil-check-circle"></i><span><strong>Conexión y configuración incluida</strong> — todos los canales integrados por nosotros</span></div>
@@ -754,8 +783,8 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
       <div class="plan-badge">Más elegido</div>
       <div class="plan-tier">Plan 02</div>
       <div class="plan-name">Pro</div>
-      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>$400 USD</strong></div>
-      <div class="plan-price"><sup>USD</sup>380</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>USD 250</strong></div>
+      <div class="plan-price"><sup>USD</sup>279</div>
       <div class="plan-period">USD / mes · hasta 3 usuarios en el panel</div>
       <p class="plan-desc">IA que filtra casos, recolecta info y agenda turnos + pipeline de casos actualizado automáticamente. El equipo solo interviene cuando el caso ya está calificado.</p>
       <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Starter incluido</span></div>
@@ -772,8 +801,8 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
     <div class="plan-card">
       <div class="plan-tier">Plan 03</div>
       <div class="plan-name">Full</div>
-      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>desde $500 USD</strong></div>
-      <div class="plan-price"><sup>USD</sup>520</div>
+      <div class="plan-setup"><i class="uil uil-wrench" style="color:var(--text-mute);font-size:.85rem;"></i><span>Config. única:</span><strong>USD 350</strong></div>
+      <div class="plan-price"><sup>USD</sup>389</div>
       <div class="plan-period">USD / mes · hasta 4 usuarios en el panel</div>
       <p class="plan-desc">Para estudios con varios abogados. La IA deriva el caso al profesional correcto según área de práctica, agenda y notifica automáticamente a cada uno.</p>
       <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Pro incluido</span></div>
@@ -786,6 +815,43 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
     </div>
   </div>
 
+  <!-- PLAN LEGAL AI — 4to plan, ancho completo -->
+  <div class="reveal" style="margin-top:20px;">
+    <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--amber);margin:0 0 14px;display:flex;align-items:center;gap:10px;">
+      Módulo avanzado — IA jurídica interna
+      <span style="flex:1;height:1px;background:rgba(245,158,11,.2);display:block;"></span>
+    </div>
+    <div class="plan-card legal-ai" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+      <div>
+        <div class="plan-tier" style="color:var(--amber);">Plan 04 — Add-on sobre cualquier plan</div>
+        <div class="plan-name" style="color:var(--amber);">Legal AI</div>
+        <div class="plan-setup" style="border-color:rgba(245,158,11,.2);">
+          <i class="uil uil-wrench" style="color:var(--amber);font-size:.85rem;"></i>
+          <span>Config. única:</span><strong>a convenir</strong>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+          <div style="font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:var(--amber);">Precio a consultar</div>
+        </div>
+        <div class="plan-period">Depende del volumen de documentos y flujos del estudio</div>
+        <p class="plan-desc">La IA trabaja dentro del estudio: redacta borradores de escritos, busca en jurisprudencia y modelos propios, y resume expedientes antes de audiencias. El abogado recupera horas facturables por día.</p>
+        <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982?text=Quiero%20informaci%C3%B3n%20sobre%20el%20m%C3%B3dulo%20Legal%20AI%20para%20mi%20estudio%20jur%C3%ADdico','_blank')" style="max-width:260px;">Consultar precio</button>
+      </div>
+      <div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--amber);margin-bottom:12px;">Qué incluye</div>
+        <div class="plan-feature"><i class="uil uil-check-circle" style="color:var(--amber);"></i><span>Base de conocimiento jurídica del propio estudio</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle" style="color:var(--amber);"></i><span>Redacción de borradores de escritos, demandas y contratos</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle" style="color:var(--amber);"></i><span>Búsqueda en jurisprudencia y modelos propios del estudio</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle" style="color:var(--amber);"></i><span>Resumen de expedientes antes de audiencias</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle" style="color:var(--amber);"></i><span>Acceso por chat interno para el equipo del estudio</span></div>
+        <div style="margin-top:16px;padding:14px 16px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:12px;">
+          <div style="font-size:.78rem;color:var(--text-mute);line-height:1.6;">
+            <strong style="color:var(--amber);">La IA nunca da asesoramiento legal al cliente ni firma documentos.</strong> Genera borradores que el abogado revisa, corrige y valida. La responsabilidad profesional siempre es del abogado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ADDONS -->
   <div class="reveal" style="margin-top:12px;">
     <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin:32px 0 14px;display:flex;align-items:center;gap:10px;">
@@ -793,10 +859,10 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
       <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
-      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-user-plus"></i></div><div><div class="addon-name">Usuario adicional</div><div class="addon-desc">Abogado o administrativo extra en el panel</div></div></div><div class="addon-price">+$45 USD/mes</div></div>
-      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-channel"></i></div><div><div class="addon-name">Canal adicional</div><div class="addon-desc">Instagram, Telegram u otro</div></div></div><div class="addon-price">+$25 USD/mes</div></div>
-      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-apps"></i></div><div><div class="addon-name">Integración con sistema propio</div><div class="addon-desc">Conexión con el software de gestión del estudio</div></div></div><div class="addon-price">desde +$80 USD/mes</div></div>
-      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-file-edit-alt"></i></div><div><div class="addon-name">Legal AI — IA jurídica interna</div><div class="addon-desc">Escritos, jurisprudencia y resumen de expedientes</div></div></div><div class="addon-price">+$200 USD/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-user-plus"></i></div><div><div class="addon-name">Usuario adicional</div><div class="addon-desc">Abogado o administrativo extra en el panel</div></div></div><div class="addon-price">+USD 40/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-channel"></i></div><div><div class="addon-name">Canal adicional</div><div class="addon-desc">Instagram, Telegram u otro</div></div></div><div class="addon-price">+USD 20/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon"><i class="uil uil-apps"></i></div><div><div class="addon-name">Integración con sistema propio</div><div class="addon-desc">Conexión con el software de gestión del estudio</div></div></div><div class="addon-price">desde +USD 60/mes</div></div>
+      <div class="addon"><div style="display:flex;align-items:center;gap:12px;"><div class="addon-icon" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);color:var(--amber);"><i class="uil uil-file-edit-alt"></i></div><div><div class="addon-name">Legal AI — IA jurídica interna</div><div class="addon-desc">Escritos, jurisprudencia y resumen de expedientes</div></div></div><div class="addon-price" style="color:var(--amber);">A consultar</div></div>
     </div>
   </div>
 </div>
@@ -913,7 +979,7 @@ nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:fle
   <div class="stats-strip reveal" style="max-width:760px;margin:56px auto 0;">
     <div class="stat-item"><span class="stat-num">7 días</span><span class="stat-lab">Para estar operativo</span></div>
     <div class="stat-item"><span class="stat-num">30 días</span><span class="stat-lab">Ajustes sin costo</span></div>
-    <div class="stat-item"><span class="stat-num">$0</span><span class="stat-lab">Sin permanencia</span></div>
+    <div class="stat-item"><span class="stat-num">USD 0</span><span class="stat-lab">Sin permanencia</span></div>
     <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-lab">Cobertura total</span></div>
   </div>
   <div class="footer-inner" style="margin-top:64px;">
