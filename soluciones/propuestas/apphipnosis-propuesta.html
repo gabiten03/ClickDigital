@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Hipnosis — Propuesta Comercial · ClickDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<style>
+:root,[data-theme="dark"]{
+  --accent:#8b7fe8;--accent-alt:#c4b8f0;
+  --bg:#07090E;--bg-card:rgba(15,13,30,0.55);--bg-card-h:rgba(22,19,42,0.75);
+  --border:rgba(255,255,255,0.08);--border-h:rgba(139,127,232,0.3);
+  --text:#F1F5F9;--text-mute:#94A3B8;
+  --nav-bg:rgba(7,9,14,0.75);--btn-bg:rgba(255,255,255,0.03);--btn-hover:rgba(255,255,255,0.07);
+  --radius:20px;--nav-h:80px;--ease:cubic-bezier(0.25,1,0.35,1);
+  --red:#EF4444;--amber:#F59E0B;
+}
+[data-theme="light"]{
+  --bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);
+  --border:rgba(0,0,0,0.08);--border-h:rgba(139,127,232,0.4);
+  --text:#0F172A;--text-mute:#475569;
+  --nav-bg:rgba(248,250,252,0.85);--btn-bg:rgba(0,0,0,0.03);--btn-hover:rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Urbanist',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+a{text-decoration:none;color:inherit;transition:.3s;}
+ul{list-style:none;}
+
+nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;width:100%;}
+.logo img{height:32px;width:auto;display:block;}
+[data-theme="dark"] .logo-light{display:none!important;}
+[data-theme="dark"] .logo-dark{display:block!important;}
+[data-theme="light"] .logo-dark{display:none!important;}
+[data-theme="light"] .logo-light{display:block!important;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text-mute);text-transform:uppercase;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--accent);}
+.nav-ctrls{display:flex;gap:12px;align-items:center;}
+.ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;}
+.ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+.theme-btn{width:36px;height:36px;font-size:1.1rem;}
+[data-theme="dark"] .light-icon{display:none;}
+[data-theme="light"] .dark-icon{display:none;}
+.btn-primary{background:var(--accent);color:#fff;padding:10px 24px;border-radius:50px;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(139,127,232,.25);cursor:pointer;border:none;font-family:'Urbanist',sans-serif;}
+.btn-primary:hover{transform:translateY(-2px);}
+
+.progress-bar{position:fixed;top:var(--nav-h);left:0;height:2px;background:var(--accent);z-index:999;transition:width .2s;}
+.slide-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:100;}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--border);border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.3s;}
+.sdot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.4);}
+
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 60px) 0 80px;position:relative;border-bottom:1px solid var(--border);}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent);}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(139,127,232,.1);border:1px solid rgba(139,127,232,.25);color:var(--accent);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:28px;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.big-h{font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:20px;}
+.big-h em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-alt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sub-p{color:var(--text-mute);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:40px;}
+
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:48px;}
+.stat-item{background:var(--bg);padding:24px 16px;text-align:center;transition:.3s;}
+.stat-item:hover{background:var(--bg-card);}
+.stat-num{font-size:2.2rem;font-weight:900;color:var(--accent);letter-spacing:-1px;display:block;}
+.stat-lab{color:var(--text-mute);font-size:.73rem;font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.8px;}
+
+.glass{background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(24px);border-radius:var(--radius);transition:.5s var(--ease);}
+.glass:hover{border-color:var(--border-h);background:var(--bg-card-h);}
+.glass.accent-top{border-top:2px solid var(--accent);}
+.glass.amber-top{border-top:2px solid var(--amber);}
+.icon-box{width:48px;height:48px;background:rgba(139,127,232,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:16px;font-size:1.3rem;border:1px solid rgba(139,127,232,.15);}
+.badge{display:inline-block;font-size:.65rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-top:8px;}
+.badge.green{background:rgba(139,127,232,.1);color:var(--accent);border:1px solid rgba(139,127,232,.2);}
+.badge.amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2);}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+.tl-row{display:grid;grid-template-columns:64px 1fr;gap:16px;position:relative;}
+.tl-row:not(:last-child)::after{content:'';position:absolute;left:31px;top:46px;bottom:-12px;width:1px;background:var(--border);}
+.tl-time{font-size:.72rem;font-weight:700;color:var(--text-mute);text-align:right;padding-top:14px;}
+.tl-card{border-radius:14px;padding:16px 20px;margin-bottom:12px;border:1px solid rgba(139,127,232,.25);background:rgba(139,127,232,.05);position:relative;}
+.tl-dot{width:8px;height:8px;border-radius:50%;position:absolute;left:-24px;top:18px;border:2px solid var(--bg);background:var(--accent);}
+.tl-title{font-size:.88rem;font-weight:700;margin-bottom:3px;}
+.tl-text{font-size:.8rem;color:var(--text-mute);line-height:1.55;}
+
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;}
+.process-grid::before{content:'';position:absolute;top:27px;left:12%;right:12%;height:1px;border-bottom:1px dashed rgba(139,127,232,.2);}
+.step-num{width:56px;height:56px;background:var(--bg);border:2px solid var(--accent);color:var(--accent);font-size:1.1rem;font-weight:900;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 0 15px rgba(139,127,232,.15);}
+
+.cost-line{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem;}
+.cost-line:last-of-type{border:none;}
+.cost-line .name{color:var(--text-mute);}
+.cost-line .val{font-weight:700;}
+.cost-line .val.green{color:var(--accent);}
+.cost-line .val.total{color:var(--text);font-size:1rem;}
+.cost-total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;margin-top:6px;border-top:1px solid var(--border);}
+.cost-label-sm{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-mute);}
+.cost-val-big{font-size:1.5rem;font-weight:900;letter-spacing:-1px;color:var(--accent);}
+
+.plan-card{background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(24px);border-radius:var(--radius);padding:30px 24px;position:relative;transition:.5s var(--ease);}
+.plan-card:hover{border-color:var(--border-h);background:var(--bg-card-h);}
+.plan-card.featured{border-color:rgba(139,127,232,.4);background:rgba(139,127,232,.04);}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.65rem;font-weight:800;padding:4px 16px;border-radius:50px;white-space:nowrap;text-transform:uppercase;letter-spacing:1px;}
+.plan-tier{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text-mute);margin-bottom:6px;}
+.plan-name{font-size:1.6rem;font-weight:900;letter-spacing:-1px;margin-bottom:6px;}
+.plan-price{font-size:2.8rem;font-weight:900;letter-spacing:-2px;line-height:1;}
+.plan-price sub{font-size:.85rem;vertical-align:baseline;color:var(--text-mute);font-weight:400;}
+.plan-period{color:var(--text-mute);font-size:.75rem;margin:4px 0 14px;}
+.plan-desc{color:var(--text-mute);font-size:.83rem;line-height:1.65;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.plan-feature{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;margin-bottom:8px;line-height:1.5;}
+.plan-feature i.uil-check-circle{color:var(--accent);font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.plan-feature i.uil-circle{color:rgba(148,163,184,.2);font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.plan-feature.dim span{color:var(--text-mute);opacity:.4;}
+.plan-btn{width:100%;padding:12px;border-radius:50px;font-weight:700;font-size:.86rem;cursor:pointer;border:1px solid var(--border);background:var(--btn-bg);color:var(--text);transition:.3s;font-family:'Urbanist',sans-serif;margin-top:20px;}
+.plan-btn:hover{border-color:var(--accent);color:var(--accent);}
+.plan-card.featured .plan-btn{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+.entrega-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border);}
+.entrega-row:last-child{border:none;}
+.entrega-mes{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);min-width:64px;padding-top:3px;}
+.entrega-body h4{font-size:.9rem;font-weight:700;margin-bottom:4px;}
+.entrega-body p{font-size:.8rem;color:var(--text-mute);line-height:1.6;}
+
+.btn-hero{background:var(--accent);color:#fff;padding:15px 36px;border-radius:50px;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:.4s var(--ease);box-shadow:0 8px 25px rgba(139,127,232,.25);cursor:pointer;border:none;font-family:'Urbanist',sans-serif;}
+.btn-hero:hover{transform:translateY(-3px);}
+.btn-outline-hero{background:var(--btn-bg);color:var(--text);border:1px solid var(--border);padding:15px 32px;border-radius:50px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(10px);transition:.4s var(--ease);cursor:pointer;font-family:'Urbanist',sans-serif;}
+.btn-outline-hero:hover{background:var(--btn-hover);border-color:var(--text-mute);}
+
+.footer-inner{border-top:1px solid var(--border);padding-top:40px;color:var(--text-mute);font-size:.88rem;text-align:center;}
+.footer-links{display:flex;justify-content:center;gap:28px;margin:16px 0;flex-wrap:wrap;}
+.footer-links a{color:var(--text-mute);font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.5px;}
+.footer-links a:hover{color:var(--accent);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+#particleCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+.phone-frame{width:220px;background:#0d0c1a;border-radius:32px;border:0.5px solid rgba(139,127,232,.2);overflow:hidden;flex-shrink:0;box-shadow:0 40px 80px rgba(0,0,0,.5);}
+.phone-notch-bar{height:22px;background:#07070f;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;}
+.phone-notch-pill{width:60px;height:14px;background:#0d0c1a;border-radius:10px;}
+.phone-inner{padding:14px 12px;background:#0d0c1a;}
+.p-screen-logo{font-size:11px;font-weight:700;color:#c4b8f0;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+.p-card{background:#131222;border:0.5px solid rgba(139,127,232,.15);border-radius:12px;padding:12px;margin-bottom:8px;}
+.p-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#6b6490;margin-bottom:4px;}
+.p-val{font-size:13px;font-weight:700;color:#c4b8f0;}
+.p-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.p-opt{background:#131222;border:0.5px solid rgba(139,127,232,.15);border-radius:9px;padding:8px 6px;text-align:center;}
+.p-opt.sel{border-color:#8b7fe8;}
+.p-opt-icon{font-size:14px;display:block;margin-bottom:3px;}
+.p-opt-name{font-size:8px;color:#c4b8f0;}
+.p-btn{width:100%;background:#534AB7;color:#fff;border:none;border-radius:20px;padding:9px;font-size:10px;font-weight:700;}
+
+@media(max-width:992px){
+  .nav-links{display:none;}
+  .g2,.g3{grid-template-columns:1fr;}
+  .g2.keep{grid-template-columns:1fr 1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;}
+  .process-grid::before{display:none;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+  .slide-dots{display:none;}
+  .phone-frame{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="https://clickdigital.com.ar" class="logo">
+      <img src="https://clickdigital.com.ar/assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none'">
+      <img src="https://clickdigital.com.ar/assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none'">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#s-producto">La App</a></li>
+      <li><a href="#s-flujo">Flujo</a></li>
+      <li><a href="#s-entregables">Entregables</a></li>
+      <li><a href="#s-requisitos">Requisitos</a></li>
+      <li><a href="#s-inversion">Inversión</a></li>
+      <li><a href="#s-planes">Planes</a></li>
+    </ul>
+    <div class="nav-ctrls">
+      <button class="ctrl-btn theme-btn" id="themeToggle">
+        <i class="uil uil-moon dark-icon"></i>
+        <i class="uil uil-sun light-icon"></i>
+      </button>
+      <a href="https://wa.me/5491156571982" target="_blank" class="btn-primary" style="margin-left:8px;">
+        <i class="uil uil-whatsapp"></i> Hablemos
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="slide-dots" id="slideDots"></div>
+
+<!-- PORTADA -->
+<section class="slide" id="s-portada" style="text-align:center;overflow:hidden;">
+  <canvas id="particleCanvas"></canvas>
+  <div class="container" style="z-index:2;position:relative;">
+    <div class="hero-tag" style="margin:0 auto 28px;">App Hipnosis · by ClickDigital · Propuesta Comercial</div>
+    <h1 class="big-h" style="font-size:clamp(3rem,6.5vw,5.2rem);max-width:820px;margin:0 auto 24px;">
+      Tu app de hipnosis guiada.<br><em>Tu marca, tu negocio.</em>
+    </h1>
+    <p class="sub-p" style="margin:0 auto 44px;text-align:center;">
+      Una web app completa con sesiones de hipnosis personalizadas, audio inmersivo con mezcla de voz y sonido ambiente, autenticación de usuarios y gestión de suscriptores.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://mpago.la/2y42Ygh" target="_blank" class="btn-hero"><i class="uil uil-rocket"></i> Arranquemos</a>
+      <button class="btn-outline-hero" onclick="document.getElementById('s-producto').scrollIntoView({behavior:'smooth'})"><i class="uil uil-arrow-down"></i> Ver propuesta</button>
+    </div>
+    <div class="stats-strip reveal">
+      <div class="stat-item"><span class="stat-num">4</span><span class="stat-lab">meses de desarrollo</span></div>
+      <div class="stat-item"><span class="stat-num">Web</span><span class="stat-lab">primera etapa</span></div>
+      <div class="stat-item"><span class="stat-num">PWA</span><span class="stat-lab">se instala como app</span></div>
+      <div class="stat-item"><span class="stat-num">Stripe</span><span class="stat-lab">cobro con tarjeta</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EL PRODUCTO -->
+<section class="slide" id="s-producto">
+  <div class="container">
+    <div class="section-label reveal">El producto</div>
+    <h2 class="big-h reveal" style="max-width:700px;">Una app que tus usuarios<br><em>van a querer usar</em> cada día.</h2>
+    <div class="g2 reveal" style="margin-top:40px;align-items:center;gap:48px;">
+      <div>
+        <div class="g2 keep" style="gap:14px;">
+          <div class="glass accent-top" style="padding:22px;">
+            <div class="icon-box"><i class="uil uil-headphones"></i></div>
+            <h4 style="font-size:.92rem;font-weight:700;margin-bottom:6px;">Sesiones de hipnosis</h4>
+            <p style="font-size:.8rem;color:var(--text-mute);line-height:1.6;">El usuario elige el objetivo: ansiedad, sueño, confianza o foco. La app reproduce la sesión correspondiente.</p>
+          </div>
+          <div class="glass accent-top" style="padding:22px;">
+            <div class="icon-box"><i class="uil uil-music"></i></div>
+            <h4 style="font-size:.92rem;font-weight:700;margin-bottom:6px;">Audio inmersivo</h4>
+            <p style="font-size:.8rem;color:var(--text-mute);line-height:1.6;">La voz de hipnosis y el sonido de fondo se mezclan en tiempo real. El usuario controla el volumen de cada uno.</p>
+          </div>
+          <div class="glass accent-top" style="padding:22px;">
+            <div class="icon-box"><i class="uil uil-credit-card"></i></div>
+            <h4 style="font-size:.92rem;font-weight:700;margin-bottom:6px;">Cobro con tarjeta</h4>
+            <p style="font-size:.8rem;color:var(--text-mute);line-height:1.6;">Integración con Stripe para cobrar suscripciones automáticas. El acceso se activa y cancela solo.</p>
+          </div>
+          <div class="glass accent-top" style="padding:22px;">
+            <div class="icon-box"><i class="uil uil-upload"></i></div>
+            <h4 style="font-size:.92rem;font-weight:700;margin-bottom:6px;">Panel de contenido</h4>
+            <p style="font-size:.8rem;color:var(--text-mute);line-height:1.6;">Subís tus audios desde un panel simple. Agregar sesiones nuevas no requiere intervención técnica.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <div class="phone-frame">
+          <div class="phone-notch-bar"><div class="phone-notch-pill"></div></div>
+          <div class="phone-inner">
+            <div class="p-screen-logo">✦ HIPNOSIS</div>
+            <div class="p-card">
+              <div class="p-label">Racha actual</div>
+              <div class="p-val">7 días seguidos 🔥</div>
+            </div>
+            <div class="p-label" style="margin-bottom:6px;">Nueva sesión</div>
+            <div class="p-grid">
+              <div class="p-opt sel"><span class="p-opt-icon">🌊</span><div class="p-opt-name">Ansiedad</div></div>
+              <div class="p-opt"><span class="p-opt-icon">🌙</span><div class="p-opt-name">Sueño</div></div>
+              <div class="p-opt"><span class="p-opt-icon">✦</span><div class="p-opt-name">Confianza</div></div>
+              <div class="p-opt"><span class="p-opt-icon">◎</span><div class="p-opt-name">Foco</div></div>
+            </div>
+            <button class="p-btn">✦ Iniciar sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUJO -->
+<section class="slide" id="s-flujo" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Flujo real</div>
+    <h2 class="big-h reveal" style="max-width:680px;">Así vive la experiencia<br>un usuario de <em>la app.</em></h2>
+    <div class="g2 reveal" style="margin-top:40px;">
+      <div>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i class="uil uil-user"></i> Usuario</div>
+        <div>
+          <div class="tl-row"><div class="tl-time">1</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Se registra</div><div class="tl-text">Crea su cuenta con email o Google. Accede directamente al home.</div></div></div>
+          <div class="tl-row"><div class="tl-time">2</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Elige su sesión</div><div class="tl-text">Selecciona objetivo, voz y sonido de fondo.</div></div></div>
+          <div class="tl-row"><div class="tl-time">3</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Audio inmersivo</div><div class="tl-text">Voz + sonido de fondo mezclados en tiempo real. Volumen independiente para cada uno.</div></div></div>
+          <div class="tl-row"><div class="tl-time">4</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Suscripción</div><div class="tl-text">Paga con tarjeta a través de Stripe. El acceso se activa automáticamente.</div></div></div>
+          <div class="tl-row"><div class="tl-time">5</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Racha diaria</div><div class="tl-text">La app registra cada día que practica. Genera hábito y retención orgánica.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mute);margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i class="uil uil-user-check"></i> Vos (admin)</div>
+        <div>
+          <div class="tl-row"><div class="tl-time">A</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Subís los audios</div><div class="tl-text">Desde el panel subís los MP3 de hipnosis. La app los sirve automáticamente.</div></div></div>
+          <div class="tl-row"><div class="tl-time">B</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Stripe maneja los pagos</div><div class="tl-text">Cobro automático, renovaciones y cancelaciones sin intervención manual.</div></div></div>
+          <div class="tl-row"><div class="tl-time">C</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Agregás sesiones nuevas</div><div class="tl-text">Sin tocar código ni depender del desarrollador.</div></div></div>
+          <div class="tl-row"><div class="tl-time">D</div><div class="tl-card"><div class="tl-dot"></div><div class="tl-title">Ves métricas</div><div class="tl-text">Usuarios activos, sesiones reproducidas, ingresos del mes.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PWA -->
+<section class="slide" id="s-pwa" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Tecnología</div>
+    <h2 class="big-h reveal" style="max-width:640px;">Se instala como una app.<br><em>Sin pasar por ninguna tienda.</em></h2>
+    <div class="g3 reveal" style="margin-top:40px;">
+      <div class="glass" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-mobile-android"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Instalable en el celular</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">El usuario entra a la URL y agrega la app a su pantalla de inicio. Queda con ícono propio y pantalla completa, como cualquier app descargada.</p>
+        <div class="badge green" style="margin-top:12px;">iPhone · Android · Desktop</div>
+      </div>
+      <div class="glass" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-bolt-alt"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Actualizaciones instantáneas</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Cualquier sesión nueva que subas está disponible de inmediato para todos los usuarios. Sin revisiones de tienda ni actualizaciones manuales.</p>
+        <div class="badge green" style="margin-top:12px;">Deploy inmediato</div>
+      </div>
+      <div class="glass" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-arrow-growth"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Escalable a mobile nativo</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Cuando el negocio crezca, el mismo código se compila a apps nativas para iOS y Android sin reescribir nada. La base que se construye ahora sirve para siempre.</p>
+        <div class="badge amber" style="margin-top:12px;">Próxima etapa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGABLES -->
+<section class="slide" id="s-entregables" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Qué se entrega</div>
+    <h2 class="big-h reveal" style="max-width:640px;">Mes a mes, con<br><em>entregables concretos.</em></h2>
+    <div class="g2 reveal" style="margin-top:40px;gap:32px;">
+      <div class="glass" style="padding:28px 32px;">
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i class="uil uil-calendar-alt"></i> Cronograma</div>
+        <div class="entrega-row">
+          <div class="entrega-mes">Mes 1</div>
+          <div class="entrega-body"><h4>Base y autenticación</h4><p>Registro y login, pantallas principales, base de datos y almacenamiento de archivos.</p></div>
+        </div>
+        <div class="entrega-row">
+          <div class="entrega-mes">Mes 2</div>
+          <div class="entrega-body"><h4>Player y audio</h4><p>Reproductor con mezcla de voz y sonido ambiente en tiempo real, selector de sesión y preferencias.</p></div>
+        </div>
+        <div class="entrega-row">
+          <div class="entrega-mes">Mes 3</div>
+          <div class="entrega-body"><h4>Pagos y panel admin</h4><p>Integración con Stripe, cobro automático de suscripciones, panel para subir audios y ver métricas.</p></div>
+        </div>
+        <div class="entrega-row">
+          <div class="entrega-mes">Mes 4</div>
+          <div class="entrega-body"><h4>Testing, deploy y entrega</h4><p>QA en todos los dispositivos, publicación en tu dominio, capacitación y documentación del panel.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="glass" style="padding:28px 32px;margin-bottom:16px;">
+          <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i class="uil uil-package"></i> Entrega final incluye</div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>App publicada en tu dominio propio</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Base de datos configurada con datos de prueba</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Cobro automático con Stripe funcionando</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel admin para gestión de audios y usuarios</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>5 sesiones de ejemplo cargadas</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Documentación para operar el panel</span></div>
+          <div class="plan-feature"><i class="uil uil-check-circle"></i><span>1 mes de soporte post-entrega incluido</span></div>
+        </div>
+        <div class="glass amber-top" style="padding:22px 28px;">
+          <div style="font-size:.75rem;font-weight:700;color:var(--amber);margin-bottom:8px;"><i class="uil uil-info-circle"></i> Audio en tiempo real</div>
+          <p style="font-size:.82rem;color:var(--text-mute);line-height:1.65;">Con 10 sesiones de hipnosis y 10 sonidos de fondo la app genera 100 combinaciones posibles sin necesidad de pre-mezclar ningún archivo. El usuario personaliza su experiencia en cada sesión.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section class="slide" id="s-inversion" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">La inversión</div>
+    <h2 class="big-h reveal" style="max-width:660px;">Precio fijo mensual.<br><em>Sin sorpresas.</em></h2>
+    <div class="g2 reveal" style="margin-top:40px;">
+      <div class="glass" style="padding:32px;">
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;">Desarrollo · 4 meses</div>
+        <div class="cost-line"><span class="name">Mes 1 — Base y autenticación</span><span class="val green">$700.000 ARS</span></div>
+        <div class="cost-line"><span class="name">Mes 2 — Player y audio</span><span class="val green">$700.000 ARS</span></div>
+        <div class="cost-line"><span class="name">Mes 3 — Pagos y panel admin</span><span class="val green">$700.000 ARS</span></div>
+        <div class="cost-line"><span class="name">Mes 4 — Deploy y entrega</span><span class="val green">$700.000 ARS</span></div>
+        <div class="cost-total-row">
+          <span class="cost-label-sm">Total desarrollo</span>
+          <span class="cost-val-big">$2.800.000 ARS</span>
+        </div>
+      </div>
+      <div class="glass" style="padding:32px;">
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;">Mantenimiento · desde mes 5</div>
+        <div class="cost-line"><span class="name">Soporte técnico y corrección de errores</span><span class="val">✓</span></div>
+        <div class="cost-line"><span class="name">Subida de nuevas sesiones de audio</span><span class="val">✓</span></div>
+        <div class="cost-line"><span class="name">Cambios menores de contenido</span><span class="val">✓</span></div>
+        <div class="cost-line"><span class="name">Monitoreo de la plataforma</span><span class="val">✓</span></div>
+        <div class="cost-total-row">
+          <span class="cost-label-sm">Mantenimiento mensual</span>
+          <span class="cost-val-big">$350.000 ARS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLAUSULAS -->
+    <div class="glass reveal" style="padding:28px 32px;margin-top:20px;">
+      <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i class="uil uil-chart-line"></i> Cláusulas de actualización</div>
+      <div class="g2 keep" style="gap:24px;">
+        <div>
+          <div style="font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px;">Ajuste por IPC</div>
+          <p style="font-size:.8rem;color:var(--text-mute);line-height:1.7;">El mantenimiento mensual se actualiza trimestralmente según el IPC oficial del INDEC. Se notifica con 15 días de anticipación.</p>
+        </div>
+        <div>
+          <div style="font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px;">Revisión por tipo de cambio</div>
+          <p style="font-size:.8rem;color:var(--text-mute);line-height:1.7;">Si el tipo de cambio oficial sube más del 30% respecto al inicio del contrato, se revisan los valores de las cuotas restantes de común acuerdo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass reveal" style="padding:24px 32px;margin-top:16px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:220px;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">Modalidad de pago</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text);">Mes adelantado</div>
+        <div style="font-size:.82rem;color:var(--text-mute);margin-top:4px;line-height:1.6;">Cada mes se abona antes de que empiece. Si el pago no se recibe, el desarrollo se pausa.</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <div class="badge green">Sin permanencia</div>
+        <div class="badge green">Entregables concretos</div>
+        <div class="badge green">Revisiones semanales</div>
+        <div class="badge green">Soporte incluido</div>
+        <div class="badge amber">Escalable a mobile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <div class="reveal" style="text-align:center;margin-top:24px;">
+        <a href="https://mpago.la/2y42Ygh" target="_blank" class="btn-hero" style="display:inline-flex;gap:10px;align-items:center;">
+          <i class="uil uil-money-bill"></i> Pagar cuota con MercadoPago
+        </a>
+        <p style="font-size:.75rem;color:var(--text-mute);margin-top:10px;">Mismo link para cada cuota mensual · Transferencia sin comisión</p>
+      </div>
+
+<!-- PLANES -->
+<section class="slide" id="s-planes" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Planes</div>
+    <h2 class="big-h reveal" style="max-width:640px;">Arrancás con la web.<br><em>Escalás cuando crezcas.</em></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;" class="reveal">
+      <div class="plan-card">
+        <div class="plan-tier">Plan 01</div>
+        <div class="plan-name">Web MVP</div>
+        <div class="plan-price">$700.000<sub> ARS/mes</sub></div>
+        <div class="plan-period">4 meses · total $2.800.000 ARS</div>
+        <p class="plan-desc">Para arrancar, validar el mercado y empezar a sumar usuarios. La suscripción se gestiona manualmente.</p>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Registro y login de usuarios</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Player con mezcla de audio en tiempo real</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>4 tipos de sesión de hipnosis</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel admin para subir audios</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Instalable como PWA</span></div>
+        <div class="plan-feature dim"><i class="uil uil-circle"></i><span>Cobro automático con Stripe</span></div>
+        <div class="plan-feature dim"><i class="uil uil-circle"></i><span>Apps nativas iOS / Android</span></div>
+        <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982','_blank')">Arranquemos</button>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Recomendado</div>
+        <div class="plan-tier">Plan 02</div>
+        <div class="plan-name">Web + Pagos</div>
+        <div class="plan-price">$700.000<sub> ARS/mes</sub></div>
+        <div class="plan-period">5 meses · total $3.500.000 ARS</div>
+        <p class="plan-desc">Todo el MVP más integración con Stripe. El cobro, las renovaciones y las cancelaciones funcionan solos.</p>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Web MVP</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Cobro automático con Stripe</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Renovaciones automáticas</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Gestión automática de accesos</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Bajas automáticas al cancelar</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Panel de ingresos</span></div>
+        <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982','_blank')">Arranquemos</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-tier">Plan 03</div>
+        <div class="plan-name">Full Mobile</div>
+        <div class="plan-price">A cotizar</div>
+        <div class="plan-period">Sobre la base ya desarrollada</div>
+        <p class="plan-desc">Cuando el negocio esté validado: apps nativas en App Store y Google Play.</p>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Todo lo del Web + Pagos</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>App nativa iOS — App Store</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>App nativa Android — Play Store</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Notificaciones push</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Publicación en ambas tiendas</span></div>
+        <button class="plan-btn" onclick="window.open('https://wa.me/5491156571982','_blank')">Consultar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- REQUISITOS CLIENTE -->
+<section class="slide" id="s-requisitos" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Lo que necesitamos del cliente</div>
+    <h2 class="big-h reveal" style="max-width:680px;">Tu parte para que<br><em>todo funcione.</em></h2>
+    <p class="sub-p reveal">Para llegar al lanzamiento sin demoras, el cliente debe proveer los siguientes elementos en los tiempos indicados.</p>
+    <div class="g2 reveal" style="margin-top:8px;gap:16px;">
+
+      <div class="glass accent-top" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-headphones"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Audios de hipnosis</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;">Los archivos de voz grabados y editados por el cliente, listos para usar. Formato requerido: <strong style="color:var(--text);">MP3</strong>, calidad mínima 128kbps, sin ruido de fondo ni edición pendiente.</p>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;margin-top:8px;">El desarrollador provee los sonidos de fondo (lluvia, bosque, cuencos, etc.). La mezcla se realiza en tiempo real dentro de la app.</p>
+        <div class="badge green" style="margin-top:12px;">Entrega: antes del mes 2</div>
+      </div>
+
+      <div class="glass accent-top" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-globe"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Dominio propio</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;">El cliente adquiere y es titular del dominio donde vivirá la app. Costo estimado: USD 12-20 por año. El dominio es propiedad del cliente en todo momento.</p>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;margin-top:8px;">Se requiere acceso al panel de DNS para apuntar el dominio a la app. Este acceso se coordina en el mes 4 antes del lanzamiento.</p>
+        <div class="badge green" style="margin-top:12px;">Entrega: antes del mes 4</div>
+      </div>
+
+      <div class="glass accent-top" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-credit-card"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Cuenta Stripe y credenciales</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;">El cliente debe contar con una cuenta de Stripe activa y proveer las siguientes credenciales de acceso:</p>
+        <div class="plan-feature" style="margin-top:10px;"><i class="uil uil-check-circle"></i><span><strong>Claves de test</strong> (pk_test / sk_test) para desarrollo y pruebas</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span><strong>Claves de produccion</strong> (pk_live / sk_live) para el lanzamiento</span></div>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;margin-top:8px;">Las claves live se entregan unicamente al momento del lanzamiento.</p>
+        <div class="badge green" style="margin-top:12px;">Test: mes 3 · Live: mes 4</div>
+      </div>
+
+      <div class="glass accent-top" style="padding:28px;">
+        <div class="icon-box"><i class="uil uil-pen"></i></div>
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:8px;">Nombre e identidad visual</h3>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;">Antes de comenzar el desarrollo el cliente define:</p>
+        <div class="plan-feature" style="margin-top:10px;"><i class="uil uil-check-circle"></i><span>Nombre definitivo de la aplicacion</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Logo o icono (PNG 512x512px minimo)</span></div>
+        <div class="plan-feature"><i class="uil uil-check-circle"></i><span>Paleta de colores o referencia de estilo</span></div>
+        <p style="font-size:.82rem;color:var(--text-mute);line-height:1.7;margin-top:8px;">Si el cliente no cuenta con diseñador, el desarrollador propone una identidad visual base sin costo adicional.</p>
+        <div class="badge green" style="margin-top:12px;">Entrega: antes del mes 1</div>
+      </div>
+
+    </div>
+    <div class="glass reveal" style="padding:22px 28px;margin-top:16px;border-left:2px solid var(--amber);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <i class="uil uil-exclamation-triangle" style="color:var(--amber);font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+        <p style="font-size:.83rem;color:var(--text-mute);line-height:1.7;">Cualquier demora en la entrega de estos materiales puede impactar el cronograma. El desarrollador no es responsable por atrasos originados en la falta de provision de elementos por parte del cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="slide" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal">Cómo trabajamos</div>
+    <h2 class="big-h reveal" style="max-width:600px;"><em>Primer mes arranca</em><br>cuando confirmás.</h2>
+    <div class="process-grid reveal" style="margin-top:48px;">
+      <div style="text-align:center;">
+        <div class="step-num">1</div>
+        <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Reunión de brief</h4>
+        <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Definimos identidad visual, tipos de sesión, precios de suscripción y requerimientos del panel admin.</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="step-num">2</div>
+        <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Primer pago y arranque</h4>
+        <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Con el primer mes confirmado arrancamos. Primeras pantallas funcionales en dos semanas.</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="step-num">3</div>
+        <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Revisiones semanales</h4>
+        <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Cada semana mostramos avances. Podés pedir ajustes antes de cerrar cada módulo.</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="step-num">4</div>
+        <h4 style="font-size:1rem;font-weight:700;margin-bottom:10px;">Entrega y onboarding</h4>
+        <p style="font-size:.83rem;color:var(--text-mute);line-height:1.6;">Entregamos con capacitación para usar el panel. El primer mes de soporte está incluido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="slide" style="text-align:center;border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;">Siguiente paso</div>
+    <h2 class="big-h reveal" style="font-size:clamp(2.8rem,6vw,4.8rem);max-width:760px;margin:0 auto 20px;">Tu app lista<br>en <em>4 meses.</em></h2>
+    <p class="sub-p reveal" style="text-align:center;margin:0 auto 44px;">Sin riesgo, sin permanencia forzada, con entregables concretos cada mes.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal">
+      <a href="https://mpago.la/2y42Ygh" target="_blank" class="btn-hero"><i class="uil uil-rocket"></i> Quiero arrancar</a>
+      <a href="https://wa.me/5491156571982" target="_blank" class="btn-outline-hero"><i class="uil uil-whatsapp"></i> Tengo una consulta</a>
+    </div>
+    <div class="stats-strip reveal" style="max-width:760px;margin:56px auto 0;">
+      <div class="stat-item"><span class="stat-num">4 meses</span><span class="stat-lab">Tiempo de entrega</span></div>
+      <div class="stat-item"><span class="stat-num">$700K</span><span class="stat-lab">ARS por mes</span></div>
+      <div class="stat-item"><span class="stat-num">$350K</span><span class="stat-lab">Mantenimiento mensual</span></div>
+      <div class="stat-item"><span class="stat-num">PWA</span><span class="stat-lab">Instalable sin tienda</span></div>
+    </div>
+    <div class="footer-inner" style="margin-top:64px;">
+      <div style="margin-bottom:16px;">
+        <img src="https://clickdigital.com.ar/assets/images/logo-light.png" class="logo-dark" alt="ClickDigital" style="height:28px;display:inline-block;" onerror="this.style.display='none'">
+        <img src="https://clickdigital.com.ar/assets/images/logo-dark.png" class="logo-light" alt="ClickDigital" style="height:28px;display:none;" onerror="this.style.display='none'">
+      </div>
+      <div class="footer-links">
+        <a href="https://clickdigital.com.ar">clickdigital.com.ar</a>
+        <a href="https://wa.me/5491156571982">WhatsApp</a>
+        <a href="mailto:info@clickdigital.com.ar">info@clickdigital.com.ar</a>
+      </div>
+      <p style="margin-top:12px;font-size:.82rem;">&copy; <span id="year"></span> ClickDigital · Buenos Aires, Argentina</p>
+    </div>
+  </div>
+</section>
+
+<script>
+let t=localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme',t);
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  t=t==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+
+const canvas=document.getElementById('particleCanvas'),ctx=canvas.getContext('2d');
+let W,H,balls=[];
+class Ball{constructor(){this.reset();}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*1.1;this.vy=(Math.random()-.5)*1.1;this.r=Math.random()*2.5+.5;this.a=Math.random()*.3+.1;}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1;}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(139,127,232,${this.a})`;ctx.fill();}}
+function setup(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;balls=[];for(let i=0;i<Math.min(Math.floor(W/12),110);i++)balls.push(new Ball());}
+function loop(){ctx.clearRect(0,0,W,H);balls.forEach(b=>{b.update();b.draw();});requestAnimationFrame(loop);}
+window.addEventListener('resize',setup);setup();loop();
+
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+const slides=document.querySelectorAll('.slide'),dotsEl=document.getElementById('slideDots'),progEl=document.getElementById('progressBar');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='sdot';d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});dotsEl.appendChild(d);});
+function onScroll(){const sy=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;progEl.style.width=(dh>0?sy/dh*100:0)+'%';const dots=dotsEl.querySelectorAll('.sdot');slides.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=window.innerHeight/2&&r.bottom>=window.innerHeight/2){dots.forEach(d=>d.classList.remove('active'));if(dots[i])dots[i].classList.add('active');}});}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>
