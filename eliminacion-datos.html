@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClickDigital — Instrucciones para la eliminación de datos de usuario">
+    <title>ClickDigital | Eliminación de Datos de Usuario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        :root,[data-theme="dark"]{--accent:#10B981;--accent-alt:#14B8A6;--bg:#07090E;--bg-card:rgba(15,18,28,0.45);--bg-card-h:rgba(20,24,38,0.65);--border:rgba(255,255,255,0.08);--border-h:rgba(16,185,129,0.25);--text:#F1F5F9;--text-mute:#94A3B8;--nav-bg:rgba(7,9,14,0.85);--btn-bg:rgba(255,255,255,0.02);--radius:20px;--nav-h:70px;--ease:cubic-bezier(0.25,1,0.35,1);}
+        [data-theme="light"]{--bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);--border:rgba(0,0,0,0.08);--border-h:rgba(16,185,129,0.4);--text:#0F172A;--text-mute:#475569;--nav-bg:rgba(248,250,252,0.9);--btn-bg:rgba(0,0,0,0.03);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+        a{text-decoration:none;color:inherit;transition:.3s;}
+        nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+        .nav-inner{max-width:900px;margin:0 auto;padding:0 24px;width:100%;display:flex;justify-content:space-between;align-items:center;}
+        .logo{display:flex;align-items:center;}
+        .logo img{height:30px;width:auto;display:block;}
+        [data-theme="dark"] .logo-light{display:none!important;}[data-theme="dark"] .logo-dark{display:block!important;}
+        [data-theme="light"] .logo-dark{display:none!important;}[data-theme="light"] .logo-light{display:block!important;}
+        .logo-text{font-size:1.2rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent);display:none;}
+        .nav-right{display:flex;align-items:center;gap:10px;}
+        .ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
+        .ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+        .lang-btn{padding:7px 14px;font-size:.8rem;font-family:'Plus Jakarta Sans',sans-serif;}
+        .theme-btn{width:34px;height:34px;font-size:1rem;}
+        [data-theme="dark"] .light-icon{display:none;}[data-theme="light"] .dark-icon{display:none;}
+        .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--text-mute);padding:7px 16px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);transition:.3s;}
+        .back-btn:hover{color:var(--accent);border-color:var(--accent);}
+        .page-wrap{max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + 60px) 24px 100px;}
+        .doc-hero{padding:48px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border);margin-bottom:40px;position:relative;overflow:hidden;}
+        .doc-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.08) 0%,transparent 70%);pointer-events:none;}
+        .doc-tag{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:50px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:var(--accent);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;}
+        .doc-tag i{font-size:.9rem;}
+        .doc-hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;line-height:1.2;}
+        .doc-hero p{color:var(--text-mute);font-size:.95rem;line-height:1.7;max-width:600px;}
+        .doc-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);}
+        .doc-meta-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text-mute);}
+        .doc-meta-item i{color:var(--accent);font-size:1rem;}
+        .doc-meta-item strong{color:var(--text);font-weight:600;}
+        .doc-section{margin-bottom:48px;}
+        .section-anchor{position:relative;top:calc(-1 * var(--nav-h) - 20px);}
+        .section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+        .section-icon{width:40px;height:40px;border-radius:12px;flex-shrink:0;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.1rem;}
+        .section-num{font-size:.7rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px;}
+        .section-title{font-size:1.15rem;font-weight:700;letter-spacing:-.3px;}
+        .doc-text{color:var(--text-mute);font-size:.92rem;line-height:1.8;margin-bottom:16px;}
+        .doc-text strong{color:var(--text);font-weight:600;}
+        .doc-text a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+        .highlight-box{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.18);border-left:3px solid var(--accent);border-radius:12px;padding:18px 20px;margin:20px 0;}
+        .highlight-box p{color:var(--text-mute);font-size:.88rem;line-height:1.7;margin:0;}
+        .highlight-box strong{color:var(--accent);}
+        .warning-box{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2);border-left:3px solid #F59E0B;border-radius:12px;padding:18px 20px;margin:20px 0;display:flex;gap:12px;}
+        .warning-box i{color:#F59E0B;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+        .warning-box p{color:var(--text-mute);font-size:.88rem;line-height:1.7;margin:0;}
+        .doc-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+        .doc-list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text-mute);line-height:1.6;}
+        .doc-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;}
+        .doc-list li strong{color:var(--text);}
+        .steps{display:flex;flex-direction:column;gap:16px;margin:24px 0;}
+        .step{display:flex;gap:18px;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;}
+        .step-num{width:34px;height:34px;border-radius:10px;flex-shrink:0;background:var(--accent);color:#000;font-weight:800;font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+        .step-content h4{font-size:1rem;font-weight:700;margin-bottom:5px;}
+        .step-content p{color:var(--text-mute);font-size:.88rem;line-height:1.6;}
+        .step-content a{color:var(--accent);font-weight:600;}
+        .doc-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.85rem;}
+        .doc-table th{background:rgba(16,185,129,.06);padding:12px 16px;text-align:left;font-weight:700;border-bottom:1px solid var(--border-h);color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;}
+        .doc-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-mute);vertical-align:top;line-height:1.6;}
+        .doc-table tr:last-child td{border-bottom:none;}
+        .doc-table td strong{color:var(--text);}
+        .contact-card{background:var(--bg-card);border:1px solid var(--border-h);border-radius:16px;padding:28px 32px;display:flex;align-items:center;gap:20px;margin-top:24px;}
+        .contact-icon{width:48px;height:48px;border-radius:14px;flex-shrink:0;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.3rem;}
+        .contact-info h4{font-size:1rem;font-weight:700;margin-bottom:4px;}
+        .contact-info p{font-size:.85rem;color:var(--text-mute);}
+        .contact-info a{color:var(--accent);}
+        footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;font-size:.78rem;color:rgba(148,163,184,.4);}
+        .footer-logo{margin-bottom:10px;}
+        .footer-logo img{height:22px;opacity:.5;}
+        .reveal{opacity:0;transform:translateY(20px);transition:.6s var(--ease);}
+        .reveal.in{opacity:1;transform:translateY(0);}
+        @media(max-width:600px){.doc-hero{padding:28px 24px;}.contact-card{flex-direction:column;}.doc-meta{flex-direction:column;gap:12px;}}
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+            <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+            <span class="logo-text">ClickDigital</span>
+        </a>
+        <div class="nav-right">
+            <a href="index.html" class="back-btn"><i class="uil uil-arrow-left"></i> <span data-translate="back_site">Volver al sitio</span></a>
+            <button class="ctrl-btn lang-btn" id="langToggle">ES</button>
+            <button class="ctrl-btn theme-btn" id="themeToggle">
+                <i class="uil uil-moon dark-icon"></i>
+                <i class="uil uil-sun light-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="page-wrap">
+
+    <div class="doc-hero reveal">
+        <div class="doc-tag"><i class="uil uil-trash-alt"></i> <span data-translate="hero_tag">Documento legal</span></div>
+        <h1 data-translate="hero_h1">Eliminación de Datos de Usuario</h1>
+        <p data-translate="hero_p">En ClickDigital respetamos tu derecho a controlar tu información personal. Esta página explica cómo podés solicitar la eliminación de los datos que recopilamos cuando interactuás con nosotros a través de WhatsApp, Messenger o Instagram.</p>
+        <div class="doc-meta">
+            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> <span data-translate="meta_updated">Última actualización:</span> <strong data-translate="meta_date">31 de marzo de 2026</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> <span data-translate="meta_jur">Jurisdicción:</span> <strong data-translate="meta_jur_v">República Argentina</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> <span data-translate="meta_ver">Versión:</span> <strong>1.0</strong></div>
+        </div>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s1" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-message"></i></div>
+            <div><div class="section-num" data-translate="s1_num">Sección 1</div><div class="section-title" data-translate="s1_title">Cómo solicitar la eliminación</div></div>
+        </div>
+        <p class="doc-text" data-translate="s1_intro">Podés pedir la eliminación de tus datos personales en cualquier momento, de forma gratuita, siguiendo estos pasos:</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4 data-translate="step1_t">Enviá tu solicitud</h4>
+                    <p data-translate="step1_p">Escribinos un email a <a href="mailto:info@clickdigital.com.ar?subject=Eliminacion%20de%20datos">info@clickdigital.com.ar</a> con el asunto <strong>'Eliminación de datos'</strong>, o envianos un mensaje por WhatsApp al <a href="https://wa.me/5491156571982">+54 9 11 5657-1982</a>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4 data-translate="step2_t">Identificá tu cuenta</h4>
+                    <p data-translate="step2_p">Indicanos el <strong>número de teléfono</strong> o el <strong>nombre de perfil</strong> con el que te comunicaste con nosotros, para poder ubicar tus datos correctamente.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4 data-translate="step3_t">Confirmamos y eliminamos</h4>
+                    <p data-translate="step3_p">Verificamos la solicitud, eliminamos tus datos de nuestros sistemas y te enviamos una confirmación cuando el proceso está completo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-box"><p data-translate="s1_hl">No necesitás tener una cuenta ni completar formularios complejos. Con un simple mensaje indicando que querés eliminar tus datos es suficiente para iniciar el proceso.</p></div>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s2" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-database"></i></div>
+            <div><div class="section-num" data-translate="s2_num">Sección 2</div><div class="section-title" data-translate="s2_title">Qué datos se eliminan</div></div>
+        </div>
+        <p class="doc-text" data-translate="s2_intro">Al procesar tu solicitud, eliminamos de forma permanente la información personal asociada a tu cuenta, incluyendo:</p>
+        <ul class="doc-list">
+            <li data-translate="s2_li1">Tu <strong>número de teléfono</strong> y <strong>nombre de perfil</strong>.</li>
+            <li data-translate="s2_li2">El <strong>contenido de los mensajes</strong> (texto, imágenes, documentos y audios) intercambiados con nosotros.</li>
+            <li data-translate="s2_li3">Los <strong>metadatos</strong> de la conversación (fechas, estados de entrega y lectura).</li>
+            <li data-translate="s2_li4">Cualquier <strong>dato de contacto</strong> que hayas proporcionado voluntariamente (email, empresa, etc.).</li>
+        </ul>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s3" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-clock"></i></div>
+            <div><div class="section-num" data-translate="s3_num">Sección 3</div><div class="section-title" data-translate="s3_title">Plazo de respuesta</div></div>
+        </div>
+        <p class="doc-text" data-translate="s3_p1">Procesamos las solicitudes de eliminación dentro de un plazo máximo de <strong>30 días hábiles</strong> desde su recepción. En la mayoría de los casos, la eliminación se realiza mucho antes.</p>
+        <p class="doc-text" data-translate="s3_p2">Una vez completado el proceso, te enviaremos una confirmación por el mismo medio que usaste para contactarnos.</p>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s4" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-exclamation-circle"></i></div>
+            <div><div class="section-num" data-translate="s4_num">Sección 4</div><div class="section-title" data-translate="s4_title">Excepciones legales</div></div>
+        </div>
+        <p class="doc-text" data-translate="s4_intro">En ciertos casos, podemos estar obligados a conservar parte de la información por motivos legales, aun después de tu solicitud:</p>
+        <table class="doc-table">
+            <thead><tr><th data-translate="s4_th1">Tipo de dato</th><th data-translate="s4_th2">Motivo de retención</th></tr></thead>
+            <tbody>
+                <tr><td data-translate="s4_r1c1"><strong>Registros contables o fiscales</strong></td><td data-translate="s4_r1c2">Obligaciones legales impositivas y comerciales (hasta el plazo exigido por ley).</td></tr>
+                <tr><td data-translate="s4_r2c1"><strong>Información requerida por autoridad</strong></td><td data-translate="s4_r2c2">Cuando una autoridad competente lo solicite en el marco de un procedimiento legal.</td></tr>
+            </tbody>
+        </table>
+        <div class="warning-box"><i class="uil uil-info-circle"></i><p data-translate="s4_warn">Estos datos se conservan únicamente durante el tiempo legalmente exigido y se eliminan automáticamente una vez vencido ese plazo. No se utilizan para ningún otro fin.</p></div>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s5" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-share-alt"></i></div>
+            <div><div class="section-num" data-translate="s5_num">Sección 5</div><div class="section-title" data-translate="s5_title">Datos en las plataformas de Meta</div></div>
+        </div>
+        <p class="doc-text" data-translate="s5_p1">ClickDigital solo puede eliminar los datos que almacena en sus propios sistemas. Los mensajes y la información que permanecen dentro de <strong>WhatsApp, Messenger o Instagram</strong> se rigen por las políticas de privacidad de Meta.</p>
+        <p class="doc-text" data-translate="s5_p2">Para gestionar o eliminar datos directamente en esas plataformas, podés consultar los centros de ayuda oficiales de cada servicio desde la configuración de tu cuenta.</p>
+    </div>
+
+    <div class="doc-section reveal">
+        <div id="s6" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-envelope"></i></div>
+            <div><div class="section-num" data-translate="s6_num">Sección 6</div><div class="section-title" data-translate="s6_title">Contacto</div></div>
+        </div>
+        <p class="doc-text" data-translate="s6_intro">Para solicitar la eliminación de tus datos o hacer cualquier consulta relacionada con tu privacidad, contactanos por estos medios:</p>
+        <div class="contact-card">
+            <div class="contact-icon"><i class="uil uil-building"></i></div>
+            <div class="contact-info">
+                <h4>ClickDigital</h4>
+                <p><span data-translate="cc_loc">Buenos Aires, Argentina</span><br>
+                Email: <a href="mailto:info@clickdigital.com.ar?subject=Eliminacion%20de%20datos">info@clickdigital.com.ar</a><br>
+                WhatsApp: <a href="https://wa.me/5491156571982">+54 9 11 5657-1982</a><br>
+                <span data-translate="cc_resp">Responsable de datos: Equipo ClickDigital</span></p>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top:20px;"><p data-translate="s6_hl">Esta página complementa nuestra <strong><a href="privacidad.html" style="color:var(--accent);">Política de Privacidad</a></strong> y se ajusta a la <strong>Ley 25.326 (Argentina)</strong> y a las Políticas de la Plataforma de Meta.</p></div>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-logo">
+        <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
+        <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+    </div>
+    <p>&copy; <span id="yr"></span> ClickDigital. <span data-translate="footer_rights">Todos los derechos reservados.</span> · Buenos Aires, Argentina</p>
+</footer>
+
+<script>
+const translations={
+    es:{
+        back_site:"Volver al sitio",hero_tag:"Documento legal",hero_h1:"Eliminación de Datos de Usuario",
+        hero_p:"En ClickDigital respetamos tu derecho a controlar tu información personal. Esta página explica cómo podés solicitar la eliminación de los datos que recopilamos cuando interactuás con nosotros a través de WhatsApp, Messenger o Instagram.",
+        meta_updated:"Última actualización:",meta_date:"31 de marzo de 2026",meta_jur:"Jurisdicción:",meta_jur_v:"República Argentina",meta_ver:"Versión:",
+        s1_num:"Sección 1",s1_title:"Cómo solicitar la eliminación",
+        s1_intro:"Podés pedir la eliminación de tus datos personales en cualquier momento, de forma gratuita, siguiendo estos pasos:",
+        step1_t:"Enviá tu solicitud",
+        step1_p:"Escribinos un email a <a href='mailto:info@clickdigital.com.ar?subject=Eliminacion%20de%20datos'>info@clickdigital.com.ar</a> con el asunto <strong>'Eliminación de datos'</strong>, o envianos un mensaje por WhatsApp al <a href='https://wa.me/5491156571982'>+54 9 11 5657-1982</a>.",
+        step2_t:"Identificá tu cuenta",
+        step2_p:"Indicanos el <strong>número de teléfono</strong> o el <strong>nombre de perfil</strong> con el que te comunicaste con nosotros, para poder ubicar tus datos correctamente.",
+        step3_t:"Confirmamos y eliminamos",
+        step3_p:"Verificamos la solicitud, eliminamos tus datos de nuestros sistemas y te enviamos una confirmación cuando el proceso está completo.",
+        s1_hl:"No necesitás tener una cuenta ni completar formularios complejos. Con un simple mensaje indicando que querés eliminar tus datos es suficiente para iniciar el proceso.",
+        s2_num:"Sección 2",s2_title:"Qué datos se eliminan",
+        s2_intro:"Al procesar tu solicitud, eliminamos de forma permanente la información personal asociada a tu cuenta, incluyendo:",
+        s2_li1:"Tu <strong>número de teléfono</strong> y <strong>nombre de perfil</strong>.",
+        s2_li2:"El <strong>contenido de los mensajes</strong> (texto, imágenes, documentos y audios) intercambiados con nosotros.",
+        s2_li3:"Los <strong>metadatos</strong> de la conversación (fechas, estados de entrega y lectura).",
+        s2_li4:"Cualquier <strong>dato de contacto</strong> que hayas proporcionado voluntariamente (email, empresa, etc.).",
+        s3_num:"Sección 3",s3_title:"Plazo de respuesta",
+        s3_p1:"Procesamos las solicitudes de eliminación dentro de un plazo máximo de <strong>30 días hábiles</strong> desde su recepción. En la mayoría de los casos, la eliminación se realiza mucho antes.",
+        s3_p2:"Una vez completado el proceso, te enviaremos una confirmación por el mismo medio que usaste para contactarnos.",
+        s4_num:"Sección 4",s4_title:"Excepciones legales",
+        s4_intro:"En ciertos casos, podemos estar obligados a conservar parte de la información por motivos legales, aun después de tu solicitud:",
+        s4_th1:"Tipo de dato",s4_th2:"Motivo de retención",
+        s4_r1c1:"<strong>Registros contables o fiscales</strong>",s4_r1c2:"Obligaciones legales impositivas y comerciales (hasta el plazo exigido por ley).",
+        s4_r2c1:"<strong>Información requerida por autoridad</strong>",s4_r2c2:"Cuando una autoridad competente lo solicite en el marco de un procedimiento legal.",
+        s4_warn:"Estos datos se conservan únicamente durante el tiempo legalmente exigido y se eliminan automáticamente una vez vencido ese plazo. No se utilizan para ningún otro fin.",
+        s5_num:"Sección 5",s5_title:"Datos en las plataformas de Meta",
+        s5_p1:"ClickDigital solo puede eliminar los datos que almacena en sus propios sistemas. Los mensajes y la información que permanecen dentro de <strong>WhatsApp, Messenger o Instagram</strong> se rigen por las políticas de privacidad de Meta.",
+        s5_p2:"Para gestionar o eliminar datos directamente en esas plataformas, podés consultar los centros de ayuda oficiales de cada servicio desde la configuración de tu cuenta.",
+        s6_num:"Sección 6",s6_title:"Contacto",
+        s6_intro:"Para solicitar la eliminación de tus datos o hacer cualquier consulta relacionada con tu privacidad, contactanos por estos medios:",
+        cc_loc:"Buenos Aires, Argentina",cc_resp:"Responsable de datos: Equipo ClickDigital",
+        s6_hl:"Esta página complementa nuestra <strong><a href='privacidad.html' style='color:var(--accent);'>Política de Privacidad</a></strong> y se ajusta a la <strong>Ley 25.326 (Argentina)</strong> y a las Políticas de la Plataforma de Meta.",
+        footer_rights:"Todos los derechos reservados."
+    },
+    en:{
+        back_site:"Back to site",hero_tag:"Legal document",hero_h1:"User Data Deletion",
+        hero_p:"At ClickDigital we respect your right to control your personal information. This page explains how you can request the deletion of the data we collect when you interact with us through WhatsApp, Messenger or Instagram.",
+        meta_updated:"Last updated:",meta_date:"March 31, 2026",meta_jur:"Jurisdiction:",meta_jur_v:"Argentine Republic",meta_ver:"Version:",
+        s1_num:"Section 1",s1_title:"How to request deletion",
+        s1_intro:"You can request the deletion of your personal data at any time, free of charge, by following these steps:",
+        step1_t:"Send your request",
+        step1_p:"Email us at <a href='mailto:info@clickdigital.com.ar?subject=Data%20deletion'>info@clickdigital.com.ar</a> with the subject <strong>'Data deletion'</strong>, or send us a WhatsApp message at <a href='https://wa.me/5491156571982'>+54 9 11 5657-1982</a>.",
+        step2_t:"Identify your account",
+        step2_p:"Provide the <strong>phone number</strong> or <strong>profile name</strong> you used to contact us, so we can locate your data correctly.",
+        step3_t:"We confirm and delete",
+        step3_p:"We verify the request, delete your data from our systems and send you a confirmation once the process is complete.",
+        s1_hl:"You don't need an account or to fill out complex forms. A simple message stating that you want your data deleted is enough to start the process.",
+        s2_num:"Section 2",s2_title:"What data is deleted",
+        s2_intro:"When we process your request, we permanently delete the personal information associated with your account, including:",
+        s2_li1:"Your <strong>phone number</strong> and <strong>profile name</strong>.",
+        s2_li2:"The <strong>content of the messages</strong> (text, images, documents and audio) exchanged with us.",
+        s2_li3:"The conversation <strong>metadata</strong> (dates, delivery and read statuses).",
+        s2_li4:"Any <strong>contact details</strong> you voluntarily provided (email, company, etc.).",
+        s3_num:"Section 3",s3_title:"Response time",
+        s3_p1:"We process deletion requests within a maximum of <strong>30 business days</strong> from receipt. In most cases, deletion happens much sooner.",
+        s3_p2:"Once the process is complete, we will send you a confirmation through the same channel you used to contact us.",
+        s4_num:"Section 4",s4_title:"Legal exceptions",
+        s4_intro:"In certain cases, we may be required to retain part of the information for legal reasons, even after your request:",
+        s4_th1:"Data type",s4_th2:"Reason for retention",
+        s4_r1c1:"<strong>Accounting or tax records</strong>",s4_r1c2:"Legal tax and commercial obligations (for the period required by law).",
+        s4_r2c1:"<strong>Information required by an authority</strong>",s4_r2c2:"When a competent authority requests it as part of a legal procedure.",
+        s4_warn:"This data is kept only for the legally required period and is automatically deleted once that period expires. It is not used for any other purpose.",
+        s5_num:"Section 5",s5_title:"Data on Meta's platforms",
+        s5_p1:"ClickDigital can only delete the data stored in its own systems. Messages and information that remain inside <strong>WhatsApp, Messenger or Instagram</strong> are governed by Meta's privacy policies.",
+        s5_p2:"To manage or delete data directly on those platforms, you can check each service's official help center from your account settings.",
+        s6_num:"Section 6",s6_title:"Contact",
+        s6_intro:"To request the deletion of your data or make any privacy-related inquiry, contact us through these channels:",
+        cc_loc:"Buenos Aires, Argentina",cc_resp:"Data controller: ClickDigital Team",
+        s6_hl:"This page complements our <strong><a href='privacidad.html' style='color:var(--accent);'>Privacy Policy</a></strong> and complies with <strong>Law 25.326 (Argentina)</strong> and Meta's Platform Policies.",
+        footer_rights:"All rights reserved."
+    }
+};
+let currentLang=localStorage.getItem('selectedLang')||'es';
+function applyTranslations(){
+    document.querySelectorAll('[data-translate]').forEach(el=>{
+        const k=el.getAttribute('data-translate');
+        if(translations[currentLang]&&translations[currentLang][k]!==undefined)el.innerHTML=translations[currentLang][k];
+    });
+    document.getElementById('langToggle').textContent=currentLang.toUpperCase();
+    document.documentElement.setAttribute('lang',currentLang);
+}
+document.getElementById('langToggle').addEventListener('click',()=>{currentLang=currentLang==='es'?'en':'es';localStorage.setItem('selectedLang',currentLang);applyTranslations();});
+document.getElementById('yr').textContent=new Date().getFullYear();
+const themeBtn=document.getElementById('themeToggle');
+let theme=localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme',theme);
+themeBtn.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);});
+applyTranslations();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
