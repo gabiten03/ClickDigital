@@ -43,6 +43,9 @@
         [data-theme="dark"] .light-icon{display:none;}[data-theme="light"] .dark-icon{display:none;}
         .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--text-mute);padding:7px 16px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);transition:.3s;}
         .back-btn:hover{color:var(--accent);border-color:var(--accent);}
+        .ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
+        .ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+        .lang-btn{padding:7px 14px;font-size:.8rem;font-family:'Plus Jakarta Sans',sans-serif;}
 
         /* LAYOUT */
         .page-wrap{max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + 60px) 24px 100px;}
@@ -211,8 +214,9 @@
         </a>
         <div class="nav-right">
             <a href="index.html" class="back-btn">
-                <i class="uil uil-arrow-left"></i> Volver al sitio
+                <i class="uil uil-arrow-left"></i> <span data-translate="back_site">Volver al sitio</span>
             </a>
+            <button class="ctrl-btn lang-btn" id="langToggle">ES</button>
             <button class="theme-btn" id="themeToggle">
                 <i class="uil uil-moon dark-icon"></i>
                 <i class="uil uil-sun light-icon"></i>
@@ -225,31 +229,31 @@
 
     <!-- HERO -->
     <div class="doc-hero reveal">
-        <div class="doc-tag"><i class="uil uil-shield-check"></i> Documento legal</div>
-        <h1>Política de Privacidad y Uso de WhatsApp Business</h1>
-        <p>Este documento describe cómo ClickDigital recopila, utiliza y protege la información personal de los usuarios que interactúan con nuestros servicios a través de WhatsApp Business, en cumplimiento con las políticas de la plataforma de Meta.</p>
+        <div class="doc-tag"><i class="uil uil-shield-check"></i> <span data-translate="hero_tag">Documento legal</span></div>
+        <h1 data-translate="hero_h1">Política de Privacidad y Uso de WhatsApp Business</h1>
+        <p data-translate="hero_p">Este documento describe cómo ClickDigital recopila, utiliza y protege la información personal de los usuarios que interactúan con nuestros servicios a través de WhatsApp Business, en cumplimiento con las políticas de la plataforma de Meta.</p>
         <div class="doc-meta">
-            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> Última actualización: <strong>31 de marzo de 2026</strong></div>
-            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> Jurisdicción: <strong>República Argentina</strong></div>
-            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> Versión: <strong>1.0</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> <span data-translate="meta_updated">Última actualización:</span> <strong data-translate="meta_date">31 de marzo de 2026</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> <span data-translate="meta_jur">Jurisdicción:</span> <strong data-translate="meta_jur_v">República Argentina</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> <span data-translate="meta_ver">Versión:</span> <strong>1.0</strong></div>
         </div>
     </div>
 
     <!-- TOC -->
     <div class="toc reveal">
-        <div class="toc-title"><i class="uil uil-list-ul"></i> Contenido</div>
+        <div class="toc-title"><i class="uil uil-list-ul"></i> <span data-translate="toc_title">Contenido</span></div>
         <div class="toc-list">
-            <a href="#s1"><span class="toc-num">1</span> Información que recopilamos</a>
-            <a href="#s2"><span class="toc-num">2</span> Cómo usamos tu información</a>
-            <a href="#s3"><span class="toc-num">3</span> Uso de WhatsApp Business API</a>
-            <a href="#s4"><span class="toc-num">4</span> Automatización e Inteligencia Artificial</a>
-            <a href="#s5"><span class="toc-num">5</span> Almacenamiento y seguridad de datos</a>
-            <a href="#s6"><span class="toc-num">6</span> Compartición de datos con terceros</a>
-            <a href="#s7"><span class="toc-num">7</span> Derechos del usuario</a>
-            <a href="#s8"><span class="toc-num">8</span> Retención de datos</a>
-            <a href="#s9"><span class="toc-num">9</span> Menores de edad</a>
-            <a href="#s10"><span class="toc-num">10</span> Cambios en esta política</a>
-            <a href="#s11"><span class="toc-num">11</span> Contacto</a>
+            <a href="#s1"><span class="toc-num">1</span> <span data-translate="toc1">Información que recopilamos</span></a>
+            <a href="#s2"><span class="toc-num">2</span> <span data-translate="toc2">Cómo usamos tu información</span></a>
+            <a href="#s3"><span class="toc-num">3</span> <span data-translate="toc3">Uso de WhatsApp Business API</span></a>
+            <a href="#s4"><span class="toc-num">4</span> <span data-translate="toc4">Automatización e Inteligencia Artificial</span></a>
+            <a href="#s5"><span class="toc-num">5</span> <span data-translate="toc5">Almacenamiento y seguridad de datos</span></a>
+            <a href="#s6"><span class="toc-num">6</span> <span data-translate="toc6">Compartición de datos con terceros</span></a>
+            <a href="#s7"><span class="toc-num">7</span> <span data-translate="toc7">Derechos del usuario</span></a>
+            <a href="#s8"><span class="toc-num">8</span> <span data-translate="toc8">Retención de datos</span></a>
+            <a href="#s9"><span class="toc-num">9</span> <span data-translate="toc9">Menores de edad</span></a>
+            <a href="#s10"><span class="toc-num">10</span> <span data-translate="toc10">Cambios en esta política</span></a>
+            <a href="#s11"><span class="toc-num">11</span> <span data-translate="toc11">Contacto</span></a>
         </div>
     </div>
 
@@ -259,20 +263,20 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-database"></i></div>
             <div>
-                <div class="section-num">Sección 1</div>
-                <div class="section-title">Información que recopilamos</div>
+                <div class="section-num" data-translate="s1_num">Sección 1</div>
+                <div class="section-title" data-translate="s1_title">Información que recopilamos</div>
             </div>
         </div>
-        <p class="doc-text">Cuando te comunicás con <strong>ClickDigital</strong> a través de WhatsApp Business, podemos recopilar la siguiente información:</p>
+        <p class="doc-text" data-translate="s1_intro">Cuando te comunicás con <strong>ClickDigital</strong> a través de WhatsApp Business, podemos recopilar la siguiente información:</p>
         <ul class="doc-list">
-            <li><strong>Número de teléfono:</strong> el número desde el cual iniciás la conversación.</li>
-            <li><strong>Nombre de perfil de WhatsApp:</strong> el nombre que tenés configurado en tu cuenta.</li>
-            <li><strong>Contenido de los mensajes:</strong> el texto, imágenes, documentos y archivos de audio que nos enviás durante la conversación.</li>
-            <li><strong>Metadatos de mensajes:</strong> fecha, hora, estado de entrega y lectura.</li>
-            <li><strong>Información que vos proporcionás voluntariamente:</strong> nombre completo, empresa, email, consultas o cualquier dato que compartas durante la interacción.</li>
+            <li data-translate="s1_li1"><strong>Número de teléfono:</strong> el número desde el cual iniciás la conversación.</li>
+            <li data-translate="s1_li2"><strong>Nombre de perfil de WhatsApp:</strong> el nombre que tenés configurado en tu cuenta.</li>
+            <li data-translate="s1_li3"><strong>Contenido de los mensajes:</strong> el texto, imágenes, documentos y archivos de audio que nos enviás durante la conversación.</li>
+            <li data-translate="s1_li4"><strong>Metadatos de mensajes:</strong> fecha, hora, estado de entrega y lectura.</li>
+            <li data-translate="s1_li5"><strong>Información que vos proporcionás voluntariamente:</strong> nombre completo, empresa, email, consultas o cualquier dato que compartas durante la interacción.</li>
         </ul>
         <div class="highlight-box">
-            <p><strong>No recopilamos</strong> información de tu lista de contactos, ubicación en tiempo real, ni accedemos a ningún dato de tu dispositivo fuera de los mensajes que nos enviás explícitamente.</p>
+            <p data-translate="s1_hl"><strong>No recopilamos</strong> información de tu lista de contactos, ubicación en tiempo real, ni accedemos a ningún dato de tu dispositivo fuera de los mensajes que nos enviás explícitamente.</p>
         </div>
     </div>
 
@@ -282,44 +286,44 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-cog"></i></div>
             <div>
-                <div class="section-num">Sección 2</div>
-                <div class="section-title">Cómo usamos tu información</div>
+                <div class="section-num" data-translate="s2_num">Sección 2</div>
+                <div class="section-title" data-translate="s2_title">Cómo usamos tu información</div>
             </div>
         </div>
-        <p class="doc-text">La información recopilada se utiliza exclusivamente para los siguientes fines:</p>
+        <p class="doc-text" data-translate="s2_intro">La información recopilada se utiliza exclusivamente para los siguientes fines:</p>
         <table class="doc-table">
             <thead>
                 <tr>
-                    <th>Finalidad</th>
-                    <th>Descripción</th>
+                    <th data-translate="s2_th1">Finalidad</th>
+                    <th data-translate="s2_th2">Descripción</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Atención al cliente</strong></td>
-                    <td>Responder tus consultas, cotizaciones y solicitudes de información sobre nuestros servicios.</td>
+                    <td data-translate="s2_r1c1"><strong>Atención al cliente</strong></td>
+                    <td data-translate="s2_r1c2">Responder tus consultas, cotizaciones y solicitudes de información sobre nuestros servicios.</td>
                 </tr>
                 <tr>
-                    <td><strong>Gestión comercial</strong></td>
-                    <td>Registrar tu interés en nuestros servicios para realizar seguimiento comercial.</td>
+                    <td data-translate="s2_r2c1"><strong>Gestión comercial</strong></td>
+                    <td data-translate="s2_r2c2">Registrar tu interés en nuestros servicios para realizar seguimiento comercial.</td>
                 </tr>
                 <tr>
-                    <td><strong>Automatización de respuestas</strong></td>
-                    <td>Procesar tu mensaje a través de nuestro sistema de IA para brindarte una respuesta inmediata y relevante.</td>
+                    <td data-translate="s2_r3c1"><strong>Automatización de respuestas</strong></td>
+                    <td data-translate="s2_r3c2">Procesar tu mensaje a través de nuestro sistema de IA para brindarte una respuesta inmediata y relevante.</td>
                 </tr>
                 <tr>
-                    <td><strong>Mejora del servicio</strong></td>
-                    <td>Analizar patrones de consultas para mejorar la calidad de nuestras respuestas y servicios.</td>
+                    <td data-translate="s2_r4c1"><strong>Mejora del servicio</strong></td>
+                    <td data-translate="s2_r4c2">Analizar patrones de consultas para mejorar la calidad de nuestras respuestas y servicios.</td>
                 </tr>
                 <tr>
-                    <td><strong>Cumplimiento legal</strong></td>
-                    <td>Conservar registros cuando sea requerido por ley o autoridades competentes.</td>
+                    <td data-translate="s2_r5c1"><strong>Cumplimiento legal</strong></td>
+                    <td data-translate="s2_r5c2">Conservar registros cuando sea requerido por ley o autoridades competentes.</td>
                 </tr>
             </tbody>
         </table>
         <div class="warning-box">
             <i class="uil uil-exclamation-triangle"></i>
-            <p>No utilizamos tu información para enviar publicidad no solicitada (spam), ni la vendemos o cedemos a terceros con fines comerciales propios.</p>
+            <p data-translate="s2_warn">No utilizamos tu información para enviar publicidad no solicitada (spam), ni la vendemos o cedemos a terceros con fines comerciales propios.</p>
         </div>
     </div>
 
@@ -329,20 +333,20 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-whatsapp"></i></div>
             <div>
-                <div class="section-num">Sección 3</div>
-                <div class="section-title">Uso de WhatsApp Business API</div>
+                <div class="section-num" data-translate="s3_num">Sección 3</div>
+                <div class="section-title" data-translate="s3_title">Uso de WhatsApp Business API</div>
             </div>
         </div>
-        <p class="doc-text">ClickDigital utiliza la <strong>WhatsApp Business Platform (Cloud API)</strong> de Meta para gestionar las comunicaciones con sus clientes. Al interactuar con nosotros por WhatsApp, aceptás las condiciones de uso de dicha plataforma.</p>
+        <p class="doc-text" data-translate="s3_intro">ClickDigital utiliza la <strong>WhatsApp Business Platform (Cloud API)</strong> de Meta para gestionar las comunicaciones con sus clientes. Al interactuar con nosotros por WhatsApp, aceptás las condiciones de uso de dicha plataforma.</p>
         <ul class="doc-list">
-            <li>Los mensajes se transmiten a través de los servidores de <strong>Meta Platforms Ireland Ltd.</strong>, con sede en la Unión Europea.</li>
-            <li>Meta actúa como procesador de datos bajo sus propias políticas de privacidad, disponibles en <strong>www.whatsapp.com/legal/privacy-policy</strong>.</li>
-            <li>ClickDigital actúa como controlador de los datos que recopila dentro del contexto de la conversación.</li>
-            <li>Solo podemos contactarte por WhatsApp si vos iniciaste previamente la conversación o diste consentimiento explícito.</li>
-            <li>Los mensajes de plantilla (templates) enviados fuera de la ventana de 24 horas son previamente aprobados por Meta y se ajustan a sus políticas de mensajería.</li>
+            <li data-translate="s3_li1">Los mensajes se transmiten a través de los servidores de <strong>Meta Platforms Ireland Ltd.</strong>, con sede en la Unión Europea.</li>
+            <li data-translate="s3_li2">Meta actúa como procesador de datos bajo sus propias políticas de privacidad, disponibles en <strong>www.whatsapp.com/legal/privacy-policy</strong>.</li>
+            <li data-translate="s3_li3">ClickDigital actúa como controlador de los datos que recopila dentro del contexto de la conversación.</li>
+            <li data-translate="s3_li4">Solo podemos contactarte por WhatsApp si vos iniciaste previamente la conversación o diste consentimiento explícito.</li>
+            <li data-translate="s3_li5">Los mensajes de plantilla (templates) enviados fuera de la ventana de 24 horas son previamente aprobados por Meta y se ajustan a sus políticas de mensajería.</li>
         </ul>
         <div class="highlight-box">
-            <p><strong>Ventana de conversación:</strong> de acuerdo a las políticas de Meta, podemos responder libremente dentro de las 24 horas posteriores a tu último mensaje. Pasado ese tiempo, solo enviamos mensajes de plantilla pre-aprobados para retomar el contacto.</p>
+            <p data-translate="s3_hl"><strong>Ventana de conversación:</strong> de acuerdo a las políticas de Meta, podemos responder libremente dentro de las 24 horas posteriores a tu último mensaje. Pasado ese tiempo, solo enviamos mensajes de plantilla pre-aprobados para retomar el contacto.</p>
         </div>
     </div>
 
@@ -352,20 +356,20 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-robot"></i></div>
             <div>
-                <div class="section-num">Sección 4</div>
-                <div class="section-title">Automatización e Inteligencia Artificial</div>
+                <div class="section-num" data-translate="s4_num">Sección 4</div>
+                <div class="section-title" data-translate="s4_title">Automatización e Inteligencia Artificial</div>
             </div>
         </div>
-        <p class="doc-text">ClickDigital utiliza sistemas de <strong>respuesta automática basados en Inteligencia Artificial</strong> para atender consultas en tiempo real. Esto implica lo siguiente:</p>
+        <p class="doc-text" data-translate="s4_intro">ClickDigital utiliza sistemas de <strong>respuesta automática basados en Inteligencia Artificial</strong> para atender consultas en tiempo real. Esto implica lo siguiente:</p>
         <ul class="doc-list">
-            <li>Tus mensajes pueden ser procesados por un <strong>agente de IA</strong> que genera respuestas automáticas basadas en el contexto de tu consulta.</li>
-            <li>El sistema puede ser <strong>tomado por un agente humano</strong> de ClickDigital en cualquier momento para brindar atención personalizada.</li>
-            <li>Los mensajes procesados por IA pasan a través de servicios de terceros (como la API de OpenAI o Anthropic) bajo acuerdos de confidencialidad y sin almacenamiento permanente por parte de dichos proveedores.</li>
-            <li>En ningún momento el sistema de IA toma <strong>decisiones autónomas</strong> que afecten tus derechos o generen obligaciones legales.</li>
+            <li data-translate="s4_li1">Tus mensajes pueden ser procesados por un <strong>agente de IA</strong> que genera respuestas automáticas basadas en el contexto de tu consulta.</li>
+            <li data-translate="s4_li2">El sistema puede ser <strong>tomado por un agente humano</strong> de ClickDigital en cualquier momento para brindar atención personalizada.</li>
+            <li data-translate="s4_li3">Los mensajes procesados por IA pasan a través de servicios de terceros (como la API de OpenAI o Anthropic) bajo acuerdos de confidencialidad y sin almacenamiento permanente por parte de dichos proveedores.</li>
+            <li data-translate="s4_li4">En ningún momento el sistema de IA toma <strong>decisiones autónomas</strong> que afecten tus derechos o generen obligaciones legales.</li>
         </ul>
         <div class="warning-box">
             <i class="uil uil-info-circle"></i>
-            <p>Podés solicitar en cualquier momento que tu conversación sea atendida exclusivamente por una persona. Escribí <strong>"Hablar con un agente"</strong> y un miembro de nuestro equipo tomará la conversación.</p>
+            <p data-translate="s4_warn">Podés solicitar en cualquier momento que tu conversación sea atendida exclusivamente por una persona. Escribí <strong>"Hablar con un agente"</strong> y un miembro de nuestro equipo tomará la conversación.</p>
         </div>
     </div>
 
@@ -375,17 +379,17 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-lock"></i></div>
             <div>
-                <div class="section-num">Sección 5</div>
-                <div class="section-title">Almacenamiento y seguridad de datos</div>
+                <div class="section-num" data-translate="s5_num">Sección 5</div>
+                <div class="section-title" data-translate="s5_title">Almacenamiento y seguridad de datos</div>
             </div>
         </div>
-        <p class="doc-text">Implementamos medidas técnicas y organizativas para proteger tu información:</p>
+        <p class="doc-text" data-translate="s5_intro">Implementamos medidas técnicas y organizativas para proteger tu información:</p>
         <ul class="doc-list">
-            <li>Los datos de conversaciones se almacenan en <strong>servidores seguros</strong> con acceso restringido al personal autorizado de ClickDigital.</li>
-            <li>Las comunicaciones entre tu dispositivo, Meta y nuestros sistemas utilizan <strong>cifrado en tránsito (TLS/HTTPS)</strong>.</li>
-            <li>El acceso a los datos está limitado por roles y autenticación de dos factores.</li>
-            <li>Realizamos revisiones periódicas de seguridad de nuestra infraestructura.</li>
-            <li>En caso de una brecha de seguridad que afecte tus datos, te notificaremos dentro de las <strong>72 horas</strong> de detectado el incidente.</li>
+            <li data-translate="s5_li1">Los datos de conversaciones se almacenan en <strong>servidores seguros</strong> con acceso restringido al personal autorizado de ClickDigital.</li>
+            <li data-translate="s5_li2">Las comunicaciones entre tu dispositivo, Meta y nuestros sistemas utilizan <strong>cifrado en tránsito (TLS/HTTPS)</strong>.</li>
+            <li data-translate="s5_li3">El acceso a los datos está limitado por roles y autenticación de dos factores.</li>
+            <li data-translate="s5_li4">Realizamos revisiones periódicas de seguridad de nuestra infraestructura.</li>
+            <li data-translate="s5_li5">En caso de una brecha de seguridad que afecte tus datos, te notificaremos dentro de las <strong>72 horas</strong> de detectado el incidente.</li>
         </ul>
     </div>
 
@@ -395,43 +399,43 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-share-alt"></i></div>
             <div>
-                <div class="section-num">Sección 6</div>
-                <div class="section-title">Compartición de datos con terceros</div>
+                <div class="section-num" data-translate="s6_num">Sección 6</div>
+                <div class="section-title" data-translate="s6_title">Compartición de datos con terceros</div>
             </div>
         </div>
-        <p class="doc-text">ClickDigital puede compartir datos con los siguientes terceros, exclusivamente en el marco de la prestación de servicios:</p>
+        <p class="doc-text" data-translate="s6_intro">ClickDigital puede compartir datos con los siguientes terceros, exclusivamente en el marco de la prestación de servicios:</p>
         <table class="doc-table">
             <thead>
                 <tr>
-                    <th>Tercero</th>
-                    <th>Rol</th>
-                    <th>Datos compartidos</th>
+                    <th data-translate="s6_th1">Tercero</th>
+                    <th data-translate="s6_th2">Rol</th>
+                    <th data-translate="s6_th3">Datos compartidos</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Meta Platforms</strong></td>
-                    <td>Procesador de mensajería (WhatsApp API)</td>
-                    <td>Contenido de mensajes, número de teléfono</td>
+                    <td data-translate="s6_r1c1"><strong>Meta Platforms</strong></td>
+                    <td data-translate="s6_r1c2">Procesador de mensajería (WhatsApp API)</td>
+                    <td data-translate="s6_r1c3">Contenido de mensajes, número de teléfono</td>
                 </tr>
                 <tr>
-                    <td><strong>OpenAI / Anthropic</strong></td>
-                    <td>Procesamiento de IA para respuestas automáticas</td>
-                    <td>Texto de mensajes (sin datos identificatorios)</td>
+                    <td data-translate="s6_r2c1"><strong>OpenAI / Anthropic</strong></td>
+                    <td data-translate="s6_r2c2">Procesamiento de IA para respuestas automáticas</td>
+                    <td data-translate="s6_r2c3">Texto de mensajes (sin datos identificatorios)</td>
                 </tr>
                 <tr>
-                    <td><strong>n8n (automatización)</strong></td>
-                    <td>Orquestador de flujos de trabajo</td>
-                    <td>Datos necesarios para ejecutar el flujo de respuesta</td>
+                    <td data-translate="s6_r3c1"><strong>n8n (automatización)</strong></td>
+                    <td data-translate="s6_r3c2">Orquestador de flujos de trabajo</td>
+                    <td data-translate="s6_r3c3">Datos necesarios para ejecutar el flujo de respuesta</td>
                 </tr>
                 <tr>
-                    <td><strong>CRM interno</strong></td>
-                    <td>Gestión de contactos y seguimiento comercial</td>
-                    <td>Nombre, teléfono, email si fue proporcionado</td>
+                    <td data-translate="s6_r4c1"><strong>CRM interno</strong></td>
+                    <td data-translate="s6_r4c2">Gestión de contactos y seguimiento comercial</td>
+                    <td data-translate="s6_r4c3">Nombre, teléfono, email si fue proporcionado</td>
                 </tr>
             </tbody>
         </table>
-        <p class="doc-text">Todos los proveedores mencionados operan bajo acuerdos de procesamiento de datos y cumplen con estándares internacionales de protección de la privacidad.</p>
+        <p class="doc-text" data-translate="s6_footer">Todos los proveedores mencionados operan bajo acuerdos de procesamiento de datos y cumplen con estándares internacionales de protección de la privacidad.</p>
     </div>
 
     <!-- SECCIÓN 7 -->
@@ -440,21 +444,21 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-user-check"></i></div>
             <div>
-                <div class="section-num">Sección 7</div>
-                <div class="section-title">Derechos del usuario</div>
+                <div class="section-num" data-translate="s7_num">Sección 7</div>
+                <div class="section-title" data-translate="s7_title">Derechos del usuario</div>
             </div>
         </div>
-        <p class="doc-text">De acuerdo con la <strong>Ley 25.326 de Protección de Datos Personales de Argentina</strong>, tenés derecho a:</p>
+        <p class="doc-text" data-translate="s7_intro">De acuerdo con la <strong>Ley 25.326 de Protección de Datos Personales de Argentina</strong>, tenés derecho a:</p>
         <ul class="doc-list">
-            <li><strong>Acceso:</strong> solicitar información sobre qué datos tuyos tenemos almacenados.</li>
-            <li><strong>Rectificación:</strong> corregir datos incorrectos o desactualizados.</li>
-            <li><strong>Supresión:</strong> solicitar la eliminación de tus datos personales ("derecho al olvido").</li>
-            <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos para fines de marketing o comunicaciones.</li>
-            <li><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y legible.</li>
-            <li><strong>Revocación del consentimiento:</strong> retirar tu consentimiento en cualquier momento sin que esto afecte la legalidad del tratamiento previo.</li>
+            <li data-translate="s7_li1"><strong>Acceso:</strong> solicitar información sobre qué datos tuyos tenemos almacenados.</li>
+            <li data-translate="s7_li2"><strong>Rectificación:</strong> corregir datos incorrectos o desactualizados.</li>
+            <li data-translate="s7_li3"><strong>Supresión:</strong> solicitar la eliminación de tus datos personales ("derecho al olvido").</li>
+            <li data-translate="s7_li4"><strong>Oposición:</strong> oponerte al tratamiento de tus datos para fines de marketing o comunicaciones.</li>
+            <li data-translate="s7_li5"><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y legible.</li>
+            <li data-translate="s7_li6"><strong>Revocación del consentimiento:</strong> retirar tu consentimiento en cualquier momento sin que esto afecte la legalidad del tratamiento previo.</li>
         </ul>
         <div class="highlight-box">
-            <p>Para ejercer cualquiera de estos derechos, escribinos a <strong>info@clickdigital.com.ar</strong> con el asunto "Derechos ARCO" e indicando tu nombre y número de teléfono. Respondemos dentro de los <strong>30 días hábiles</strong>.</p>
+            <p data-translate="s7_hl">Para ejercer cualquiera de estos derechos, escribinos a <strong>info@clickdigital.com.ar</strong> con el asunto "Derechos ARCO" e indicando tu nombre y número de teléfono. Respondemos dentro de los <strong>30 días hábiles</strong>.</p>
         </div>
     </div>
 
@@ -464,16 +468,16 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-clock"></i></div>
             <div>
-                <div class="section-num">Sección 8</div>
-                <div class="section-title">Retención de datos</div>
+                <div class="section-num" data-translate="s8_num">Sección 8</div>
+                <div class="section-title" data-translate="s8_title">Retención de datos</div>
             </div>
         </div>
-        <p class="doc-text">Conservamos tus datos personales durante el tiempo necesario para cumplir con los fines descritos en esta política:</p>
+        <p class="doc-text" data-translate="s8_intro">Conservamos tus datos personales durante el tiempo necesario para cumplir con los fines descritos en esta política:</p>
         <ul class="doc-list">
-            <li><strong>Conversaciones activas:</strong> durante toda la duración de la relación comercial.</li>
-            <li><strong>Datos de contactos:</strong> hasta 2 años después del último contacto, salvo que solicitesla eliminación antes.</li>
-            <li><strong>Registros de auditoría:</strong> hasta 5 años por obligaciones legales contables y fiscales.</li>
-            <li><strong>Datos procesados por IA:</strong> no son retenidos por los proveedores de IA más allá de la sesión de procesamiento.</li>
+            <li data-translate="s8_li1"><strong>Conversaciones activas:</strong> durante toda la duración de la relación comercial.</li>
+            <li data-translate="s8_li2"><strong>Datos de contactos:</strong> hasta 2 años después del último contacto, salvo que solicites la eliminación antes.</li>
+            <li data-translate="s8_li3"><strong>Registros de auditoría:</strong> hasta 5 años por obligaciones legales contables y fiscales.</li>
+            <li data-translate="s8_li4"><strong>Datos procesados por IA:</strong> no son retenidos por los proveedores de IA más allá de la sesión de procesamiento.</li>
         </ul>
     </div>
 
@@ -483,12 +487,12 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-kid"></i></div>
             <div>
-                <div class="section-num">Sección 9</div>
-                <div class="section-title">Menores de edad</div>
+                <div class="section-num" data-translate="s9_num">Sección 9</div>
+                <div class="section-title" data-translate="s9_title">Menores de edad</div>
             </div>
         </div>
-        <p class="doc-text">Nuestros servicios están dirigidos exclusivamente a <strong>personas mayores de 18 años</strong> y a empresas. No recopilamos intencionalmente datos de menores de edad. Si detectamos que un menor nos ha proporcionado información personal, procederemos a eliminarla de forma inmediata.</p>
-        <p class="doc-text">Si sos padre, madre o tutor y creés que tu hijo/a nos ha enviado información personal, contactanos a <strong>info@clickdigital.com.ar</strong>.</p>
+        <p class="doc-text" data-translate="s9_p1">Nuestros servicios están dirigidos exclusivamente a <strong>personas mayores de 18 años</strong> y a empresas. No recopilamos intencionalmente datos de menores de edad. Si detectamos que un menor nos ha proporcionado información personal, procederemos a eliminarla de forma inmediata.</p>
+        <p class="doc-text" data-translate="s9_p2">Si sos padre, madre o tutor y creés que tu hijo/a nos ha enviado información personal, contactanos a <strong>info@clickdigital.com.ar</strong>.</p>
     </div>
 
     <!-- SECCIÓN 10 -->
@@ -497,13 +501,13 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-file-edit-alt"></i></div>
             <div>
-                <div class="section-num">Sección 10</div>
-                <div class="section-title">Cambios en esta política</div>
+                <div class="section-num" data-translate="s10_num">Sección 10</div>
+                <div class="section-title" data-translate="s10_title">Cambios en esta política</div>
             </div>
         </div>
-        <p class="doc-text">ClickDigital se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios entrarán en vigencia desde su publicación en este sitio web.</p>
-        <p class="doc-text">En caso de cambios sustanciales que afecten tus derechos, te notificaremos por WhatsApp o email con al menos <strong>15 días de anticipación</strong> antes de que entren en vigor.</p>
-        <p class="doc-text">La fecha de la última actualización siempre estará visible al inicio de este documento.</p>
+        <p class="doc-text" data-translate="s10_p1">ClickDigital se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios entrarán en vigencia desde su publicación en este sitio web.</p>
+        <p class="doc-text" data-translate="s10_p2">En caso de cambios sustanciales que afecten tus derechos, te notificaremos por WhatsApp o email con al menos <strong>15 días de anticipación</strong> antes de que entren en vigor.</p>
+        <p class="doc-text" data-translate="s10_p3">La fecha de la última actualización siempre estará visible al inicio de este documento.</p>
     </div>
 
     <!-- SECCIÓN 11 -->
@@ -512,23 +516,23 @@
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-envelope"></i></div>
             <div>
-                <div class="section-num">Sección 11</div>
-                <div class="section-title">Contacto</div>
+                <div class="section-num" data-translate="s11_num">Sección 11</div>
+                <div class="section-title" data-translate="s11_title">Contacto</div>
             </div>
         </div>
-        <p class="doc-text">Para cualquier consulta relacionada con esta política o el tratamiento de tus datos personales, podés contactarnos por cualquiera de estos medios:</p>
+        <p class="doc-text" data-translate="s11_intro">Para cualquier consulta relacionada con esta política o el tratamiento de tus datos personales, podés contactarnos por cualquiera de estos medios:</p>
         <div class="contact-card">
             <div class="contact-icon"><i class="uil uil-building"></i></div>
             <div class="contact-info">
                 <h4>ClickDigital</h4>
-                <p>Buenos Aires, Argentina<br>
+                <p><span data-translate="cc_loc">Buenos Aires, Argentina</span><br>
                 Email: <a href="mailto:info@clickdigital.com.ar">info@clickdigital.com.ar</a><br>
                 WhatsApp: <a href="https://wa.me/5491156571982">+54 9 11 5657-1982</a><br>
-                Responsable de datos: Equipo ClickDigital</p>
+                <span data-translate="cc_resp">Responsable de datos: Equipo ClickDigital</span></p>
             </div>
         </div>
         <div class="highlight-box" style="margin-top:20px;">
-            <p>Esta política fue redactada en cumplimiento de la <strong>Ley 25.326 (Argentina)</strong>, las <strong>Políticas de la Plataforma de WhatsApp Business de Meta</strong> y los estándares internacionales de protección de datos personales.</p>
+            <p data-translate="s11_hl">Esta política fue redactada en cumplimiento de la <strong>Ley 25.326 (Argentina)</strong>, las <strong>Políticas de la Plataforma de WhatsApp Business de Meta</strong> y los estándares internacionales de protección de datos personales.</p>
         </div>
     </div>
 
@@ -539,25 +543,189 @@
         <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
         <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
     </div>
-    <p>&copy; <span id="yr"></span> ClickDigital. Todos los derechos reservados. · Buenos Aires, Argentina</p>
+    <p>&copy; <span id="yr"></span> ClickDigital. <span data-translate="footer_text">Todos los derechos reservados.</span> · Buenos Aires, Argentina</p>
 </footer>
 
 <script>
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-const themeBtn = document.getElementById('themeToggle');
-let theme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', theme);
-themeBtn.addEventListener('click', () => {
-    theme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-});
-
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.06 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+const translations={
+es:{
+back_site:"Volver al sitio",hero_tag:"Documento legal",
+hero_h1:"Política de Privacidad y Uso de WhatsApp Business",
+hero_p:"Este documento describe cómo ClickDigital recopila, utiliza y protege la información personal de los usuarios que interactúan con nuestros servicios a través de WhatsApp Business, en cumplimiento con las políticas de la plataforma de Meta.",
+meta_updated:"Última actualización:",meta_date:"31 de marzo de 2026",meta_jur:"Jurisdicción:",meta_jur_v:"República Argentina",meta_ver:"Versión:",
+toc_title:"Contenido",toc1:"Información que recopilamos",toc2:"Cómo usamos tu información",toc3:"Uso de WhatsApp Business API",toc4:"Automatización e Inteligencia Artificial",toc5:"Almacenamiento y seguridad de datos",toc6:"Compartición de datos con terceros",toc7:"Derechos del usuario",toc8:"Retención de datos",toc9:"Menores de edad",toc10:"Cambios en esta política",toc11:"Contacto",
+s1_num:"Sección 1",s1_title:"Información que recopilamos",
+s1_intro:"Cuando te comunicás con <strong>ClickDigital</strong> a través de WhatsApp Business, podemos recopilar la siguiente información:",
+s1_li1:"<strong>Número de teléfono:</strong> el número desde el cual iniciás la conversación.",
+s1_li2:"<strong>Nombre de perfil de WhatsApp:</strong> el nombre que tenés configurado en tu cuenta.",
+s1_li3:"<strong>Contenido de los mensajes:</strong> el texto, imágenes, documentos y archivos de audio que nos enviás durante la conversación.",
+s1_li4:"<strong>Metadatos de mensajes:</strong> fecha, hora, estado de entrega y lectura.",
+s1_li5:"<strong>Información que vos proporcionás voluntariamente:</strong> nombre completo, empresa, email, consultas o cualquier dato que compartas durante la interacción.",
+s1_hl:"<strong>No recopilamos</strong> información de tu lista de contactos, ubicación en tiempo real, ni accedemos a ningún dato de tu dispositivo fuera de los mensajes que nos enviás explícitamente.",
+s2_num:"Sección 2",s2_title:"Cómo usamos tu información",
+s2_intro:"La información recopilada se utiliza exclusivamente para los siguientes fines:",
+s2_th1:"Finalidad",s2_th2:"Descripción",
+s2_r1c1:"<strong>Atención al cliente</strong>",s2_r1c2:"Responder tus consultas, cotizaciones y solicitudes de información sobre nuestros servicios.",
+s2_r2c1:"<strong>Gestión comercial</strong>",s2_r2c2:"Registrar tu interés en nuestros servicios para realizar seguimiento comercial.",
+s2_r3c1:"<strong>Automatización de respuestas</strong>",s2_r3c2:"Procesar tu mensaje a través de nuestro sistema de IA para brindarte una respuesta inmediata y relevante.",
+s2_r4c1:"<strong>Mejora del servicio</strong>",s2_r4c2:"Analizar patrones de consultas para mejorar la calidad de nuestras respuestas y servicios.",
+s2_r5c1:"<strong>Cumplimiento legal</strong>",s2_r5c2:"Conservar registros cuando sea requerido por ley o autoridades competentes.",
+s2_warn:"No utilizamos tu información para enviar publicidad no solicitada (spam), ni la vendemos o cedemos a terceros con fines comerciales propios.",
+s3_num:"Sección 3",s3_title:"Uso de WhatsApp Business API",
+s3_intro:"ClickDigital utiliza la <strong>WhatsApp Business Platform (Cloud API)</strong> de Meta para gestionar las comunicaciones con sus clientes. Al interactuar con nosotros por WhatsApp, aceptás las condiciones de uso de dicha plataforma.",
+s3_li1:"Los mensajes se transmiten a través de los servidores de <strong>Meta Platforms Ireland Ltd.</strong>, con sede en la Unión Europea.",
+s3_li2:"Meta actúa como procesador de datos bajo sus propias políticas de privacidad, disponibles en <strong>www.whatsapp.com/legal/privacy-policy</strong>.",
+s3_li3:"ClickDigital actúa como controlador de los datos que recopila dentro del contexto de la conversación.",
+s3_li4:"Solo podemos contactarte por WhatsApp si vos iniciaste previamente la conversación o diste consentimiento explícito.",
+s3_li5:"Los mensajes de plantilla (templates) enviados fuera de la ventana de 24 horas son previamente aprobados por Meta y se ajustan a sus políticas de mensajería.",
+s3_hl:"<strong>Ventana de conversación:</strong> de acuerdo a las políticas de Meta, podemos responder libremente dentro de las 24 horas posteriores a tu último mensaje. Pasado ese tiempo, solo enviamos mensajes de plantilla pre-aprobados para retomar el contacto.",
+s4_num:"Sección 4",s4_title:"Automatización e Inteligencia Artificial",
+s4_intro:"ClickDigital utiliza sistemas de <strong>respuesta automática basados en Inteligencia Artificial</strong> para atender consultas en tiempo real. Esto implica lo siguiente:",
+s4_li1:"Tus mensajes pueden ser procesados por un <strong>agente de IA</strong> que genera respuestas automáticas basadas en el contexto de tu consulta.",
+s4_li2:"El sistema puede ser <strong>tomado por un agente humano</strong> de ClickDigital en cualquier momento para brindar atención personalizada.",
+s4_li3:"Los mensajes procesados por IA pasan a través de servicios de terceros (como la API de OpenAI o Anthropic) bajo acuerdos de confidencialidad y sin almacenamiento permanente por parte de dichos proveedores.",
+s4_li4:"En ningún momento el sistema de IA toma <strong>decisiones autónomas</strong> que afecten tus derechos o generen obligaciones legales.",
+s4_warn:"Podés solicitar en cualquier momento que tu conversación sea atendida exclusivamente por una persona. Escribí <strong>\"Hablar con un agente\"</strong> y un miembro de nuestro equipo tomará la conversación.",
+s5_num:"Sección 5",s5_title:"Almacenamiento y seguridad de datos",
+s5_intro:"Implementamos medidas técnicas y organizativas para proteger tu información:",
+s5_li1:"Los datos de conversaciones se almacenan en <strong>servidores seguros</strong> con acceso restringido al personal autorizado de ClickDigital.",
+s5_li2:"Las comunicaciones entre tu dispositivo, Meta y nuestros sistemas utilizan <strong>cifrado en tránsito (TLS/HTTPS)</strong>.",
+s5_li3:"El acceso a los datos está limitado por roles y autenticación de dos factores.",
+s5_li4:"Realizamos revisiones periódicas de seguridad de nuestra infraestructura.",
+s5_li5:"En caso de una brecha de seguridad que afecte tus datos, te notificaremos dentro de las <strong>72 horas</strong> de detectado el incidente.",
+s6_num:"Sección 6",s6_title:"Compartición de datos con terceros",
+s6_intro:"ClickDigital puede compartir datos con los siguientes terceros, exclusivamente en el marco de la prestación de servicios:",
+s6_th1:"Tercero",s6_th2:"Rol",s6_th3:"Datos compartidos",
+s6_r1c1:"<strong>Meta Platforms</strong>",s6_r1c2:"Procesador de mensajería (WhatsApp API)",s6_r1c3:"Contenido de mensajes, número de teléfono",
+s6_r2c1:"<strong>OpenAI / Anthropic</strong>",s6_r2c2:"Procesamiento de IA para respuestas automáticas",s6_r2c3:"Texto de mensajes (sin datos identificatorios)",
+s6_r3c1:"<strong>n8n (automatización)</strong>",s6_r3c2:"Orquestador de flujos de trabajo",s6_r3c3:"Datos necesarios para ejecutar el flujo de respuesta",
+s6_r4c1:"<strong>CRM interno</strong>",s6_r4c2:"Gestión de contactos y seguimiento comercial",s6_r4c3:"Nombre, teléfono, email si fue proporcionado",
+s6_footer:"Todos los proveedores mencionados operan bajo acuerdos de procesamiento de datos y cumplen con estándares internacionales de protección de la privacidad.",
+s7_num:"Sección 7",s7_title:"Derechos del usuario",
+s7_intro:"De acuerdo con la <strong>Ley 25.326 de Protección de Datos Personales de Argentina</strong>, tenés derecho a:",
+s7_li1:"<strong>Acceso:</strong> solicitar información sobre qué datos tuyos tenemos almacenados.",
+s7_li2:"<strong>Rectificación:</strong> corregir datos incorrectos o desactualizados.",
+s7_li3:"<strong>Supresión:</strong> solicitar la eliminación de tus datos personales (\"derecho al olvido\").",
+s7_li4:"<strong>Oposición:</strong> oponerte al tratamiento de tus datos para fines de marketing o comunicaciones.",
+s7_li5:"<strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y legible.",
+s7_li6:"<strong>Revocación del consentimiento:</strong> retirar tu consentimiento en cualquier momento sin que esto afecte la legalidad del tratamiento previo.",
+s7_hl:"Para ejercer cualquiera de estos derechos, escribinos a <strong>info@clickdigital.com.ar</strong> con el asunto \"Derechos ARCO\" e indicando tu nombre y número de teléfono. Respondemos dentro de los <strong>30 días hábiles</strong>.",
+s8_num:"Sección 8",s8_title:"Retención de datos",
+s8_intro:"Conservamos tus datos personales durante el tiempo necesario para cumplir con los fines descritos en esta política:",
+s8_li1:"<strong>Conversaciones activas:</strong> durante toda la duración de la relación comercial.",
+s8_li2:"<strong>Datos de contactos:</strong> hasta 2 años después del último contacto, salvo que solicites la eliminación antes.",
+s8_li3:"<strong>Registros de auditoría:</strong> hasta 5 años por obligaciones legales contables y fiscales.",
+s8_li4:"<strong>Datos procesados por IA:</strong> no son retenidos por los proveedores de IA más allá de la sesión de procesamiento.",
+s9_num:"Sección 9",s9_title:"Menores de edad",
+s9_p1:"Nuestros servicios están dirigidos exclusivamente a <strong>personas mayores de 18 años</strong> y a empresas. No recopilamos intencionalmente datos de menores de edad. Si detectamos que un menor nos ha proporcionado información personal, procederemos a eliminarla de forma inmediata.",
+s9_p2:"Si sos padre, madre o tutor y creés que tu hijo/a nos ha enviado información personal, contactanos a <strong>info@clickdigital.com.ar</strong>.",
+s10_num:"Sección 10",s10_title:"Cambios en esta política",
+s10_p1:"ClickDigital se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios entrarán en vigencia desde su publicación en este sitio web.",
+s10_p2:"En caso de cambios sustanciales que afecten tus derechos, te notificaremos por WhatsApp o email con al menos <strong>15 días de anticipación</strong> antes de que entren en vigor.",
+s10_p3:"La fecha de la última actualización siempre estará visible al inicio de este documento.",
+s11_num:"Sección 11",s11_title:"Contacto",
+s11_intro:"Para cualquier consulta relacionada con esta política o el tratamiento de tus datos personales, podés contactarnos por cualquiera de estos medios:",
+cc_loc:"Buenos Aires, Argentina",cc_resp:"Responsable de datos: Equipo ClickDigital",
+s11_hl:"Esta política fue redactada en cumplimiento de la <strong>Ley 25.326 (Argentina)</strong>, las <strong>Políticas de la Plataforma de WhatsApp Business de Meta</strong> y los estándares internacionales de protección de datos personales.",
+footer_text:"Todos los derechos reservados."
+},
+en:{
+back_site:"Back to site",hero_tag:"Legal document",
+hero_h1:"Privacy Policy and WhatsApp Business Use",
+hero_p:"This document describes how ClickDigital collects, uses and protects the personal information of users who interact with our services through WhatsApp Business, in compliance with Meta's platform policies.",
+meta_updated:"Last updated:",meta_date:"March 31, 2026",meta_jur:"Jurisdiction:",meta_jur_v:"Argentine Republic",meta_ver:"Version:",
+toc_title:"Contents",toc1:"Information we collect",toc2:"How we use your information",toc3:"WhatsApp Business API use",toc4:"Automation and Artificial Intelligence",toc5:"Data storage and security",toc6:"Sharing data with third parties",toc7:"User rights",toc8:"Data retention",toc9:"Minors",toc10:"Changes to this policy",toc11:"Contact",
+s1_num:"Section 1",s1_title:"Information we collect",
+s1_intro:"When you communicate with <strong>ClickDigital</strong> via WhatsApp Business, we may collect the following information:",
+s1_li1:"<strong>Phone number:</strong> the number from which you start the conversation.",
+s1_li2:"<strong>WhatsApp profile name:</strong> the name configured on your account.",
+s1_li3:"<strong>Message content:</strong> the text, images, documents and audio files you send us during the conversation.",
+s1_li4:"<strong>Message metadata:</strong> date, time, delivery and read status.",
+s1_li5:"<strong>Information you voluntarily provide:</strong> full name, company, email, enquiries or any data you share during the interaction.",
+s1_hl:"<strong>We do not collect</strong> your contact list, real-time location, or access any data on your device beyond the messages you explicitly send us.",
+s2_num:"Section 2",s2_title:"How we use your information",
+s2_intro:"The information collected is used exclusively for the following purposes:",
+s2_th1:"Purpose",s2_th2:"Description",
+s2_r1c1:"<strong>Customer support</strong>",s2_r1c2:"Answering your enquiries, quotes and requests for information about our services.",
+s2_r2c1:"<strong>Commercial management</strong>",s2_r2c2:"Recording your interest in our services for commercial follow-up.",
+s2_r3c1:"<strong>Response automation</strong>",s2_r3c2:"Processing your message through our AI system to provide an immediate and relevant response.",
+s2_r4c1:"<strong>Service improvement</strong>",s2_r4c2:"Analysing enquiry patterns to improve the quality of our responses and services.",
+s2_r5c1:"<strong>Legal compliance</strong>",s2_r5c2:"Keeping records when required by law or competent authorities.",
+s2_warn:"We do not use your information to send unsolicited advertising (spam), nor do we sell or transfer it to third parties for their own commercial purposes.",
+s3_num:"Section 3",s3_title:"WhatsApp Business API use",
+s3_intro:"ClickDigital uses Meta's <strong>WhatsApp Business Platform (Cloud API)</strong> to manage communications with its clients. By interacting with us on WhatsApp, you accept the terms of use of that platform.",
+s3_li1:"Messages are transmitted through the servers of <strong>Meta Platforms Ireland Ltd.</strong>, based in the European Union.",
+s3_li2:"Meta acts as a data processor under its own privacy policies, available at <strong>www.whatsapp.com/legal/privacy-policy</strong>.",
+s3_li3:"ClickDigital acts as the controller of the data it collects within the context of the conversation.",
+s3_li4:"We can only contact you on WhatsApp if you previously started the conversation or gave explicit consent.",
+s3_li5:"Template messages sent outside the 24-hour window are pre-approved by Meta and comply with its messaging policies.",
+s3_hl:"<strong>Conversation window:</strong> according to Meta's policies, we can reply freely within 24 hours of your last message. After that, we only send pre-approved template messages to re-engage.",
+s4_num:"Section 4",s4_title:"Automation and Artificial Intelligence",
+s4_intro:"ClickDigital uses <strong>AI-based automatic response systems</strong> to handle enquiries in real time. This means the following:",
+s4_li1:"Your messages may be processed by an <strong>AI agent</strong> that generates automatic responses based on your enquiry's context.",
+s4_li2:"The system can be <strong>taken over by a human agent</strong> from ClickDigital at any time to provide personalised assistance.",
+s4_li3:"Messages processed by AI pass through third-party services (such as the OpenAI or Anthropic API) under confidentiality agreements and without permanent storage by those providers.",
+s4_li4:"At no point does the AI system make <strong>autonomous decisions</strong> that affect your rights or create legal obligations.",
+s4_warn:"You can at any time request that your conversation be handled exclusively by a person. Write <strong>\"Talk to an agent\"</strong> and a member of our team will take over the conversation.",
+s5_num:"Section 5",s5_title:"Data storage and security",
+s5_intro:"We implement technical and organisational measures to protect your information:",
+s5_li1:"Conversation data is stored on <strong>secure servers</strong> with access restricted to authorised ClickDigital staff.",
+s5_li2:"Communications between your device, Meta and our systems use <strong>encryption in transit (TLS/HTTPS)</strong>.",
+s5_li3:"Data access is limited by roles and two-factor authentication.",
+s5_li4:"We carry out periodic security reviews of our infrastructure.",
+s5_li5:"In the event of a security breach affecting your data, we will notify you within <strong>72 hours</strong> of detecting the incident.",
+s6_num:"Section 6",s6_title:"Sharing data with third parties",
+s6_intro:"ClickDigital may share data with the following third parties, exclusively in the context of service delivery:",
+s6_th1:"Third party",s6_th2:"Role",s6_th3:"Data shared",
+s6_r1c1:"<strong>Meta Platforms</strong>",s6_r1c2:"Messaging processor (WhatsApp API)",s6_r1c3:"Message content, phone number",
+s6_r2c1:"<strong>OpenAI / Anthropic</strong>",s6_r2c2:"AI processing for automatic responses",s6_r2c3:"Message text (no identifying data)",
+s6_r3c1:"<strong>n8n (automation)</strong>",s6_r3c2:"Workflow orchestrator",s6_r3c3:"Data needed to execute the response flow",
+s6_r4c1:"<strong>Internal CRM</strong>",s6_r4c2:"Contact management and commercial follow-up",s6_r4c3:"Name, phone, email if provided",
+s6_footer:"All providers mentioned operate under data processing agreements and comply with international privacy protection standards.",
+s7_num:"Section 7",s7_title:"User rights",
+s7_intro:"In accordance with <strong>Argentina's Personal Data Protection Law 25.326</strong>, you have the right to:",
+s7_li1:"<strong>Access:</strong> request information about what data we hold about you.",
+s7_li2:"<strong>Rectification:</strong> correct inaccurate or outdated data.",
+s7_li3:"<strong>Erasure:</strong> request the deletion of your personal data (\"right to be forgotten\").",
+s7_li4:"<strong>Objection:</strong> object to the processing of your data for marketing or communications purposes.",
+s7_li5:"<strong>Portability:</strong> receive your data in a structured, readable format.",
+s7_li6:"<strong>Withdrawal of consent:</strong> withdraw your consent at any time without affecting the lawfulness of prior processing.",
+s7_hl:"To exercise any of these rights, email us at <strong>info@clickdigital.com.ar</strong> with the subject \"ARCO Rights\", stating your name and phone number. We respond within <strong>30 business days</strong>.",
+s8_num:"Section 8",s8_title:"Data retention",
+s8_intro:"We keep your personal data for as long as necessary to fulfil the purposes described in this policy:",
+s8_li1:"<strong>Active conversations:</strong> for the duration of the commercial relationship.",
+s8_li2:"<strong>Contact data:</strong> up to 2 years after the last contact, unless you request deletion earlier.",
+s8_li3:"<strong>Audit records:</strong> up to 5 years due to legal accounting and tax obligations.",
+s8_li4:"<strong>AI-processed data:</strong> not retained by AI providers beyond the processing session.",
+s9_num:"Section 9",s9_title:"Minors",
+s9_p1:"Our services are directed exclusively at <strong>persons aged 18 and over</strong> and at companies. We do not intentionally collect data from minors. If we detect that a minor has provided us with personal information, we will delete it immediately.",
+s9_p2:"If you are a parent or guardian and believe your child has sent us personal information, contact us at <strong>info@clickdigital.com.ar</strong>.",
+s10_num:"Section 10",s10_title:"Changes to this policy",
+s10_p1:"ClickDigital reserves the right to update this Privacy Policy at any time. Changes will take effect from the date they are published on this website.",
+s10_p2:"In the event of substantial changes affecting your rights, we will notify you by WhatsApp or email at least <strong>15 days in advance</strong> before they come into force.",
+s10_p3:"The date of the last update will always be visible at the top of this document.",
+s11_num:"Section 11",s11_title:"Contact",
+s11_intro:"For any enquiry related to this policy or the processing of your personal data, you can contact us through any of the following:",
+cc_loc:"Buenos Aires, Argentina",cc_resp:"Data controller: ClickDigital Team",
+s11_hl:"This policy was drafted in compliance with <strong>Law 25.326 (Argentina)</strong>, the <strong>WhatsApp Business Platform Policies of Meta</strong> and international personal data protection standards.",
+footer_text:"All rights reserved."
+}
+};
+let currentLang=localStorage.getItem('selectedLang')||'es';
+function applyTranslations(){
+    document.querySelectorAll('[data-translate]').forEach(el=>{const k=el.getAttribute('data-translate');if(translations[currentLang]&&translations[currentLang][k]!==undefined)el.innerHTML=translations[currentLang][k];});
+    document.getElementById('langToggle').textContent=currentLang.toUpperCase();
+    document.documentElement.setAttribute('lang',currentLang);
+}
+document.getElementById('langToggle').addEventListener('click',()=>{currentLang=currentLang==='es'?'en':'es';localStorage.setItem('selectedLang',currentLang);applyTranslations();});
+document.getElementById('yr').textContent=new Date().getFullYear();
+const themeBtn=document.getElementById('themeToggle');
+let theme=localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme',theme);
+themeBtn.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);});
+applyTranslations();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>

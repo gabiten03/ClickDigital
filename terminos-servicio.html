@@ -43,6 +43,9 @@
         [data-theme="dark"] .light-icon{display:none;}[data-theme="light"] .dark-icon{display:none;}
         .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--text-mute);padding:7px 16px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);transition:.3s;}
         .back-btn:hover{color:var(--accent);border-color:var(--accent);}
+        .ctrl-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;}
+        .ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+        .lang-btn{padding:7px 14px;font-size:.8rem;font-family:'Plus Jakarta Sans',sans-serif;}
 
         /* LAYOUT */
         .page-wrap{max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + 60px) 24px 100px;}
@@ -211,8 +214,9 @@
         </a>
         <div class="nav-right">
             <a href="index.html" class="back-btn">
-                <i class="uil uil-arrow-left"></i> Volver al sitio
+                <i class="uil uil-arrow-left"></i> <span data-translate="back_site">Volver al sitio</span>
             </a>
+            <button class="ctrl-btn lang-btn" id="langToggle">ES</button>
             <button class="theme-btn" id="themeToggle">
                 <i class="uil uil-moon dark-icon"></i>
                 <i class="uil uil-sun light-icon"></i>
@@ -225,45 +229,45 @@
 
     <!-- HERO -->
     <div class="doc-hero reveal">
-        <div class="doc-tag"><i class="uil uil-file-contract-dollar"></i> Documento legal</div>
-        <h1>Condiciones del Servicio</h1>
-        <p>Estos Términos y Condiciones regulan el acceso y uso de los servicios de mensajería, atención automatizada y comunicación que ClickDigital presta a través de WhatsApp Business, Messenger e Instagram, en cumplimiento con las políticas de la plataforma de Meta.</p>
+        <div class="doc-tag"><i class="uil uil-file-contract-dollar"></i> <span data-translate="hero_tag">Documento legal</span></div>
+        <h1 data-translate="hero_h1">Condiciones del Servicio</h1>
+        <p data-translate="hero_p">Estos Términos y Condiciones regulan el acceso y uso de los servicios de mensajería, atención automatizada y comunicación que ClickDigital presta a través de WhatsApp Business, Messenger e Instagram, en cumplimiento con las políticas de la plataforma de Meta.</p>
         <div class="doc-meta">
-            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> Última actualización: <strong>31 de marzo de 2026</strong></div>
-            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> Jurisdicción: <strong>República Argentina</strong></div>
-            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> Versión: <strong>1.0</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> <span data-translate="meta_updated">Última actualización:</span> <strong data-translate="meta_date">31 de marzo de 2026</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> <span data-translate="meta_jur">Jurisdicción:</span> <strong data-translate="meta_jur_v">República Argentina</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> <span data-translate="meta_ver">Versión:</span> <strong>1.0</strong></div>
         </div>
     </div>
 
     <!-- TOC -->
     <div class="toc reveal">
-        <div class="toc-title"><i class="uil uil-list-ul"></i> Contenido</div>
+        <div class="toc-title"><i class="uil uil-list-ul"></i> <span data-translate="toc_title">Contenido</span></div>
         <div class="toc-list">
-            <a href="#s1"><span class="toc-num">1</span> Aceptación de los términos</a>
-            <a href="#s2"><span class="toc-num">2</span> Descripción del servicio</a>
-            <a href="#s3"><span class="toc-num">3</span> Uso de WhatsApp y plataformas de Meta</a>
-            <a href="#s4"><span class="toc-num">4</span> Elegibilidad y registro</a>
-            <a href="#s5"><span class="toc-num">5</span> Uso aceptable y conductas prohibidas</a>
-            <a href="#s6"><span class="toc-num">6</span> Automatización e Inteligencia Artificial</a>
-            <a href="#s7"><span class="toc-num">7</span> Propiedad intelectual</a>
-            <a href="#s8"><span class="toc-num">8</span> Limitación de responsabilidad</a>
-            <a href="#s9"><span class="toc-num">9</span> Indemnidad</a>
-            <a href="#s10"><span class="toc-num">10</span> Suspensión y terminación</a>
-            <a href="#s11"><span class="toc-num">11</span> Modificaciones del servicio</a>
-            <a href="#s12"><span class="toc-num">12</span> Privacidad y protección de datos</a>
-            <a href="#s13"><span class="toc-num">13</span> Ley aplicable y jurisdicción</a>
-            <a href="#s14"><span class="toc-num">14</span> Contacto</a>
+            <a href="#s1"><span class="toc-num">1</span> <span data-translate="toc1">Aceptación de los términos</span></a>
+            <a href="#s2"><span class="toc-num">2</span> <span data-translate="toc2">Descripción del servicio</span></a>
+            <a href="#s3"><span class="toc-num">3</span> <span data-translate="toc3">Uso de WhatsApp y plataformas de Meta</span></a>
+            <a href="#s4"><span class="toc-num">4</span> <span data-translate="toc4">Elegibilidad y registro</span></a>
+            <a href="#s5"><span class="toc-num">5</span> <span data-translate="toc5">Uso aceptable y conductas prohibidas</span></a>
+            <a href="#s6"><span class="toc-num">6</span> <span data-translate="toc6">Automatización e Inteligencia Artificial</span></a>
+            <a href="#s7"><span class="toc-num">7</span> <span data-translate="toc7">Propiedad intelectual</span></a>
+            <a href="#s8"><span class="toc-num">8</span> <span data-translate="toc8">Limitación de responsabilidad</span></a>
+            <a href="#s9"><span class="toc-num">9</span> <span data-translate="toc9">Indemnidad</span></a>
+            <a href="#s10"><span class="toc-num">10</span> <span data-translate="toc10">Suspensión y terminación</span></a>
+            <a href="#s11"><span class="toc-num">11</span> <span data-translate="toc11">Modificaciones del servicio</span></a>
+            <a href="#s12"><span class="toc-num">12</span> <span data-translate="toc12">Privacidad y protección de datos</span></a>
+            <a href="#s13"><span class="toc-num">13</span> <span data-translate="toc13">Ley aplicable y jurisdicción</span></a>
+            <a href="#s14"><span class="toc-num">14</span> <span data-translate="toc14">Contacto</span></a>
         </div>
     </div>
 
     <!-- SECCIÓN 1 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec1">
         <div id="s1" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-check-circle"></i></div>
             <div>
-                <div class="section-num">Sección 1</div>
-                <div class="section-title">Aceptación de los términos</div>
+                <div class="section-num" data-translate="s1_num">Sección 1</div>
+                <div class="section-title" data-translate="s1_title">Aceptación de los términos</div>
             </div>
         </div>
         <p class="doc-text">Al iniciar una conversación o interactuar con <strong>ClickDigital</strong> a través de WhatsApp Business, Messenger, Instagram o cualquier otro canal provisto por nosotros, declarás haber leído, comprendido y aceptado estas Condiciones del Servicio en su totalidad.</p>
@@ -274,13 +278,13 @@
     </div>
 
     <!-- SECCIÓN 2 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec2">
         <div id="s2" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-cog"></i></div>
             <div>
-                <div class="section-num">Sección 2</div>
-                <div class="section-title">Descripción del servicio</div>
+                <div class="section-num" data-translate="s2_num">Sección 2</div>
+                <div class="section-title" data-translate="s2_title">Descripción del servicio</div>
             </div>
         </div>
         <p class="doc-text"><strong>ClickDigital</strong> es una empresa de automatización, inteligencia artificial y comunicación con sede en Buenos Aires, Argentina. A través de nuestros canales ofrecemos:</p>
@@ -294,13 +298,13 @@
     </div>
 
     <!-- SECCIÓN 3 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec3">
         <div id="s3" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-whatsapp"></i></div>
             <div>
-                <div class="section-num">Sección 3</div>
-                <div class="section-title">Uso de WhatsApp y plataformas de Meta</div>
+                <div class="section-num" data-translate="s3_num">Sección 3</div>
+                <div class="section-title" data-translate="s3_title">Uso de WhatsApp y plataformas de Meta</div>
             </div>
         </div>
         <p class="doc-text">El servicio se apoya en la <strong>WhatsApp Business Platform (Cloud API)</strong> y en las plataformas de mensajería de <strong>Meta Platforms</strong>. Al utilizar nuestros canales, aceptás también las condiciones de uso de dichas plataformas.</p>
@@ -317,13 +321,13 @@
     </div>
 
     <!-- SECCIÓN 4 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec4">
         <div id="s4" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-user-check"></i></div>
             <div>
-                <div class="section-num">Sección 4</div>
-                <div class="section-title">Elegibilidad y registro</div>
+                <div class="section-num" data-translate="s4_num">Sección 4</div>
+                <div class="section-title" data-translate="s4_title">Elegibilidad y registro</div>
             </div>
         </div>
         <p class="doc-text">Para utilizar nuestros servicios debés cumplir con los siguientes requisitos:</p>
@@ -337,13 +341,13 @@
     </div>
 
     <!-- SECCIÓN 5 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec5">
         <div id="s5" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-ban"></i></div>
             <div>
-                <div class="section-num">Sección 5</div>
-                <div class="section-title">Uso aceptable y conductas prohibidas</div>
+                <div class="section-num" data-translate="s5_num">Sección 5</div>
+                <div class="section-title" data-translate="s5_title">Uso aceptable y conductas prohibidas</div>
             </div>
         </div>
         <p class="doc-text">Al utilizar nuestros servicios te comprometés a no incurrir en las siguientes conductas:</p>
@@ -385,13 +389,13 @@
     </div>
 
     <!-- SECCIÓN 6 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec6">
         <div id="s6" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-robot"></i></div>
             <div>
-                <div class="section-num">Sección 6</div>
-                <div class="section-title">Automatización e Inteligencia Artificial</div>
+                <div class="section-num" data-translate="s6_num">Sección 6</div>
+                <div class="section-title" data-translate="s6_title">Automatización e Inteligencia Artificial</div>
             </div>
         </div>
         <p class="doc-text">Parte de nuestra atención se brinda mediante <strong>sistemas automatizados de Inteligencia Artificial</strong>. Al usar el servicio, entendés y aceptás que:</p>
@@ -407,13 +411,13 @@
     </div>
 
     <!-- SECCIÓN 7 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec7">
         <div id="s7" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-copyright"></i></div>
             <div>
-                <div class="section-num">Sección 7</div>
-                <div class="section-title">Propiedad intelectual</div>
+                <div class="section-num" data-translate="s7_num">Sección 7</div>
+                <div class="section-title" data-translate="s7_title">Propiedad intelectual</div>
             </div>
         </div>
         <p class="doc-text">Todos los contenidos, marcas, logotipos, textos, software, flujos de automatización y materiales asociados al servicio son <strong>propiedad de ClickDigital</strong> o de sus licenciantes, y están protegidos por las leyes de propiedad intelectual aplicables.</p>
@@ -425,13 +429,13 @@
     </div>
 
     <!-- SECCIÓN 8 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec8">
         <div id="s8" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-shield-exclamation"></i></div>
             <div>
-                <div class="section-num">Sección 8</div>
-                <div class="section-title">Limitación de responsabilidad</div>
+                <div class="section-num" data-translate="s8_num">Sección 8</div>
+                <div class="section-title" data-translate="s8_title">Limitación de responsabilidad</div>
             </div>
         </div>
         <p class="doc-text">El servicio se ofrece <strong>"tal cual" y "según disponibilidad"</strong>. En la máxima medida permitida por la ley, ClickDigital no será responsable por:</p>
@@ -448,13 +452,13 @@
     </div>
 
     <!-- SECCIÓN 9 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec9">
         <div id="s9" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-balance-scale"></i></div>
             <div>
-                <div class="section-num">Sección 9</div>
-                <div class="section-title">Indemnidad</div>
+                <div class="section-num" data-translate="s9_num">Sección 9</div>
+                <div class="section-title" data-translate="s9_title">Indemnidad</div>
             </div>
         </div>
         <p class="doc-text">Te comprometés a mantener indemne a ClickDigital, sus directivos, empleados y colaboradores frente a cualquier reclamo, pérdida, daño o gasto (incluidos honorarios legales razonables) que derive de:</p>
@@ -466,13 +470,13 @@
     </div>
 
     <!-- SECCIÓN 10 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec10">
         <div id="s10" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-times-circle"></i></div>
             <div>
-                <div class="section-num">Sección 10</div>
-                <div class="section-title">Suspensión y terminación</div>
+                <div class="section-num" data-translate="s10_num">Sección 10</div>
+                <div class="section-title" data-translate="s10_title">Suspensión y terminación</div>
             </div>
         </div>
         <p class="doc-text">ClickDigital podrá <strong>suspender o dar por terminado</strong> el acceso al servicio, total o parcialmente, en los siguientes casos:</p>
@@ -485,13 +489,13 @@
     </div>
 
     <!-- SECCIÓN 11 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec11">
         <div id="s11" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-file-edit-alt"></i></div>
             <div>
-                <div class="section-num">Sección 11</div>
-                <div class="section-title">Modificaciones del servicio</div>
+                <div class="section-num" data-translate="s11_num">Sección 11</div>
+                <div class="section-title" data-translate="s11_title">Modificaciones del servicio</div>
             </div>
         </div>
         <p class="doc-text">ClickDigital se reserva el derecho de modificar, suspender o discontinuar el servicio —o cualquiera de sus funciones— en cualquier momento, así como de actualizar estas condiciones.</p>
@@ -499,13 +503,13 @@
     </div>
 
     <!-- SECCIÓN 12 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec12">
         <div id="s12" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-lock"></i></div>
             <div>
-                <div class="section-num">Sección 12</div>
-                <div class="section-title">Privacidad y protección de datos</div>
+                <div class="section-num" data-translate="s12_num">Sección 12</div>
+                <div class="section-title" data-translate="s12_title">Privacidad y protección de datos</div>
             </div>
         </div>
         <p class="doc-text">El tratamiento de tus datos personales se rige por nuestra <strong><a href="privacidad.html" style="color:var(--accent);">Política de Privacidad</a></strong>, elaborada en cumplimiento de la <strong>Ley 25.326 de Protección de Datos Personales</strong> de Argentina y de las políticas de la plataforma de WhatsApp Business de Meta.</p>
@@ -515,13 +519,13 @@
     </div>
 
     <!-- SECCIÓN 13 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec13">
         <div id="s13" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-gavel"></i></div>
             <div>
-                <div class="section-num">Sección 13</div>
-                <div class="section-title">Ley aplicable y jurisdicción</div>
+                <div class="section-num" data-translate="s13_num">Sección 13</div>
+                <div class="section-title" data-translate="s13_title">Ley aplicable y jurisdicción</div>
             </div>
         </div>
         <p class="doc-text">Estas Condiciones del Servicio se rigen por las leyes de la <strong>República Argentina</strong>. Para cualquier controversia derivada de su interpretación o cumplimiento, las partes se someten a la jurisdicción de los <strong>Tribunales Ordinarios de la Ciudad Autónoma de Buenos Aires</strong>, renunciando a cualquier otro fuero que pudiera corresponder.</p>
@@ -529,13 +533,13 @@
     </div>
 
     <!-- SECCIÓN 14 -->
-    <div class="doc-section reveal">
+    <div class="doc-section reveal" id="sec14">
         <div id="s14" class="section-anchor"></div>
         <div class="section-header">
             <div class="section-icon"><i class="uil uil-envelope"></i></div>
             <div>
-                <div class="section-num">Sección 14</div>
-                <div class="section-title">Contacto</div>
+                <div class="section-num" data-translate="s14_num">Sección 14</div>
+                <div class="section-title" data-translate="s14_title">Contacto</div>
             </div>
         </div>
         <p class="doc-text">Para cualquier consulta relacionada con estas condiciones o el uso del servicio, podés contactarnos por cualquiera de estos medios:</p>
@@ -561,25 +565,182 @@
         <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
         <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
     </div>
-    <p>&copy; <span id="yr"></span> ClickDigital. Todos los derechos reservados. · Buenos Aires, Argentina</p>
+    <p>&copy; <span id="yr"></span> ClickDigital. <span data-translate="footer_text">Todos los derechos reservados.</span> · Buenos Aires, Argentina</p>
 </footer>
 
 <script>
-document.getElementById('yr').textContent = new Date().getFullYear();
+const translations={
+es:{
+back_site:"Volver al sitio",hero_tag:"Documento legal",
+hero_h1:"Condiciones del Servicio",
+hero_p:"Estos Términos y Condiciones regulan el acceso y uso de los servicios de mensajería, atención automatizada y comunicación que ClickDigital presta a través de WhatsApp Business, Messenger e Instagram, en cumplimiento con las políticas de la plataforma de Meta.",
+meta_updated:"Última actualización:",meta_date:"31 de marzo de 2026",meta_jur:"Jurisdicción:",meta_jur_v:"República Argentina",meta_ver:"Versión:",
+toc_title:"Contenido",toc1:"Aceptación de los términos",toc2:"Descripción del servicio",toc3:"Uso de WhatsApp y plataformas de Meta",toc4:"Elegibilidad y registro",toc5:"Uso aceptable y conductas prohibidas",toc6:"Automatización e Inteligencia Artificial",toc7:"Propiedad intelectual",toc8:"Limitación de responsabilidad",toc9:"Indemnidad",toc10:"Suspensión y terminación",toc11:"Modificaciones del servicio",toc12:"Privacidad y protección de datos",toc13:"Ley aplicable y jurisdicción",toc14:"Contacto",
+s1_num:"Sección 1",s1_title:"Aceptación de los términos",
+s2_num:"Sección 2",s2_title:"Descripción del servicio",
+s3_num:"Sección 3",s3_title:"Uso de WhatsApp y plataformas de Meta",
+s4_num:"Sección 4",s4_title:"Elegibilidad y registro",
+s5_num:"Sección 5",s5_title:"Uso aceptable y conductas prohibidas",
+s6_num:"Sección 6",s6_title:"Automatización e Inteligencia Artificial",
+s7_num:"Sección 7",s7_title:"Propiedad intelectual",
+s8_num:"Sección 8",s8_title:"Limitación de responsabilidad",
+s9_num:"Sección 9",s9_title:"Indemnidad",
+s10_num:"Sección 10",s10_title:"Suspensión y terminación",
+s11_num:"Sección 11",s11_title:"Modificaciones del servicio",
+s12_num:"Sección 12",s12_title:"Privacidad y protección de datos",
+s13_num:"Sección 13",s13_title:"Ley aplicable y jurisdicción",
+s14_num:"Sección 14",s14_title:"Contacto",
+footer_text:"Todos los derechos reservados."
+},
+en:{
+back_site:"Back to site",hero_tag:"Legal document",
+hero_h1:"Terms of Service",
+hero_p:"These Terms and Conditions govern access to and use of the messaging, automated support and communication services that ClickDigital provides through WhatsApp Business, Messenger and Instagram, in compliance with Meta's platform policies.",
+meta_updated:"Last updated:",meta_date:"March 31, 2026",meta_jur:"Jurisdiction:",meta_jur_v:"Argentine Republic",meta_ver:"Version:",
+toc_title:"Contents",toc1:"Acceptance of terms",toc2:"Description of service",toc3:"Use of WhatsApp and Meta platforms",toc4:"Eligibility and registration",toc5:"Acceptable use and prohibited conduct",toc6:"Automation and Artificial Intelligence",toc7:"Intellectual property",toc8:"Limitation of liability",toc9:"Indemnification",toc10:"Suspension and termination",toc11:"Service modifications",toc12:"Privacy and data protection",toc13:"Governing law and jurisdiction",toc14:"Contact",
+s1_num:"Section 1",s1_title:"Acceptance of terms",
+s2_num:"Section 2",s2_title:"Description of service",
+s3_num:"Section 3",s3_title:"Use of WhatsApp and Meta platforms",
+s4_num:"Section 4",s4_title:"Eligibility and registration",
+s5_num:"Section 5",s5_title:"Acceptable use and prohibited conduct",
+s6_num:"Section 6",s6_title:"Automation and Artificial Intelligence",
+s7_num:"Section 7",s7_title:"Intellectual property",
+s8_num:"Section 8",s8_title:"Limitation of liability",
+s9_num:"Section 9",s9_title:"Indemnification",
+s10_num:"Section 10",s10_title:"Suspension and termination",
+s11_num:"Section 11",s11_title:"Service modifications",
+s12_num:"Section 12",s12_title:"Privacy and data protection",
+s13_num:"Section 13",s13_title:"Governing law and jurisdiction",
+s14_num:"Section 14",s14_title:"Contact",
+footer_text:"All rights reserved."
+}
+};
 
-const themeBtn = document.getElementById('themeToggle');
-let theme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', theme);
-themeBtn.addEventListener('click', () => {
-    theme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-});
+// For body content we use a section-content map so the full text translates
+const sectionContent={
+es:{},
+en:{
+s1_body:`<p class="doc-text">By starting a conversation or interacting with <strong>ClickDigital</strong> through WhatsApp Business, Messenger, Instagram or any other channel we provide, you declare that you have read, understood and accepted these Terms of Service in their entirety.</p>
+<p class="doc-text">If you disagree with any of the points described here, please do not use the service. Continued use of our channels implies acceptance of the current version of these terms.</p>
+<div class="highlight-box"><p>These terms are complemented by our <strong><a href="privacidad.html" style="color:var(--accent);">Privacy Policy</a></strong> and by Meta's platform policies. In case of conflict, the mandatory rules of applicable Argentine law shall prevail.</p></div>`,
+s2_body:`<p class="doc-text"><strong>ClickDigital</strong> is an automation, artificial intelligence and communication company based in Buenos Aires, Argentina. Through our channels we offer:</p>
+<ul class="doc-list">
+<li><strong>Automated and human-assisted customer support.</strong></li>
+<li><strong>AI-powered responses</strong> to resolve enquiries in real time.</li>
+<li><strong>Commercial management</strong>, quotes, request follow-up and information about our services.</li>
+<li><strong>Messaging channel integration</strong> (WhatsApp, Messenger, Instagram) into a unified support platform.</li>
+</ul>
+<p class="doc-text">The service is provided "as is" and may evolve, expand or be modified over time to improve the user experience.</p>`,
+s3_body:`<p class="doc-text">The service relies on the <strong>WhatsApp Business Platform (Cloud API)</strong> and <strong>Meta Platforms</strong>' messaging platforms. By using our channels, you also accept the terms of use of those platforms.</p>
+<ul class="doc-list">
+<li>We can only contact you if you initiated the conversation or gave explicit consent to receive messages.</li>
+<li>Within <strong>24 hours</strong> of your last message, we can reply freely. Beyond that window, we only send <strong>pre-approved templates</strong> from Meta.</li>
+<li>We do not use these channels to send unsolicited bulk messages (spam) or communications that violate Meta's policies.</li>
+<li>Use of WhatsApp, Messenger and Instagram is subject to the conditions, availability and potential interruptions of Meta's services, which are beyond our control.</li>
+</ul>
+<div class="warning-box"><i class="uil uil-exclamation-triangle"></i><p>ClickDigital is not responsible for suspensions, restrictions or changes in the availability of Meta's platforms that affect service delivery.</p></div>`,
+s4_body:`<p class="doc-text">To use our services you must meet the following requirements:</p>
+<ul class="doc-list">
+<li>Be <strong>18 years of age or older</strong> or a legally incorporated company/legal entity.</li>
+<li>Provide <strong>accurate and up-to-date</strong> information when requested.</li>
+<li>Use a WhatsApp, Messenger or Instagram account that belongs to you or over which you have authorisation to operate.</li>
+<li>Not impersonate third parties or use false data.</li>
+</ul>
+<p class="doc-text">ClickDigital may request additional information to verify your identity or the legitimacy of your request when deemed necessary.</p>`,
+s5_body:`<p class="doc-text">By using our services you agree not to engage in the following conduct:</p>
+<table class="doc-table"><thead><tr><th>Prohibited conduct</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>Illegal content</strong></td><td>Sending illegal, fraudulent, defamatory, violent or third-party rights-infringing material.</td></tr>
+<tr><td><strong>Spam and abuse</strong></td><td>Bulk sending of unsolicited messages, abusive automation or service overload.</td></tr>
+<tr><td><strong>Impersonation</strong></td><td>Posing as another person, company or as ClickDigital.</td></tr>
+<tr><td><strong>Harassment or threats</strong></td><td>Offensive, discriminatory, intimidating language or content that violates a person's dignity.</td></tr>
+<tr><td><strong>Technical manipulation</strong></td><td>Attempting to breach, reverse-engineer or interfere with the security of our systems.</td></tr>
+<tr><td><strong>Unauthorised commercial use</strong></td><td>Reselling, exploiting or reproducing the service without ClickDigital's express authorisation.</td></tr>
+</tbody></table>
+<p class="doc-text">Violation of these rules may result in immediate suspension or termination of the service, without prejudice to any applicable legal actions.</p>`,
+s6_body:`<p class="doc-text">Part of our support is delivered through <strong>AI-based automated systems</strong>. By using the service, you understand and accept that:</p>
+<ul class="doc-list">
+<li>Your messages may be processed by an <strong>AI agent</strong> that generates automatic responses based on your enquiry's context.</li>
+<li>Automatic responses are <strong>for guidance only</strong> and may contain inaccuracies; they do not constitute binding professional advice.</li>
+<li>You can at any time request to be attended by a person by writing <strong>"Talk to an agent"</strong>.</li>
+<li>The AI system <strong>does not make autonomous decisions</strong> that create legal obligations or legal effects on you without human intervention.</li>
+</ul>
+<div class="highlight-box"><p>AI processing is carried out as described in our <strong><a href="privacidad.html" style="color:var(--accent);">Privacy Policy</a></strong>, ensuring the confidentiality of information shared during the session.</p></div>`,
+s7_body:`<p class="doc-text">All content, brands, logos, texts, software, automation flows and materials associated with the service are <strong>the property of ClickDigital</strong> or its licensors, and are protected by applicable intellectual property laws.</p>
+<ul class="doc-list">
+<li>No licence or right to such content is granted beyond normal use of the service.</li>
+<li>Reproduction, distribution or commercial exploitation without prior written authorisation is prohibited.</li>
+<li>Content you send us remains yours, but you grant us a limited licence to process it for the purpose of providing the service.</li>
+</ul>`,
+s8_body:`<p class="doc-text">The service is provided <strong>"as is" and "as available"</strong>. To the fullest extent permitted by law, ClickDigital shall not be liable for:</p>
+<ul class="doc-list">
+<li>Interruptions, delays or errors arising from Meta's platforms or third-party providers.</li>
+<li>Indirect, incidental damages or lost profits arising from use or inability to use the service.</li>
+<li>Decisions the user makes based on automatic AI responses.</li>
+<li>Loss of information caused by circumstances beyond our reasonable control.</li>
+</ul>
+<div class="warning-box"><i class="uil uil-info-circle"></i><p>Nothing in these terms limits liability that cannot be excluded under Argentine law, including consumer rights under Law 24.240.</p></div>`,
+s9_body:`<p class="doc-text">You agree to hold harmless ClickDigital, its directors, employees and collaborators against any claim, loss, damage or expense (including reasonable legal fees) arising from:</p>
+<ul class="doc-list">
+<li>Misuse of the service or breach of these terms.</li>
+<li>Violation of third-party rights or applicable regulations.</li>
+<li>False or misleading information you provided to us.</li>
+</ul>`,
+s10_body:`<p class="doc-text">ClickDigital may <strong>suspend or terminate</strong> access to the service, in whole or in part, in the following cases:</p>
+<ul class="doc-list">
+<li>Breach of these Terms of Service or Meta's policies.</li>
+<li>Fraudulent, abusive use or use that compromises the security of the service or third parties.</li>
+<li>Requirement by a competent authority or legal obligation.</li>
+</ul>
+<p class="doc-text">You may also stop using the service at any time and request the cancellation or deletion of your data in accordance with our Privacy Policy.</p>`,
+s11_body:`<p class="doc-text">ClickDigital reserves the right to modify, suspend or discontinue the service—or any of its features—at any time, as well as to update these terms.</p>
+<p class="doc-text">Changes will take effect from their publication on this site. In the event of substantial changes affecting your rights, we will notify you by WhatsApp or email at least <strong>15 days in advance</strong>. Continued use of the service after publication implies acceptance of the new terms.</p>`,
+s12_body:`<p class="doc-text">The processing of your personal data is governed by our <strong><a href="privacidad.html" style="color:var(--accent);">Privacy Policy</a></strong>, drawn up in compliance with <strong>Argentina's Personal Data Protection Law 25.326</strong> and Meta's WhatsApp Business platform policies.</p>
+<div class="highlight-box"><p>You can exercise your rights of <strong>access, rectification, erasure and objection</strong> by writing to <strong>info@clickdigital.com.ar</strong>. We respond within 30 business days.</p></div>`,
+s13_body:`<p class="doc-text">These Terms of Service are governed by the laws of the <strong>Argentine Republic</strong>. For any dispute arising from their interpretation or performance, the parties submit to the jurisdiction of the <strong>Ordinary Courts of the Autonomous City of Buenos Aires</strong>, waiving any other jurisdiction that may apply.</p>
+<p class="doc-text">If any clause of these terms is declared invalid or unenforceable, the remaining clauses shall remain in full force.</p>`,
+s14_body:`<p class="doc-text">For any enquiry related to these terms or use of the service, you can contact us through any of the following:</p>
+<div class="contact-card"><div class="contact-icon"><i class="uil uil-building"></i></div>
+<div class="contact-info"><h4>ClickDigital</h4>
+<p>Buenos Aires, Argentina<br>Email: <a href="mailto:info@clickdigital.com.ar">info@clickdigital.com.ar</a><br>WhatsApp: <a href="https://wa.me/5491156571982">+54 9 11 5657-1982</a><br>Manager: ClickDigital Team</p>
+</div></div>
+<div class="highlight-box" style="margin-top:20px;"><p>These terms were drafted in compliance with <strong>Law 25.326</strong> and <strong>Law 24.240 (Argentina)</strong>, the <strong>WhatsApp Business Platform Policies of Meta</strong> and applicable international standards.</p></div>`
+}
+};
 
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.06 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+let currentLang=localStorage.getItem('selectedLang')||'es';
+
+// Store original ES body content for each section on first load
+const originalSectionBodies={};
+
+function applyTranslations(){
+    document.querySelectorAll('[data-translate]').forEach(el=>{const k=el.getAttribute('data-translate');if(translations[currentLang]&&translations[currentLang][k]!==undefined)el.innerHTML=translations[currentLang][k];});
+    document.getElementById('langToggle').textContent=currentLang.toUpperCase();
+    document.documentElement.setAttribute('lang',currentLang);
+
+    // Apply section body translations
+    for(let i=1;i<=14;i++){
+        const sec=document.getElementById('sec'+i);
+        if(!sec) continue;
+        if(!originalSectionBodies[i]) originalSectionBodies[i]=sec.innerHTML;
+        if(currentLang==='en'&&sectionContent.en['s'+i+'_body']){
+            sec.innerHTML=sectionContent.en['s'+i+'_body'];
+        } else {
+            sec.innerHTML=originalSectionBodies[i];
+        }
+    }
+}
+document.getElementById('langToggle').addEventListener('click',()=>{currentLang=currentLang==='es'?'en':'es';localStorage.setItem('selectedLang',currentLang);applyTranslations();});
+document.getElementById('yr').textContent=new Date().getFullYear();
+const themeBtn=document.getElementById('themeToggle');
+let theme=localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme',theme);
+themeBtn.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);});
+// Store originals before first apply
+for(let i=1;i<=14;i++){const sec=document.getElementById('sec'+i);if(sec)originalSectionBodies[i]=sec.innerHTML;}
+applyTranslations();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
