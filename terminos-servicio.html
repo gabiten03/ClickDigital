@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClickDigital — Condiciones del Servicio">
+    <title>ClickDigital | Condiciones del Servicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        :root,[data-theme="dark"]{
+            --accent:#10B981;--accent-alt:#14B8A6;
+            --bg:#07090E;--bg-card:rgba(15,18,28,0.45);--bg-card-h:rgba(20,24,38,0.65);
+            --border:rgba(255,255,255,0.08);--border-h:rgba(16,185,129,0.25);
+            --text:#F1F5F9;--text-mute:#94A3B8;--nav-bg:rgba(7,9,14,0.85);
+            --btn-bg:rgba(255,255,255,0.02);
+            --radius:20px;--nav-h:70px;--ease:cubic-bezier(0.25,1,0.35,1);
+        }
+        [data-theme="light"]{
+            --bg:#F8FAFC;--bg-card:rgba(255,255,255,0.6);--bg-card-h:rgba(255,255,255,0.95);
+            --border:rgba(0,0,0,0.08);--border-h:rgba(16,185,129,0.4);
+            --text:#0F172A;--text-mute:#475569;--nav-bg:rgba(248,250,252,0.9);
+            --btn-bg:rgba(0,0,0,0.03);
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s var(--ease),color .4s var(--ease);}
+        a{text-decoration:none;color:inherit;transition:.3s;}
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;height:var(--nav-h);z-index:1000;display:flex;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+        .nav-inner{max-width:900px;margin:0 auto;padding:0 24px;width:100%;display:flex;justify-content:space-between;align-items:center;}
+        .logo{display:flex;align-items:center;}
+        .logo img{height:30px;width:auto;display:block;}
+        [data-theme="dark"] .logo-light{display:none!important;}[data-theme="dark"] .logo-dark{display:block!important;}
+        [data-theme="light"] .logo-dark{display:none!important;}[data-theme="light"] .logo-light{display:block!important;}
+        .logo-text{font-size:1.2rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent);display:none;}
+        .nav-right{display:flex;align-items:center;gap:12px;}
+        .theme-btn{background:var(--btn-bg);border:1px solid var(--border);color:var(--text);border-radius:50px;cursor:pointer;width:34px;height:34px;font-size:1rem;transition:.3s;display:flex;align-items:center;justify-content:center;}
+        .theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+        [data-theme="dark"] .light-icon{display:none;}[data-theme="light"] .dark-icon{display:none;}
+        .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--text-mute);padding:7px 16px;border-radius:50px;background:var(--btn-bg);border:1px solid var(--border);transition:.3s;}
+        .back-btn:hover{color:var(--accent);border-color:var(--accent);}
+
+        /* LAYOUT */
+        .page-wrap{max-width:900px;margin:0 auto;padding:calc(var(--nav-h) + 60px) 24px 100px;}
+
+        /* HERO STRIP */
+        .doc-hero{
+            padding:48px;border-radius:var(--radius);
+            background:var(--bg-card);border:1px solid var(--border);
+            margin-bottom:40px;position:relative;overflow:hidden;
+        }
+        .doc-hero::before{
+            content:'';position:absolute;top:-60px;right:-60px;
+            width:260px;height:260px;border-radius:50%;
+            background:radial-gradient(circle,rgba(16,185,129,.08) 0%,transparent 70%);
+            pointer-events:none;
+        }
+        .doc-tag{
+            display:inline-flex;align-items:center;gap:8px;
+            padding:5px 16px;border-radius:50px;
+            background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);
+            color:var(--accent);font-size:.72rem;font-weight:700;
+            text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;
+        }
+        .doc-tag i{font-size:.9rem;}
+        .doc-hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;line-height:1.2;}
+        .doc-hero p{color:var(--text-mute);font-size:.95rem;line-height:1.7;max-width:600px;}
+        .doc-meta{
+            display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;
+            padding-top:24px;border-top:1px solid var(--border);
+        }
+        .doc-meta-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text-mute);}
+        .doc-meta-item i{color:var(--accent);font-size:1rem;}
+        .doc-meta-item strong{color:var(--text);font-weight:600;}
+
+        /* TOC */
+        .toc{
+            background:var(--bg-card);border:1px solid var(--border);
+            border-radius:16px;padding:28px 32px;margin-bottom:40px;
+        }
+        .toc-title{font-size:.8rem;font-weight:700;color:var(--text-mute);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+        .toc-title i{color:var(--accent);}
+        .toc-list{display:flex;flex-direction:column;gap:6px;}
+        .toc-list a{
+            font-size:.88rem;color:var(--text-mute);font-weight:500;
+            display:flex;align-items:center;gap:10px;padding:5px 0;
+            border-bottom:1px solid transparent;transition:.2s;
+        }
+        .toc-list a:hover{color:var(--accent);}
+        .toc-num{
+            width:22px;height:22px;border-radius:6px;flex-shrink:0;
+            background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);
+            display:flex;align-items:center;justify-content:center;
+            font-size:.65rem;font-weight:800;color:var(--accent);
+        }
+
+        /* SECTIONS */
+        .doc-section{margin-bottom:48px;}
+        .section-anchor{position:relative;top:calc(-1 * var(--nav-h) - 20px);}
+        .section-header{
+            display:flex;align-items:center;gap:14px;margin-bottom:20px;
+            padding-bottom:16px;border-bottom:1px solid var(--border);
+        }
+        .section-icon{
+            width:40px;height:40px;border-radius:12px;flex-shrink:0;
+            background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);
+            display:flex;align-items:center;justify-content:center;
+            color:var(--accent);font-size:1.1rem;
+        }
+        .section-num{font-size:.7rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px;}
+        .section-title{font-size:1.15rem;font-weight:700;letter-spacing:-.3px;}
+
+        /* CONTENT */
+        .doc-text{color:var(--text-mute);font-size:.92rem;line-height:1.8;margin-bottom:16px;}
+        .doc-text strong{color:var(--text);font-weight:600;}
+        .doc-text a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+
+        /* HIGHLIGHT BOX */
+        .highlight-box{
+            background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.18);
+            border-left:3px solid var(--accent);
+            border-radius:12px;padding:18px 20px;margin:20px 0;
+        }
+        .highlight-box p{color:var(--text-mute);font-size:.88rem;line-height:1.7;margin:0;}
+        .highlight-box strong{color:var(--accent);}
+
+        /* WARNING BOX */
+        .warning-box{
+            background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2);
+            border-left:3px solid #F59E0B;
+            border-radius:12px;padding:18px 20px;margin:20px 0;
+            display:flex;gap:12px;
+        }
+        .warning-box i{color:#F59E0B;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+        .warning-box p{color:var(--text-mute);font-size:.88rem;line-height:1.7;margin:0;}
+
+        /* LIST */
+        .doc-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+        .doc-list li{
+            display:flex;align-items:flex-start;gap:12px;
+            font-size:.9rem;color:var(--text-mute);line-height:1.6;
+        }
+        .doc-list li::before{
+            content:'';width:6px;height:6px;border-radius:50%;
+            background:var(--accent);flex-shrink:0;margin-top:8px;
+        }
+        .doc-list li strong{color:var(--text);}
+
+        /* TABLE */
+        .doc-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.85rem;}
+        .doc-table th{
+            background:rgba(16,185,129,.06);
+            padding:12px 16px;text-align:left;font-weight:700;
+            border-bottom:1px solid var(--border-h);color:var(--accent);
+            font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;
+        }
+        .doc-table td{
+            padding:12px 16px;border-bottom:1px solid var(--border);
+            color:var(--text-mute);vertical-align:top;line-height:1.6;
+        }
+        .doc-table tr:last-child td{border-bottom:none;}
+        .doc-table td strong{color:var(--text);}
+
+        /* CONTACT CARD */
+        .contact-card{
+            background:var(--bg-card);border:1px solid var(--border-h);
+            border-radius:16px;padding:28px 32px;
+            display:flex;align-items:center;gap:20px;margin-top:24px;
+        }
+        .contact-icon{
+            width:48px;height:48px;border-radius:14px;flex-shrink:0;
+            background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);
+            display:flex;align-items:center;justify-content:center;
+            color:var(--accent);font-size:1.3rem;
+        }
+        .contact-info h4{font-size:1rem;font-weight:700;margin-bottom:4px;}
+        .contact-info p{font-size:.85rem;color:var(--text-mute);}
+        .contact-info a{color:var(--accent);}
+
+        /* FOOTER */
+        footer{
+            border-top:1px solid var(--border);padding:32px 24px;text-align:center;
+            font-size:.78rem;color:rgba(148,163,184,.4);
+        }
+        .footer-logo{margin-bottom:10px;}
+        .footer-logo img{height:22px;opacity:.5;}
+
+        /* REVEAL */
+        .reveal{opacity:0;transform:translateY(20px);transition:.6s var(--ease);}
+        .reveal.in{opacity:1;transform:translateY(0);}
+
+        @media(max-width:600px){
+            .doc-hero{padding:28px 24px;}
+            .contact-card{flex-direction:column;}
+            .doc-meta{flex-direction:column;gap:12px;}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block';">
+            <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+            <span class="logo-text">ClickDigital</span>
+        </a>
+        <div class="nav-right">
+            <a href="index.html" class="back-btn">
+                <i class="uil uil-arrow-left"></i> Volver al sitio
+            </a>
+            <button class="theme-btn" id="themeToggle">
+                <i class="uil uil-moon dark-icon"></i>
+                <i class="uil uil-sun light-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="page-wrap">
+
+    <!-- HERO -->
+    <div class="doc-hero reveal">
+        <div class="doc-tag"><i class="uil uil-file-contract-dollar"></i> Documento legal</div>
+        <h1>Condiciones del Servicio</h1>
+        <p>Estos Términos y Condiciones regulan el acceso y uso de los servicios de mensajería, atención automatizada y comunicación que ClickDigital presta a través de WhatsApp Business, Messenger e Instagram, en cumplimiento con las políticas de la plataforma de Meta.</p>
+        <div class="doc-meta">
+            <div class="doc-meta-item"><i class="uil uil-calendar-alt"></i> Última actualización: <strong>31 de marzo de 2026</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-map-marker"></i> Jurisdicción: <strong>República Argentina</strong></div>
+            <div class="doc-meta-item"><i class="uil uil-file-alt"></i> Versión: <strong>1.0</strong></div>
+        </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc reveal">
+        <div class="toc-title"><i class="uil uil-list-ul"></i> Contenido</div>
+        <div class="toc-list">
+            <a href="#s1"><span class="toc-num">1</span> Aceptación de los términos</a>
+            <a href="#s2"><span class="toc-num">2</span> Descripción del servicio</a>
+            <a href="#s3"><span class="toc-num">3</span> Uso de WhatsApp y plataformas de Meta</a>
+            <a href="#s4"><span class="toc-num">4</span> Elegibilidad y registro</a>
+            <a href="#s5"><span class="toc-num">5</span> Uso aceptable y conductas prohibidas</a>
+            <a href="#s6"><span class="toc-num">6</span> Automatización e Inteligencia Artificial</a>
+            <a href="#s7"><span class="toc-num">7</span> Propiedad intelectual</a>
+            <a href="#s8"><span class="toc-num">8</span> Limitación de responsabilidad</a>
+            <a href="#s9"><span class="toc-num">9</span> Indemnidad</a>
+            <a href="#s10"><span class="toc-num">10</span> Suspensión y terminación</a>
+            <a href="#s11"><span class="toc-num">11</span> Modificaciones del servicio</a>
+            <a href="#s12"><span class="toc-num">12</span> Privacidad y protección de datos</a>
+            <a href="#s13"><span class="toc-num">13</span> Ley aplicable y jurisdicción</a>
+            <a href="#s14"><span class="toc-num">14</span> Contacto</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 1 -->
+    <div class="doc-section reveal">
+        <div id="s1" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-check-circle"></i></div>
+            <div>
+                <div class="section-num">Sección 1</div>
+                <div class="section-title">Aceptación de los términos</div>
+            </div>
+        </div>
+        <p class="doc-text">Al iniciar una conversación o interactuar con <strong>ClickDigital</strong> a través de WhatsApp Business, Messenger, Instagram o cualquier otro canal provisto por nosotros, declarás haber leído, comprendido y aceptado estas Condiciones del Servicio en su totalidad.</p>
+        <p class="doc-text">Si no estás de acuerdo con alguno de los puntos aquí descritos, te pedimos que no utilices el servicio. El uso continuado de nuestros canales implica la aceptación de la versión vigente de estos términos.</p>
+        <div class="highlight-box">
+            <p>Estas condiciones se complementan con nuestra <strong><a href="privacidad.html" style="color:var(--accent);">Política de Privacidad</a></strong> y con las políticas de la plataforma de Meta. En caso de contradicción, prevalecerán las normas imperativas de la legislación argentina aplicable.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2 -->
+    <div class="doc-section reveal">
+        <div id="s2" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-cog"></i></div>
+            <div>
+                <div class="section-num">Sección 2</div>
+                <div class="section-title">Descripción del servicio</div>
+            </div>
+        </div>
+        <p class="doc-text"><strong>ClickDigital</strong> es una empresa de automatización, inteligencia artificial y comunicación con sede en Buenos Aires, Argentina. A través de nuestros canales ofrecemos:</p>
+        <ul class="doc-list">
+            <li><strong>Atención al cliente automatizada</strong> y asistida por agentes humanos.</li>
+            <li><strong>Respuestas mediante inteligencia artificial</strong> para resolver consultas en tiempo real.</li>
+            <li><strong>Gestión comercial</strong>, cotizaciones, seguimiento de solicitudes e información sobre nuestros servicios.</li>
+            <li><strong>Integración de canales</strong> de mensajería (WhatsApp, Messenger, Instagram) en una plataforma unificada de atención.</li>
+        </ul>
+        <p class="doc-text">El servicio se presta "tal cual" y puede evolucionar, ampliarse o modificarse con el tiempo para mejorar la experiencia del usuario.</p>
+    </div>
+
+    <!-- SECCIÓN 3 -->
+    <div class="doc-section reveal">
+        <div id="s3" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-whatsapp"></i></div>
+            <div>
+                <div class="section-num">Sección 3</div>
+                <div class="section-title">Uso de WhatsApp y plataformas de Meta</div>
+            </div>
+        </div>
+        <p class="doc-text">El servicio se apoya en la <strong>WhatsApp Business Platform (Cloud API)</strong> y en las plataformas de mensajería de <strong>Meta Platforms</strong>. Al utilizar nuestros canales, aceptás también las condiciones de uso de dichas plataformas.</p>
+        <ul class="doc-list">
+            <li>Solo podemos contactarte si vos iniciaste la conversación o diste tu consentimiento explícito para recibir mensajes.</li>
+            <li>Dentro de las <strong>24 horas</strong> posteriores a tu último mensaje, podemos responder libremente. Fuera de esa ventana, solo enviamos <strong>plantillas (templates)</strong> previamente aprobadas por Meta.</li>
+            <li>No utilizamos los canales para enviar mensajes masivos no solicitados (spam) ni comunicaciones que infrinjan las políticas de Meta.</li>
+            <li>El uso de WhatsApp, Messenger e Instagram está sujeto a las condiciones, disponibilidad y eventuales interrupciones de los servicios de Meta, ajenas a nuestro control.</li>
+        </ul>
+        <div class="warning-box">
+            <i class="uil uil-exclamation-triangle"></i>
+            <p>ClickDigital no es responsable por suspensiones, restricciones o cambios en la disponibilidad de las plataformas de Meta que afecten la prestación del servicio.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4 -->
+    <div class="doc-section reveal">
+        <div id="s4" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-user-check"></i></div>
+            <div>
+                <div class="section-num">Sección 4</div>
+                <div class="section-title">Elegibilidad y registro</div>
+            </div>
+        </div>
+        <p class="doc-text">Para utilizar nuestros servicios debés cumplir con los siguientes requisitos:</p>
+        <ul class="doc-list">
+            <li>Ser <strong>mayor de 18 años</strong> o una empresa/persona jurídica legalmente constituida.</li>
+            <li>Proporcionar información <strong>veraz y actualizada</strong> cuando sea solicitada.</li>
+            <li>Utilizar una cuenta de WhatsApp, Messenger o Instagram de tu titularidad o sobre la que tengas autorización para operar.</li>
+            <li>No suplantar la identidad de terceros ni utilizar datos falsos.</li>
+        </ul>
+        <p class="doc-text">ClickDigital podrá solicitar información adicional para verificar tu identidad o la legitimidad de tu solicitud cuando lo considere necesario.</p>
+    </div>
+
+    <!-- SECCIÓN 5 -->
+    <div class="doc-section reveal">
+        <div id="s5" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-ban"></i></div>
+            <div>
+                <div class="section-num">Sección 5</div>
+                <div class="section-title">Uso aceptable y conductas prohibidas</div>
+            </div>
+        </div>
+        <p class="doc-text">Al utilizar nuestros servicios te comprometés a no incurrir en las siguientes conductas:</p>
+        <table class="doc-table">
+            <thead>
+                <tr>
+                    <th>Conducta prohibida</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Contenido ilícito</strong></td>
+                    <td>Enviar material ilegal, fraudulento, difamatorio, violento o que infrinja derechos de terceros.</td>
+                </tr>
+                <tr>
+                    <td><strong>Spam y abuso</strong></td>
+                    <td>Envío masivo de mensajes no solicitados, automatizaciones abusivas o sobrecarga del servicio.</td>
+                </tr>
+                <tr>
+                    <td><strong>Suplantación</strong></td>
+                    <td>Hacerse pasar por otra persona, empresa o por ClickDigital.</td>
+                </tr>
+                <tr>
+                    <td><strong>Acoso o amenazas</strong></td>
+                    <td>Lenguaje ofensivo, discriminatorio, intimidatorio o que vulnere la dignidad de personas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Manipulación técnica</strong></td>
+                    <td>Intentar vulnerar, realizar ingeniería inversa o interferir con la seguridad de nuestros sistemas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Uso comercial no autorizado</strong></td>
+                    <td>Revender, explotar o reproducir el servicio sin autorización expresa de ClickDigital.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="doc-text">El incumplimiento de estas reglas podrá dar lugar a la suspensión o terminación inmediata del servicio, sin perjuicio de las acciones legales que correspondan.</p>
+    </div>
+
+    <!-- SECCIÓN 6 -->
+    <div class="doc-section reveal">
+        <div id="s6" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-robot"></i></div>
+            <div>
+                <div class="section-num">Sección 6</div>
+                <div class="section-title">Automatización e Inteligencia Artificial</div>
+            </div>
+        </div>
+        <p class="doc-text">Parte de nuestra atención se brinda mediante <strong>sistemas automatizados de Inteligencia Artificial</strong>. Al usar el servicio, entendés y aceptás que:</p>
+        <ul class="doc-list">
+            <li>Tus mensajes pueden ser procesados por un <strong>agente de IA</strong> que genera respuestas automáticas según el contexto de la consulta.</li>
+            <li>Las respuestas automáticas son <strong>orientativas</strong> y pueden contener imprecisiones; no constituyen asesoramiento profesional vinculante.</li>
+            <li>Podés solicitar en cualquier momento ser atendido por una persona escribiendo <strong>"Hablar con un agente"</strong>.</li>
+            <li>El sistema de IA <strong>no toma decisiones autónomas</strong> que generen obligaciones legales ni efectos jurídicos sobre vos sin intervención humana.</li>
+        </ul>
+        <div class="highlight-box">
+            <p>El procesamiento por IA se realiza conforme a lo descrito en nuestra <strong><a href="privacidad.html" style="color:var(--accent);">Política de Privacidad</a></strong>, garantizando la confidencialidad de la información compartida durante la sesión.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 7 -->
+    <div class="doc-section reveal">
+        <div id="s7" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-copyright"></i></div>
+            <div>
+                <div class="section-num">Sección 7</div>
+                <div class="section-title">Propiedad intelectual</div>
+            </div>
+        </div>
+        <p class="doc-text">Todos los contenidos, marcas, logotipos, textos, software, flujos de automatización y materiales asociados al servicio son <strong>propiedad de ClickDigital</strong> o de sus licenciantes, y están protegidos por las leyes de propiedad intelectual aplicables.</p>
+        <ul class="doc-list">
+            <li>No se concede ninguna licencia ni derecho sobre dichos contenidos más allá del uso normal del servicio.</li>
+            <li>Queda prohibida la reproducción, distribución o explotación comercial sin autorización previa y por escrito.</li>
+            <li>El contenido que vos nos envíes seguirá siendo tuyo, pero nos otorgás una licencia limitada para procesarlo con el fin de prestarte el servicio.</li>
+        </ul>
+    </div>
+
+    <!-- SECCIÓN 8 -->
+    <div class="doc-section reveal">
+        <div id="s8" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-shield-exclamation"></i></div>
+            <div>
+                <div class="section-num">Sección 8</div>
+                <div class="section-title">Limitación de responsabilidad</div>
+            </div>
+        </div>
+        <p class="doc-text">El servicio se ofrece <strong>"tal cual" y "según disponibilidad"</strong>. En la máxima medida permitida por la ley, ClickDigital no será responsable por:</p>
+        <ul class="doc-list">
+            <li>Interrupciones, demoras o errores derivados de las plataformas de Meta o de terceros proveedores.</li>
+            <li>Daños indirectos, incidentales o lucro cesante derivados del uso o imposibilidad de uso del servicio.</li>
+            <li>Decisiones que el usuario tome basándose en respuestas automáticas de IA.</li>
+            <li>Pérdida de información ocasionada por causas ajenas a nuestro control razonable.</li>
+        </ul>
+        <div class="warning-box">
+            <i class="uil uil-info-circle"></i>
+            <p>Nada en estas condiciones limita la responsabilidad que no pueda excluirse según la legislación argentina, incluyendo los derechos del consumidor previstos en la Ley 24.240.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 9 -->
+    <div class="doc-section reveal">
+        <div id="s9" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-balance-scale"></i></div>
+            <div>
+                <div class="section-num">Sección 9</div>
+                <div class="section-title">Indemnidad</div>
+            </div>
+        </div>
+        <p class="doc-text">Te comprometés a mantener indemne a ClickDigital, sus directivos, empleados y colaboradores frente a cualquier reclamo, pérdida, daño o gasto (incluidos honorarios legales razonables) que derive de:</p>
+        <ul class="doc-list">
+            <li>El uso indebido del servicio o el incumplimiento de estas condiciones.</li>
+            <li>La violación de derechos de terceros o de normativa aplicable.</li>
+            <li>La información falsa o engañosa que nos hayas proporcionado.</li>
+        </ul>
+    </div>
+
+    <!-- SECCIÓN 10 -->
+    <div class="doc-section reveal">
+        <div id="s10" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-times-circle"></i></div>
+            <div>
+                <div class="section-num">Sección 10</div>
+                <div class="section-title">Suspensión y terminación</div>
+            </div>
+        </div>
+        <p class="doc-text">ClickDigital podrá <strong>suspender o dar por terminado</strong> el acceso al servicio, total o parcialmente, en los siguientes casos:</p>
+        <ul class="doc-list">
+            <li>Incumplimiento de estas Condiciones del Servicio o de las políticas de Meta.</li>
+            <li>Uso fraudulento, abusivo o que comprometa la seguridad del servicio o de terceros.</li>
+            <li>Requerimiento de una autoridad competente o por obligación legal.</li>
+        </ul>
+        <p class="doc-text">Asimismo, vos podés dejar de utilizar el servicio en cualquier momento y solicitar la baja o eliminación de tus datos conforme a nuestra Política de Privacidad.</p>
+    </div>
+
+    <!-- SECCIÓN 11 -->
+    <div class="doc-section reveal">
+        <div id="s11" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-file-edit-alt"></i></div>
+            <div>
+                <div class="section-num">Sección 11</div>
+                <div class="section-title">Modificaciones del servicio</div>
+            </div>
+        </div>
+        <p class="doc-text">ClickDigital se reserva el derecho de modificar, suspender o discontinuar el servicio —o cualquiera de sus funciones— en cualquier momento, así como de actualizar estas condiciones.</p>
+        <p class="doc-text">Los cambios entrarán en vigencia desde su publicación en este sitio. En caso de cambios sustanciales que afecten tus derechos, te notificaremos por WhatsApp o email con al menos <strong>15 días de anticipación</strong>. El uso continuado del servicio tras la publicación implica la aceptación de los nuevos términos.</p>
+    </div>
+
+    <!-- SECCIÓN 12 -->
+    <div class="doc-section reveal">
+        <div id="s12" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-lock"></i></div>
+            <div>
+                <div class="section-num">Sección 12</div>
+                <div class="section-title">Privacidad y protección de datos</div>
+            </div>
+        </div>
+        <p class="doc-text">El tratamiento de tus datos personales se rige por nuestra <strong><a href="privacidad.html" style="color:var(--accent);">Política de Privacidad</a></strong>, elaborada en cumplimiento de la <strong>Ley 25.326 de Protección de Datos Personales</strong> de Argentina y de las políticas de la plataforma de WhatsApp Business de Meta.</p>
+        <div class="highlight-box">
+            <p>Podés ejercer tus derechos de <strong>acceso, rectificación, supresión y oposición</strong> escribiendo a <strong>info@clickdigital.com.ar</strong>. Respondemos dentro de los 30 días hábiles.</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 13 -->
+    <div class="doc-section reveal">
+        <div id="s13" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-gavel"></i></div>
+            <div>
+                <div class="section-num">Sección 13</div>
+                <div class="section-title">Ley aplicable y jurisdicción</div>
+            </div>
+        </div>
+        <p class="doc-text">Estas Condiciones del Servicio se rigen por las leyes de la <strong>República Argentina</strong>. Para cualquier controversia derivada de su interpretación o cumplimiento, las partes se someten a la jurisdicción de los <strong>Tribunales Ordinarios de la Ciudad Autónoma de Buenos Aires</strong>, renunciando a cualquier otro fuero que pudiera corresponder.</p>
+        <p class="doc-text">Si alguna cláusula de estos términos fuera declarada inválida o inaplicable, las restantes mantendrán plena vigencia.</p>
+    </div>
+
+    <!-- SECCIÓN 14 -->
+    <div class="doc-section reveal">
+        <div id="s14" class="section-anchor"></div>
+        <div class="section-header">
+            <div class="section-icon"><i class="uil uil-envelope"></i></div>
+            <div>
+                <div class="section-num">Sección 14</div>
+                <div class="section-title">Contacto</div>
+            </div>
+        </div>
+        <p class="doc-text">Para cualquier consulta relacionada con estas condiciones o el uso del servicio, podés contactarnos por cualquiera de estos medios:</p>
+        <div class="contact-card">
+            <div class="contact-icon"><i class="uil uil-building"></i></div>
+            <div class="contact-info">
+                <h4>ClickDigital</h4>
+                <p>Buenos Aires, Argentina<br>
+                Email: <a href="mailto:info@clickdigital.com.ar">info@clickdigital.com.ar</a><br>
+                WhatsApp: <a href="https://wa.me/5491156571982">+54 9 11 5657-1982</a><br>
+                Responsable: Equipo ClickDigital</p>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top:20px;">
+            <p>Estas condiciones fueron redactadas en cumplimiento de la <strong>Ley 25.326</strong> y la <strong>Ley 24.240 (Argentina)</strong>, las <strong>Políticas de la Plataforma de WhatsApp Business de Meta</strong> y los estándares internacionales aplicables.</p>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-logo">
+        <img src="assets/images/logo-dark.png" class="logo-dark" alt="ClickDigital" onerror="this.style.display='none';">
+        <img src="assets/images/logo-light.png" class="logo-light" alt="ClickDigital" onerror="this.style.display='none';">
+    </div>
+    <p>&copy; <span id="yr"></span> ClickDigital. Todos los derechos reservados. · Buenos Aires, Argentina</p>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const themeBtn = document.getElementById('themeToggle');
+let theme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', theme);
+themeBtn.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+});
+
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
